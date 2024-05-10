@@ -47,8 +47,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   sphericalMode:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0
   seaLevel:
     m_OverrideState: 0
     m_Value: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
     m_Value: 3
   groundTint:
     m_OverrideState: 1
-    m_Value: {r: 0.122641504, g: 0.1043775, b: 0.09313812, a: 1}
+    m_Value: {r: 0.1975347, g: 0.206863, b: 0.21698111, a: 1}
   groundColorTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
     m_Value: 400
   enableVolumetricFog:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   albedo:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -261,7 +261,7 @@ MonoBehaviour:
     m_Value: 0
   skyAmbientMode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   windOrientation:
     m_OverrideState: 0
     m_Value: 0
@@ -286,10 +286,10 @@ MonoBehaviour:
   active: 1
   enable:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   localClouds:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   earthCurvature:
     m_OverrideState: 0
     m_Value: 0
@@ -301,10 +301,10 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0}
   lowestCloudAltitude:
     m_OverrideState: 1
-    m_Value: 2533
+    m_Value: 3000
   cloudThickness:
     m_OverrideState: 1
-    m_Value: 32000
+    m_Value: 10000
   fadeInMode:
     m_OverrideState: 0
     m_Value: 0
@@ -510,8 +510,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.75
   shapeScale:
-    m_OverrideState: 0
-    m_Value: 2.5
+    m_OverrideState: 1
+    m_Value: 2
   shapeOffset:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0, z: 0}
@@ -576,7 +576,7 @@ MonoBehaviour:
     m_Value: 1
   shadows:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   shadowResolution:
     m_OverrideState: 1
     m_Value: 512
@@ -623,7 +623,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 4
+    m_Value: 0
   meteringMode:
     m_OverrideState: 0
     m_Value: 2
@@ -631,17 +631,17 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   fixedExposure:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 15
   compensation:
     m_OverrideState: 0
     m_Value: 0
   limitMin:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: -5
   limitMax:
     m_OverrideState: 1
-    m_Value: 14
+    m_Value: 15
   curveMap:
     m_OverrideState: 0
     m_Value:
