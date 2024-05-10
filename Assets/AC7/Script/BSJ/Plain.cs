@@ -6,8 +6,12 @@ using Mirror;
 public class Plain : NetworkBehaviour
 {
     private Rigidbody _rigidbody;
+    private Weapon _weapon;
+
     private float _rollInput;
     private float _pitchInput;
+    private bool _fireInput;
+
     private float _rollSpeed = 2.0f;
     private float _thrustSpeed = 5.0f;
     private float _pitchSpeed = 1.0f;
@@ -15,13 +19,14 @@ public class Plain : NetworkBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _weapon = GetComponent<Weapon>();
     }
     private void FixedUpdate()
     {
         if(!isServer)
         {
             UpdateInput();
-            cmdUpdateInput(_rollInput, _pitchInput);
+            cmdUpdateInput(_rollInput, _pitchInput, _fireInput);
             return;
         }
         if (isLocalPlayer)
@@ -34,10 +39,11 @@ public class Plain : NetworkBehaviour
     }
 
     [Command]
-    private void cmdUpdateInput(float rollInput, float pitchInput)
+    private void cmdUpdateInput(float rollInput, float pitchInput, bool fireInput)
     {
         _rollInput = rollInput;
         _pitchInput = pitchInput;
+        _fireInput = fireInput;
     }
 
     private void Roll(float input)
@@ -61,6 +67,10 @@ public class Plain : NetworkBehaviour
     private float GetPitchInput()
     {
         return Input.GetAxis("Vertical");
+    }
+    private bool GetFireInput()
+    {
+        return Input.GetMouseButtonDown(0);
     }
     private void UpdateInput()
     {
