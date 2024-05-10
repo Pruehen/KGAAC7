@@ -18,7 +18,7 @@ public class Atmosphere
         //간단한 충격파 항력.
         float dragGain = 1 + (Mathf.Clamp(speed - 300, 0, 60)) / 30;
 
-        return AtmosphericPressure(yPos) * cd * speed / 300 * dragGain;
+        return AtmosphericPressure(yPos) * cd * speed * 0.005f * dragGain;
     }
     /// <summary>
     /// 고도에 따른 대기압을 확인하는 메서드
