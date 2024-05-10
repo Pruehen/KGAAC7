@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class Plain : NetworkBehaviour
+public class Plane : NetworkBehaviour
 {
     private Rigidbody _rigidbody;
     private Weapon _weapon;
