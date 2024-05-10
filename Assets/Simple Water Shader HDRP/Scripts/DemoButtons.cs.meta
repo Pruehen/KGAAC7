@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bc7faa2020e4f5c4aad861f20dcda681
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - CameraA: {fileID: 3815653664971201098, guid: cbc0c5765668e1f4aaf61eca7657b7c5, type: 3}
+  - CameraB: {fileID: 3349745847103687794, guid: 638b2f6044371c2488105dc903823405, type: 3}
+  - CameraC: {fileID: 3837972734891179497, guid: 3f16941b9b36f414a95992d27425ee4b, type: 3}
+  - CameraD: {fileID: 3147679194393235622, guid: 68a125ef8ef1fa744b69e2dc22497d0b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
