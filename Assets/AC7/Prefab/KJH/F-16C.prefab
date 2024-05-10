@@ -1119,7 +1119,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  e: 0.8
+  e: 0.95
   liftPower: 30
   dragCoefficient: 0.05
 --- !u!1 &8077328215624754250
