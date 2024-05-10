@@ -35,16 +35,15 @@ public class AircraftFM : MonoBehaviour
         float aoa = -Mathf.Asin(localVelocityDir.y) * Mathf.Rad2Deg;
         //측면 받음각
         float aoaSide = -Mathf.Asin(localVelocityDir.x) * Mathf.Rad2Deg;
-        //자세에 따른 추가 유해 항력 계수
-        float dragGain_aoa = 1 + new Vector3(localVelocityDir.x, localVelocityDir.y, 0).magnitude * 5;
 
         //속도 벡터의 수직 방향으로 양력 생성
         rigidbody.AddForce(Vector3.Cross(velocity, this.transform.right).normalized * aircraftData.GetLiftPower(aoa, velocitySpeed), ForceMode.Acceleration);
-        //속도 벡터의 반대 방향으로 유도항력 생성
-        rigidbody.AddForce(-velocity.normalized * aircraftData.GetInducedDrag(aoa, velocitySpeed), ForceMode.Acceleration);
+        rigidbody.AddForce(this.transform.right.normalized * aircraftData.GetLiftPower(aoaSide, velocitySpeed), ForceMode.Acceleration);
+        //속도 벡터의 반대 방향으로 유도항력 및 유해항력 생성
+        rigidbody.AddForce(-velocity.normalized * (aircraftData.GetInducedDrag(aoa, velocitySpeed) + aircraftData.GetParasiteDrag(aoa, velocitySpeed)), ForceMode.Acceleration);
 
         //항력 적용
-        rigidbody.drag = Atmosphere.Drag(this.transform.position.y, aircraftData.GetDC() * dragGain_aoa, velocitySpeed);
+        rigidbody.drag = Atmosphere.Drag(this.transform.position.y, aircraftData.GetDC(), velocitySpeed);
         Debug.Log(velocitySpeed);
     }
 }

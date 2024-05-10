@@ -13,6 +13,7 @@ public class AircraftData : MonoBehaviour
     [SerializeField] AnimationCurve enginePowerCurve; //엔진 추력 커브
     [SerializeField] AnimationCurve torqueCurve; //토크 커브
     [SerializeField] AnimationCurve clCurve;//받음각에 따른 양력 계수 커브
+    [SerializeField] AnimationCurve cdCurve;//받음각에 따른 유해항력 계수 커브
     [SerializeField][Range(0, 1)] float e;//스팬효율계수 (0~1까지의 값을 가짐)
     [SerializeField] float liftPower;//비례익면적.
 
@@ -85,13 +86,21 @@ public class AircraftData : MonoBehaviour
         return clCurve.Evaluate(aoa) * liftPower * e * Atmosphere.AtmosphericPressure(transform.position.y) * speed * speed * 0.0001f;
     }
     /// <summary>
-    /// 받음각에 따른 유도 항력을 반환하는 메서드
+    /// 받음각과 속도에 따른 유도 항력을 반환하는 메서드
     /// </summary>
     /// <param name="aoa"></param>
     /// <returns></returns>
     public float GetInducedDrag(float aoa, float speed)
     {
-        return clCurve.Evaluate(aoa) * liftPower * (1 - e) * Atmosphere.AtmosphericPressure(transform.position.y) * speed * speed * 0.0001f; ;
+        return clCurve.Evaluate(aoa) * liftPower * (1 - e) * Atmosphere.AtmosphericPressure(transform.position.y) * speed * speed * 0.0001f;
+    }
+    /// <summary>
+    /// 받음각과 속도에 따른 유해 항력을 반환하는 메서드
+    /// </summary>
+    /// <returns></returns>
+    public float GetParasiteDrag(float aoa, float speed)
+    {
+        return cdCurve.Evaluate(aoa) * liftPower * Atmosphere.AtmosphericPressure(transform.position.y) * speed * speed * 0.0001f;
     }
 
     // Update is called once per frame
