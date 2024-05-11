@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1741987053251069872}
   - component: {fileID: 4949464902518896287}
   - component: {fileID: 3322218277907388}
+  - component: {fileID: 22006718570536685}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -49,6 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1599c34ef3b2ad94a93f2d2dd91b78ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  _firePosition: {fileID: 0}
 --- !u!54 &1741987053251069872
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117,6 +122,22 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &22006718570536685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7640816614159699849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb73adef62b96242b7a39e2fee37509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  _projectile: {fileID: 7872569679635414068, guid: e5b752b515adf1b4c9b68702b1c9e097, type: 3}
 --- !u!1 &8594455775789514742
 GameObject:
   m_ObjectHideFlags: 0
