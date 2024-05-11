@@ -20,7 +20,14 @@ public class Rocket : MonoBehaviour
 
     float lifeTime = 0;
     Rigidbody rigidbody;
-    bool isCombustion;//현재 연소 중인지 판별
+    public bool isCombustion { get; private set; }//현재 연소 중인지 판별
+    Vector3 sideForce;
+    /// <summary>
+    /// 현재 로켓이 받고 있는 측가속도(Vector3)를 반환함.
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 SideForce() { return sideForce; }
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -58,10 +65,10 @@ public class Rocket : MonoBehaviour
             }
         }
 
-        Vector3 sideForce = this.transform.forward * velocitySpeed - velocity;
+        sideForce = this.transform.forward * velocitySpeed - velocity;
         rigidbody.AddForce(sideForce, ForceMode.Acceleration);
 
-        Debug.Log(velocitySpeed);
+        //Debug.Log(velocitySpeed);
     }
 
     void Combustion(float power)

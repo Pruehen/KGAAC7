@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6445041468265237180}
   - component: {fileID: 6445041468265237182}
   - component: {fileID: 6445041468265237183}
+  - component: {fileID: -859180380403536392}
   m_Layer: 0
   m_Name: TestMissile
   m_TagString: Untagged
@@ -142,12 +143,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &6445041468265237183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +167,23 @@ MonoBehaviour:
   sustainPower: 0
   liftPower: 1
   maxLiftTime: 30
+--- !u!114 &-859180380403536392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445041468265237155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d941a5b0efacf449a3bf09ef306c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTrf: {fileID: 0}
+  maxTurnRate: 45
+  maxSideForce: 300
+  isTVC: 0
+  traceAngleLimit: 90
 --- !u!1 &6868319698786337620
 GameObject:
   m_ObjectHideFlags: 0
