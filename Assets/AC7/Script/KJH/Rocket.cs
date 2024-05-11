@@ -17,9 +17,11 @@ public class Rocket : MonoBehaviour
     float cD;//항력계수 (양력과 비례함)
 
     [SerializeField] float maxLiftTime;//최대 작동 시간. 초과시 자폭
+    [SerializeField] float safeTime;//안전 시간. 이 시간이 지난 후 콜리더 활성화
 
     float lifeTime = 0;
     Rigidbody rigidbody;
+    SphereCollider sphereCollider;
     public bool isCombustion { get; private set; }//현재 연소 중인지 판별
     Vector3 sideForce;
     /// <summary>
@@ -30,9 +32,12 @@ public class Rocket : MonoBehaviour
 
     private void Awake()
     {
+        sphereCollider = GetComponent<SphereCollider>();
         rigidbody = GetComponent<Rigidbody>();
         isCombustion = true;
         cD = liftPower * 0.02f;
+
+        sphereCollider.enabled = false;
     }
 
     // Update is called once per frame

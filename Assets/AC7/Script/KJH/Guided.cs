@@ -7,6 +7,15 @@ public class Guided : MonoBehaviour
 {
     [SerializeField] Transform targetTrf;
 
+    /// <summary>
+    /// 유도 미사일의 타겟을 지정해주는 메서드
+    /// </summary>
+    /// <param name="target"></param>
+    public void SetTarget(Transform target)
+    {
+        targetTrf = target;
+    }
+
     [SerializeField] float maxTurnRate;//최대 토크
     [SerializeField] float maxSideForce;//최대 기동력
     [SerializeField] bool isTVC;//추력 편향 노즐 여부

@@ -167,6 +167,7 @@ MonoBehaviour:
   sustainPower: 0
   liftPower: 1
   maxLiftTime: 30
+  safeTime: 1
 --- !u!114 &-859180380403536392
 MonoBehaviour:
   m_ObjectHideFlags: 0
