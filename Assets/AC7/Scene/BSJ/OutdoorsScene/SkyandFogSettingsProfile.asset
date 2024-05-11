@@ -175,14 +175,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1000
   baseHeight:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 10
   maximumHeight:
-    m_OverrideState: 0
-    m_Value: 50
+    m_OverrideState: 1
+    m_Value: 2000
   meanFreePath:
-    m_OverrideState: 0
-    m_Value: 400
+    m_OverrideState: 1
+    m_Value: 5000
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 0
@@ -286,10 +286,10 @@ MonoBehaviour:
   active: 1
   enable:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   localClouds:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   earthCurvature:
     m_OverrideState: 0
     m_Value: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0}
   lowestCloudAltitude:
     m_OverrideState: 1
-    m_Value: 3000
+    m_Value: 2000
   cloudThickness:
     m_OverrideState: 1
     m_Value: 10000
@@ -316,7 +316,7 @@ MonoBehaviour:
     m_Value: 0
   numPrimarySteps:
     m_OverrideState: 1
-    m_Value: 267
+    m_Value: 64
   numLightSteps:
     m_OverrideState: 0
     m_Value: 6
@@ -363,54 +363,27 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 64
   customDensityCurve:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        value: 1.0117924
+        inSlope: -0.38061148
+        outSlope: -0.38061148
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.25108227
       - serializedVersion: 3
-        time: 0.2
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        time: 1.0041585
+        value: -0.011790633
+        inSlope: -1.1686536
+        outSlope: -1.1686536
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.5
-        value: 0.7
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.8
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
+        inWeight: 0.12499314
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -505,10 +478,10 @@ MonoBehaviour:
     m_Value: 0.5
   densityMultiplier:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0.18
   shapeFactor:
-    m_OverrideState: 0
-    m_Value: 0.75
+    m_OverrideState: 1
+    m_Value: 0.8
   shapeScale:
     m_OverrideState: 1
     m_Value: 2
@@ -567,7 +540,7 @@ MonoBehaviour:
     m_Value: 0
   temporalAccumulationFactor:
     m_OverrideState: 1
-    m_Value: 0.93
+    m_Value: 0.35
   ghostingReduction:
     m_OverrideState: 0
     m_Value: 0
@@ -575,10 +548,10 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   shadows:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   shadowResolution:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 512
   shadowPlaneHeightOffset:
     m_OverrideState: 0
