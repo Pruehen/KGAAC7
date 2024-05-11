@@ -65,7 +65,7 @@ public class AircraftControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetAxisValue(PlayerInput.Instance.pitchAxis, PlayerInput.Instance.rollAxis, PlayerInput.Instance.yawAxis, PlayerInput.Instance.throttleAxis);//테스트 코드
+        SetAxisValue(PlayerInputCustom.Instance.pitchAxis, PlayerInputCustom.Instance.rollAxis, PlayerInputCustom.Instance.yawAxis, PlayerInputCustom.Instance.throttleAxis);//테스트 코드
 
         pitch = Mathf.Lerp(pitch, _pitchTarget, Time.deltaTime * _controlPower);
         roll = Mathf.Lerp(roll, _rollTarget, Time.deltaTime * _controlPower);

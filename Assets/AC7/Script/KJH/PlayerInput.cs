@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : SceneSingleton<PlayerInput>
+public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
 {
     public float pitchAxis {get; private set;}
     public float rollAxis {get; private set;}
