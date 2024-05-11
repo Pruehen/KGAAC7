@@ -14,6 +14,10 @@ public class AircraftFM : MonoBehaviour
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        rigidbody.velocity = this.transform.forward * 200;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
