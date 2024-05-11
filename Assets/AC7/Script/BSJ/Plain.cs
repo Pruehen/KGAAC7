@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class Plane : NetworkBehaviour
+public class Plain : NetworkBehaviour
 {
-    [SerializeField]private GameObject _firePosition;
-
     private Rigidbody _rigidbody;
-    private Weapon _weapon;
-
     private float _rollInput;
     private float _pitchInput;
-    private bool _fireInput;
-
     private float _rollSpeed = 2.0f;
     private float _thrustSpeed = 5.0f;
     private float _pitchSpeed = 1.0f;
@@ -21,14 +15,13 @@ public class Plane : NetworkBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _weapon = GetComponent<Weapon>();
     }
     private void FixedUpdate()
     {
         if(!isServer)
         {
             UpdateInput();
-            cmdUpdateInput(_rollInput, _pitchInput, _fireInput);
+            cmdUpdateInput(_rollInput, _pitchInput);
             return;
         }
         if (isLocalPlayer)
@@ -38,16 +31,13 @@ public class Plane : NetworkBehaviour
         Roll(_rollInput);
         Pitch(_pitchInput);
         Thrust(1f);
-        if(_fireInput)
-            Fire();
     }
 
     [Command]
-    private void cmdUpdateInput(float rollInput, float pitchInput, bool fireInput)
+    private void cmdUpdateInput(float rollInput, float pitchInput)
     {
         _rollInput = rollInput;
         _pitchInput = pitchInput;
-        _fireInput = fireInput;
     }
 
     private void Roll(float input)
@@ -72,19 +62,10 @@ public class Plane : NetworkBehaviour
     {
         return Input.GetAxis("Vertical");
     }
-    private bool GetFireInput()
-    {
-        return Input.GetMouseButtonDown(0);
-    }
     private void UpdateInput()
     {
         _rollInput = GetRollInput();
         _pitchInput = GetPitchInput();
-        _fireInput = GetFireInput();
-    }
-    private void Fire()
-    {
-        _weapon.Fire();
     }
 
 
