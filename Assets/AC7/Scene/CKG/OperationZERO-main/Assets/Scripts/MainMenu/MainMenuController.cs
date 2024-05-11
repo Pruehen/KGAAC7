@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
     private static MainMenuController instance = null;
     
     [SerializeField]
-    PlayerInput playerInput;
+    UnityEngine.InputSystem.PlayerInput playerInput;
 
     [SerializeField]
     FadeController fadeController;
@@ -62,7 +62,7 @@ public class MainMenuController : MonoBehaviour
         }
     }
     
-    public static PlayerInput PlayerInput
+    public static UnityEngine.InputSystem.PlayerInput PlayerInput
     {
         get { return Instance?.playerInput; }
     }

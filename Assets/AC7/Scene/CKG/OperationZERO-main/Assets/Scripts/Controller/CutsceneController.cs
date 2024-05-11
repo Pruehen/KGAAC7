@@ -8,7 +8,7 @@ using UnityEngine.Playables;
 public class CutsceneController : MonoBehaviour
 {
     [SerializeField]
-    PlayerInput playerInput;
+    UnityEngine.InputSystem.PlayerInput playerInput;
 
     [Header("Cutscene Properties")]
     [SerializeField]
