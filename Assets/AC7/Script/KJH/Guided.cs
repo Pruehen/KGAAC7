@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Guided : MonoBehaviour
@@ -28,7 +27,7 @@ public class Guided : MonoBehaviour
     Vector3 angleError_temp;
     Vector3 orderAxis_Temp;
 
-    float p = 1000;
+    float p = 2000;
     float d = 30000;
 
     // Start is called before the first frame update
@@ -52,7 +51,7 @@ public class Guided : MonoBehaviour
 
 
             Vector3 side1 = toTargetVec;
-            Vector3 side2 = angleError_diff;
+            Vector3 side2 = toTargetVec + angleError_diff;
             Vector3 orderAxis = Vector3.Cross(side1, side2);
 
             Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
@@ -62,8 +61,8 @@ public class Guided : MonoBehaviour
 
             if (rocket.SideForce().magnitude < maxSideForce)
             {
-                //rigidbody.AddTorque(Vector3.ClampMagnitude(orderAxis * availableTorqueRatio * 100, maxTorque), ForceMode.Acceleration);
-                this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate * Time.fixedDeltaTime));
+                rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
+                //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
             }
 
             if (Vector3.Angle(this.transform.forward, targetVec - this.transform.position) > traceAngleLimit)
