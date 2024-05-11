@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using UnityEngine;
 
 public class Readme : ScriptableObject {
@@ -11,4 +11,4 @@ public class Readme : ScriptableObject {
 	public class Section {
 		public string heading, text, linkText, url;
 	}
-}
+}*/
