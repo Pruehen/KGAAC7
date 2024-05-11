@@ -48,6 +48,6 @@ public class AircraftFM : MonoBehaviour
 
         //항력 적용
         rigidbody.drag = Atmosphere.Drag(this.transform.position.y, aircraftData.GetDC(), velocitySpeed);
-        Debug.Log(velocitySpeed);
+        //Debug.Log(velocitySpeed);
     }
 }
