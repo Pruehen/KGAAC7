@@ -1,0 +1,34 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "ccfb4caf-721e-459c-b42b-e0c4f4f8ab31",
+            "actions": [
+                {
+                    "name": "MouseDeltaPos",
+                    "type": "Value",
+                    "id": "cf880e7c-385f-4bde-9faa-c33d982b1f0a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4227776b-d71f-451a-bc88-18a220029525",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseDeltaPos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
