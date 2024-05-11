@@ -40,10 +40,6 @@ public class Guided : MonoBehaviour
 
             Vector3 diffedAE = angleError_diff;//시선각 변화량
 
-            //Vector3 dieedAE_diff = diffedAE - orderTemp;
-            //orderTemp = diffedAE;
-            //Vector3 pnOrderVec = diffedAE * Kp + dieedAE_diff * Kd;//비례항법식
-
 
             Vector3 side1 = toTargetVec;
             Vector3 side2 = diffedAE;
