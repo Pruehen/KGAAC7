@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Guided : MonoBehaviour
@@ -15,8 +16,11 @@ public class Guided : MonoBehaviour
     Rigidbody rigidbody;
 
     Vector3 targetVec;
-    Vector3 angleError_diff;
     Vector3 angleError_temp;
+    Vector3 orderAxis_Temp;
+
+    float p = 1000;
+    float d = 30000;
 
     // Start is called before the first frame update
     void Start()
@@ -34,24 +38,23 @@ public class Guided : MonoBehaviour
 
             Vector3 toTargetVec = (targetVec - this.transform.position).normalized;//방향 벡터 산출
 
-            angleError_diff = toTargetVec - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
+            Vector3 angleError_diff = toTargetVec - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
             angleError_temp = toTargetVec;
 
 
-            Vector3 diffedAE = angleError_diff;//시선각 변화량
-
-
             Vector3 side1 = toTargetVec;
-            Vector3 side2 = diffedAE;
-
+            Vector3 side2 = angleError_diff;
             Vector3 orderAxis = Vector3.Cross(side1, side2);
+
+            Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
+            orderAxis_Temp = orderAxis;
 
             float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(rigidbody.velocity.magnitude * 0.002f, 0, 1);
 
             if (rocket.SideForce().magnitude < maxSideForce)
             {
                 //rigidbody.AddTorque(Vector3.ClampMagnitude(orderAxis * availableTorqueRatio * 100, maxTorque), ForceMode.Acceleration);
-                this.transform.Rotate(Vector3.ClampMagnitude(orderAxis * 1000 * availableTorqueRatio, maxTurnRate * Time.fixedDeltaTime));
+                this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate * Time.fixedDeltaTime));
             }
 
             if (Vector3.Angle(this.transform.forward, targetVec - this.transform.position) > traceAngleLimit)
