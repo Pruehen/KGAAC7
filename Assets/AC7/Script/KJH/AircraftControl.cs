@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AircraftControl : MonoBehaviour
 {
@@ -81,4 +82,5 @@ public class AircraftControl : MonoBehaviour
         _lr.localRotation = _lrAxis * Quaternion.Euler(0, -yaw * _r_Range, 0);
         _rr.localRotation = _rrAxis * Quaternion.Euler(0, -yaw * _r_Range, 0);
     }
+
 }
