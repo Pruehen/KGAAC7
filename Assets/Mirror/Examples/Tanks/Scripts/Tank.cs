@@ -45,7 +45,7 @@ namespace Mirror.Examples.Tanks
                 animator.SetBool("Moving", agent.velocity != Vector3.zero);
 
                 // shoot
-                if (Input.GetKeyDown(shootKey))
+                 if (Input.GetKeyDown(shootKey))
                 {
                     CmdFire();
                 }
