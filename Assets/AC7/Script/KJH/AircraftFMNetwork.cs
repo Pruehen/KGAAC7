@@ -5,9 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AircraftFMNetwork : NetworkBehaviour, IFightable
+public class AircraftFMNetwork : NetworkBehaviour//, IFightable
 {
-    public GameObject controlAircraft;
+    /*public GameObject controlAircraft;
     AircraftData _aircraftData;
     Rigidbody _rigidbody;
     Weapon _weapon;
@@ -93,5 +93,5 @@ public class AircraftFMNetwork : NetworkBehaviour, IFightable
     public void TakeDamage(float damage)
     {
         _combat.TakeDamage(damage);
-    }
+    }*/
 }
