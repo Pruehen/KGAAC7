@@ -41,10 +41,10 @@ public class FlightController_AI : MonoBehaviour
         CreateNewWayPoint_Normal();
         StartCoroutine(CreateWayPoint_Traking_Repeat());
     }
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(waypoint, 100);
-    }
+    }*/
 
     // Update is called once per frame
     void Update()

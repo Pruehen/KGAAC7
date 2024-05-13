@@ -131,8 +131,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: -10}
 --- !u!54 &6445041468265237182
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -168,6 +168,7 @@ MonoBehaviour:
   liftPower: 1
   maxLiftTime: 30
   safeTime: 1
+  explosionEffect: {fileID: 121360, guid: 7e6ae9c85baca254d860fe1519edd734, type: 3}
 --- !u!114 &-859180380403536392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +184,7 @@ MonoBehaviour:
   targetTrf: {fileID: 0}
   maxTurnRate: 45
   maxSideForce: 300
-  isTVC: 0
+  isTVC: 1
   traceAngleLimit: 90
 --- !u!1 &6868319698786337620
 GameObject:

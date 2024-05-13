@@ -19,6 +19,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] float maxLiftTime;//최대 작동 시간. 초과시 자폭
     [SerializeField] float safeTime;//안전 시간. 이 시간이 지난 후 콜리더 활성화
 
+    [SerializeField] GameObject explosionEffect;
+
     float lifeTime = 0;
     Rigidbody rigidbody;
     SphereCollider sphereCollider;
@@ -88,9 +90,9 @@ public class Rocket : MonoBehaviour
         rigidbody.AddForce(this.transform.forward * power, ForceMode.Acceleration);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("펑");
+        EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
         Destroy(this.gameObject);
     }
 }
