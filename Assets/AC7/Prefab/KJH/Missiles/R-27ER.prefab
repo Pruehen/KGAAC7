@@ -166,7 +166,7 @@ MonoBehaviour:
   sustainTime: 4.8
   boostPower: 174
   sustainPower: 107
-  liftPower: 8
+  liftPower: 4
   maxLiftTime: 60
   safeTime: 1
   explosionEffect: {fileID: 121360, guid: 7e6ae9c85baca254d860fe1519edd734, type: 3}

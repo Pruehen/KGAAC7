@@ -43,7 +43,7 @@ public class Rocket : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         rigidbody = GetComponent<Rigidbody>();
         isCombustion = false;
-        cD = liftPower * 0.005f;
+        cD = liftPower * 0.01f;
 
         sphereCollider.enabled = false;
         fuseOn = false;
