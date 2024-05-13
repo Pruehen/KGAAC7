@@ -23,7 +23,13 @@ public class AircraftSelecter : MonoBehaviour
     /// <param name="controlAircraft"></param>
     public void SetControlAircraft(GameObject controlAircraft)
     {
+        if (this.aircraftControl != null)
+        {
+            this.controlAircraft.SetActive(false);
+        }
+
         this.controlAircraft = controlAircraft;
+        this.controlAircraft.SetActive(true);
         aircraftData = controlAircraft.GetComponent<AircraftData>();
         weaponSystem = controlAircraft.GetComponent<kjh.WeaponSystem>();
         aircraftControl = controlAircraft.GetComponent<AircraftControl>();
