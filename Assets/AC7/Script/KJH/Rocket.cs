@@ -87,4 +87,10 @@ public class Rocket : MonoBehaviour
     {
         rigidbody.AddForce(this.transform.forward * power, ForceMode.Acceleration);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Æã");
+        Destroy(this.gameObject);
+    }
 }
