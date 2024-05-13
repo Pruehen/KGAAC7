@@ -12,10 +12,12 @@ GameObject:
   - component: {fileID: 1112360946724427938}
   - component: {fileID: 2310879739802350979}
   - component: {fileID: 3479163239029184720}
+  - component: {fileID: -1192869116438744633}
   - component: {fileID: 8819726729571326051}
   - component: {fileID: -6224072715111857092}
   - component: {fileID: 1340515618079156043}
   - component: {fileID: 6564199381550458246}
+  - component: {fileID: 2164135537011781969}
   - component: {fileID: 3413560363963453488}
   m_Layer: 0
   m_Name: Aircraft
@@ -85,6 +87,19 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: -1.3}
+--- !u!114 &-1192869116438744633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900060236050395660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5139a9a0bd76245a6c62df5493ecd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiControl: 1
 --- !u!114 &8819726729571326051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +151,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7d3793e0c0a6c349ae333dfd3c0a199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aircraftControl: {fileID: 0}
+--- !u!114 &2164135537011781969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900060236050395660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c407bea0bacc6a45b7ac82764538825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   aircraftControl: {fileID: 0}
