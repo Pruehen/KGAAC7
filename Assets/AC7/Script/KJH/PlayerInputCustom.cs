@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
@@ -10,7 +11,6 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     public float yawAxis {get; private set;}
     public float throttleAxis { get; private set; }
     public bool isLeftClick {get; private set;}
-    public bool isRightClick { get; private set; }
     Vector2 mouseDeltaPos;
     float mouseControllGain = 0.1f;
 
@@ -21,6 +21,9 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     {
 
     }
+
+    public UnityEvent onClick_X;
+    public UnityEvent onClick_RightMouse;
 
     // Update is called once per frame
     void Update()
@@ -37,11 +40,11 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
         }
         if (Input.GetMouseButtonDown(1))
         {
-            isRightClick = true;
+            onClick_RightMouse.Invoke();
         }
-        if (Input.GetMouseButtonUp(1))
+        if(Input.GetKeyDown(KeyCode.X))
         {
-            isRightClick = false;
+            onClick_X.Invoke();
         }
     }
 

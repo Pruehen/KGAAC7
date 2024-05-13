@@ -8,7 +8,7 @@ public class Plane : NetworkBehaviour
     [SerializeField]private GameObject _firePosition;
 
     private Rigidbody _rigidbody;
-    private Weapon _weapon;
+    private WeaponSystem _weapon;
 
     private float _rollInput;
     private float _pitchInput;
@@ -21,7 +21,7 @@ public class Plane : NetworkBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _weapon = GetComponent<Weapon>();
+        _weapon = GetComponent<WeaponSystem>();
     }
     private void FixedUpdate()
     {

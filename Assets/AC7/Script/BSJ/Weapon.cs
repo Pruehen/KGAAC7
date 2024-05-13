@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class Weapon : NetworkBehaviour
+public class WeaponSystem : NetworkBehaviour
 {
     [SerializeField] GameObject _projectile;
     [SerializeField] GameObject _FirePos;
