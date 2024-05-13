@@ -183,7 +183,7 @@ MonoBehaviour:
   targetTrf: {fileID: 0}
   maxTurnRate: 45
   maxSideForce: 300
-  isTVC: 1
+  isTVC: 0
   traceAngleLimit: 90
 --- !u!1 &6868319698786337620
 GameObject:
