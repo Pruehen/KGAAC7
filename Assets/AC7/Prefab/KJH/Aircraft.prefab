@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2078941346534383275}
   - component: {fileID: -6224072715111857092}
   - component: {fileID: 1340515618079156043}
+  - component: {fileID: 6564199381550458246}
   m_Layer: 0
   m_Name: Aircraft
   m_TagString: Untagged
@@ -108,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa7fafede743be4da636972bf3d9973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aircraftData: {fileID: 0}
 --- !u!114 &-6224072715111857092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +135,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecb9efe36cdabb64cb98e5302d0d2e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSystem: {fileID: 0}
+--- !u!114 &6564199381550458246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900060236050395660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d3793e0c0a6c349ae333dfd3c0a199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5724414976797396974

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//사용중인 항공기의 FM 데이터를 받아서 실제 비행 물리를 적용
 public class AircraftFM : MonoBehaviour
 {
     AircraftSelecter aircraftSelecter;
