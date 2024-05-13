@@ -22,6 +22,7 @@ public class Rocket : MonoBehaviour
     float lifeTime = 0;
     Rigidbody rigidbody;
     SphereCollider sphereCollider;
+    bool fuseOn;
     public bool isCombustion { get; private set; }//현재 연소 중인지 판별
     Vector3 sideForce;
     /// <summary>
@@ -38,6 +39,7 @@ public class Rocket : MonoBehaviour
         cD = liftPower * 0.02f;
 
         sphereCollider.enabled = false;
+        fuseOn = false;
     }
 
     // Update is called once per frame
@@ -52,6 +54,11 @@ public class Rocket : MonoBehaviour
         if (lifeTime > maxLiftTime)
         {
             Destroy(this.gameObject);
+        }
+        if (lifeTime > safeTime && !fuseOn)
+        {
+            sphereCollider.enabled = true;
+            fuseOn = true;
         }
 
         if (isCombustion)
