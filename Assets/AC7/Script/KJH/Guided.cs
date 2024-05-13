@@ -57,7 +57,7 @@ public class Guided : MonoBehaviour
             Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
             orderAxis_Temp = orderAxis;
 
-            float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(rigidbody.velocity.magnitude * 0.002f, 0, 1);
+            float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(rigidbody.velocity.magnitude * 0.001f, 0, 1);
 
             if (rocket.SideForce().magnitude < maxSideForce)
             {

@@ -6,22 +6,22 @@ namespace kjh
 {
     public class WeaponController : MonoBehaviour
     {
-        public GameObject controlAircraft;
-        WeaponSystem weaponSystem;
+        AircraftSelecter aircraftSelecter;
+        [SerializeField] WeaponSystem weaponSystem;
         Radar radar;
         Rigidbody rigidbody;
-        // Start is called before the first frame update
-        void Start()
+        
+        void Awake()
         {
+            aircraftSelecter = GetComponent<AircraftSelecter>();
             rigidbody = GetComponent<Rigidbody>();
             radar = GetComponent<Radar>();
-            weaponSystem = controlAircraft.GetComponent<WeaponSystem>();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            weaponSystem = aircraftSelecter.weaponSystem;
         }
 
         /// <summary>

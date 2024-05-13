@@ -5,7 +5,7 @@ using Mirror;
 
 public class Plane : NetworkBehaviour
 {
-    [SerializeField]private GameObject _firePosition;
+    /*[SerializeField]private GameObject _firePosition;
 
     private Rigidbody _rigidbody;
     private WeaponSystem _weapon;
@@ -85,7 +85,7 @@ public class Plane : NetworkBehaviour
     private void Fire()
     {
         _weapon.Fire();
-    }
+    }*/
 
 
 }

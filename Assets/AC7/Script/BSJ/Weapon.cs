@@ -5,7 +5,7 @@ using Mirror;
 
 public class WeaponSystem : NetworkBehaviour
 {
-    [SerializeField] GameObject _projectile;
+    /*[SerializeField] GameObject _projectile;
     [SerializeField] GameObject _FirePos;
     AircraftFMNetwork _owner;
     //클라이언트에서 발사시 서버에서 이 신호를 받아 발사를 해준다
@@ -25,5 +25,5 @@ public class WeaponSystem : NetworkBehaviour
     public void CmdFire()
     {
         Fire();
-    }
+    }*/
 }

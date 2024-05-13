@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
+//해당 항공기의 FM 데이터
 public class AircraftData : MonoBehaviour
 {
     [SerializeField] float enginePower;//엔진 추력(가속도)

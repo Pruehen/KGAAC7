@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//조종면에 조종 데이터를 전달 및 조종면의 상태를 알려주는 클래스
 public class AircraftControl : MonoBehaviour
 {
     [SerializeField] Transform _la; //좌측 에일러론
@@ -65,9 +66,7 @@ public class AircraftControl : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
-        SetAxisValue(PlayerInputCustom.Instance.pitchAxis, PlayerInputCustom.Instance.rollAxis, PlayerInputCustom.Instance.yawAxis, PlayerInputCustom.Instance.throttleAxis);//테스트 코드
-
+    {      
         pitch = Mathf.Lerp(pitch, _pitchTarget, Time.deltaTime * _controlPower);
         roll = Mathf.Lerp(roll, _rollTarget, Time.deltaTime * _controlPower);
         yaw = Mathf.Lerp(yaw, _yawTarget, Time.deltaTime * _controlPower);
