@@ -14,6 +14,8 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     Vector2 mouseDeltaPos;
     float mouseControllGain = 0.1f;
 
+    public System.Action OnFirecus;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,5 +99,12 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
 
         pitchAxis = Mathf.Clamp(pitchAxis, -1, 1);
         rollAxis = Mathf.Clamp(rollAxis, -1, 1);
+    }
+    void OnFire(InputValue inputValue)
+    {
+        if (inputValue.isPressed)
+        {
+            OnFirecus?.Invoke();
+        }
     }
 }
