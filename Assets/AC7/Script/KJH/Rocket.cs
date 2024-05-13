@@ -21,6 +21,10 @@ public class Rocket : MonoBehaviour
 
     [SerializeField] GameObject explosionEffect;
 
+    [Header("비행 데이터")]
+    [SerializeField] float speed;
+    [SerializeField] float sideForcef; 
+
     float lifeTime = 0;
     Rigidbody rigidbody;
     SphereCollider sphereCollider;
@@ -49,6 +53,8 @@ public class Rocket : MonoBehaviour
     {
         Vector3 velocity = rigidbody.velocity;
         float velocitySpeed = velocity.magnitude;
+        speed = velocitySpeed;
+        sideForcef = sideForce.magnitude;
 
         lifeTime += Time.fixedDeltaTime;
         rigidbody.drag = Atmosphere.Drag(this.transform.position.y, cD, velocitySpeed);
