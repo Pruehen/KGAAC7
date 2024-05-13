@@ -10,14 +10,14 @@ public class AircraftFMNetwork : NetworkBehaviour//, IFightable
     /*public GameObject controlAircraft;
     AircraftData _aircraftData;
     Rigidbody _rigidbody;
-    Weapon _weapon;
+    WeaponSystem _weapon;
     Combat _combat = new Combat();
     // Start is called before the first frame update
     void Awake()
     {
         _aircraftData = controlAircraft.GetComponent<AircraftData>();
         _rigidbody = this.gameObject.GetComponent<Rigidbody>();
-        _weapon = GetComponent<Weapon>();
+        _weapon = GetComponent<WeaponSystem>();
         _combat.Init(transform, 100f);
     }
     //카메라를 플레이어 스폰시 붙이고 종료시 뗌
