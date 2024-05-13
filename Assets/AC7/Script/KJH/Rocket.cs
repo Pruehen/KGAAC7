@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
     [Header("모터 지속 시간")]
+    [SerializeField] float boostStartDelay;//부스트 시작 딜레이 시간
     [SerializeField] float boostTime;//부스트 연소 시간
     [SerializeField] float sustainTime;//서스테인 연소 시간
 
@@ -41,8 +42,8 @@ public class Rocket : MonoBehaviour
     {
         sphereCollider = GetComponent<SphereCollider>();
         rigidbody = GetComponent<Rigidbody>();
-        isCombustion = true;
-        cD = liftPower * 0.02f;
+        isCombustion = false;
+        cD = liftPower * 0.005f;
 
         sphereCollider.enabled = false;
         fuseOn = false;
@@ -68,14 +69,18 @@ public class Rocket : MonoBehaviour
             sphereCollider.enabled = true;
             fuseOn = true;
         }
+        if (lifeTime > boostStartDelay && !isCombustion)
+        {
+            isCombustion = true;
+        }
 
         if (isCombustion)
         {
-            if (lifeTime < boostTime)
+            if (lifeTime < boostTime + boostStartDelay)
             {
                 Combustion(boostPower);
             }
-            else if (lifeTime < boostTime + sustainTime)
+            else if (lifeTime < boostTime + sustainTime + boostStartDelay)
             {
                 Combustion(sustainPower);
             }

@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &139142761
 Transform:
   m_ObjectHideFlags: 0
@@ -245,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395662, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395662, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_LocalRotation.w
@@ -312,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &513073524
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -409,7 +409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &652760000
 Transform:
   m_ObjectHideFlags: 0
@@ -506,7 +506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &725627232
 Transform:
   m_ObjectHideFlags: 0
@@ -585,6 +585,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725627231}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &783939965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1090491804934246997, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  m_PrefabInstance: {fileID: 1612468738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &850882702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1481935384
 Transform:
   m_ObjectHideFlags: 0
@@ -1182,11 +1187,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481935383}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1506273977 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2952854090460673027, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
-  m_PrefabInstance: {fileID: 1612468738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1612468738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1258,10 +1258,18 @@ PrefabInstance:
       propertyPath: torqueCurve.m_Curve.Array.data[1].time
       value: 160
       objectReference: {fileID: 0}
+    - target: {fileID: 6903704347273054691, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: weaponPrf
+      value: 
+      objectReference: {fileID: 6445041468265237155, guid: 9d754aee3f02bdf46add875ac6512977, type: 3}
+    - target: {fileID: 8653230334330335157, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: weaponPrf
+      value: 
+      objectReference: {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
-      objectReference: {fileID: 1506273977}
+      objectReference: {fileID: 783939965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
 --- !u!4 &1612468739 stripped
@@ -1626,7 +1634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2000771437
 Transform:
   m_ObjectHideFlags: 0

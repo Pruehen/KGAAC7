@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6445041466978465986
+--- !u!1 &2575087558881064712
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6445041466978465987}
-  - component: {fileID: 6445041466978466013}
-  - component: {fileID: 6445041466978466012}
+  - component: {fileID: 4303805633499216220}
+  - component: {fileID: 9081541416764732163}
+  - component: {fileID: 8695112582449570814}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: R-27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6445041466978465987
+--- !u!4 &4303805633499216220
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6445041466978465986}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_GameObject: {fileID: 2575087558881064712}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 1.5, z: 0.12}
+  m_LocalScale: {x: 0.026090633, y: 0.026090633, z: 0.026090633}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6445041468265237181}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &6445041466978466013
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!33 &9081541416764732163
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6445041466978465986}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6445041466978466012
+  m_GameObject: {fileID: 2575087558881064712}
+  m_Mesh: {fileID: 992085037693876594, guid: c838cbc0d71e2bf40876814cfa9d0d64, type: 3}
+--- !u!23 &8695112582449570814
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6445041466978465986}
+  m_GameObject: {fileID: 2575087558881064712}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 0df83977de0dd0944a8a7ae42a1e480f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6445041468265237183}
   - component: {fileID: -859180380403536392}
   m_Layer: 0
-  m_Name: TestMissile
+  m_Name: R-73
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,12 +111,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6445041468265237155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.3374453, y: 96.95118, z: 6.0038013}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6445041466978465987}
   - {fileID: 2147537800549754397}
+  - {fileID: 4303805633499216220}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,7 +131,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6445041468265237182
 Rigidbody:
@@ -161,11 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b979b78147222649b6547203eb5c81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostTime: 5.3
+  boostStartDelay: 0
+  boostTime: 5.5
   sustainTime: 0
-  boostPower: 120
+  boostPower: 158
   sustainPower: 0
-  liftPower: 2
+  liftPower: 10
   maxLiftTime: 30
   safeTime: 1
   explosionEffect: {fileID: 121360, guid: 7e6ae9c85baca254d860fe1519edd734, type: 3}
@@ -184,8 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTrf: {fileID: 0}
-  maxTurnRate: 45
-  maxSideForce: 300
+  maxTurnRate: 60
+  maxSideForce: 400
   isTVC: 1
   traceAngleLimit: 90
 --- !u!1 &6868319698786337620
@@ -218,7 +219,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6445041468265237181}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &6151948135728145554
 TrailRenderer:

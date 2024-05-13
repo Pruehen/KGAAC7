@@ -38,12 +38,15 @@ public class Radar : MonoBehaviour
         Transform targetTemp = null;
         for (int i = 0; i < targetGroupTrf.childCount; i++)
         {
-            Transform item = targetGroupTrf.GetChild(i).transform;
-            float itemAngle = Vector3.Angle(this.transform.forward, item.position - this.transform.position);
-            if (itemAngle < angleTemp)
-            {
-                targetTemp = item;
-                angleTemp = itemAngle;
+            Transform itemTrf = targetGroupTrf.GetChild(i);
+            if (itemTrf.gameObject.activeSelf)
+            {                
+                float itemAngle = Vector3.Angle(this.transform.forward, itemTrf.position - this.transform.position);
+                if (itemAngle < angleTemp)
+                {
+                    targetTemp = itemTrf;
+                    angleTemp = itemAngle;
+                }
             }
         }
 
