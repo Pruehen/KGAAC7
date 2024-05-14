@@ -1,16 +1,18 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //사용중인 항공기의 FM 데이터를 받아서 실제 비행 물리를 적용
-public class AircraftFM : MonoBehaviour
+public class AircraftFM : NetworkBehaviour
 {
     AircraftSelecter aircraftSelecter;
     [SerializeField] AircraftData aircraftData;
     Rigidbody rigidbody;    
 
-    private void Awake()
+    public override void OnStartLocalPlayer()
     {
+        base.OnStartLocalPlayer();
         aircraftSelecter = GetComponent<AircraftSelecter>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.velocity = this.transform.forward * 200;
@@ -18,6 +20,10 @@ public class AircraftFM : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if( !isLocalPlayer )
+        {
+            return;
+        }
         aircraftData = aircraftSelecter.aircraftData;
 
         Vector3 velocity = rigidbody.velocity;

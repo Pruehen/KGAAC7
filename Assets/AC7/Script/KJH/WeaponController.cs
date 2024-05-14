@@ -25,7 +25,7 @@ namespace kjh
         }
 
         /// <summary>
-        /// 웨폰 시스템에 무장 발사를 요청하는 메서드
+        /// 웨폰 시스템에 무장 발사를 요청하는 메서드 인풋 메서드에서 호출
         /// </summary>
         public void Fire()
         {

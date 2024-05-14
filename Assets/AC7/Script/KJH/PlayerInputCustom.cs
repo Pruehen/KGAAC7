@@ -18,9 +18,17 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     public System.Action OnFireEvent;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        bsj.GameManager.Instance.OnPlayerSpawned += InitEvent;
+    }
 
+    private void InitEvent()
+    {
+        kjh.WeaponController weaponController = bsj.GameManager.Instance.player.GetComponent<kjh.WeaponController>();
+        Radar radar = bsj.GameManager.Instance.player.GetComponent<Radar>();
+        onClick_RightMouse.AddListener(weaponController.Fire);
+        onClick_X.AddListener(radar.LockOn);
     }
 
     public UnityEvent onClick_X;

@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 6564199381550458246}
   - component: {fileID: 2164135537011781969}
   - component: {fileID: 3413560363963453488}
+  - component: {fileID: 716203537544336485}
+  - component: {fileID: 5703302954370929475}
   m_Layer: 0
   m_Name: Aircraft
   m_TagString: Untagged
@@ -99,7 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5139a9a0bd76245a6c62df5493ecd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiControl: 1
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  aiControl: 0
 --- !u!114 &8819726729571326051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +184,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83eb6564620b3834590d858511c1e67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   aircraftData: {fileID: 0}
+--- !u!114 &716203537544336485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900060236050395660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 3788662573
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
+--- !u!114 &5703302954370929475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900060236050395660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b20dc110904e47f8a154cdcf6433eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 900060236050395662}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 0
+  compressRotation: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 0
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  bufferResetMultiplier: 3
+  changedDetection: 1
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
 --- !u!1001 &5724414976797396974
 PrefabInstance:
   m_ObjectHideFlags: 0
