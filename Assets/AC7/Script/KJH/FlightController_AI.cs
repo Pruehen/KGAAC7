@@ -140,6 +140,14 @@ public class FlightController_AI : MonoBehaviour
         }
 
         float maxMobility = aiLevel * 0.1f;
+
+        if((this.transform.position + velocity * (13 - aiLevel)).y < 0)//3~10초 후의 예상 고도가 음수일 경우
+        {
+            rollOrder = RollKeepLevel();
+            pitchOrder = 1;
+            Debug.Log("지상 회피");
+        }
+
         pitchOrder = Mathf.Clamp(pitchOrder, -maxMobility, maxMobility);
         rollOrder = Mathf.Clamp(rollOrder, -1, 1);
         yawOrder = Mathf.Clamp(yawOrder, -1, 1);
