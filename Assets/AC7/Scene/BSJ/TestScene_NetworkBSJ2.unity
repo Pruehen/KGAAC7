@@ -890,27 +890,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &957567128 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 559833899034805587, guid: 7b6c5cfcdb49a4c43a66669dae1a5621, type: 3}
-  m_PrefabInstance: {fileID: 2335770166282561492}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &957567130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957567128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec1a445c430be6249a90f2249abd620c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _firePos: {fileID: 2335770166282561493}
-  _fireInterval: 0.01
-  _bulletProjectile: {fileID: 6784412265874072211, guid: a57cb684b5b848a43b3820a1e772e38b, type: 3}
-  bulletSpeed: 0
 --- !u!1 &1217186542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,17 +1925,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4419792818022087899, guid: 7b6c5cfcdb49a4c43a66669dae1a5621, type: 3}
-      propertyPath: _firePos
-      value: 
-      objectReference: {fileID: 2335770166282561493}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6c5cfcdb49a4c43a66669dae1a5621, type: 3}
---- !u!4 &2335770166282561493 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9037683002944754987, guid: 7b6c5cfcdb49a4c43a66669dae1a5621, type: 3}
-  m_PrefabInstance: {fileID: 2335770166282561492}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2750442828239592175
 PrefabInstance:
   m_ObjectHideFlags: 0
