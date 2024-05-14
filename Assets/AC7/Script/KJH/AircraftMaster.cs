@@ -8,6 +8,16 @@ public class AircraftMaster : MonoBehaviour, IFightable
 {
     [SerializeField] bool aiControl;
     AircraftSelecter aircraftSelecter;
+    Rigidbody rigidbody;
+    /// <summary>
+    /// 현재 항공기의 속도(km/h)를 리턴하는 메서드 
+    /// </summary>
+    /// <returns></returns>
+    public float GetSpeed()
+    {
+        return rigidbody.velocity.magnitude * 3.6f;
+    }
+
     public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
     //public AircraftControl aircraftControl;
 
@@ -25,7 +35,8 @@ public class AircraftMaster : MonoBehaviour, IFightable
 
     private void Awake()
     {
-        aircraftSelecter = GetComponent<AircraftSelecter>();        
+        aircraftSelecter = GetComponent<AircraftSelecter>();
+        rigidbody = GetComponent<Rigidbody>();
 
         if (aiControl)
         {
