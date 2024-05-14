@@ -145,7 +145,7 @@ public class FlightController_AI : MonoBehaviour
         {
             rollOrder = RollKeepLevel();
             pitchOrder = 1;
-            Debug.Log("지상 회피");
+            //Debug.Log("지상 회피");
         }
 
         pitchOrder = Mathf.Clamp(pitchOrder, -maxMobility, maxMobility);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6592134740733501703}
   - component: {fileID: 6390957201163122883}
   - component: {fileID: 3661055529920350044}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 4838575170850723069}
   - component: {fileID: 6046196609334681789}
   - component: {fileID: 5377672828172579014}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R-27 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4908,7 +4908,8 @@ GameObject:
   - component: {fileID: 6445041468265237182}
   - component: {fileID: 6445041468265237183}
   - component: {fileID: -859180380403536392}
-  m_Layer: 0
+  - component: {fileID: 521512651109278455}
+  m_Layer: 12
   m_Name: R-27ER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5004,6 +5005,20 @@ MonoBehaviour:
   maxSideForce: 350
   isTVC: 0
   traceAngleLimit: 90
+--- !u!114 &521512651109278455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445041468265237155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03748f7bc6086d144884175496f95844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 110
+  reloadTime: 20
 --- !u!1 &9002579355076675030
 GameObject:
   m_ObjectHideFlags: 0
@@ -5015,7 +5030,7 @@ GameObject:
   - component: {fileID: 8257765495617770953}
   - component: {fileID: 8978025046597505670}
   - component: {fileID: 7957455165912053577}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Motor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

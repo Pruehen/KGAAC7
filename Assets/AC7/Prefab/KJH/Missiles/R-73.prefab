@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4303805633499216220}
   - component: {fileID: 9081541416764732163}
   - component: {fileID: 8695112582449570814}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R-27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2887362482421052387}
   - component: {fileID: 1368818957755518700}
   - component: {fileID: 6712535697942669259}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Motor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4908,7 +4908,8 @@ GameObject:
   - component: {fileID: 6445041468265237182}
   - component: {fileID: 6445041468265237183}
   - component: {fileID: -859180380403536392}
-  m_Layer: 0
+  - component: {fileID: 4366434378645098378}
+  m_Layer: 12
   m_Name: R-73
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5004,6 +5005,20 @@ MonoBehaviour:
   maxSideForce: 400
   isTVC: 1
   traceAngleLimit: 90
+--- !u!114 &4366434378645098378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445041468265237155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03748f7bc6086d144884175496f95844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 55
+  reloadTime: 10
 --- !u!1 &8122526324563002301
 GameObject:
   m_ObjectHideFlags: 0
@@ -5015,7 +5030,7 @@ GameObject:
   - component: {fileID: 6785888210343644014}
   - component: {fileID: 9160248412675265168}
   - component: {fileID: 5747229869835493808}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

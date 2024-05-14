@@ -31,5 +31,13 @@ namespace kjh
         {
             weaponSystem.Fire(rigidbody.velocity, radar.GetTarget());
         }
+
+        /// <summary>
+        /// 웨폰 시스템의 무기를 교체하는 메서드
+        /// </summary>
+        public void ChangeWeapon()
+        {
+            weaponSystem.ChangeWeaponIndex();
+        }
     }
 }

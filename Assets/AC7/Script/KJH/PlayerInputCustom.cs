@@ -23,6 +23,7 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     }
 
     public UnityEvent onClick_X;
+    public UnityEvent onClick_R;
     public UnityEvent onClick_RightMouse;
 
     // Update is called once per frame
@@ -45,6 +46,10 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
         if(Input.GetKeyDown(KeyCode.X))
         {
             onClick_X.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            onClick_R.Invoke();
         }
     }
 
