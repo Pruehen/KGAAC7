@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
     [Header("모터 지속 시간")]
+    [SerializeField] float boostStartDelay;//부스트 시작 딜레이 시간
     [SerializeField] float boostTime;//부스트 연소 시간
     [SerializeField] float sustainTime;//서스테인 연소 시간
 
@@ -18,6 +19,12 @@ public class Rocket : MonoBehaviour
 
     [SerializeField] float maxLiftTime;//최대 작동 시간. 초과시 자폭
     [SerializeField] float safeTime;//안전 시간. 이 시간이 지난 후 콜리더 활성화
+
+    [SerializeField] GameObject explosionEffect;
+
+    [Header("비행 데이터")]
+    [SerializeField] float speed;
+    [SerializeField] float sideForcef; 
 
     float lifeTime = 0;
     Rigidbody rigidbody;
@@ -35,8 +42,8 @@ public class Rocket : MonoBehaviour
     {
         sphereCollider = GetComponent<SphereCollider>();
         rigidbody = GetComponent<Rigidbody>();
-        isCombustion = true;
-        cD = liftPower * 0.02f;
+        isCombustion = false;
+        cD = liftPower * 0.01f;
 
         sphereCollider.enabled = false;
         fuseOn = false;
@@ -47,6 +54,8 @@ public class Rocket : MonoBehaviour
     {
         Vector3 velocity = rigidbody.velocity;
         float velocitySpeed = velocity.magnitude;
+        speed = velocitySpeed;
+        sideForcef = sideForce.magnitude;
 
         lifeTime += Time.fixedDeltaTime;
         rigidbody.drag = Atmosphere.Drag(this.transform.position.y, cD, velocitySpeed);
@@ -60,14 +69,18 @@ public class Rocket : MonoBehaviour
             sphereCollider.enabled = true;
             fuseOn = true;
         }
+        if (lifeTime > boostStartDelay && !isCombustion)
+        {
+            isCombustion = true;
+        }
 
         if (isCombustion)
         {
-            if (lifeTime < boostTime)
+            if (lifeTime < boostTime + boostStartDelay)
             {
                 Combustion(boostPower);
             }
-            else if (lifeTime < boostTime + sustainTime)
+            else if (lifeTime < boostTime + sustainTime + boostStartDelay)
             {
                 Combustion(sustainPower);
             }
@@ -86,5 +99,11 @@ public class Rocket : MonoBehaviour
     void Combustion(float power)
     {
         rigidbody.AddForce(this.transform.forward * power, ForceMode.Acceleration);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
+        Destroy(this.gameObject);
     }
 }

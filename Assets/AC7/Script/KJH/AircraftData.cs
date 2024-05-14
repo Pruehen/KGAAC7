@@ -49,7 +49,16 @@ public class AircraftData : MonoBehaviour
     /// <returns></returns>
     public float PitchTorque(float speed)
     {
-        return pitchTorque * torqueCurve.Evaluate(speed) * aircraftControl.pitch;
+        float pitch;
+        if(aircraftControl.pitch > 0)
+        {
+            pitch = aircraftControl.pitch;
+        }
+        else
+        {
+            pitch = aircraftControl.pitch * 0.5f;
+        }
+        return pitchTorque * torqueCurve.Evaluate(speed) * pitch;
     }
     /// <summary>
     /// 현재 속도에 따른 롤 축 토크를 반환하는 메서드
