@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5614746744675546509}
+  - component: {fileID: 957567130}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -33,6 +34,22 @@ Transform:
   m_Father: {fileID: 1268379123456144104}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &957567130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559833899034805587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1a445c430be6249a90f2249abd620c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePos: {fileID: 9037683002944754987}
+  _fireInterval: 0.01
+  _bulletProjectile: {fileID: 6784412265874072211, guid: a57cb684b5b848a43b3820a1e772e38b, type: 3}
+  bulletSpeed: 0
 --- !u!1 &853190167377751788
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _desiredDirection: {x: 0, y: 0, z: 0}
-  _firePos: {fileID: 0}
+  _firePos: {fileID: 9037683002944754987}
   _bulletSpeed: 0
 --- !u!1 &2968746538920140763
 GameObject:
