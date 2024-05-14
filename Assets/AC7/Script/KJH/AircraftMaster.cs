@@ -7,6 +7,9 @@ using UnityEngine;
 public class AircraftMaster : MonoBehaviour, IFightable
 {
     [SerializeField] bool aiControl;
+    AircraftSelecter aircraftSelecter;
+    public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
+    //public AircraftControl aircraftControl;
 
     Combat combat = new Combat();
 
@@ -22,7 +25,9 @@ public class AircraftMaster : MonoBehaviour, IFightable
 
     private void Awake()
     {
-        if(aiControl)
+        aircraftSelecter = GetComponent<AircraftSelecter>();        
+
+        if (aiControl)
         {
             GetComponent<FlightController>().enabled = false;
         }

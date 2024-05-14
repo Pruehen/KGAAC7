@@ -12,6 +12,14 @@ public class AircraftControl : MonoBehaviour
     [SerializeField] Transform _re; //우측 엘리베이터
     [SerializeField] Transform _lr; //좌측 러더
     [SerializeField] Transform _rr; //우측 러더
+    [SerializeField] List<JetEngineController> jetEngineControllers;//엔진
+    void JetEngineControl()
+    {
+        foreach (JetEngineController jet in jetEngineControllers)
+        {
+            jet.InputValue = Mathf.Clamp(throttle, 0, 1);
+        }
+    }
 
     Quaternion _laAxis;
     Quaternion _raAxis;
@@ -80,6 +88,8 @@ public class AircraftControl : MonoBehaviour
 
         _lr.localRotation = _lrAxis * Quaternion.Euler(0, -yaw * _r_Range, 0);
         _rr.localRotation = _rrAxis * Quaternion.Euler(0, -yaw * _r_Range, 0);
+
+        JetEngineControl();
     }
 
 }

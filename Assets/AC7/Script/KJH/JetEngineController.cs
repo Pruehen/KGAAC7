@@ -20,8 +20,8 @@ public class JetEngineController : MonoBehaviour
     float maxVolume = 0.2f;
     [SerializeField]
     float lowpassValue = 2500;
-    AudioSource audioSource;
-    AudioLowPassFilter audioLowPassFilter;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioLowPassFilter audioLowPassFilter;
 
     float inputValue;
     public float InputValue
