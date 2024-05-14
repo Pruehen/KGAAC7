@@ -39,5 +39,14 @@ namespace kjh
         {
             weaponSystem.ChangeWeaponIndex();
         }
+
+        /// <summary>
+        /// 웨폰 시스템의 기관포 트리거를 설정하는 메서드
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetTrigger(bool value)
+        {
+            weaponSystem.SetTrigger(value);
+        }
     }
 }

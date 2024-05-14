@@ -15,6 +15,17 @@ namespace kjh
 
         int useWeaponIndex;
 
+        [SerializeField] GameObject bulletPrf;
+        [SerializeField] Transform gunFireTrf;
+        bool gunTrigger = false;
+        float fireDelay = 0.05f;
+        float delayTime = 0;
+        Rigidbody rigidbody;
+
+        public void SetTrigger(bool value)
+        {
+            gunTrigger = value;
+        }
         /// <summary>
         /// 현재 사용중인 무장 인덱스를 교체하는 메서드
         /// </summary>
@@ -45,6 +56,9 @@ namespace kjh
             {
                 weapon02CoolDown.Add(0f);
             }
+
+            gunTrigger = false;
+            rigidbody = this.transform.parent.GetComponent<Rigidbody>();
         }
 
         // Update is called once per frame
@@ -71,6 +85,23 @@ namespace kjh
                         fireTrf_02[i].gameObject.SetActive(true);
                     }
                 }
+            }
+
+            GunFire();
+        }
+
+        void GunFire()
+        {
+            if(delayTime > 0)
+            {
+                delayTime -= Time.deltaTime;
+            }    
+
+            if(gunTrigger && delayTime <= 0)
+            {
+                delayTime = fireDelay;
+                GameObject item = Instantiate(bulletPrf, gunFireTrf.position, gunFireTrf.rotation);
+                item.GetComponent<Rigidbody>().velocity = rigidbody.velocity + item.transform.forward * 1000;
             }
         }
 
