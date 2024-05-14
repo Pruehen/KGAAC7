@@ -12504,11 +12504,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904102853}
   m_CullTransparentMesh: 1
---- !u!1 &915247713 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2952854090460673027, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
-  m_PrefabInstance: {fileID: 1612468738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &918159764
 GameObject:
   m_ObjectHideFlags: 0
@@ -13774,6 +13769,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976959305}
   m_CullTransparentMesh: 1
+--- !u!1 &980430978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1090491804934246997, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  m_PrefabInstance: {fileID: 1612468738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &990541726
 GameObject:
   m_ObjectHideFlags: 0
@@ -20170,11 +20170,11 @@ PrefabInstance:
     - target: {fileID: 8653230334330335157, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: weaponPrf
       value: 
-      objectReference: {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
+      objectReference: {fileID: 6445041468265237155, guid: 35e4e8865177bfe4d9da3f8c15aec94e, type: 3}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
-      objectReference: {fileID: 915247713}
+      objectReference: {fileID: 980430978}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
 --- !u!4 &1612468739 stripped
