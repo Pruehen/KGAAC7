@@ -82,6 +82,8 @@ public class Rocket : MonoBehaviour
             //trail.SetActive(true);
             smoke.gameObject.SetActive(true);
             motor.gameObject.SetActive(true);
+            smoke.Play();
+            motor.Play();
         }
 
         if (isCombustion)
