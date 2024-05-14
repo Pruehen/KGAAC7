@@ -169,7 +169,7 @@ MonoBehaviour:
   aircraftControl: {fileID: 0}
   waypoint: {x: 0, y: 0, z: 0}
   trakingTarget: {fileID: 0}
-  aiLevel: 0
+  aiLevel: 3
 --- !u!114 &3413560363963453488
 MonoBehaviour:
   m_ObjectHideFlags: 0

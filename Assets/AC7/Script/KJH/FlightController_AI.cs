@@ -20,7 +20,7 @@ public class FlightController_AI : MonoBehaviour
 
     AiState state;
     [SerializeField] Transform trakingTarget = null;
-    [SerializeField][Range(5f, 10f)] float aiLevel;//난이도 설정. 5부터 10까지의 값을 가짐. 값이 클수록 기동을 더 빡세게 함
+    [SerializeField][Range(3f, 10f)] float aiLevel;//난이도 설정. 3부터 10까지의 값을 가짐. 값이 클수록 기동을 더 빡세게 함
     /// <summary>
     /// 이 AI가 추적할 타겟(트랜스폼)을 지정하는 메서드
     /// </summary>
@@ -56,7 +56,7 @@ public class FlightController_AI : MonoBehaviour
             state = AiState.tracking;
         }
 
-        if (state != AiState.tracking && WayPointOnCheck())//추적할 트랜스폼이 없으며, 웨이포인트에 도달했을 경우
+        if (WayPointOnCheck())//웨이포인트에 도달했을 경우
         {
             CreateNewWayPoint_Normal();
         }
@@ -65,9 +65,9 @@ public class FlightController_AI : MonoBehaviour
         //aircraftControl.SetAxisValue(PlayerInputCustom.Instance.pitchAxis, PlayerInputCustom.Instance.rollAxis, PlayerInputCustom.Instance.yawAxis, PlayerInputCustom.Instance.throttleAxis);//테스트 코드
     }
 
-    bool WayPointOnCheck()//웨이포인트와의 거리가 100 미만일 경우 true 반환
+    bool WayPointOnCheck()//웨이포인트와의 거리가 200 미만일 경우 true 반환
     {
-        return (Vector3.Distance(waypoint, this.transform.position) < 100);        
+        return (Vector3.Distance(waypoint, this.transform.position) < 200);        
     }
 
     void CreateNewWayPoint_Traking()
@@ -94,7 +94,7 @@ public class FlightController_AI : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(11 - aiLevel);
+            yield return new WaitForSeconds((11 - aiLevel) * 3);//3레벨일 때 24초, 10레벨일 때 3초에 1번씩 추적 위치 갱신
             CreateNewWayPoint_Traking();
         }
     }
@@ -140,6 +140,14 @@ public class FlightController_AI : MonoBehaviour
         }
 
         float maxMobility = aiLevel * 0.1f;
+
+        if((this.transform.position + velocity * (13 - aiLevel)).y < 0)//3~10초 후의 예상 고도가 음수일 경우
+        {
+            rollOrder = RollKeepLevel();
+            pitchOrder = 1;
+            Debug.Log("지상 회피");
+        }
+
         pitchOrder = Mathf.Clamp(pitchOrder, -maxMobility, maxMobility);
         rollOrder = Mathf.Clamp(rollOrder, -1, 1);
         yawOrder = Mathf.Clamp(yawOrder, -1, 1);
@@ -151,7 +159,7 @@ public class FlightController_AI : MonoBehaviour
     {
         if(this.transform.up.y < 0)
         {
-            return Mathf.Clamp(this.transform.up.y * 30, -1, 1);
+            return Mathf.Clamp(this.transform.up.y * 20, -1, 1);
         }
         else
         {
