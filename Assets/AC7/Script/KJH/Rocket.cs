@@ -115,6 +115,12 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        IFightable fightable;
+        if(collision.transform.TryGetComponent<IFightable>(out fightable)) 
+        {
+            fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+        }
+
         EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
         this.DestroyRocket();
     }

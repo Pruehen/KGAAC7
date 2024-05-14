@@ -6,7 +6,8 @@ public enum AiState
 {
     cruise,
     random,
-    tracking
+    tracking,
+    dead
 }
 
 //현재 조종하는 항공기 조종면에 조종 데이터를 전달하는 클래스
@@ -50,8 +51,14 @@ public class FlightController_AI : MonoBehaviour
     void Update()
     {
         aircraftControl = aircraftSelecter.aircraftControl;
+        if(state == AiState.dead)
+        {
+            aircraftControl.SetAxisValue(0, 1, 0, 0);
+            return;
+        }
 
-        if(trakingTarget != null && state != AiState.tracking)//추적할 트랜스폼이 존재할 경우
+
+        if (trakingTarget != null && state != AiState.tracking)//추적할 트랜스폼이 존재할 경우
         {
             state = AiState.tracking;
         }
@@ -165,5 +172,13 @@ public class FlightController_AI : MonoBehaviour
         {
             return Mathf.Clamp(this.transform.right.y * 2, -1, 1);
         }
+    }
+
+    /// <summary>
+    /// 사망시 호출하는 메서드
+    /// </summary>
+    public void Dead()
+    {
+        state = AiState.dead;
     }
 }

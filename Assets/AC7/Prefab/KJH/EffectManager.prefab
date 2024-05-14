@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c610c4363f0a841aa8c59ebd453c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aircraftExplosionEffect: {fileID: 132222, guid: ae4d85d01cd36a84fa0063e23a445f0f, type: 3}

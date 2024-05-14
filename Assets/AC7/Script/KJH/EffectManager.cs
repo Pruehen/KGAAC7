@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EffectManager : SceneSingleton<EffectManager>
 {
+    public GameObject aircraftExplosionEffect;
+    public GameObject aircraftFireEffect;
+
     public void EffectGenerate(GameObject item, Vector3 position)
     {
         GameObject effect = ObjectPoolManager.Instance.DequeueObject(item);
@@ -11,6 +14,11 @@ public class EffectManager : SceneSingleton<EffectManager>
         effect.transform.rotation = Quaternion.identity;
 
         StartCoroutine(EffectEnqueue(effect, 5));
+    }
+
+    public void AircraftExplosionEffectGenerate(Vector3 position)
+    {
+        EffectGenerate(aircraftExplosionEffect, position);
     }
 
     IEnumerator EffectEnqueue(GameObject item, float delayTime)
