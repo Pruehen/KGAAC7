@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9037683002944754987}
   m_Layer: 0
-  m_Name: FirePos
+  m_Name: MuzzlePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,9 +293,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ad7dd5e1f1ce46b93b922046ff417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _desiredDirection: {x: 0, y: 0, z: 0}
-  _firePos: {fileID: 9037683002944754987}
-  _bulletSpeed: 0
+  _accuracyLoop: 4
+  _range: 2000
+  _minXAxis: 0
+  _maxXAxis: 180
+  _muzzleTrf: {fileID: 9037683002944754987}
 --- !u!1 &2968746538920140763
 GameObject:
   m_ObjectHideFlags: 0

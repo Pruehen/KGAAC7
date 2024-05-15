@@ -16,22 +16,28 @@ public class FireControlSystem
 
     
 
-    public static Vector3 CalcFireDirection(Vector3 originPosition, Rigidbody target, float bulletSpeed, int adjustAccurateLoop = 8)
-    {
-        Vector3 resultPredictedPos = target.position;
-
-        for (int i = 0; i < adjustAccurateLoop; i++)
-        {
-            //타겟 위치까지 도착 시간
-            float timeToTarget = GetTimeToTarget(originPosition, resultPredictedPos, bulletSpeed);
-            //예측한 위치
-            resultPredictedPos = target.position + target.velocity * timeToTarget;
-        }
-        Vector3 ToTarget = (-originPosition + resultPredictedPos).normalized;
-        return ToTarget;
-    }
     public static float GetTimeToTarget(Vector3 originPos, Vector3 targetPos, float speed)
     {
         return Vector3.Distance(targetPos, originPos) / speed;
     }
+
+    internal static Vector3 CalcFireDirection(Vector3 originPosition, Rigidbody target, float bulletSpeed, int accLoop, Vector3 velDelta)
+    {
+        float timeToTarget = 0f;
+        Vector3 resultPredictedPos = target.position;
+        for (int i = 0; i < accLoop; i++)
+        {
+            //타겟 위치까지 도착 시간
+            timeToTarget = GetTimeToTarget(originPosition, resultPredictedPos, bulletSpeed);
+            //예측한 위치
+            // Predicted position based on kinematic equation: s = ut + 0.5at^2
+            resultPredictedPos = target.position + (target.velocity * timeToTarget) + ( .5f * velDelta * timeToTarget * timeToTarget);
+        }
+        Vector3 ToTarget = (-originPosition + resultPredictedPos).normalized;
+        return ToTarget;
+
+    }
+
+
+
 }

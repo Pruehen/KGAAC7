@@ -32,5 +32,16 @@ public class Vulcan : MonoBehaviour
         bullet.transform.position = _firePos.position;
         bullet.transform.rotation = _firePos.rotation;
         bullet.Init();
+        ObjectPoolManager.Instance.EnqueueObject(item, 30f);
     }
+    public void FireTest(Vector3 pos, Quaternion rot)
+    {
+        GameObject item = ObjectPoolManager.Instance.DequeueObject(_bulletProjectile);
+        bsj.Bullet bullet = item.GetComponent<bsj.Bullet>();
+        bullet.transform.position = pos;
+        bullet.transform.rotation = rot;
+        bullet.Init();
+        ObjectPoolManager.Instance.EnqueueObject(item, 30f);
+    }
+
 }
