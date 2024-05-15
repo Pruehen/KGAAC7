@@ -1,3 +1,4 @@
+using Mirror;
 using UnityEngine;
 
 //combatComponent를 가지는 녀석들을 구분하기 위함
@@ -20,141 +21,75 @@ public interface IFightable
 [System.Serializable]
 public class Combat
 {
-    [SerializeField] private Transform _owner;
+    public Transform _owner;
     [SerializeField] private float _maxHp = 100f;
     [SerializeField] private float _hp = 100f;
     [SerializeField] private bool _dead = false;
+    /// <summary>
+    /// 피격시 적용되는 무적 시간
+    /// </summary>
     [SerializeField] private float _invincibleTime = .0f;
     [SerializeField] private float _prevHitTime = 0f;
-    [SerializeField] private Combat _prevAttacker = null;
+    private bool _defalutEffectOnDamaged;
 
+    /// Action과 Func
+    /// 외부에서 On~ += 메서드이름;
+    /// 으로 구독후 이벤트 Invoke시 구독된 메서드들이 호출된다
 
     /// <summary>
-    /// 공격 받았을때 발생하는 이벤트
+    /// 데미지 입었을때 실행되는 이벤트
     /// </summary>
     public System.Action OnDamaged { get; set; }
     /// <summary>
     /// 공격을 성공했을때 발생하는 이벤트 타겟을 인수로 받는다.
     /// </summary>
-    public System.Action<Combat> OnAttackSuccess { get; set; }
+    public System.Action<Combat> OnAttackWithTarget { get; set; }
     /// <summary>
-    /// 죽었을때 발생하는 이벤트
+    /// 사망시 실행되는 이벤트
     /// </summary>
     public System.Action OnDead { get; set; }
+
     /// <summary>
-    /// 데미지를 받을수 있는지 없는지 추가로 판단하는 이벤트
+    /// 데미지 입을시 추가조건으로 데미지를 무시하는 이벤트
+    /// true 를 반환하면 데미지를 입을수 있고
+    /// false 면 데미지를 무시한다
     /// </summary>
     public System.Func<bool> AdditionalDamageableCondition { get; set; }
     /// <summary>
-    /// 힐이 되었을때 발생하는 이벤트
+    /// 힐했을때 실행되는 이벤트
     /// </summary>
     public System.Action OnHeal { get; set; }
-
-
-
-
     /// <summary>
     /// 초기화, 소유자 트랜스폼과 최대체력을 초기화한다.
     /// </summary>
     /// <param name="owner"></param>
     /// <param name="maxHp"></param>
     /// <param name="defaultEffectOnDamaged"></param>
-    public void Init(Transform owner, float maxHp)
+    public void Init(Transform owner, float maxHp, bool defaultEffectOnDamaged = true)
     {
         _owner = owner;
         _maxHp = maxHp;
         _hp = _maxHp;
+        _defalutEffectOnDamaged = defaultEffectOnDamaged;
     }
-    /// <summary>
-    /// 현재 Hp를 반환
-    /// </summary>
-    /// <returns></returns>
     public float GetHp() { return _hp; }
-    /// <summary>
-    /// MaxHp를 반환
-    /// </summary>
-    /// <returns></returns>
     public float GetMaxHp()
     {
         return _maxHp;
     }
-    /// <summary>
-    /// 체력을 초기화하고 dead 도 초기화함
-    /// </summary>
-    public void ResetHp()
+    public bool DealDamage(Combat target, float damage)
     {
-        _hp = _maxHp;
-        _dead = false;
-    }
-    /// <summary>
-    /// 공격자가 있는경우 데미지를 적용하는 메서드
-    /// </summary>
-    /// <param name="damage"> 적용할 데미지 </param>
-    /// <param name="target"> 공격받을 타겟 </param>
-    /// <returns></returns>
-    public bool DealDamage(float damage, Combat target)
-    {
-        bool isAttackSucceeded = target.TakeDamage(damage, this);
+        bool isAttackSucceeded = target.TakeDamage(_owner.transform.position, damage);
         if (isAttackSucceeded)
         {
-            OnAttackSuccess?.Invoke(target);
+            OnAttackWithTarget?.Invoke(target);
             return false;
         }
         return true;
     }
-
-
-    /// <summary>
-    /// 데미지를 주는 메서드
-    /// </summary>
-    /// <param name="damage">데미지</param>
-    /// <param name="attacker">공격자</param>
-    /// <returns>데미지 적용에 실패할 경우 <see langword="false"/>반환 (이미죽었거나 추가조건 실패)</returns>
-    public bool TakeDamage(float damage, Combat attacker = null)
-    {
-        if (!IsDamageable())
-            return false;
-
-        _prevAttacker = attacker;
-
-        CalcTakeDamage(damage);
-        return true;
-    }
-    /// <summary>
-    /// 체력을 회복하는 메서드
-    /// </summary>
-    /// <param name="amount"></param>
-    public void Heal(int amount)
-    {
-        if (_hp < _maxHp)
-        {
-            _hp += amount;
-        }
-        if (OnHeal != null)
-        {
-            OnHeal.Invoke();
-        }
-    }
-    /// <summary>
-    /// 죽었는지 확인하는 메서드
-    /// </summary>
-    /// <returns></returns>
-    public bool IsDead()
-    {
-        return _dead;
-    }
-    /// <summary>
-    /// 강제로 죽게하는 메서드
-    /// </summary>
-    public void Die()
-    {
-        TakeDamage(_hp);
-    }
-
-
     private bool IsDamageable()
     {
-        if (Time.time < _prevHitTime + _invincibleTime) // 아직 무적인지
+        if (Time.time < _prevHitTime + _invincibleTime)
         {
             return false;
         }
@@ -162,10 +97,7 @@ public class Combat
         {
             return false;
         }
-
-        //추가 조건이 있을경우 추가 조건 판단
         bool result = true;
-
         if (AdditionalDamageableCondition != null)
         {
             result = result && AdditionalDamageableCondition.Invoke();
@@ -176,6 +108,43 @@ public class Combat
         }
         return true;
     }
+    public bool TakeDamage(float damage)
+    {
+        return TakeDamage(_owner.position, damage);
+    }
+    public bool TakeDamage(Vector3 position, float damage, int effectType = -1)
+    {
+        if (!IsDamageable())
+            return false;
+        CalcTakeDamage(damage);;
+        return true;
+    }
+    public void Heal(int v)
+    {
+        if (_hp < _maxHp)
+        {
+            _hp += v;
+        }
+        if (OnHeal != null)
+        {
+            OnHeal.Invoke();
+        }
+    }
+    public bool IsDead()
+    {
+        return _dead;
+    }
+    public void Die()
+    {
+        TakeDamage(_owner.position, _hp);
+    }
+    public void Reset()
+    {
+        _hp = _maxHp;
+        _dead = false;
+    }
+
+    //실제 데미지 계산
     private void CalcTakeDamage(float damage)
     {
         _prevHitTime = Time.time;
