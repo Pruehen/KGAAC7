@@ -107,7 +107,7 @@ public class FlightController_AI : MonoBehaviour
     }
 
     Vector3 localOrderTemp = Vector3.zero;
-    float p = 1.2f;
+    float p = 0.7f;
     float d = 10;
     void ToWayPointMove()
     {
@@ -148,7 +148,7 @@ public class FlightController_AI : MonoBehaviour
 
         float maxMobility = aiLevel * 0.1f;
 
-        if((this.transform.position + velocity * (13 - aiLevel)).y < 0)//3~10초 후의 예상 고도가 음수일 경우
+        if((this.transform.position + velocity * (16 - aiLevel)).y < 0)//6~13초 후의 예상 고도가 음수일 경우
         {
             rollOrder = RollKeepLevel();
             pitchOrder = 1;
