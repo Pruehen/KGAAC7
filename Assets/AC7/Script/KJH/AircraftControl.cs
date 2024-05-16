@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 //조종면에 조종 데이터를 전달 및 조종면의 상태를 알려주는 클래스
 public class AircraftControl : MonoBehaviour
@@ -62,8 +63,7 @@ public class AircraftControl : MonoBehaviour
         this._yawTarget = yaw;
         this._throttleTarget = throttle;
     }
-
-    private void Start()
+        private void Start()
     {
         _laAxis = _la.localRotation;
         _raAxis = _ra.localRotation;
@@ -91,5 +91,4 @@ public class AircraftControl : MonoBehaviour
 
         JetEngineControl();
     }
-
 }

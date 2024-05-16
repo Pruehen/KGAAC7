@@ -17,14 +17,6 @@ public class AircraftMaster : MonoBehaviour, IFightable
     {
         return rigidbody.velocity.magnitude * 3.6f;
     }
-    /// <summary>
-    /// 현재 항공기의 스로틀 축(-1 ~ 1) 값을 반환하는 메서드
-    /// </summary>
-    /// <returns></returns>
-    public float GetThrottle()
-    {
-        return aircraftSelecter.aircraftControl.throttle;
-    }
 
     public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
     //public AircraftControl aircraftControl;
