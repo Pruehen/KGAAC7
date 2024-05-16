@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MinimapController : MonoBehaviour
+public class MinimapController : SceneSingleton<MinimapController>
 {
     public enum MinimapIndex
     {
@@ -13,6 +13,8 @@ public class MinimapController : MonoBehaviour
     }
 
     public Camera minimapCamera;
+    public Transform targetTrf;//미니맵이 어떤 오브젝트를 기준으로 그려질지 결정하는 트랜스폼
+    public GameObject minimapIndicatorPrf;//미니맵 인디케이터 프리팹
 
     [Header("Follow Target / Small View Offset Ratio")]
     public Transform target;
@@ -78,7 +80,7 @@ public class MinimapController : MonoBehaviour
     // Change visibility and minimapCamera's size and culling mask
     public void SetCamera()
     {
-        switch((MinimapIndex)minimapIndex)
+        /*switch((MinimapIndex)minimapIndex)
         {
             case MinimapIndex.Small:
                 minimapCamera.orthographicSize = smallViewSize;
@@ -94,7 +96,7 @@ public class MinimapController : MonoBehaviour
                 minimapCamera.orthographicSize = entireViewSize;
                 minimapCamera.cullingMask |= (1 << LayerMask.NameToLayer("Minimap (Player)"));
                 break;
-        }
+        }*/
 
         for(int i = 0; i < minimaps.Length; i++)
         {

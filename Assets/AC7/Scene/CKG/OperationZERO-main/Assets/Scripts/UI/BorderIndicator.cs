@@ -9,7 +9,9 @@ public class BorderIndicator : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Camera minimapCamera;
     MinimapController minimapController;
-    
+
+    AircraftMaster aircraftMaster;//인디케이터의 기준이 될 기체
+
     [SerializeField]
     float iconSize;
     [SerializeField]
@@ -37,7 +39,7 @@ public class BorderIndicator : MonoBehaviour
 
         if(minimapController.GetMinimapIndex() == MinimapController.MinimapIndex.Small)
         {
-            distance = Quaternion.Euler(0, 0, GameManager.AircraftController.transform.eulerAngles.y) * distance;
+            distance = Quaternion.Euler(0, 0, aircraftMaster.transform.eulerAngles.y) * distance;
         }
         
         // X axis
@@ -69,7 +71,9 @@ public class BorderIndicator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        minimapController = GameManager.UIController.MinimapController;
+        //minimapController = GameManager.UIController.MinimapController;
+        minimapController = MinimapController.Instance;
+        aircraftMaster = minimapController.targetTrf.GetComponent<AircraftMaster>();
         minimapCamera = minimapController.minimapCamera;
         sizeReciprocal = iconSize / minimapCamera.orthographicSize;
     }
