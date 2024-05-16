@@ -4,9 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+
 public class TargetUI : MonoBehaviour
 {
-    AircraftMaster targetObject;
+    VehicleCombat targetObject;
 
     [Header("UI / Texts")]
     [SerializeField]
@@ -52,7 +53,7 @@ public class TargetUI : MonoBehaviour
     //ObjectInfo objectInfo;
     RectTransform rectTransform;
 
-    public AircraftMaster Target
+    public VehicleCombat Target
     {
         get
         {
@@ -64,9 +65,9 @@ public class TargetUI : MonoBehaviour
             targetObject = value;
             //objectInfo = targetObject.Info;
 
-            nameText.text = targetObject.AircraftSelecter().controlAircraft.name;
+            nameText.text = targetObject.name;
             //nicknameText.text = objectInfo.ObjectNickname;
-            targetText.gameObject.SetActive(targetObject.vehicleCombat.mainTarget);
+            targetText.gameObject.SetActive(targetObject.mainTarget);
         }
     }
 
@@ -154,15 +155,19 @@ public class TargetUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         activeCamera = Camera.main;
 
-        if(targetObject == null && activeCamera == null)
+        if(targetObject == null || targetObject.IsDead())
+        {
+            TargetUIManager.Instance.RemoveListUI(this);
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
             return;
+        }
 
         Vector3 screenPosition = activeCamera.WorldToScreenPoint(targetObject.transform.position);
-        float distance = 1000;
+        float distance = Vector3.Distance(targetObject.transform.position, kjh.GameManager.Instance.player.transform.position);
         //nextTargetText.SetActive(targetObject.isNextTarget);
 
         // if screenPosition.z < 0, the object is behind camera

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class VehicleCombat : MonoBehaviour, IFightable
 {
     public bool mainTarget = false;
+    public string name;
 
     void IFightable.DealDamage(IFightable target, float damage)
     {
@@ -32,6 +33,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
 
     void Dead()
     {
+        kjh.GameManager.Instance.RemoveActiveTarget(this);
         onDead.Invoke();
         Debug.Log("Æã");
     }

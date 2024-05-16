@@ -36,7 +36,7 @@ public class CamRotate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {        
         float throttle = aircraftControl.throttle;                
 
