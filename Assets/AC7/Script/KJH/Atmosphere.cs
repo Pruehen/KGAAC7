@@ -16,7 +16,7 @@ public class Atmosphere
         //Debug.Log(ap);
 
         //간단한 충격파 항력.
-        float dragGain = 1 + (Mathf.Clamp(speed - 300, 0, 60)) / 30;
+        float dragGain = 1 + (Mathf.Clamp(speed - 300, 0, 60)) / 60;
 
         return AtmosphericPressure(yPos) * cd * speed * 0.001f * dragGain;
     }

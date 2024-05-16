@@ -19,7 +19,7 @@ public class MaskColorChange : MonoBehaviour
     
     void Start()
     {
-        GameManager.UIController.AddMaskColorChange(this);
+        //GameManager.UIController.AddMaskColorChange(this);
     }
 
     public void ChangeComponentColor(Color color)

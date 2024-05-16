@@ -43,7 +43,7 @@ public class AircraftFM : MonoBehaviour
 
         //속도 벡터의 수직 방향으로 양력 생성
         rigidbody.AddForce(Vector3.Cross(velocity, this.transform.right).normalized * aircraftData.GetLiftPower(aoa, velocitySpeed), ForceMode.Acceleration);
-        rigidbody.AddForce(this.transform.right.normalized * aircraftData.GetLiftPower(aoaSide, velocitySpeed), ForceMode.Acceleration);
+        rigidbody.AddForce(this.transform.right * velocitySpeed * velocitySpeed * aoaSide * 0.001f, ForceMode.Acceleration);
         //속도 벡터의 반대 방향으로 유도항력 및 유해항력 생성
         rigidbody.AddForce(-velocity.normalized * (aircraftData.GetInducedDrag(aoa, velocitySpeed) + aircraftData.GetParasiteDrag(aoa, velocitySpeed)), ForceMode.Acceleration);
 

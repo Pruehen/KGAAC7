@@ -12,7 +12,7 @@ public class MinimapController : SceneSingleton<MinimapController>
         Entire
     }
 
-    public Camera minimapCamera;
+    //public Camera minimapCamera;
     public Transform targetTrf;//미니맵이 어떤 오브젝트를 기준으로 그려질지 결정하는 트랜스폼
     public GameObject minimapIndicatorPrf;//미니맵 인디케이터 프리팹
 
@@ -103,21 +103,22 @@ public class MinimapController : SceneSingleton<MinimapController>
             minimaps[i].gameObject.SetActive(i == minimapIndex);
         }
 
-        cameraSize = new Vector2(minimapCamera.orthographicSize, minimapCamera.orthographicSize * minimapCamera.aspect);
+        //cameraSize = new Vector2(minimapCamera.orthographicSize, minimapCamera.orthographicSize * minimapCamera.aspect);
     }
 
 
     public float GetInitCameraViewSize()
     {
-        return minimapCamera.orthographicSize;
+        //return minimapCamera.orthographicSize;
+        return 0;
     }
 
     // Multiply orthographicSize to keep icons' original size
     public float GetIconResizeFactor()
     {
-        float size = minimapCamera.orthographicSize;
+        //float size = minimapCamera.orthographicSize;
 
-        switch((MinimapIndex)minimapIndex)
+        /*(switch((MinimapIndex)minimapIndex)
         {
             case MinimapIndex.Large:
                 return size * largeViewIconResizeFactor;
@@ -127,7 +128,8 @@ public class MinimapController : SceneSingleton<MinimapController>
 
             default:
                 return size;
-        }
+        }*/
+        return 0;
     }
 
     void AdjustCameraTransform()
@@ -144,8 +146,8 @@ public class MinimapController : SceneSingleton<MinimapController>
             targetForwardVector.y = 0;
             targetForwardVector.Normalize();
 
-            position = new Vector3(target.transform.position.x, 1, target.transform.position.z)
-                           + targetForwardVector * offsetRatio * minimapCamera.orthographicSize;
+           // position = new Vector3(target.transform.position.x, 1, target.transform.position.z)
+            //               + targetForwardVector * offsetRatio * minimapCamera.orthographicSize;
             cameraRotation =  -target.eulerAngles.y;
         }
         else
@@ -162,8 +164,8 @@ public class MinimapController : SceneSingleton<MinimapController>
             cameraRotation = 0;
         }
 
-        minimapCamera.transform.position = position;
-        minimapCamera.transform.eulerAngles = new Vector3(90, 0, cameraRotation);
+       // minimapCamera.transform.position = position;
+        //minimapCamera.transform.eulerAngles = new Vector3(90, 0, cameraRotation);
     }
 
     
@@ -182,8 +184,8 @@ public class MinimapController : SceneSingleton<MinimapController>
     void ZoomCamera()
     {
         float size = (isZooming == true) ? smallZoomViewSize : smallViewSize;
-        minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, size, zoomLerpAmount * Time.deltaTime);
-        cameraSize = new Vector2(minimapCamera.orthographicSize, minimapCamera.orthographicSize * minimapCamera.aspect);
+        //minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, size, zoomLerpAmount * Time.deltaTime);
+       // cameraSize = new Vector2(minimapCamera.orthographicSize, minimapCamera.orthographicSize * minimapCamera.aspect);
     }
 
     void Awake()

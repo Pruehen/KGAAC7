@@ -6,14 +6,22 @@ public class CamRotate : MonoBehaviour
 {
     [SerializeField] AircraftMaster aircraftMaster;    
     AircraftControl aircraftControl;
-    Transform camAxisTrf;
-    Transform viewTargetTrf;
+    Transform camAxisTrf;//실제 회전시킬 축
+    [SerializeField]Transform virtualAxis;//가상 축
+    Transform viewTargetTrf;//카메라가 추적할 트랜스폼
+
+    bool isTargetTraking = false;
+    float lerpTime = 0;
+    float postDeadTargetTime = 0;
     public void SetTargetTrf()
     {
-        viewTargetTrf = aircraftMaster.GetComponent<Radar>().GetTarget();
+        isTargetTraking = true;
+        lerpTime = 0;
     }
     public void RemoveTargetTrf()
     {
+        isTargetTraking = false;
+        lerpTime = 0;
         viewTargetTrf = null;
     }
 
@@ -35,13 +43,36 @@ public class CamRotate : MonoBehaviour
         Vector3 camTargetPos = initLocalPos + new Vector3(0, 0, -throttle);
         this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, camTargetPos, Time.fixedDeltaTime);
 
-        if(viewTargetTrf != null)
+
+        if(isTargetTraking)//카메라가 추적 모드일 경우
         {
-            camAxisTrf.LookAt(viewTargetTrf.position);
+            Transform viewTargetTrfTemp = viewTargetTrf;
+            
+            viewTargetTrf = aircraftMaster.GetComponent<Radar>().GetTarget();//레이더 타겟으로 카메라의 타겟을 지정            
+
+            if(viewTargetTrfTemp != viewTargetTrf)//타겟이 변경되었을 경우
+            {
+                lerpTime = 0;
+            }
+        }
+
+        if(viewTargetTrf != null)//카메라의 타겟이 존재할 경우
+        {
+            virtualAxis.LookAt(viewTargetTrf.position);//해당 타겟을 바라보도록 가상 축을 조정
         }
         else
         {
-            camAxisTrf.localRotation = Quaternion.identity;
+            virtualAxis.localRotation = Quaternion.identity;            
+        }
+
+        lerpTime += Time.deltaTime;
+        if (lerpTime < 1)
+        {
+            camAxisTrf.rotation = Quaternion.Lerp(camAxisTrf.rotation, virtualAxis.rotation, lerpTime);
+        }
+        else
+        {
+            camAxisTrf.rotation = virtualAxis.rotation;
         }
     }
 }

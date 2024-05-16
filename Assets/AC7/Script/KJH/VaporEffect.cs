@@ -8,11 +8,11 @@ public class VaporEffect : MonoBehaviour
     [SerializeField] List<ParticleSystem> wingVaperEffect;
 
     bool alpha7Over = false;
-    bool alpha20Over = false;
+    bool alpha15Over = false;
     private void Start()
     {
         alpha7Over = false;
-        alpha20Over = false;
+        alpha15Over = false;
     }
 
     /// <summary>
@@ -34,14 +34,14 @@ public class VaporEffect : MonoBehaviour
                 alpha7Over = false;
                 SetParticleEffect(strakeVaperEffect, false);
             }
-            if(alpha20Over == false && aoa > 20)
+            if(alpha15Over == false && aoa > 15)
             {
-                alpha20Over = true;
+                alpha15Over = true;
                 SetParticleEffect(wingVaperEffect, true);
             }
-            if (alpha20Over == true && aoa < 20)
+            if (alpha15Over == true && aoa < 15)
             {
-                alpha20Over = false;
+                alpha15Over = false;
                 SetParticleEffect(wingVaperEffect, false);
             }
         }
@@ -52,9 +52,9 @@ public class VaporEffect : MonoBehaviour
                 alpha7Over = false;
                 SetParticleEffect(strakeVaperEffect, false);
             }
-            if (alpha20Over) 
+            if (alpha15Over) 
             {
-                alpha20Over = false;
+                alpha15Over = false;
                 SetParticleEffect(wingVaperEffect, false);
             }
         }
