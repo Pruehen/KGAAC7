@@ -17,11 +17,10 @@ public class JetEngineController : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField]
-    float maxVolume = 0.2f;
+    float maxVolume = 1f;
     [SerializeField]
     float lowpassValue = 2500;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioLowPassFilter audioLowPassFilter;
+    [SerializeField] AircraftEngineSound _engineAudio;
 
     float inputValue;
     public float InputValue
@@ -31,12 +30,12 @@ public class JetEngineController : MonoBehaviour
 
     void SetEngineAudio()
     {
-        audioSource.volume = throttleAmount * maxVolume;
+        _engineAudio.UpdateAfterBurnerVolum(throttleAmount * maxVolume);
     }
 
     public void SetAudioEffect(bool is1stView)
     {
-        audioLowPassFilter.cutoffFrequency = (is1stView == true) ? lowpassValue : 22000;
+        _engineAudio.SetLowpassCutoff( (is1stView == true) ? lowpassValue : 22000);
     }
 
     void OnDisable()
@@ -45,14 +44,13 @@ public class JetEngineController : MonoBehaviour
         particleColor.a = 0;
 
         particleMainModule.startColor = particleColor;
-        if(audioSource != null) SetEngineAudio();
+        if(_engineAudio != null) SetEngineAudio();
     }
 
     // Start is called before the first frame update
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioLowPassFilter = GetComponent<AudioLowPassFilter>();
+        _engineAudio = GetComponent<AircraftEngineSound>();
 
         particleMainModule = GetComponent<ParticleSystem>().main;
         particleColor = particleMainModule.startColor.color;
@@ -68,6 +66,6 @@ public class JetEngineController : MonoBehaviour
         particleColor.a = throttleAmount * initAlpha;
         particleMainModule.startColor = particleColor;
 
-        if(audioSource != null) SetEngineAudio();
+        if(_engineAudio != null) SetEngineAudio();
     }
 }

@@ -1047,11 +1047,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1090491804934246997, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 1612468738}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &986288529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
-  m_PrefabInstance: {fileID: 1612468738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1211858494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1109,6 +1104,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6c5cfcdb49a4c43a66669dae1a5621, type: 3}
+--- !u!1 &1216469078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2240527110027769571, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  m_PrefabInstance: {fileID: 1612468738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!169 &1216469085
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216469078}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1217186542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,6 +1536,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 489424298290780251, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 99940917bc2f5754f844d43f3daedfda, type: 3}
     - target: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_Name
       value: Aircraft
@@ -1567,6 +1596,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4213332702076886688, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: maxVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5198015637826167179, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: e
       value: 0.78
@@ -1587,7 +1620,16 @@ PrefabInstance:
       propertyPath: controlAircraft
       value: 
       objectReference: {fileID: 980430978}
-    m_RemovedComponents: []
+    - target: {fileID: 9200434153173972041, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200434153173972041, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: audioLowPassFilter
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7217555591764213829, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
 --- !u!4 &1612468739 stripped
 Transform:
@@ -1599,7 +1641,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -6224072715111857092, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 1612468738}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986288529}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c7cf4d963174f44993f1fe244ad29c9, type: 3}
@@ -1610,7 +1652,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1340515618079156043, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 1612468738}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986288529}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecb9efe36cdabb64cb98e5302d0d2e8a, type: 3}
@@ -1621,27 +1663,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1192869116438744633, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 1612468738}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986288529}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b5139a9a0bd76245a6c62df5493ecd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1612468747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986288529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff9673a02d0d694f8678664c4a91ec4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _engineSoundPrefab: {fileID: 1759765917466483415, guid: 72ef739f4b64f8044a1343ba1ad386e7, type: 3}
-  _afterbunerSoundPrefab: {fileID: 0}
-  _aircraftMaster: {fileID: 0}
 --- !u!1001 &1615552396
 PrefabInstance:
   m_ObjectHideFlags: 0
