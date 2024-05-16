@@ -82,6 +82,8 @@ public class Rocket : MonoBehaviour
             //trail.SetActive(true);
             smoke.gameObject.SetActive(true);
             motor.gameObject.SetActive(true);
+            smoke.Play();
+            motor.Play();
         }
 
         if (isCombustion)
@@ -115,6 +117,12 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        IFightable fightable;
+        if(collision.transform.TryGetComponent<IFightable>(out fightable)) 
+        {
+            fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+        }
+
         EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
         this.DestroyRocket();
     }
