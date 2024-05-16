@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Org.BouncyCastle.Utilities.Encoders;
 
-public class UIController : MonoBehaviour
+public class UIControl : MonoBehaviour
 {
+    [SerializeField] AircraftMaster aircraftMaster;
+
     // Center
     [Header("Common Center UI")]
     [SerializeField]
@@ -22,7 +25,7 @@ public class UIController : MonoBehaviour
     RectTransform firstCenterViewTransform;
     [SerializeField]
     RectTransform thirdCenterViewTransform;
-    
+
     [SerializeField]
     Canvas firstViewCanvas;
     [SerializeField]
@@ -52,7 +55,7 @@ public class UIController : MonoBehaviour
     TextMeshProUGUI scoreText;
     [SerializeField]
     TextMeshProUGUI targetText;
-    
+
     // Lower Right
     [Header("Lower Right UI : Armament")]
     [SerializeField]
@@ -116,11 +119,6 @@ public class UIController : MonoBehaviour
 
     float elapsedTime = 0;
 
-    public bool IsRedTimerActive
-    {
-        set { isRedTimerActive = value; }
-    }
-
     public MinimapController MinimapController
     {
         get { return minimapController; }
@@ -139,20 +137,20 @@ public class UIController : MonoBehaviour
     }
 
     // Center
-    public void SetSpeed(int speed)
+    void SetSpeed(int speed)
     {
         string text = string.Format("<mspace=18>{0}</mspace>", speed);
         speedText.text = text;
 
-        speedUV.SetUV(speed);
+        //speedUV.SetUV(speed);
     }
 
-    public void SetAltitude(int altitude)
+    void SetAltitude(int altitude)
     {
         string text = string.Format("<mspace=18>{0}</mspace>", altitude);
         altitudeText.text = text;
 
-        altitudeUV.SetUV(altitude);
+        //altitudeUV.SetUV(altitude);
     }
 
     public void SetThrottle(float throttle)
@@ -166,38 +164,18 @@ public class UIController : MonoBehaviour
         minimapCompass.SetCompass(heading);
     }
 
-
-    public void AdjustFirstViewUI(Vector3 cameraRotation)
-    {
-        if(cameraRotation.x > 180) cameraRotation.x -= 360;
-        if(cameraRotation.y > 180) cameraRotation.y -= 360;
-        
-        Vector2 canvasResolution = new Vector2(firstViewCanvas.pixelRect.width, firstViewCanvas.pixelRect.height);
-        Vector2 convertedRotation = new Vector2(cameraRotation.y * firstViewAdjustAngle.x, cameraRotation.x * firstViewAdjustAngle.y);
-
-        firstCenterViewTransform.anchoredPosition = convertedRotation * canvasResolution;
-    }
-
-
-    // Upper Left
-    public void SetRemainTime(int remainTime)
-    {
-        this.remainTime = (float)remainTime;
-    }
-
-
     void SetTime()
     {
         remainTime -= Time.deltaTime;
         elapsedTime += Time.deltaTime;
 
-        if(isRedTimerActive == false && remainTime < 10 && isTimeLow == false)
+        if (isRedTimerActive == false && remainTime < 10 && isTimeLow == false)
         {
             InvokeRepeating("PlayTimeLowAudioClip", 0, 1);
             isTimeLow = true;
         }
-        
-        if(remainTime <= 0)
+
+        if (remainTime <= 0)
         {
             CancelInvoke();
             GameManager.Instance.GameOver(false);
@@ -213,37 +191,12 @@ public class UIController : MonoBehaviour
         timeText.text = text;
     }
 
-    void PlayTimeLowAudioClip()
-    {
-        if(isRedTimerActive == true || GameManager.Instance.IsGameOver == true)
-        {
-            CancelInvoke();
-            return;
-        }
-        audioSource.PlayOneShot(timeLowAudioClip);
-    }
-
     public void SetScoreText(int score)
     {
         this.score += score;
         string text = string.Format("SCORE <mspace=18>{0}</mspace>", this.score);
         scoreText.text = text;
     }
-
-    public void SetTargetText(ObjectInfo objectInfo)
-    {
-        if(objectInfo == null || objectInfo.ObjectName == "")
-        {
-            targetText.text = "";
-        }
-        else
-        {
-            string objectName = objectInfo.ObjectName + " " + objectInfo.ObjectNickname;
-            string text = string.Format("TARGET {0} +<mspace=18>{1}</mspace>", objectName, objectInfo.Score);
-            targetText.text = text;
-        }
-    }
-
 
     // Lower Right
     public void SetGunText(int bullets)
@@ -266,11 +219,11 @@ public class UIController : MonoBehaviour
 
     void SetAircraftDamageUI()
     {
-        if(damage < 34)
+        if (damage < 34)
         {
             aircraftImage.color = GameManager.NormalColor;
         }
-        else if(damage < 67)
+        else if (damage < 67)
         {
             aircraftImage.color = cautionColor;
         }
@@ -288,7 +241,7 @@ public class UIController : MonoBehaviour
         this.damage = damage;
         SetAircraftDamageUI();
 
-        if(damage > 0)
+        if (damage > 0)
         {
             StartCoroutine(alertUIController.ShowDamagedUI());
         }
@@ -303,7 +256,7 @@ public class UIController : MonoBehaviour
         leftMslCooldownImage.SetWeaponData(weaponSlots[0], missile.missileFrameSprite, missile.missileFillSprite);
         rightMslCooldownImage.SetWeaponData(weaponSlots[1], missile.missileFrameSprite, missile.missileFillSprite);
 
-        if(playAudio == true)
+        if (playAudio == true)
         {
             AudioClip audioClip = (useSpecialWeapon == true) ? spwChangeAudioClip : mslChangeAudioClip;
             audioSource.PlayOneShot(audioClip);
@@ -312,7 +265,7 @@ public class UIController : MonoBehaviour
 
     public void SwitchUI(CameraController.CameraIndex index)
     {
-        bool isFirstView = (index == CameraController.CameraIndex.FirstView || 
+        bool isFirstView = (index == CameraController.CameraIndex.FirstView ||
                             index == CameraController.CameraIndex.FirstViewWithCockpit);
 
         firstCenterViewTransform.gameObject.SetActive(isFirstView);
@@ -331,49 +284,26 @@ public class UIController : MonoBehaviour
     public void SetWarningUIColor(bool isWarning)
     {
         Color color;
-        if(isWarning == true)
+        if (isWarning == true)
         {
-            color = GameManager.WarningColor;
+            color = Color.red;
             aircraftImage.color = GameManager.WarningColor;
         }
         else
         {
-            color = GameManager.NormalColor;
+            color = new Color32(0xAA, 0xFF, 0xAA, 0xFF);
             SetAircraftDamageUI();
         }
-        
+
         spriteMaterial.color = color;
         fontMaterial.SetColor("_FaceColor", color);
 
-        foreach(MaskColorChange maskColorChange in maskColorChanges)
+        foreach (MaskColorChange maskColorChange in maskColorChanges)
         {
             maskColorChange.ChangeComponentColor(color);
         }
     }
 
-    public void SetLabel(AlertUIController.LabelEnum labelEnum)
-    {
-        alertUIController.SetLabel(labelEnum);
-    }
-
-    public void ShowCheckpointReachedUI()
-    {
-        StartCoroutine(SetCheckpointReachedUI());
-    }
-
-    public IEnumerator SetCheckpointReachedUI()
-    {
-        checkpointReachedUI.SetActive(true);
-        yield return new WaitForSeconds(2.0f);
-        checkpointReachedUI.SetActive(false);
-    }
-
-    void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         firstViewAdjustAngle = new Vector2(1 / firstViewAdjustAngle.x, 1 / firstViewAdjustAngle.y);
@@ -382,13 +312,20 @@ public class UIController : MonoBehaviour
         spwIndicator.SetActive(false);
 
         SetScoreText(0);
-        SetTargetText(null);
         SetWarningUIColor(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(enableCount == true && remainTime > 0 && GameManager.Instance.IsGameOver == false) SetTime();
+        if (enableCount == true && remainTime > 0 && GameManager.Instance.IsGameOver == false) SetTime();
+
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        SetSpeed((int)aircraftMaster.GetSpeed());
+        SetAltitude((int)aircraftMaster.transform.position.y);
     }
 }
