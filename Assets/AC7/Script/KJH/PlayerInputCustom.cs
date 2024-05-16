@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
 {
+    public bool isControlable { get; set; } = true;
     public float pitchAxis {get; private set;}
     public float rollAxis {get; private set;}
     public float yawAxis {get; private set;}
@@ -14,7 +15,7 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     Vector2 mouseDeltaPos;
     float mouseControllGain = 0.1f;
 
-    public System.Action OnFirecus;
+    public System.Action OnFireEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,8 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     // Update is called once per frame
     void Update()
     {
+        if(!isControlable)
+        { return; } 
         ControlSurface();
 
         if (Input.GetMouseButtonDown(0))
@@ -55,8 +58,10 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
         }
     }
 
-    void OnMouseDeltaPos(InputValue inputValue)            
+    void OnMouseDeltaPos(InputValue inputValue)
     {
+        if (!isControlable)
+        { return; }
         mouseDeltaPos = inputValue.Get<Vector2>();//¿Œ«≤ ∫§≈Õ πﬁæ∆ø»                
     }
 
@@ -109,9 +114,12 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     }
     void OnFire(InputValue inputValue)
     {
+
+        if (!isControlable)
+        { return; }
         if (inputValue.isPressed)
         {
-            OnFirecus?.Invoke();
+            OnFireEvent?.Invoke();
         }
     }
 }

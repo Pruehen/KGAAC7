@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -115,5 +116,21 @@ public class ObjectPoolManager : SceneSingleton<ObjectPoolManager>
             CreatePool(prefab, objectPools[itemType].count);//풀 확장.
             return DequeueObject(prefab);//추가한 풀에서 디큐.
         }
+    }
+
+    /// <summary>
+    /// 시간을 지정해서 반환함
+    /// </summary>
+    /// <param name="prefab"></param>
+    /// <param name="time"></param>
+    /// <exception cref="NotImplementedException"></exception>
+    public void EnqueueObject(GameObject item, float time)
+    {
+        StartCoroutine(DelayedEnqueu(item, time));
+    }
+    private IEnumerator DelayedEnqueu(GameObject item, float time)
+    {
+        yield return new WaitForSeconds(time);
+        EnqueueObject(item);
     }
 }
