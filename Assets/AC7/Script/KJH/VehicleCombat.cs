@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class VehicleCombat : MonoBehaviour, IFightable
-{    
+{
+    public bool mainTarget = false;
+
     void IFightable.DealDamage(IFightable target, float damage)
     {
         throw new System.NotImplementedException();

@@ -4945,7 +4945,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6445041468265237182
 Rigidbody:
@@ -4982,7 +4982,7 @@ MonoBehaviour:
   sustainPower: 0
   liftPower: 4
   maxLiftTime: 30
-  safeTime: 1
+  safeTime: 2
   explosionEffect: {fileID: 121360, guid: 7e6ae9c85baca254d860fe1519edd734, type: 3}
   smoke: {fileID: 763095674432000125}
   motor: {fileID: 8870339777096811396}

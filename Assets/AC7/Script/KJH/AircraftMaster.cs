@@ -10,8 +10,11 @@ public class AircraftMaster : MonoBehaviour
     AircraftSelecter aircraftSelecter;
     public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
     public AircraftControl aircraftControl;
+    public VehicleCombat vehicleCombat;
 
     Rigidbody rigidbody;
+
+    string name;
 
     /// <summary>
     /// 현재 항공기의 속도(km/h)를 반환하는 메서드 
@@ -21,6 +24,10 @@ public class AircraftMaster : MonoBehaviour
     {
         return rigidbody.velocity.magnitude * 3.6f;
     }
+    public string Name()
+    {
+        return name;
+    }
     
     //public AircraftControl aircraftControl;
 
@@ -29,6 +36,7 @@ public class AircraftMaster : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
         aircraftControl = aircraftSelecter.aircraftControl;
+        vehicleCombat = GetComponent<VehicleCombat>();
 
         if (aiControl)
         {
@@ -37,7 +45,9 @@ public class AircraftMaster : MonoBehaviour
         else
         {
             GetComponent<FlightController_AI>().enabled = false;
-        }       
+        }
+
+        name = aircraftControl.gameObject.name;
     }
 
     public void Dead()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TargetUI : MonoBehaviour
 {
-    TargetObject targetObject;
+    AircraftMaster targetObject;
 
     [Header("UI / Texts")]
     [SerializeField]
@@ -49,10 +49,10 @@ public class TargetUI : MonoBehaviour
         set { isInvisible = value; }
     }
 
-    ObjectInfo objectInfo;
+    //ObjectInfo objectInfo;
     RectTransform rectTransform;
 
-    public TargetObject Target
+    public AircraftMaster Target
     {
         get
         {
@@ -62,11 +62,11 @@ public class TargetUI : MonoBehaviour
         set
         {
             targetObject = value;
-            objectInfo = targetObject.Info;
+            //objectInfo = targetObject.Info;
 
-            nameText.text = objectInfo.ObjectName;
-            nicknameText.text = objectInfo.ObjectNickname;
-            targetText.gameObject.SetActive(objectInfo.MainTarget);
+            nameText.text = targetObject.AircraftSelecter().controlAircraft.name;
+            //nicknameText.text = objectInfo.ObjectNickname;
+            targetText.gameObject.SetActive(targetObject.vehicleCombat.mainTarget);
         }
     }
 
@@ -156,14 +156,14 @@ public class TargetUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        activeCamera = GameManager.CameraController.GetActiveCamera();
+        activeCamera = Camera.main;
 
         if(targetObject == null && activeCamera == null)
             return;
 
         Vector3 screenPosition = activeCamera.WorldToScreenPoint(targetObject.transform.position);
-        float distance = GameManager.Instance.GetDistanceFromPlayer(targetObject.transform);
-        nextTargetText.SetActive(targetObject.isNextTarget);
+        float distance = 1000;
+        //nextTargetText.SetActive(targetObject.isNextTarget);
 
         // if screenPosition.z < 0, the object is behind camera
         if(screenPosition.z > 0)
@@ -185,6 +185,6 @@ public class TargetUI : MonoBehaviour
 
         uiObject.SetActive(isOutsideOfCamera == false && isInvisible == true && distance < hideDistance);
 
-        GameManager.TargetController.ShowTargetArrow(isOutsideOfCamera && distance < hideDistance);
+        //GameManager.TargetController.ShowTargetArrow(isOutsideOfCamera && distance < hideDistance);
     }
 }
