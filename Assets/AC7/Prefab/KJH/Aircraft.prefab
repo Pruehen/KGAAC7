@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aiControl: 1
+  aircraftControl: {fileID: 0}
 --- !u!114 &8819726729571326051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1511718082a8334ab8856986ec8e318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSize: 600
+  iconSize: 1200
   depth: 0
   showBorderIndicator: 1
   blinkRepeatTime: 0.2

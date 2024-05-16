@@ -25,9 +25,24 @@ public class Radar : MonoBehaviour
 
     private void Update()
     {
-        if(lockOnTarget != null && Vector3.Angle(this.transform.forward, lockOnTarget.position - this.transform.position) > radarMaxAngle)
+        if(lockOnTarget != null)
         {
-            lockOnTarget = null;
+            /*if(Vector3.Angle(this.transform.forward, lockOnTarget.position - this.transform.position) > radarMaxAngle)
+            {
+                lockOnTarget = null;
+            }*/
+            if(lockOnTarget.GetComponent<VehicleCombat>().IsDead())
+            {
+                lockOnTarget = null;
+            }
+        }        
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (lockOnTarget != null)
+        {
+            Gizmos.DrawSphere(lockOnTarget.position, 20);
         }
     }
 

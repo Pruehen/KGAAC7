@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class CamRotate : MonoBehaviour
 {
-    [SerializeField] AircraftMaster aircraftMaster;
-    [SerializeField] float camRotateMaxAngle;
+    [SerializeField] AircraftMaster aircraftMaster;    
     AircraftControl aircraftControl;
+    Transform camAxisTrf;
+    Transform viewTargetTrf;
+    public void SetTargetTrf()
+    {
+        viewTargetTrf = aircraftMaster.GetComponent<Radar>().GetTarget();
+    }
+    public void RemoveTargetTrf()
+    {
+        viewTargetTrf = null;
+    }
 
     Vector3 initLocalPos;
 
@@ -15,6 +24,7 @@ public class CamRotate : MonoBehaviour
     {
         aircraftControl = aircraftMaster.AircraftSelecter().aircraftControl;
         initLocalPos = this.transform.localPosition;
+        camAxisTrf = this.transform.parent;
     }
 
     // Update is called once per frame
@@ -24,5 +34,14 @@ public class CamRotate : MonoBehaviour
 
         Vector3 camTargetPos = initLocalPos + new Vector3(0, 0, -throttle);
         this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, camTargetPos, Time.fixedDeltaTime);
+
+        if(viewTargetTrf != null)
+        {
+            camAxisTrf.LookAt(viewTargetTrf.position);
+        }
+        else
+        {
+            camAxisTrf.localRotation = Quaternion.identity;
+        }
     }
 }
