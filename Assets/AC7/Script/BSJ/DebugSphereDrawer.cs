@@ -29,6 +29,21 @@ public class DebugSphereDrawer : SceneSingleton<DebugSphereDrawer>
         radis.Add(radius);
         colors.Add(color);
     }
+
+    //public void AddSphereForDuration(Vector3 position, float radius, float duration, Color color)
+    //{
+    //    StartCoroutine(AddLoop(position, radius, duration, color));
+    //}
+    //private IEnumerator AddLoop(Vector3 position, float radius, float duration, Color color)
+    //{
+    //    float initTime = Time.time;
+    //    while(initTime + duration < Time.time)
+    //    {
+    //        AddSphere(position, radius, color);
+    //        yield return null;
+    //    }
+
+    //}
 }
 
 public static class DebugExtender
@@ -44,5 +59,9 @@ public static class DebugExtender
     {
         _dsp.AddSphere(position, radius, color);
     }
+    //public static void DrawSphereDuration(this Vector3 position, float radius, float duration, Color color)
+    //{
+    //    _dsp.AddSphereForDuration(position, radius, duration, color);
+    //}
 
 }
