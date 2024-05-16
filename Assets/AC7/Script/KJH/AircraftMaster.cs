@@ -14,8 +14,6 @@ public class AircraftMaster : MonoBehaviour
 
     Rigidbody rigidbody;
 
-    string name;
-
     /// <summary>
     /// 현재 항공기의 속도(km/h)를 반환하는 메서드 
     /// </summary>
@@ -23,10 +21,6 @@ public class AircraftMaster : MonoBehaviour
     public float GetSpeed()
     {
         return rigidbody.velocity.magnitude * 3.6f;
-    }
-    public string Name()
-    {
-        return name;
     }
     
     //public AircraftControl aircraftControl;
@@ -46,8 +40,6 @@ public class AircraftMaster : MonoBehaviour
         {
             GetComponent<FlightController_AI>().enabled = false;
         }
-
-        name = aircraftControl.gameObject.name;
     }
 
     public void Dead()
@@ -58,7 +50,7 @@ public class AircraftMaster : MonoBehaviour
 
     IEnumerator DeadEffect()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2.5f);
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
         Destroy(this.gameObject);
     }
