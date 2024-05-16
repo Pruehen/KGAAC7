@@ -52,10 +52,10 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 70
+  Priority: 27
   DopplerLevel: 0
-  MinDistance: 30
-  MaxDistance: 500
+  MinDistance: 300
+  MaxDistance: 1500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

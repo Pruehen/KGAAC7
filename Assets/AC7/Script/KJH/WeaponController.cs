@@ -10,12 +10,17 @@ namespace kjh
         [SerializeField] WeaponSystem weaponSystem;
         Radar radar;
         Rigidbody rigidbody;
-        
+
+
+        [Header("±âÃÑ »ç¿îµå")]
+        [SerializeField] AudioSource _gunSound;
+
         void Awake()
         {
             aircraftSelecter = GetComponent<AircraftSelecter>();
             rigidbody = GetComponent<Rigidbody>();
             radar = GetComponent<Radar>();
+            _gunSound = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -47,6 +52,15 @@ namespace kjh
         public void SetTrigger(bool value)
         {
             weaponSystem.SetTrigger(value);
+
+            if (value)
+            {
+                _gunSound.Play();
+            }
+            else
+            {
+                _gunSound.Stop();
+            }
         }
     }
 }

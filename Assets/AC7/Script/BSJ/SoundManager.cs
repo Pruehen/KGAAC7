@@ -36,6 +36,12 @@ namespace bsj
             return item;
         }
 
+        public void PlayRandom(GameObject randSfx)
+        {
+            GameObject item = ObjectPoolManager.Instance.DequeueObject(randSfx);
+            ObjectPoolManager.Instance.EnqueueObject(item, 10f);
+        }
+
         private IEnumerator DelayDequeue(float time)
         {
             yield return new WaitForSeconds(time);

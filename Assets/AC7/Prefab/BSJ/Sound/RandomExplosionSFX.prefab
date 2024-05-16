@@ -58,4 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec8f1599a6b6524aab48955044dde5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxPrefabs: []
+  _sfxPrefabs:
+  - {fileID: 1759765917466483415, guid: e4eecf586afcefe4c80d7c4baf839fd6, type: 3}
+  - {fileID: 1759765917466483415, guid: 242564f3fc4166f4986ed67dcbfd71d6, type: 3}
