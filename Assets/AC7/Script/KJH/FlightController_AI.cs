@@ -107,7 +107,7 @@ public class FlightController_AI : MonoBehaviour
     }
 
     Vector3 localOrderTemp = Vector3.zero;
-    float p = 0.7f;
+    float p = 1.2f;
     float d = 10;
     void ToWayPointMove()
     {

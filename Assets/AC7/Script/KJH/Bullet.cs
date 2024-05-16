@@ -31,8 +31,14 @@ namespace kjh
             }
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
+            IFightable fightable;
+            if (other.transform.TryGetComponent<IFightable>(out fightable))
+            {
+                fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+            }
+
             Destroy(this.gameObject);
         }
     }
