@@ -40,7 +40,7 @@ public class Radar : MonoBehaviour
 
     IEnumerator NextTargetLock()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         LockOn();
     }
 

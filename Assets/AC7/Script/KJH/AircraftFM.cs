@@ -27,14 +27,17 @@ public class AircraftFM : MonoBehaviour
         //Debug.Log(velocity);
 
         //엔진 추력 적용
-        rigidbody.AddForce(this.transform.forward * aircraftData.EnginePower(velocitySpeed), ForceMode.Acceleration);
+        rigidbody.AddForce(this.transform.forward * aircraftData.EnginePower(velocitySpeed, this.transform.position.y), ForceMode.Acceleration);
         //피치 토크 적용
         rigidbody.AddTorque(this.transform.right * -aircraftData.PitchTorque(velocitySpeed), ForceMode.Acceleration);
         //롤 토크 적용
         rigidbody.AddTorque(this.transform.forward * -aircraftData.RollTorque(velocitySpeed), ForceMode.Acceleration);
         //요 토크 적용
         rigidbody.AddTorque(this.transform.up * aircraftData.YawTorque(velocitySpeed), ForceMode.Acceleration);
-        
+        //스톨 토크 적용
+        Vector3 stallAxis = Vector3.Cross(this.transform.forward, new Vector3(0, -1, 0));
+        rigidbody.AddTorque(stallAxis * aircraftData.StallTorque(velocitySpeed), ForceMode.Acceleration);
+
         Vector3 localVelocityDir = this.transform.InverseTransformDirection(rigidbody.velocity).normalized;
         //정면 받음각
         float aoa = -Mathf.Asin(localVelocityDir.y) * Mathf.Rad2Deg;

@@ -7,7 +7,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
 {
     public bool mainTarget = false;
     public string name;
-
+    public string nickname;
     void IFightable.DealDamage(IFightable target, float damage)
     {
         throw new System.NotImplementedException();
@@ -35,7 +35,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
     {
         kjh.GameManager.Instance.RemoveActiveTarget(this);
         onDead.Invoke();
-        Debug.Log("Æã");
+        //Debug.Log("Æã");
     }
 
     public UnityEvent onDead;
