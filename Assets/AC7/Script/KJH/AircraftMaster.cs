@@ -9,7 +9,7 @@ public class AircraftMaster : MonoBehaviour, IFightable
     [SerializeField] bool aiControl;
     AircraftSelecter aircraftSelecter;
     public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
-    //public AircraftControl aircraftControl;
+    public AircraftControl aircraftControl;
 
     Combat combat = new Combat();
 
@@ -26,6 +26,7 @@ public class AircraftMaster : MonoBehaviour, IFightable
     private void Awake()
     {
         aircraftSelecter = GetComponent<AircraftSelecter>();        
+        aircraftControl = aircraftSelecter.aircraftControl;
 
         if (aiControl)
         {
