@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8044770756667741761}
   - component: {fileID: 1550276330068146974}
-  - component: {fileID: 5043867732942864224}
+  - component: {fileID: 2307798064733394301}
   m_Layer: 0
-  m_Name: EngineSound
+  m_Name: AfterbunnerSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 16784411322c8414aaf5802ece9dffb0, type: 2}
-  m_audioClip: {fileID: 8300000, guid: bb6ca887c0c7a8143a0ad5222ff4c601, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4a2bea0d71f4b454aaafdacdb2293bb8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -52,8 +52,8 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
+  DopplerLevel: 0.6
+  MinDistance: 30
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -89,7 +89,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!169 &5043867732942864224
+--- !u!169 &2307798064733394301
 AudioLowPassFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

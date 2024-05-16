@@ -24,6 +24,7 @@ public class Rocket : MonoBehaviour
     //[SerializeField] GameObject trail;
     [SerializeField] ParticleSystem smoke;
     [SerializeField] ParticleSystem motor;
+    [SerializeField] GameObject _explosionSfx;
 
     [Header("비행 데이터")]
     [SerializeField] float speed;
@@ -124,6 +125,7 @@ public class Rocket : MonoBehaviour
         }
 
         EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
+        bsj.SoundManager.Instance.PlayInPosition(_explosionSfx);
         this.DestroyRocket();
     }
 

@@ -17,7 +17,9 @@ public class JetEngineController : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField]
-    float maxVolume = 0.2f;
+    float maxVolume = 1f;
+    [SerializeField]
+    float volumRatio = 1f;
     [SerializeField]
     float lowpassValue = 2500;
     [SerializeField] AircraftEngineSound _engineSound;
@@ -51,11 +53,13 @@ public class JetEngineController : MonoBehaviour
     void Awake()
     {
         _engineSound = GetComponent<AircraftEngineSound>();
+        _engineSound.SetOverallVolumRatio(volumRatio);
 
         particleMainModule = GetComponent<ParticleSystem>().main;
         particleColor = particleMainModule.startColor.color;
         initAlpha = particleColor.a;
         throttleAmount = 0;
+
     }
 
     // Update is called once per frame
