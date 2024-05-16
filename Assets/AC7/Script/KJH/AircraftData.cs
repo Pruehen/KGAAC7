@@ -79,12 +79,20 @@ public class AircraftData : MonoBehaviour
         return yawTorque * torqueCurve.Evaluate(speed) * aircraftControl.yaw;
     }
     /// <summary>
-    /// 항력 계수를 반환하는 메서드
+    /// 항력 계수를 반환하는 메서드. 에어브레이크 기능 추가됨
     /// </summary>
     /// <returns></returns>
     public float GetDC()
     {
-        return dragCoefficient;
+        float axis = aircraftControl.throttle;
+        if(axis >= 0)
+        {
+            return dragCoefficient;
+        }
+        else
+        {
+            return (1 + (-axis * 2)) * dragCoefficient;
+        }
     }
     /// <summary>
     /// 받음각에 따른 양력을 반환하는 메서드

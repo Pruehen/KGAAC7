@@ -32,9 +32,16 @@ public class Radar : MonoBehaviour
             }*/
             if(lockOnTarget.GetComponent<VehicleCombat>().IsDead())
             {
-                lockOnTarget = null;
+                //lockOnTarget = null;
+                StartCoroutine(NextTargetLock());
             }
         }        
+    }
+
+    IEnumerator NextTargetLock()
+    {
+        yield return new WaitForSeconds(1);
+        LockOn();
     }
 
     /*private void OnDrawGizmos()
