@@ -102,7 +102,7 @@ public class AircraftData : MonoBehaviour
     /// <returns></returns>
     public float GetInducedDrag(float aoa, float speed)
     {
-        return clCurve.Evaluate(aoa) * liftPower * (1 - e) * Atmosphere.AtmosphericPressure(transform.position.y) * speed * speed * 0.0001f;
+        return Mathf.Abs(clCurve.Evaluate(aoa) * liftPower * (1 - e) * Atmosphere.AtmosphericPressure(transform.position.y) * speed * speed * 0.00005f);
     }
     /// <summary>
     /// 받음각과 속도에 따른 유해 항력을 반환하는 메서드
@@ -110,7 +110,7 @@ public class AircraftData : MonoBehaviour
     /// <returns></returns>
     public float GetParasiteDrag(float aoa, float speed)
     {
-        return cdCurve.Evaluate(aoa) * liftPower * Atmosphere.AtmosphericPressure(transform.position.y) * speed * speed * 0.0001f;
+        return cdCurve.Evaluate(aoa) * liftPower * Atmosphere.AtmosphericPressure(transform.position.y) * speed * speed * 0.00005f;
     }
 
     // Update is called once per frame

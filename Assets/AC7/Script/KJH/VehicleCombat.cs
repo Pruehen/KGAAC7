@@ -23,6 +23,11 @@ public class VehicleCombat : MonoBehaviour, IFightable
         combat.OnDead += Dead;
     }
 
+    public bool IsDead()
+    {
+        return combat.IsDead();
+    }
+
     void Dead()
     {
         onDead.Invoke();

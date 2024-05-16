@@ -63,8 +63,8 @@ public class Guided : MonoBehaviour
 
             if (rocket.SideForce().magnitude < maxSideForce)
             {
-                float p = velocity * pGain;
-                float d = velocity * dGain;
+                float p = (600) * pGain;
+                float d = (600) * dGain;
 
                 rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
                 //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
