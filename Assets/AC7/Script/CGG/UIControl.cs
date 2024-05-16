@@ -8,6 +8,7 @@ using Org.BouncyCastle.Utilities.Encoders;
 public class UIControl : MonoBehaviour
 {
     [SerializeField] AircraftMaster aircraftMaster;
+    AircraftControl aircraftControl;
 
     // Center
     [Header("Common Center UI")]
@@ -142,7 +143,7 @@ public class UIControl : MonoBehaviour
         string text = string.Format("<mspace=18>{0}</mspace>", speed);
         speedText.text = text;
 
-        //speedUV.SetUV(speed);
+        speedUV.SetUV(speed);
     }
 
     void SetAltitude(int altitude)
@@ -150,12 +151,12 @@ public class UIControl : MonoBehaviour
         string text = string.Format("<mspace=18>{0}</mspace>", altitude);
         altitudeText.text = text;
 
-        //altitudeUV.SetUV(altitude);
+        altitudeUV.SetUV(altitude);
     }
 
     public void SetThrottle(float throttle)
     {
-        throttleGauge.fillAmount = (1 + throttle) * 0.5f;
+        throttleGauge.fillAmount = (1 + throttle) * 0.5f; ;
     }
 
     public void SetHeading(float heading)
@@ -313,6 +314,8 @@ public class UIControl : MonoBehaviour
 
         SetScoreText(0);
         SetWarningUIColor(false);
+
+        aircraftControl = aircraftMaster.AircraftSelecter().aircraftControl;
     }
 
     // Update is called once per frame
@@ -327,5 +330,7 @@ public class UIControl : MonoBehaviour
     {
         SetSpeed((int)aircraftMaster.GetSpeed());
         SetAltitude((int)aircraftMaster.transform.position.y);
+        SetThrottle(aircraftControl.throttle);
+        SetHeading(aircraftMaster.transform.eulerAngles.y);
     }
 }

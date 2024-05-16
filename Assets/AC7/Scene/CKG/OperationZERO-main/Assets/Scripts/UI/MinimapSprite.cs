@@ -59,7 +59,8 @@ public class MinimapSprite : MonoBehaviour
 
     void Start()
     {
-        minimapController = GameManager.UIController.MinimapController;
+        //minimapController = GameManager.UIController.MinimapController;
+        minimapController = MinimapController.Instance;
         initSize = iconSize / minimapController.smallViewSize;
         depth *= 0.01f;
     }
@@ -79,7 +80,8 @@ public class MinimapSprite : MonoBehaviour
             {
                 if(borderIndicator == null)
                 {
-                    GameObject borderIndicatorObject = GameManager.Instance.borderIncicatorObjectPool.GetPooledObject();
+                    //GameObject borderIndicatorObject = GameManager.Instance.borderIncicatorObjectPool.GetPooledObject();
+                    GameObject borderIndicatorObject = ObjectPoolManager.Instance.DequeueObject(MinimapController.Instance.minimapIndicatorPrf);
                     borderIndicator = borderIndicatorObject.GetComponent<BorderIndicator>();
                     borderIndicator.Target = transform.parent;
                     borderIndicatorObject.SetActive(true);
