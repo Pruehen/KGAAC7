@@ -30,7 +30,6 @@ public class Combat
     /// </summary>
     [SerializeField] private float _invincibleTime = .0f;
     [SerializeField] private float _prevHitTime = 0f;
-    private bool _defalutEffectOnDamaged;
 
     /// Action과 Func
     /// 외부에서 On~ += 메서드이름;
@@ -65,12 +64,11 @@ public class Combat
     /// <param name="owner"></param>
     /// <param name="maxHp"></param>
     /// <param name="defaultEffectOnDamaged"></param>
-    public void Init(Transform owner, float maxHp, bool defaultEffectOnDamaged = true)
+    public void Init(Transform owner, float maxHp)
     {
         _owner = owner;
         _maxHp = maxHp;
         _hp = _maxHp;
-        _defalutEffectOnDamaged = defaultEffectOnDamaged;
     }
     public float GetHp() { return _hp; }
     public float GetMaxHp()

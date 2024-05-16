@@ -6,7 +6,7 @@ using UnityEngine;
 public class FlightController : MonoBehaviour
 {
     AircraftSelecter aircraftSelecter;
-    [SerializeField] AircraftControl aircraftControl;
+    [SerializeField] public AircraftControl aircraftControl;
 
     // Start is called before the first frame update
     void Start()

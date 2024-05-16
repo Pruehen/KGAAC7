@@ -8,7 +8,8 @@ public class AircraftMaster : MonoBehaviour
 {
     [SerializeField] bool aiControl;
     AircraftSelecter aircraftSelecter;
-    Rigidbody rigidbody;
+    public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
+    public AircraftControl aircraftControl;
     /// <summary>
     /// 현재 항공기의 속도(km/h)를 반환하는 메서드 
     /// </summary>
@@ -24,7 +25,7 @@ public class AircraftMaster : MonoBehaviour
     private void Awake()
     {
         aircraftSelecter = GetComponent<AircraftSelecter>();
-        rigidbody = GetComponent<Rigidbody>();
+        aircraftControl = aircraftSelecter.aircraftControl;
 
         if (aiControl)
         {

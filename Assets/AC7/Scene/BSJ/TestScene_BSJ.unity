@@ -1047,6 +1047,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1090491804934246997, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 1612468738}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &986288529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  m_PrefabInstance: {fileID: 1612468738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1211858494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1594,7 +1599,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -6224072715111857092, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 1612468738}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 986288529}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c7cf4d963174f44993f1fe244ad29c9, type: 3}
@@ -1605,7 +1610,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1340515618079156043, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 1612468738}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 986288529}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecb9efe36cdabb64cb98e5302d0d2e8a, type: 3}
@@ -1616,12 +1621,27 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1192869116438744633, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 1612468738}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 986288529}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b5139a9a0bd76245a6c62df5493ecd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1612468747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986288529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff9673a02d0d694f8678664c4a91ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _engineSoundPrefab: {fileID: 1759765917466483415, guid: 72ef739f4b64f8044a1343ba1ad386e7, type: 3}
+  _afterbunerSoundPrefab: {fileID: 0}
+  _aircraftMaster: {fileID: 0}
 --- !u!1001 &1615552396
 PrefabInstance:
   m_ObjectHideFlags: 0
