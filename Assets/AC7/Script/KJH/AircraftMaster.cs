@@ -10,6 +10,9 @@ public class AircraftMaster : MonoBehaviour
     AircraftSelecter aircraftSelecter;
     public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
     public AircraftControl aircraftControl;
+
+    Rigidbody rigidbody;
+
     /// <summary>
     /// 현재 항공기의 속도(km/h)를 반환하는 메서드 
     /// </summary>
@@ -18,12 +21,12 @@ public class AircraftMaster : MonoBehaviour
     {
         return rigidbody.velocity.magnitude * 3.6f;
     }
-
-    public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
+    
     //public AircraftControl aircraftControl;
 
     private void Awake()
     {
+        rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
         aircraftControl = aircraftSelecter.aircraftControl;
 

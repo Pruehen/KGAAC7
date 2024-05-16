@@ -21434,7 +21434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enginePower: 14
-  pitchTorque: 5.5
+  pitchTorque: 4.5
   rollTorque: 16
   yawTorque: 2
   enginePowerCurve:
@@ -21443,14 +21443,14 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0.0015
-      outSlope: 0.0015
+      inSlope: 0.002
+      outSlope: 0.002
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 400
+      time: 300
       value: 1.6
       inSlope: -0.000009228175
       outSlope: -0.000009228175
@@ -21461,8 +21461,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 800
       value: 0
-      inSlope: -0.004
-      outSlope: -0.004
+      inSlope: -0.0032000002
+      outSlope: -0.0032000002
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -21588,8 +21588,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   e: 0.82
-  liftPower: 30
-  dragCoefficient: 0.05
+  liftPower: 35
+  dragCoefficient: 0.07
 --- !u!114 &1206920244328171021
 MonoBehaviour:
   m_ObjectHideFlags: 0
