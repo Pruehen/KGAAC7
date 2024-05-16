@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aircraftExplosionEffect: {fileID: 132222, guid: ae4d85d01cd36a84fa0063e23a445f0f, type: 3}
+  aircraftFireEffect: {fileID: 3406952698710113526, guid: d8432020e7374fc4280ba7796dc15b2a, type: 3}

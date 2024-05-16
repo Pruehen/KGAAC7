@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AircraftCombat : MonoBehaviour, IFightable
-{
-    Rigidbody rigidbody;
+public class VehicleCombat : MonoBehaviour, IFightable
+{    
     void IFightable.DealDamage(IFightable target, float damage)
     {
         throw new System.NotImplementedException();
@@ -13,22 +12,15 @@ public class AircraftCombat : MonoBehaviour, IFightable
 
     void IFightable.TakeDamage(float damage)
     {
-        if (combat.IsDead())
-            return;
-
         combat.TakeDamage(damage);
-        if(combat.IsDead())
-        {
-            Dead();
-        }
     }
 
     Combat combat = new Combat();
 
     private void Awake()
     {
-        combat.Init(this.transform, 100);
-        rigidbody = GetComponent<Rigidbody>();
+        combat.Init(this.transform, 100);        
+        combat.OnDead += Dead;
     }
 
     void Dead()

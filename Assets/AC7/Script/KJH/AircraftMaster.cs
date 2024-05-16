@@ -43,4 +43,17 @@ public class AircraftMaster : MonoBehaviour
             GetComponent<FlightController_AI>().enabled = false;
         }       
     }
+
+    public void Dead()
+    {
+        EffectManager.Instance.AircraftFireEffectGenerate(this.transform);
+        StartCoroutine(DeadEffect());
+    }
+
+    IEnumerator DeadEffect()
+    {
+        yield return new WaitForSeconds(5);
+        EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
+        Destroy(this.gameObject);
+    }
 }
