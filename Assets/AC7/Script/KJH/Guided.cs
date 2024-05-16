@@ -27,8 +27,8 @@ public class Guided : MonoBehaviour
     Vector3 angleError_temp;
     Vector3 orderAxis_Temp;
 
-    float p = 1500;
-    float d = 60000;
+    float pGain = 3;
+    float dGain = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -57,10 +57,15 @@ public class Guided : MonoBehaviour
             Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
             orderAxis_Temp = orderAxis;
 
-            float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(rigidbody.velocity.magnitude * 0.002f, 0, 1);
+            float velocity = rigidbody.velocity.magnitude;
+
+            float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(velocity * 0.0015f, 0, 1);
 
             if (rocket.SideForce().magnitude < maxSideForce)
             {
+                float p = velocity * pGain;
+                float d = velocity * dGain;
+
                 rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
                 //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
             }

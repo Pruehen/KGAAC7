@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/AC7/Scene/BSJ/TestScene_KJH.unity
-    guid: 016d31b5a71a2264da896301fa6d9566
+    path: Assets/AC7/Scene/TestScene.unity
+    guid: a1807afdebcfd024092f2b72c464f6ca
   m_configObjects: {}

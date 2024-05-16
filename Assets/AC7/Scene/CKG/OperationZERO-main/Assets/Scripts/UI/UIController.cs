@@ -294,7 +294,6 @@ public class UIController : MonoBehaviour
         }
     }
 
-
     public void SwitchWeapon(WeaponSlot[] weaponSlots, bool useSpecialWeapon, Missile missile, bool playAudio = true)
     {
         mslIndicator.SetActive(!useSpecialWeapon);

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class GameManager : MonoBehaviour
+public class GameManager : GlobalSingleton<GameManager>
 {
     private static GameManager instance = null;
 
@@ -164,19 +164,6 @@ public class GameManager : MonoBehaviour
     public bool IsPaused
     {
         get { return isPaused; }
-    }
-
-
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return null;
-            }
-            return instance;
-        }
     }
 
     public float GetDistanceFromPlayer(Transform otherTransform)

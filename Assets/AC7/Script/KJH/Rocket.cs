@@ -21,6 +21,9 @@ public class Rocket : MonoBehaviour
     [SerializeField] float safeTime;//안전 시간. 이 시간이 지난 후 콜리더 활성화
 
     [SerializeField] GameObject explosionEffect;
+    //[SerializeField] GameObject trail;
+    [SerializeField] ParticleSystem smoke;
+    [SerializeField] ParticleSystem motor;
 
     [Header("비행 데이터")]
     [SerializeField] float speed;
@@ -47,6 +50,10 @@ public class Rocket : MonoBehaviour
 
         sphereCollider.enabled = false;
         fuseOn = false;
+
+        //trail.SetActive(false);
+        smoke.gameObject.SetActive(false);
+        motor.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -62,7 +69,7 @@ public class Rocket : MonoBehaviour
 
         if (lifeTime > maxLiftTime)
         {
-            Destroy(this.gameObject);
+            this.DestroyRocket();
         }
         if (lifeTime > safeTime && !fuseOn)
         {
@@ -72,6 +79,11 @@ public class Rocket : MonoBehaviour
         if (lifeTime > boostStartDelay && !isCombustion)
         {
             isCombustion = true;
+            //trail.SetActive(true);
+            smoke.gameObject.SetActive(true);
+            motor.gameObject.SetActive(true);
+            smoke.Play();
+            motor.Play();
         }
 
         if (isCombustion)
@@ -87,6 +99,8 @@ public class Rocket : MonoBehaviour
             else
             {
                 isCombustion = false;
+                //smoke.Stop();
+                motor.Stop();
             }
         }
 
@@ -103,7 +117,27 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        IFightable fightable;
+        if(collision.transform.TryGetComponent<IFightable>(out fightable)) 
+        {
+            fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+        }
+
         EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
+        this.DestroyRocket();
+    }
+
+    void DestroyRocket()
+    {
+        Destroy(motor.gameObject);
+
+        smoke.transform.SetParent(null);
+        //trail.transform.SetParent(null);
+
+        smoke.Stop();
+        //Destroy(trail.gameObject, 10);
+        Destroy(smoke.gameObject, 10);
+
         Destroy(this.gameObject);
     }
 }

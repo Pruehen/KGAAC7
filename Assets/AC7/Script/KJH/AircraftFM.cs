@@ -6,12 +6,14 @@ using UnityEngine;
 public class AircraftFM : MonoBehaviour
 {
     AircraftSelecter aircraftSelecter;
+    VaporEffect effect;
     [SerializeField] AircraftData aircraftData;
     Rigidbody rigidbody;    
 
     private void Awake()
     {
         aircraftSelecter = GetComponent<AircraftSelecter>();
+        effect = aircraftSelecter.controlAircraft.GetComponent<VaporEffect>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.velocity = this.transform.forward * 200;
     }
@@ -48,5 +50,7 @@ public class AircraftFM : MonoBehaviour
         //항력 적용
         rigidbody.drag = Atmosphere.Drag(this.transform.position.y, aircraftData.GetDC(), velocitySpeed);
         //Debug.Log(velocitySpeed);
+
+        effect.SetEffect(velocitySpeed, aoa);
     }
 }
