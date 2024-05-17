@@ -45,7 +45,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 16784411322c8414aaf5802ece9dffb0, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4a2bea0d71f4b454aaafdacdb2293bb8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -53,10 +53,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0.6
-  MinDistance: 30
-  MaxDistance: 500
+  MinDistance: 700
+  MaxDistance: 3000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
