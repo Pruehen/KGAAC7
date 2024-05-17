@@ -19,16 +19,16 @@ public class CustomAI : MonoBehaviour
 {
     FlightController_AI flightController_AI;
     [Header("비행 경로 지정")]
-    [SerializeField] List<Vector3> wayPointList;//미리 지정된 비행 경로
-    [SerializeField] bool wayPointLoop;//마지막 경로에 도착했을 때 처음 경로로 돌아갈건지
-    [SerializeField] float targetSpeed;//목표 이동 속도
+    public List<Vector3> wayPointList;//미리 지정된 비행 경로
+    public bool wayPointLoop;//마지막 경로에 도착했을 때 처음 경로로 돌아갈건지
+    public float targetSpeed;//목표 이동 속도
 
     [Header("편대 비행")]
-    [SerializeField] Transform flightLeader;//편대장기의 트랜스폼. null일 경우 편대장이거나 단독 개체
-    [SerializeField] float spreadValue = 1;
-    Vector3 formationLocalPos;//편대장 기준 자신의 로컬 좌표
+    public Transform flightLeader;//편대장기의 트랜스폼. null일 경우 편대장이거나 단독 개체
+    public float spreadValue = 1;
+    public Vector3 formationLocalPos;//편대장 기준 자신의 로컬 좌표
 
-    Transform target;
+    public Transform target;
     public void SetTarget(Transform target)
     {
         this.target = target;
@@ -75,9 +75,9 @@ public class CustomAI : MonoBehaviour
 
         flightController_AI = GetComponent<FlightController_AI>();
 
-        flightStratagesList.Add(new MoveToWaypoints(wayPointList, this.transform, wayPointLoop, targetSpeed));
-        flightStratagesList.Add(new Formation(this.transform, flightLeader, formationLocalPos));
-        flightStratagesList.Add(new Engage());
+        flightStratagesList.Add(new MoveToWaypoints(this));
+        flightStratagesList.Add(new Formation(this));
+        flightStratagesList.Add(new CircleFlight(this));
 
         if(flightLeader == null)//편대장이거나 단독 개체일 경우
         {
@@ -105,22 +105,30 @@ public class CustomAI : MonoBehaviour
             flightController_AI.SetTargetSpeed(targetSpeed);
         }
     }
+
+    public void ChangeStratage(int index)
+    {
+        currentflightStratage = flightStratagesList[index];
+    }
 }
 
 class MoveToWaypoints : IFlightStratage//경로 비행 전략
 {
+    CustomAI customAI;
     List<Vector3> wayPointList;
     Transform myTrf;
     int naxtVisitIndex;
     bool isLoop;
     float targetSpeed;
-    public MoveToWaypoints(List<Vector3> wayPointList, Transform myTrf, bool isLoop, float targetSpeed)
+    public MoveToWaypoints(CustomAI customAI)
     {
-        this.wayPointList = wayPointList;
-        this.myTrf = myTrf;
-        this.isLoop = isLoop;
+        this.customAI = customAI;
+        this.wayPointList = customAI.wayPointList;
+        this.myTrf = customAI.transform;
+        this.isLoop = customAI.wayPointLoop;        
+        this.targetSpeed = customAI.targetSpeed;
+
         naxtVisitIndex = 0;
-        this.targetSpeed = targetSpeed;
     }
 
     public Vector3 ReturnNewOrder()
@@ -155,24 +163,32 @@ class MoveToWaypoints : IFlightStratage//경로 비행 전략
 
 class Formation : IFlightStratage//편대 비행 전략
 {
+    CustomAI customAI;
     Transform flTrf;
     Transform myTrf;
     Vector3 formationLocalPos;
     Vector3 targetWorldPos;
 
     float distanceTemp;
-    float p = 20;
-    float d = 1500;
+    float p = 40;
+    float d = 3000;
 
-    public Formation(Transform myTrf, Transform flTrf, Vector3 formationLocalPos)
+    public Formation(CustomAI customAI)
     {
-        this.myTrf = myTrf;
-        this.flTrf = flTrf;
-        this.formationLocalPos = formationLocalPos;
+        this.customAI = customAI;
+        this.myTrf = customAI.transform;
+        this.flTrf = customAI.flightLeader;
+        this.formationLocalPos = customAI.formationLocalPos;
     }
 
     public Vector3 ReturnNewOrder()
     {
+        if(flTrf == null)
+        {
+            customAI.ChangeStratage(2);
+            return Vector3.zero;
+        }
+
         targetWorldPos = flTrf.position + (flTrf.rotation * (formationLocalPos));
         return targetWorldPos;
     }
@@ -185,14 +201,27 @@ class Formation : IFlightStratage//편대 비행 전략
     }
 }
 
-class Engage : IFlightStratage
+class CircleFlight : IFlightStratage //선회 비행 전략
 {
+    CustomAI customAI;
+    Transform myTrf;
+    float targetSpeed;
+    public CircleFlight(CustomAI customAI)
+    {
+        this.customAI = customAI;
+        myTrf = customAI.transform;
+        targetSpeed = customAI.targetSpeed;
+    }
+
     public Vector3 ReturnNewOrder()
     {
-        throw new System.NotImplementedException();
+        Vector3 targetPos = myTrf.position + myTrf.forward * 1000;
+        targetPos.y = myTrf.position.y;
+        targetPos = Quaternion.Euler(0, 30, 0) * targetPos;
+        return targetPos;
     }
     public float ReturnNewSpeed()
     {
-        throw new System.NotImplementedException();
+        return targetSpeed;
     }
 }
