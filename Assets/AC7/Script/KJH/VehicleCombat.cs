@@ -35,8 +35,10 @@ public class VehicleCombat : MonoBehaviour, IFightable
     {
         kjh.GameManager.Instance.RemoveActiveTarget(this);
         onDead.Invoke();
+        onDeadWithSelf.Invoke(this);
         //Debug.Log("Æã");
     }
 
     public UnityEvent onDead;
+    public UnityEvent<VehicleCombat> onDeadWithSelf;
 }
