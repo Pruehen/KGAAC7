@@ -12,11 +12,11 @@ public class CooldownImage : MonoBehaviour
     float maxCooldown;
     float cooldownReciprocal;
 
-    WeaponSlot weaponSlot;
+    kjh.WeaponSystem weaponSystem;
 
-    public void SetWeaponData(WeaponSlot weaponSlot, Sprite frameSprite, Sprite fillSprite)
+    public void SetWeaponData(kjh.WeaponSystem weaponSlot, Sprite frameSprite, Sprite fillSprite)
     {
-        this.weaponSlot = weaponSlot;
+        weaponSystem = weaponSlot;
         frameImage.sprite = frameSprite;
         fillImage.sprite = fillSprite;
     }
@@ -43,6 +43,6 @@ public class CooldownImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fillImage.fillAmount = weaponSlot.GetCurrentCooldownPercent();
+        fillImage.fillAmount = weaponSystem.MslCoolDownRatio();
     }
 }

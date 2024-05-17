@@ -10,8 +10,14 @@ namespace kjh
         [SerializeField] GameObject weaponPrf_02;
         [SerializeField] List<Transform> fireTrf_01;
         [SerializeField] List<Transform> fireTrf_02;
-        List<float> weapon01CoolDown;
-        List<float> weapon02CoolDown;
+        List<float> weapon01CoolDown; //MSL 무기 개수
+        List<float> weapon02CoolDown; //QAAM 무기 개수
+
+        public float MslCoolDownRatio(float value, GameObject missilePrf) //0부터 시작해서 참
+        {
+            float coolTime = missilePrf.GetComponent<WeaponData>().ReloadTime();
+            return 1 - (value / coolTime);
+        }
 
         int useWeaponIndex;
 
