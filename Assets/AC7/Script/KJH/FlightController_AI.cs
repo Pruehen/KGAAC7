@@ -2,34 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AiState
-{
-    cruise,
-    random,
-    tracking,
-    dead
-}
-
 //현재 조종하는 항공기 조종면에 조종 데이터를 전달하는 클래스
 public class FlightController_AI : MonoBehaviour
 {
     AircraftSelecter aircraftSelecter;
-    [SerializeField] AircraftControl aircraftControl;
+    AircraftControl aircraftControl;
 
     Rigidbody rigidbody;
-    [SerializeField] Vector3 waypoint;
+    Vector3 waypoint;
 
-    AiState state;
-    [SerializeField] Transform trakingTarget = null;
+    bool isDead = false;  
     [SerializeField][Range(3f, 10f)] float aiLevel;//난이도 설정. 3부터 10까지의 값을 가짐. 값이 클수록 기동을 더 빡세게 함
-    /// <summary>
-    /// 이 AI가 추적할 타겟(트랜스폼)을 지정하는 메서드
-    /// </summary>
-    /// <param name="target"></param>
-    public void SetTrakingTarget(Transform target)
-    {
-        trakingTarget = target;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +20,9 @@ public class FlightController_AI : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
 
-        state = AiState.random;
+        isDead = false;
 
-        CreateNewWayPoint_Normal();
-        StartCoroutine(CreateWayPoint_Traking_Repeat());
+        CreateNewWayPoint_Forward();        
     }
     /*private void OnDrawGizmos()
     {
@@ -51,25 +33,18 @@ public class FlightController_AI : MonoBehaviour
     void Update()
     {
         aircraftControl = aircraftSelecter.aircraftControl;
-        if(state == AiState.dead)
+        if(isDead)//사망 시 조종 기능을 잠금
         {
             aircraftControl.SetAxisValue(0, 1, 0, 0);
             return;
         }
 
-
-        if (trakingTarget != null && state != AiState.tracking)//추적할 트랜스폼이 존재할 경우
-        {
-            state = AiState.tracking;
-        }
-
         if (WayPointOnCheck())//웨이포인트에 도달했을 경우
         {
-            CreateNewWayPoint_Normal();
+            CreateNewWayPoint_Cruise();
         }
 
-        ToWayPointMove();
-        //aircraftControl.SetAxisValue(PlayerInputCustom.Instance.pitchAxis, PlayerInputCustom.Instance.rollAxis, PlayerInputCustom.Instance.yawAxis, PlayerInputCustom.Instance.throttleAxis);//테스트 코드
+        ToWayPointMove();        
     }
 
     bool WayPointOnCheck()//웨이포인트와의 거리가 200 미만일 경우 true 반환
@@ -77,33 +52,37 @@ public class FlightController_AI : MonoBehaviour
         return (Vector3.Distance(waypoint, this.transform.position) < 200);        
     }
 
-    void CreateNewWayPoint_Traking()
+    /// <summary>
+    /// 순항 비행하는 웨이포인트를 생성
+    /// </summary>
+    public void CreateNewWayPoint_Cruise()
     {
-        if (state == AiState.tracking)//추적 비행 모드
-        {
-            waypoint = trakingTarget.position;
-        }
+        waypoint = this.transform.position + new Vector3(this.transform.forward.x, 0, this.transform.forward.z).normalized * 5000;
     }
 
-    void CreateNewWayPoint_Normal()
+    /// <summary>
+    /// 직진 비행하는 웨이포인트를 생성
+    /// </summary>
+    public void CreateNewWayPoint_Forward()
     {
-        if (state == AiState.cruise)//순항 비행 모드
-        {
-            waypoint = new Vector3(this.transform.forward.x, 0, this.transform.forward.z).normalized * 5000 + this.transform.position;
-        }
-        else//랜덤 비행 모드
-        {
-            waypoint = new Vector3(Random.Range(-10000, 10000), Random.Range(1000, 6000), Random.Range(-10000, 10000));
-        }
+        waypoint = this.transform.position + this.transform.forward * 1000;
     }
 
-    IEnumerator CreateWayPoint_Traking_Repeat()
+    /// <summary>
+    /// 특정 범위 내에서 랜덤 비행하는 웨이포인트를 생성
+    /// </summary>
+    public void CreateNewWayPoint_Random(Vector3 center, float range)
     {
-        while(true)
-        {
-            yield return new WaitForSeconds((11 - aiLevel) * 3);//3레벨일 때 24초, 10레벨일 때 3초에 1번씩 추적 위치 갱신
-            CreateNewWayPoint_Traking();
-        }
+        waypoint = center + new Vector3(Random.Range(-range, range), Random.Range(1000, 6000), Random.Range(-range, range));
+    }
+
+    /// <summary>
+    /// 특정 지점으로 이동하는 웨이포인트를 생성
+    /// </summary>
+    /// <param name="position"></param>
+    public void CreateNewWayPoint_Position(Vector3 position)
+    {
+        waypoint = position;
     }
 
     Vector3 localOrderTemp = Vector3.zero;
@@ -148,7 +127,7 @@ public class FlightController_AI : MonoBehaviour
 
         float maxMobility = aiLevel * 0.1f;
 
-        if((this.transform.position + velocity * (13 - aiLevel)).y < 0)//3~10초 후의 예상 고도가 음수일 경우
+        if((this.transform.position + velocity * (16 - aiLevel)).y < 0)//6~13초 후의 예상 고도가 음수일 경우
         {
             rollOrder = RollKeepLevel();
             pitchOrder = 1;
@@ -179,6 +158,6 @@ public class FlightController_AI : MonoBehaviour
     /// </summary>
     public void Dead()
     {
-        state = AiState.dead;
+        isDead = true;
     }
 }

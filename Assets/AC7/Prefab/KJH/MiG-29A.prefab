@@ -21443,26 +21443,35 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0.0015
-      outSlope: 0.0015
+      inSlope: 0.003
+      outSlope: 0.003
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 400
+      time: 200
       value: 1.6
-      inSlope: -0.000009228175
-      outSlope: -0.000009228175
+      inSlope: 0.0025587466
+      outSlope: 0.0025587466
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.43333328
+      outWeight: 0.2569447
+    - serializedVersion: 3
+      time: 500
+      value: 2
+      inSlope: -0.000106132225
+      outSlope: -0.000106132225
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.71111107
     - serializedVersion: 3
       time: 800
       value: 0
-      inSlope: -0.004
-      outSlope: -0.004
+      inSlope: -0.006666667
+      outSlope: -0.006666667
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -21517,7 +21526,7 @@ MonoBehaviour:
       outWeight: 0.42229047
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.1
       inSlope: 0.08138128
       outSlope: 0.08138128
       tangentMode: 0
@@ -21589,7 +21598,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   e: 0.82
   liftPower: 30
-  dragCoefficient: 0.05
+  dragCoefficient: 0.07
 --- !u!114 &1206920244328171021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21614,6 +21623,7 @@ MonoBehaviour:
   - {fileID: 6845275658883258966}
   bulletPrf: {fileID: 5651192895815570312, guid: fa48c0dd4ada8ae4b9b18a3ff5a1f8fc, type: 3}
   gunFireTrf: {fileID: 2991344471844700786}
+  flarePrf: {fileID: 6445041468265237155, guid: 9e0b13172d39ebe4c9a3244f6e20d657, type: 3}
 --- !u!114 &7978342567303173913
 MonoBehaviour:
   m_ObjectHideFlags: 0

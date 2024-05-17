@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Guided : MonoBehaviour
 {
-    [SerializeField] Transform targetTrf;
+    [SerializeField] int EIRCM_Count;
+    VehicleCombat target;
 
     /// <summary>
     /// 유도 미사일의 타겟을 지정해주는 메서드
     /// </summary>
     /// <param name="target"></param>
-    public void SetTarget(Transform target)
+    public void SetTarget(VehicleCombat target)
     {
-        targetTrf = target;
+        this.target = target;
+        target.onFlare += EIRCM;
+    }
+
+    /// <summary>
+    /// 유도 미사일의 타겟을 해제해주는 메서드 (타겟을 잃었거나, 미사일이 충돌했거나)
+    /// </summary>
+    public void RemoveTarget()
+    {
+        if(target != null)
+        {
+            target.onFlare -= EIRCM;
+        }
+        this.target = null;        
     }
 
     [SerializeField] float maxTurnRate;//최대 토크
@@ -40,9 +54,9 @@ public class Guided : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(targetTrf != null)
+        if(target != null)
         {
-            targetVec = targetTrf.position;//타겟 벡터 지정
+            targetVec = target.transform.position;//타겟 벡터 지정
 
             Vector3 toTargetVec = (targetVec - this.transform.position).normalized;//방향 벡터 산출
 
@@ -63,8 +77,8 @@ public class Guided : MonoBehaviour
 
             if (rocket.SideForce().magnitude < maxSideForce)
             {
-                float p = velocity * pGain;
-                float d = velocity * dGain;
+                float p = (600) * pGain;
+                float d = (600) * dGain;
 
                 rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
                 //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
@@ -72,8 +86,21 @@ public class Guided : MonoBehaviour
 
             if (Vector3.Angle(this.transform.forward, targetVec - this.transform.position) > traceAngleLimit)
             {
-                targetTrf = null;                
+                RemoveTarget();
             }
+        }
+    }
+
+    /// <summary>
+    /// 자신이 목표하고 있는 타겟이 플레어를 살포하였을 때 실행하는 메서드
+    /// </summary>
+    public void EIRCM()
+    {
+        EIRCM_Count--;
+
+        if(EIRCM_Count <= 0) 
+        {
+            RemoveTarget();
         }
     }
 }

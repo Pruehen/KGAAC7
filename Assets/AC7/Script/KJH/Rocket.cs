@@ -129,6 +129,12 @@ public class Rocket : MonoBehaviour
 
     void DestroyRocket()
     {
+        Guided guided;
+        if(TryGetComponent<Guided>(out guided))
+        {
+            guided.RemoveTarget();
+        }
+
         Destroy(motor.gameObject);
 
         smoke.transform.SetParent(null);

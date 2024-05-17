@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class VehicleCombat : MonoBehaviour, IFightable
-{    
+{
+    public bool mainTarget = false;
+    public string name;
+    public string nickname;
     void IFightable.DealDamage(IFightable target, float damage)
     {
         throw new System.NotImplementedException();
@@ -23,11 +26,26 @@ public class VehicleCombat : MonoBehaviour, IFightable
         combat.OnDead += Dead;
     }
 
+    public bool IsDead()
+    {
+        return combat.IsDead();
+    }
+
     void Dead()
     {
+        kjh.GameManager.Instance.RemoveActiveTarget(this);
         onDead.Invoke();
-        Debug.Log("펑");
+        //Debug.Log("펑");
+    }
+
+    /// <summary>
+    /// 플레어가 살포되었을 때 실행되는 메서드
+    /// </summary>
+    public void FlareDeploy()
+    {
+        onFlare.Invoke();
     }
 
     public UnityEvent onDead;
+    public System.Action onFlare;
 }

@@ -31,10 +31,10 @@ public class BorderIndicator : MonoBehaviour
         float reciprocal;
         float rotation;
         Vector3 position = target.transform.position;
-        Vector2 distance = new Vector3(minimapCamera.transform.position.x - position.x, minimapCamera.transform.position.z - position.z);
-
+        //Vector2 distance = new Vector3(minimapCamera.transform.position.x - position.x, minimapCamera.transform.position.z - position.z);
+        Vector2 distance = Vector2.zero;
         // When the x, z positions are same
-        if(distance.x == 0 || distance.y == 0)
+        if (distance.x == 0 || distance.y == 0)
             return;
 
         if(minimapController.GetMinimapIndex() == MinimapController.MinimapIndex.Small)
@@ -54,10 +54,11 @@ public class BorderIndicator : MonoBehaviour
             reciprocal = -Mathf.Abs(minimapController.CameraSize.y / distance.y);
             rotation = (distance.y > 0) ? 180 : 0;
         }
-        
-        // change indicator
-        float scale = sizeReciprocal * minimapCamera.orthographicSize;
 
+        // change indicator
+        //float scale = sizeReciprocal * minimapCamera.orthographicSize;
+
+        float scale = 1;
         transform.localScale = new Vector3(scale, scale, scale);
         transform.localPosition = new Vector3(distance.x * reciprocal, distance.y * reciprocal, 1);
         transform.localEulerAngles = new Vector3(0, 0, rotation);
@@ -74,8 +75,8 @@ public class BorderIndicator : MonoBehaviour
         //minimapController = GameManager.UIController.MinimapController;
         minimapController = MinimapController.Instance;
         aircraftMaster = minimapController.targetTrf.GetComponent<AircraftMaster>();
-        minimapCamera = minimapController.minimapCamera;
-        sizeReciprocal = iconSize / minimapCamera.orthographicSize;
+        //minimapCamera = minimapController.minimapCamera;
+        //sizeReciprocal = iconSize / minimapCamera.orthographicSize;
     }
 
     void Update()

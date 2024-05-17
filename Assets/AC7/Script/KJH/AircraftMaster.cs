@@ -8,7 +8,12 @@ public class AircraftMaster : MonoBehaviour
 {
     [SerializeField] bool aiControl;
     AircraftSelecter aircraftSelecter;
+    public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
+    public AircraftControl aircraftControl;
+    public VehicleCombat vehicleCombat;
+
     Rigidbody rigidbody;
+
     /// <summary>
     /// 현재 항공기의 속도(km/h)를 반환하는 메서드 
     /// </summary>
@@ -17,14 +22,15 @@ public class AircraftMaster : MonoBehaviour
     {
         return rigidbody.velocity.magnitude * 3.6f;
     }
-
-    public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
+    
     //public AircraftControl aircraftControl;
 
     private void Awake()
     {
-        aircraftSelecter = GetComponent<AircraftSelecter>();
         rigidbody = GetComponent<Rigidbody>();
+        aircraftSelecter = GetComponent<AircraftSelecter>();
+        aircraftControl = aircraftSelecter.aircraftControl;
+        vehicleCombat = GetComponent<VehicleCombat>();
 
         if (aiControl)
         {
@@ -33,7 +39,7 @@ public class AircraftMaster : MonoBehaviour
         else
         {
             GetComponent<FlightController_AI>().enabled = false;
-        }       
+        }
     }
 
     public void Dead()
@@ -44,7 +50,7 @@ public class AircraftMaster : MonoBehaviour
 
     IEnumerator DeadEffect()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2.5f);
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
         Destroy(this.gameObject);
     }

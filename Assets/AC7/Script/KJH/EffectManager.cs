@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
-using UnityEngine.UIElements;
 
 public class EffectManager : SceneSingleton<EffectManager>
 {
@@ -31,7 +29,7 @@ public class EffectManager : SceneSingleton<EffectManager>
         effect.transform.position = transform.position;
         effect.transform.rotation = transform.rotation;
 
-        StartCoroutine(OffParticle(effect, 4.9f));
+        StartCoroutine(OffParticle(effect, 2.4f));
     }
 
     IEnumerator EffectEnqueue(GameObject item, float delayTime)

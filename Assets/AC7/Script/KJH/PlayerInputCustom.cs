@@ -25,9 +25,13 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
 
     public UnityEvent onClick_X;
     public UnityEvent onClick_R;
+    public UnityEvent onClick_Fdown;
+    public UnityEvent onClick_Fup;
     public UnityEvent onClick_RightMouse;
     public UnityEvent onClick_LeftMouseDown;
     public UnityEvent onClick_LeftMouseUp;
+    public UnityEvent onClick_MidMouseDown;
+    public UnityEvent onClick_MidMouseUp;
 
     // Update is called once per frame
     void Update()
@@ -48,13 +52,30 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
         {
             onClick_RightMouse.Invoke();
         }
-        if(Input.GetKeyDown(KeyCode.X))
+        if (Input.GetMouseButtonDown(2))
+        {
+            onClick_MidMouseDown.Invoke();
+        }
+        if (Input.GetMouseButtonUp(2))
+        {
+            onClick_MidMouseUp.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
         {
             onClick_X.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             onClick_R.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            onClick_Fdown.Invoke();
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            onClick_Fup.Invoke();
         }
     }
 

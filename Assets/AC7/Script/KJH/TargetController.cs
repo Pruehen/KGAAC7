@@ -26,7 +26,7 @@ public class TargetController : MonoBehaviour
         
         GameObject obj = Instantiate(targetUIObject);
         TargetUI targetUI = obj.GetComponent<TargetUI>();
-        targetUI.Target = targetObject;
+        //targetUI.Target = targetObject;
         targetObject.TargetUI = targetUI;
         targetUIs.Add(targetUI);
 

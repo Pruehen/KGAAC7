@@ -24,13 +24,24 @@ namespace kjh
         [SerializeField] GameObject bulletPrf;
         [SerializeField] Transform gunFireTrf;
         bool gunTrigger = false;
-        float fireDelay = 0.05f;
-        float delayTime = 0;
+        float gunFireDelay = 0.05f;
+        float gunDelayTime = 0;
         Rigidbody rigidbody;
 
-        public void SetTrigger(bool value)
+        [SerializeField] GameObject flarePrf;
+        bool flareTrigger = false;
+        float flareFireDelay = 0.1f;
+        float flareDelayTime = 0;
+
+        VehicleCombat vehicleCombat;
+
+        public void SetGunTrigger(bool value)
         {
             gunTrigger = value;
+        }
+        public void SetFlareTrigger(bool value)
+        {
+            flareTrigger = value;
         }
         /// <summary>
         /// 현재 사용중인 무장 인덱스를 교체하는 메서드
@@ -65,6 +76,7 @@ namespace kjh
 
             gunTrigger = false;
             rigidbody = this.transform.parent.GetComponent<Rigidbody>();
+            vehicleCombat = this.transform.parent.GetComponent<VehicleCombat>();
         }
 
         // Update is called once per frame
@@ -94,20 +106,37 @@ namespace kjh
             }
 
             GunFire();
+            FlareDeploy();
         }
 
         void GunFire()
         {
-            if(delayTime > 0)
+            if(gunDelayTime > 0)
             {
-                delayTime -= Time.deltaTime;
+                gunDelayTime -= Time.deltaTime;
             }    
 
-            if(gunTrigger && delayTime <= 0)
+            if(gunTrigger && gunDelayTime <= 0)
             {
-                delayTime = fireDelay;
-                GameObject item = Instantiate(bulletPrf, gunFireTrf.position, gunFireTrf.rotation);
-                item.GetComponent<Rigidbody>().velocity = rigidbody.velocity + item.transform.forward * 1000;
+                gunDelayTime = gunFireDelay;
+                GameObject item = ObjectPoolManager.Instance.DequeueObject(bulletPrf);
+                item.GetComponent<Bullet>().Init(gunFireTrf.position, rigidbody.velocity + gunFireTrf.forward * 1000);
+            }
+
+        }
+
+        void FlareDeploy()
+        {
+            if (flareDelayTime > 0)
+            {
+                flareDelayTime -= Time.deltaTime;
+            }
+            if (flareTrigger && flareDelayTime <= 0)
+            {
+                flareDelayTime = flareFireDelay;
+                GameObject item = ObjectPoolManager.Instance.DequeueObject(flarePrf);
+                item.GetComponent<Flare>().Init(this.transform.position, rigidbody.velocity + this.transform.up * -30 + new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)));
+                vehicleCombat.FlareDeploy();
             }
         }
 
@@ -116,7 +145,7 @@ namespace kjh
         /// </summary>
         /// <param name="aircraftVelocity"></param>
         /// <param name="target"></param>
-        public void Fire(Vector3 aircraftVelocity, Transform target)
+        public void Fire(Vector3 aircraftVelocity, VehicleCombat target)
         {
             GameObject useWeaponPrf;
             List<Transform> useWeaponPointList;
