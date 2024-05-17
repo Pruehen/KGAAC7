@@ -38,7 +38,6 @@ public class Vulcan : MonoBehaviour
         bullet.transform.position = _firePos.position;
         bullet.transform.rotation = _firePos.rotation;
         bullet.velocity = bullet.transform.forward * bulletSpeed;
-        ObjectPoolManager.Instance.EnqueueObject(item, 30f);
     }
 
 }
