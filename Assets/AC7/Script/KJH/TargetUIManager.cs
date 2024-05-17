@@ -23,7 +23,7 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
     }
     
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         for (int i = 0; i < targetList.Count; i++)
         {

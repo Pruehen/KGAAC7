@@ -215,7 +215,7 @@ class CircleFlight : IFlightStratage //선회 비행 전략
 
     public Vector3 ReturnNewOrder()
     {
-        Vector3 targetPos = myTrf.position + myTrf.forward * 1000;
+        Vector3 targetPos = myTrf.position + myTrf.forward * 3000;
         targetPos.y = myTrf.position.y;
         targetPos = Quaternion.Euler(0, 30, 0) * targetPos;
         return targetPos;

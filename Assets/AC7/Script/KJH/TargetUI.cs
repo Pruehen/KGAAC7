@@ -155,7 +155,7 @@ public class TargetUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         activeCamera = Camera.main;
 

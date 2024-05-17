@@ -43,7 +43,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
     /// </summary>
     public void FlareDeploy()
     {
-        onFlare.Invoke();
+        onFlare?.Invoke();
     }
 
     public UnityEvent onDead;

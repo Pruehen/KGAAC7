@@ -13,8 +13,11 @@ public class Guided : MonoBehaviour
     /// <param name="target"></param>
     public void SetTarget(VehicleCombat target)
     {
-        this.target = target;
-        target.onFlare += EIRCM;
+        if (target != null)
+        {
+            this.target = target;
+            target.onFlare += EIRCM;
+        }
     }
 
     /// <summary>

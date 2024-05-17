@@ -58,7 +58,7 @@ Rigidbody:
   m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!136 &2310879739802350979
@@ -182,6 +182,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f541bf8bdb64aef499ad4584fa5140a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPointList: []
+  wayPointLoop: 0
+  targetSpeed: 0
+  flightLeader: {fileID: 0}
+  spreadValue: 1
+  formationLocalPos: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
 --- !u!114 &3413560363963453488
 MonoBehaviour:
   m_ObjectHideFlags: 0
