@@ -52,8 +52,11 @@ public class CamRotate : MonoBehaviour
             if(vehicleCombat != null)
             {
                 viewTargetTrf = vehicleCombat.transform;//레이더 타겟으로 카메라의 타겟을 지정            
+            }            
+            else
+            {
+                viewTargetTrf = null;
             }
-            
 
             if(viewTargetTrfTemp != viewTargetTrf)//타겟이 변경되었을 경우
             {
