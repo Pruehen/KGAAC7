@@ -162,7 +162,7 @@ public class UIControl : MonoBehaviour
     public void SetHeading(float heading)
     {
         headingUIController.SetHeading(heading);
-        minimapCompass.SetCompass(heading);
+        //minimapCompass.SetCompass(heading);
     }
 
     void SetTime()
