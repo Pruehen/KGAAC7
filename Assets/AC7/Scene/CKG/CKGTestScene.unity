@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aircraftMaster: {fileID: 104479782}
-  camRotateMaxAngle: 10
+  virtualAxis: {fileID: 0}
 --- !u!114 &5378511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,7 +1151,7 @@ RectTransform:
   - {fileID: 142849957}
   - {fileID: 1066592233}
   m_Father: {fileID: 1408588423}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1170,6 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd47f91ce7ce7524a896adab74c549ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 5
   frameImage: {fileID: 1066592234}
   fillImage: {fileID: 142849958}
 --- !u!1 &54795811
@@ -10923,9 +10924,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c2d860d7089df4d8ab918c6849801f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetUIObject: {fileID: 7682833719505869377, guid: 74929ed09486b8f42bff2ff8c1d51e6a, type: 3}
-  targetArrow: {fileID: 0}
-  targetLock: {fileID: 472998277}
 --- !u!1 &645811158
 GameObject:
   m_ObjectHideFlags: 0
@@ -15793,7 +15791,7 @@ RectTransform:
   - {fileID: 1130524052}
   - {fileID: 525196109}
   m_Father: {fileID: 1408588423}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15812,6 +15810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd47f91ce7ce7524a896adab74c549ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 3
   frameImage: {fileID: 525196110}
   fillImage: {fileID: 1130524053}
 --- !u!1 &909467043
@@ -16071,6 +16070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd47f91ce7ce7524a896adab74c549ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   frameImage: {fileID: 1078345167}
   fillImage: {fileID: 2019749672}
 --- !u!1 &939807662
@@ -18502,6 +18502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd47f91ce7ce7524a896adab74c549ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 2
   frameImage: {fileID: 1624986123}
   fillImage: {fileID: 289235687}
 --- !u!1 &1107564964
@@ -23026,10 +23027,10 @@ Transform:
   - {fileID: 938429316}
   - {fileID: 2012377474}
   - {fileID: 1105431461}
-  - {fileID: 2102948537}
   - {fileID: 909199063}
   - {fileID: 1908984164}
   - {fileID: 43030258}
+  - {fileID: 2102948537}
   m_Father: {fileID: 38586553}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30455,7 +30456,7 @@ RectTransform:
   - {fileID: 1692626125}
   - {fileID: 1281781520}
   m_Father: {fileID: 1408588423}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30474,6 +30475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd47f91ce7ce7524a896adab74c549ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 4
   frameImage: {fileID: 1281781521}
   fillImage: {fileID: 1692626126}
 --- !u!1 &1915991638
@@ -31038,7 +31040,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843879352132e624c84ab73f7d8502fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimapCamera: {fileID: 0}
   targetTrf: {fileID: 104479783}
   minimapIndicatorPrf: {fileID: 1336452754474996335, guid: 3fcd59fe20497f24b87f3149966a4df9, type: 3}
   target: {fileID: 104479783}
@@ -31465,6 +31466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd47f91ce7ce7524a896adab74c549ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 1
   frameImage: {fileID: 2003435191}
   fillImage: {fileID: 134801730}
 --- !u!1 &2012735776
@@ -32913,7 +32915,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1408588423}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}

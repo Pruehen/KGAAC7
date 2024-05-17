@@ -222,16 +222,17 @@ public class UIControl : MonoBehaviour
     {
         if (damage < 34)
         {
-            aircraftImage.color = GameManager.NormalColor;
+            //aircraftImage.color = GameManager.NormalColor;
         }
         else if (damage < 67)
         {
-            aircraftImage.color = cautionColor;
+            //aircraftImage.color = cautionColor;
         }
         else
         {
-            aircraftImage.color = GameManager.WarningColor;
+            //aircraftImage.color = GameManager.WarningColor;
         }
+        aircraftImage.color = Color.green;
     }
 
     public void SetDamage(int damage)

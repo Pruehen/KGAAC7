@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CooldownImage : MonoBehaviour
 {
+    [SerializeField] int index;
     public Image frameImage;
     public Image fillImage;
 
@@ -14,12 +15,12 @@ public class CooldownImage : MonoBehaviour
 
     kjh.WeaponSystem weaponSystem;
 
-    public void SetWeaponData(kjh.WeaponSystem weaponSlot, Sprite frameSprite, Sprite fillSprite)
-    {
-        weaponSystem = weaponSlot;
-        frameImage.sprite = frameSprite;
-        fillImage.sprite = fillSprite;
-    }
+    //public void SetWeaponData(kjh.WeaponSystem weaponSlot, Sprite frameSprite, Sprite fillSprite)
+    //{
+    //    weaponSystem = weaponSlot;
+    //    frameImage.sprite = frameSprite;
+    //    fillImage.sprite = fillSprite;
+    //}
 
     public void SetColor(Color color)
     {
@@ -38,11 +39,12 @@ public class CooldownImage : MonoBehaviour
     void Start()
     {
         remainCooldown = maxCooldown = 0;
+        weaponSystem = kjh.GameManager.Instance.player.AircraftSelecter().weaponSystem;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //fillImage.fillAmount = weaponSystem.MslCoolDownRatio();
+        fillImage.fillAmount = weaponSystem.MslCoolDownRatio(index);
     }
 }
