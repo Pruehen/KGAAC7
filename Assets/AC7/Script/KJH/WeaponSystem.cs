@@ -132,16 +132,26 @@ namespace kjh
             Transform firePoint = null;
 
             bool canFire = false;
-
+            
             for (int i = 0; i < weaponCoolDownList.Count; i++)
             {
-                if (equipedWeaponIndexList[i] == useWeaponIndex)
+                int k;
+                if(i % 2 == 0)
                 {
-                    if (weaponCoolDownList[i] <= 0)
+                    k = i / 2;
+                }
+                else
+                {
+                    k = weaponCoolDownList.Count - (i / 2) - 1;
+                }
+
+                if (equipedWeaponIndexList[k] == useWeaponIndex)
+                {
+                    if (weaponCoolDownList[k] <= 0)
                     {
-                        firePoint = fireTrfList[i];
-                        fireTrfList[i].gameObject.SetActive(false);
-                        weaponCoolDownList[i] = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
+                        firePoint = fireTrfList[k];
+                        fireTrfList[k].gameObject.SetActive(false);
+                        weaponCoolDownList[k] = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
                         canFire = true;
                         break;
                     }
@@ -150,7 +160,6 @@ namespace kjh
                 {
                     continue;
                 }
-
             }
 
             if (canFire)
