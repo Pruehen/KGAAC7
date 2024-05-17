@@ -17,11 +17,12 @@ public class JetEngineController : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField]
-    float maxVolume = 0.2f;
+    float maxVolume = 1f;
+    [SerializeField]
+    float volumRatio = 1f;
     [SerializeField]
     float lowpassValue = 2500;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioLowPassFilter audioLowPassFilter;
+    [SerializeField] AircraftEngineSound _engineSound;
 
     float inputValue;
     public float InputValue
@@ -31,12 +32,12 @@ public class JetEngineController : MonoBehaviour
 
     void SetEngineAudio()
     {
-        audioSource.volume = throttleAmount * maxVolume;
+        _engineSound.SetAfterburnerVolum(throttleAmount * maxVolume);
     }
 
     public void SetAudioEffect(bool is1stView)
     {
-        audioLowPassFilter.cutoffFrequency = (is1stView == true) ? lowpassValue : 22000;
+        _engineSound.SetCutoffFrequency((is1stView == true) ? lowpassValue : 22000);
     }
 
     void OnDisable()
@@ -45,19 +46,20 @@ public class JetEngineController : MonoBehaviour
         particleColor.a = 0;
 
         particleMainModule.startColor = particleColor;
-        if(audioSource != null) SetEngineAudio();
+        if(_engineSound != null) SetEngineAudio();
     }
 
     // Start is called before the first frame update
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioLowPassFilter = GetComponent<AudioLowPassFilter>();
+        _engineSound = GetComponent<AircraftEngineSound>();
+        _engineSound.SetOverallVolumRatio(volumRatio);
 
         particleMainModule = GetComponent<ParticleSystem>().main;
         particleColor = particleMainModule.startColor.color;
         initAlpha = particleColor.a;
         throttleAmount = 0;
+
     }
 
     // Update is called once per frame
@@ -68,6 +70,6 @@ public class JetEngineController : MonoBehaviour
         particleColor.a = throttleAmount * initAlpha;
         particleMainModule.startColor = particleColor;
 
-        if(audioSource != null) SetEngineAudio();
+        if(_engineSound != null) SetEngineAudio();
     }
 }
