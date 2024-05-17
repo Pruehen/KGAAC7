@@ -6,12 +6,10 @@ namespace kjh
 {
     public class WeaponSystem : MonoBehaviour
     {
-        [SerializeField] GameObject weaponPrf_01;
-        [SerializeField] GameObject weaponPrf_02;
-        [SerializeField] List<Transform> fireTrf_01;
-        [SerializeField] List<Transform> fireTrf_02;
-        List<float> weapon01CoolDown; //MSL 무기 개수
-        List<float> weapon02CoolDown; //QAAM 무기 개수
+        [SerializeField] List<GameObject> weaponPrfList;      
+        [SerializeField] List<Transform> fireTrfList;
+        [SerializeField] List<int> equipedWeaponIndexList;
+        List<float> weaponCoolDownList; //MSL 무기 개수        
 
         public float MslCoolDownRatio(float value, GameObject missilePrf) //0부터 시작해서 참
         {
@@ -62,16 +60,10 @@ namespace kjh
         {
             useWeaponIndex = 0;
 
-            weapon01CoolDown = new List<float>();
-            for (int i = 0; i < fireTrf_01.Count; i++)
+            weaponCoolDownList = new List<float>();
+            for (int i = 0; i < fireTrfList.Count; i++)
             {
-                weapon01CoolDown.Add(0f);
-            }
-
-            weapon02CoolDown = new List<float>();
-            for (int i = 0; i < fireTrf_02.Count; i++)
-            {
-                weapon02CoolDown.Add(0f);
+                weaponCoolDownList.Add(0f);
             }
 
             gunTrigger = false;
@@ -82,25 +74,14 @@ namespace kjh
         // Update is called once per frame
         void Update()
         {
-            for (int i = 0; i < weapon01CoolDown.Count; i++)
+            for (int i = 0; i < weaponCoolDownList.Count; i++)
             {
-                if (weapon01CoolDown[i] > 0)
+                if (weaponCoolDownList[i] > 0)
                 {
-                    weapon01CoolDown[i] -= Time.deltaTime;
-                    if(weapon01CoolDown[i] < 0)
+                    weaponCoolDownList[i] -= Time.deltaTime;
+                    if(weaponCoolDownList[i] < 0)
                     {
-                        fireTrf_01[i].gameObject.SetActive(true);
-                    }
-                }
-            }
-            for (int i = 0; i < weapon02CoolDown.Count; i++)
-            {
-                if (weapon02CoolDown[i] > 0)
-                {
-                    weapon02CoolDown[i] -= Time.deltaTime;
-                    if (weapon02CoolDown[i] < 0)
-                    {
-                        fireTrf_02[i].gameObject.SetActive(true);
+                        fireTrfList[i].gameObject.SetActive(true);
                     }
                 }
             }
@@ -146,36 +127,30 @@ namespace kjh
         /// <param name="aircraftVelocity"></param>
         /// <param name="target"></param>
         public void Fire(Vector3 aircraftVelocity, VehicleCombat target)
-        {
-            GameObject useWeaponPrf;
-            List<Transform> useWeaponPointList;
-            List<float> useWeaponCoolDownList;
+        {            
+            GameObject useWeaponPrf = weaponPrfList[useWeaponIndex];
             Transform firePoint = null;
 
             bool canFire = false;
 
-            if (useWeaponIndex == 0)
+            for (int i = 0; i < weaponCoolDownList.Count; i++)
             {
-                useWeaponPrf = weaponPrf_01;
-                useWeaponPointList = fireTrf_01;
-                useWeaponCoolDownList = weapon01CoolDown;
-            }
-            else
-            {
-                useWeaponPrf = weaponPrf_02;
-                useWeaponPointList = fireTrf_02;
-                useWeaponCoolDownList = weapon02CoolDown;
-            }
-            for (int i = 0; i < useWeaponCoolDownList.Count; i++)
-            {
-                if (useWeaponCoolDownList[i] <= 0)
+                if (equipedWeaponIndexList[i] == useWeaponIndex)
                 {
-                    firePoint = useWeaponPointList[i];
-                    useWeaponPointList[i].gameObject.SetActive(false);
-                    useWeaponCoolDownList[i] = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
-                    canFire = true;
-                    break;
+                    if (weaponCoolDownList[i] <= 0)
+                    {
+                        firePoint = fireTrfList[i];
+                        fireTrfList[i].gameObject.SetActive(false);
+                        weaponCoolDownList[i] = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
+                        canFire = true;
+                        break;
+                    }
                 }
+                else
+                {
+                    continue;
+                }
+
             }
 
             if (canFire)

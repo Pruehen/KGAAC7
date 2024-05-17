@@ -300,8 +300,8 @@ public class UIController : MonoBehaviour
         spwIndicator.SetActive(useSpecialWeapon);
 
         // Justify that weaponSlots contains 2 slots
-        leftMslCooldownImage.SetWeaponData(weaponSlots[0], missile.missileFrameSprite, missile.missileFillSprite);
-        rightMslCooldownImage.SetWeaponData(weaponSlots[1], missile.missileFrameSprite, missile.missileFillSprite);
+        //leftMslCooldownImage.SetWeaponData(weaponSlots[0], missile.missileFrameSprite, missile.missileFillSprite);
+        //rightMslCooldownImage.SetWeaponData(weaponSlots[1], missile.missileFrameSprite, missile.missileFillSprite);
 
         if(playAudio == true)
         {

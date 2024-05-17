@@ -15504,7 +15504,7 @@ Transform:
   m_Children:
   - {fileID: 150977607220918603}
   m_Father: {fileID: 3668257318990174211}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &4273948448594997543
 GameObject:
@@ -20348,7 +20348,7 @@ Transform:
   m_Children:
   - {fileID: 6333620207914913921}
   m_Father: {fileID: 3668257318990174211}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &4609132182883163683
 GameObject:
@@ -20380,7 +20380,7 @@ Transform:
   m_Children:
   - {fileID: 6028491771352725459}
   m_Father: {fileID: 3668257318990174211}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &4716642744797194443
 GameObject:
@@ -20890,11 +20890,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6651632264013701383}
-  - {fileID: 4145571315416420948}
   - {fileID: 6123713705446006979}
-  - {fileID: 3212064573394448547}
   - {fileID: 3499803486496541366}
   - {fileID: 6845275658883258966}
+  - {fileID: 3212064573394448547}
+  - {fileID: 4145571315416420948}
   m_Father: {fileID: 7836334396610748759}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21221,7 +21221,7 @@ Transform:
   m_Children:
   - {fileID: 7039809432218906175}
   m_Father: {fileID: 3668257318990174211}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &6867989402420975071
 GameObject:
@@ -21233,7 +21233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6651632264013701383}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePoint_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21611,16 +21611,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea3e4b70ada30a4abd850c3ae45c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrf_01: {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
-  weaponPrf_02: {fileID: 6445041468265237155, guid: 35e4e8865177bfe4d9da3f8c15aec94e, type: 3}
-  fireTrf_01:
+  weaponPrfList:
+  - {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
+  - {fileID: 6445041468265237155, guid: 35e4e8865177bfe4d9da3f8c15aec94e, type: 3}
+  fireTrfList:
   - {fileID: 6651632264013701383}
-  - {fileID: 4145571315416420948}
   - {fileID: 6123713705446006979}
-  - {fileID: 3212064573394448547}
-  fireTrf_02:
   - {fileID: 3499803486496541366}
   - {fileID: 6845275658883258966}
+  - {fileID: 3212064573394448547}
+  - {fileID: 4145571315416420948}
+  equipedWeaponIndexList: 000000000000000001000000010000000000000000000000
   bulletPrf: {fileID: 5651192895815570312, guid: fa48c0dd4ada8ae4b9b18a3ff5a1f8fc, type: 3}
   gunFireTrf: {fileID: 2991344471844700786}
   flarePrf: {fileID: 6445041468265237155, guid: 9e0b13172d39ebe4c9a3244f6e20d657, type: 3}
@@ -21672,7 +21673,7 @@ Transform:
   m_Children:
   - {fileID: 1202227985748556913}
   m_Father: {fileID: 3668257318990174211}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &7913683942252020222
 GameObject:

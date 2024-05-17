@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3778294801966030267}
   m_Layer: 0
-  m_Name: FirePoint (4)
+  m_Name: FirePoint_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ Transform:
   m_Children:
   - {fileID: 3822385271098704362}
   m_Father: {fileID: 3076799296540131470}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &1388017656350822682
 GameObject:
@@ -337,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5060481131554796154}
   m_Layer: 0
-  m_Name: FirePoint (1)
+  m_Name: FirePoint_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,7 +357,7 @@ Transform:
   m_Children:
   - {fileID: 8051499485367823508}
   m_Father: {fileID: 3076799296540131470}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &1804304807275890649
 GameObject:
@@ -10095,11 +10095,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2251086409876868347}
-  - {fileID: 5060481131554796154}
   - {fileID: 6772127093600526340}
-  - {fileID: 2096139377436340709}
   - {fileID: 3778294801966030267}
   - {fileID: 6016556508586650637}
+  - {fileID: 2096139377436340709}
+  - {fileID: 5060481131554796154}
   m_Father: {fileID: 7836334396610748759}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10113,7 +10113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2251086409876868347}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePoint_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20511,7 +20511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6016556508586650637}
   m_Layer: 0
-  m_Name: FirePoint (5)
+  m_Name: FirePoint_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20531,7 +20531,7 @@ Transform:
   m_Children:
   - {fileID: 2943085632561913497}
   m_Father: {fileID: 3076799296540131470}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &6681193550542291805
 GameObject:
@@ -20856,7 +20856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6772127093600526340}
   m_Layer: 0
-  m_Name: FirePoint (2)
+  m_Name: FirePoint_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20876,7 +20876,7 @@ Transform:
   m_Children:
   - {fileID: 8157671638098811520}
   m_Father: {fileID: 3076799296540131470}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &7461215751716273133
 GameObject:
@@ -21147,16 +21147,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea3e4b70ada30a4abd850c3ae45c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrf_01: {fileID: 6445041468265237155, guid: 31fe54a810240ee4f9539a90517ee34f, type: 3}
-  weaponPrf_02: {fileID: 6445041468265237155, guid: 9d754aee3f02bdf46add875ac6512977, type: 3}
-  fireTrf_01:
+  weaponPrfList:
+  - {fileID: 6445041468265237155, guid: 31fe54a810240ee4f9539a90517ee34f, type: 3}
+  - {fileID: 6445041468265237155, guid: 9d754aee3f02bdf46add875ac6512977, type: 3}
+  fireTrfList:
   - {fileID: 2251086409876868347}
-  - {fileID: 5060481131554796154}
   - {fileID: 6772127093600526340}
-  - {fileID: 2096139377436340709}
-  fireTrf_02:
   - {fileID: 3778294801966030267}
   - {fileID: 6016556508586650637}
+  - {fileID: 2096139377436340709}
+  - {fileID: 5060481131554796154}
+  equipedWeaponIndexList: 000000000000000001000000010000000000000000000000
   bulletPrf: {fileID: 5651192895815570312, guid: fa48c0dd4ada8ae4b9b18a3ff5a1f8fc, type: 3}
   gunFireTrf: {fileID: 8895744903451093898}
   flarePrf: {fileID: 6445041468265237155, guid: 9e0b13172d39ebe4c9a3244f6e20d657, type: 3}
@@ -21616,7 +21617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2096139377436340709}
   m_Layer: 0
-  m_Name: FirePoint (3)
+  m_Name: FirePoint_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21636,7 +21637,7 @@ Transform:
   m_Children:
   - {fileID: 3235882903312036922}
   m_Father: {fileID: 3076799296540131470}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 2.461, y: 180, z: 0}
 --- !u!1 &8752127477844255924
 GameObject:

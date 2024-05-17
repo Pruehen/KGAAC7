@@ -43,6 +43,6 @@ public class CooldownImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fillImage.fillAmount = weaponSystem.MslCoolDownRatio();
+        //fillImage.fillAmount = weaponSystem.MslCoolDownRatio();
     }
 }
