@@ -7,12 +7,24 @@ namespace kjh
     public class Bullet : MonoBehaviour
     {
         SphereCollider sphereCollider;
+        Rigidbody rigidbody;
         float lifeTime = 0;
-        // Start is called before the first frame update
-        void Start()
+
+        public void Init(Vector3 position, Vector3 velocity)
         {
-            sphereCollider = GetComponent<SphereCollider>();
+            if(sphereCollider == null)
+            {
+                sphereCollider = GetComponent<SphereCollider>();
+                rigidbody = GetComponent<Rigidbody>();
+            }
+
             sphereCollider.enabled = false;
+            lifeTime = 0;
+            
+            this.transform.position = position;
+            rigidbody.velocity = velocity;
+
+            GetComponent<TrailRenderer>().Clear();
         }
 
         // Update is called once per frame
@@ -27,7 +39,7 @@ namespace kjh
 
             if(lifeTime > 3)
             {
-                Destroy(this.gameObject);
+                DestroyObject();
             }
         }
 
@@ -39,7 +51,13 @@ namespace kjh
                 fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
             }
 
-            Destroy(this.gameObject);
+            DestroyObject();
+        }
+
+        void DestroyObject()
+        {
+            GetComponent<TrailRenderer>().Clear();
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
         }
     }
 }

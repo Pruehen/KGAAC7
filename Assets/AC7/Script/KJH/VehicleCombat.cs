@@ -38,5 +38,14 @@ public class VehicleCombat : MonoBehaviour, IFightable
         //Debug.Log("펑");
     }
 
+    /// <summary>
+    /// 플레어가 살포되었을 때 실행되는 메서드
+    /// </summary>
+    public void FlareDeploy()
+    {
+        onFlare.Invoke();
+    }
+
     public UnityEvent onDead;
+    public System.Action onFlare;
 }

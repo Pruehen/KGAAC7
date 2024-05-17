@@ -9,18 +9,15 @@ public class Flare : MonoBehaviour
     [SerializeField] float maxTime;
     float lifeTime;
 
-    private void Awake()
-    {
-
-    }
-
     public void Init(Vector3 position, Vector3 velocity)
     {
+        lifeTime = 0;
         rigidbody = GetComponent<Rigidbody>();
         particleSystem = GetComponent<ParticleSystem>();
 
         this.transform.position = position;
-        rigidbody.velocity = velocity;
+        rigidbody.velocity = velocity;        
+        particleSystem.Clear();
         particleSystem.Play();
     }
 
@@ -30,7 +27,7 @@ public class Flare : MonoBehaviour
         lifeTime += Time.deltaTime;
         if(lifeTime > maxTime)
         {
-            Destroy(this.gameObject);
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
         }
     }
 }

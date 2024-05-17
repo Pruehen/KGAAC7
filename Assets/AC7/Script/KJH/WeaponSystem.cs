@@ -27,6 +27,8 @@ namespace kjh
         float flareFireDelay = 0.1f;
         float flareDelayTime = 0;
 
+        VehicleCombat vehicleCombat;
+
         public void SetGunTrigger(bool value)
         {
             gunTrigger = value;
@@ -68,6 +70,7 @@ namespace kjh
 
             gunTrigger = false;
             rigidbody = this.transform.parent.GetComponent<Rigidbody>();
+            vehicleCombat = this.transform.parent.GetComponent<VehicleCombat>();
         }
 
         // Update is called once per frame
@@ -110,8 +113,8 @@ namespace kjh
             if(gunTrigger && gunDelayTime <= 0)
             {
                 gunDelayTime = gunFireDelay;
-                GameObject item = Instantiate(bulletPrf, gunFireTrf.position, gunFireTrf.rotation);
-                item.GetComponent<Rigidbody>().velocity = rigidbody.velocity + item.transform.forward * 1000;
+                GameObject item = ObjectPoolManager.Instance.DequeueObject(bulletPrf);
+                item.GetComponent<Bullet>().Init(gunFireTrf.position, rigidbody.velocity + gunFireTrf.forward * 1000);
             }
 
         }
@@ -125,8 +128,9 @@ namespace kjh
             if (flareTrigger && flareDelayTime <= 0)
             {
                 flareDelayTime = flareFireDelay;
-                GameObject item = Instantiate(flarePrf);
+                GameObject item = ObjectPoolManager.Instance.DequeueObject(flarePrf);
                 item.GetComponent<Flare>().Init(this.transform.position, rigidbody.velocity + this.transform.up * -30 + new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)));
+                vehicleCombat.FlareDeploy();
             }
         }
 
@@ -135,7 +139,7 @@ namespace kjh
         /// </summary>
         /// <param name="aircraftVelocity"></param>
         /// <param name="target"></param>
-        public void Fire(Vector3 aircraftVelocity, Transform target)
+        public void Fire(Vector3 aircraftVelocity, VehicleCombat target)
         {
             GameObject useWeaponPrf;
             List<Transform> useWeaponPointList;

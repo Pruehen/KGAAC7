@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Radar : MonoBehaviour
 {    
-    [SerializeField] Transform lockOnTarget;
+    VehicleCombat lockOnTarget;
     [SerializeField] float radarMaxAngle;    
 
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
     /// </summary>
     /// <returns></returns>
-    public Transform GetTarget()
+    public VehicleCombat GetTarget()
     {
         return lockOnTarget;
     }    
@@ -58,7 +58,7 @@ public class Radar : MonoBehaviour
     public void LockOn()
     {
         float angleTemp = radarMaxAngle;
-        Transform targetTemp = null;
+        VehicleCombat targetTemp = null;
 
         List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;
         for (int i = 0; i < targetList.Count; i++)
@@ -68,7 +68,7 @@ public class Radar : MonoBehaviour
             float itemAngle = Vector3.Angle(this.transform.forward, itemTrf.transform.position - this.transform.position);
             if (itemAngle < angleTemp)
             {
-                targetTemp = itemTrf.transform;
+                targetTemp = itemTrf;
                 angleTemp = itemAngle;
             }
 
