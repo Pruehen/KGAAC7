@@ -21623,6 +21623,7 @@ MonoBehaviour:
   - {fileID: 6845275658883258966}
   bulletPrf: {fileID: 5651192895815570312, guid: fa48c0dd4ada8ae4b9b18a3ff5a1f8fc, type: 3}
   gunFireTrf: {fileID: 2991344471844700786}
+  flarePrf: {fileID: 6445041468265237155, guid: 9e0b13172d39ebe4c9a3244f6e20d657, type: 3}
 --- !u!114 &7978342567303173913
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -286,7 +286,7 @@ MonoBehaviour:
   active: 1
   enable:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   localClouds:
     m_OverrideState: 1
     m_Value: 1
@@ -481,7 +481,7 @@ MonoBehaviour:
     m_Value: 0.18
   shapeFactor:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.9
   shapeScale:
     m_OverrideState: 1
     m_Value: 2

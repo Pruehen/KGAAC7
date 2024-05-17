@@ -149,7 +149,7 @@ Rigidbody:
   m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &6445041468265237183
@@ -194,7 +194,7 @@ MonoBehaviour:
   maxTurnRate: 45
   maxSideForce: 350
   isTVC: 0
-  traceAngleLimit: 90
+  traceAngleLimit: 60
 --- !u!114 &521512651109278455
 MonoBehaviour:
   m_ObjectHideFlags: 0

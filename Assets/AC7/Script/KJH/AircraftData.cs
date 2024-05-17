@@ -30,12 +30,12 @@ public class AircraftData : MonoBehaviour
     /// </summary>
     /// <param name="speed"></param>
     /// <returns></returns>
-    public float EnginePower(float speed)
+    public float EnginePower(float speed, float altitude)
     {
         float axis = aircraftControl.throttle;
         if (axis >= 0)
         {
-            return enginePower * enginePowerCurve.Evaluate(speed) * axis;
+            return enginePower * enginePowerCurve.Evaluate(speed) * axis * Atmosphere.AtmosphericPressure(altitude * 0.5f);
         }
         else
         {
@@ -61,6 +61,26 @@ public class AircraftData : MonoBehaviour
         return pitchTorque * torqueCurve.Evaluate(speed) * pitch;
     }
     /// <summary>
+    /// 항공기가 저속일 때 스톨 토크를 반환하는 메서드
+    /// </summary>
+    /// <param name="speed"></param>
+    /// <returns></returns>
+    public float StallTorque(float speed)
+    {
+        if (speed > 300)
+            return 0;
+
+        float value = torqueCurve.Evaluate(speed);
+        if (value > 0.45f)
+        {
+            return 0;
+        }
+        else
+        {
+            return (0.45f - value) * 20;
+        }    
+    }
+    /// <summary>
     /// 현재 속도에 따른 롤 축 토크를 반환하는 메서드
     /// </summary>
     /// <param name="speed"></param>
@@ -79,12 +99,20 @@ public class AircraftData : MonoBehaviour
         return yawTorque * torqueCurve.Evaluate(speed) * aircraftControl.yaw;
     }
     /// <summary>
-    /// 항력 계수를 반환하는 메서드
+    /// 항력 계수를 반환하는 메서드. 에어브레이크 기능 추가됨
     /// </summary>
     /// <returns></returns>
     public float GetDC()
     {
-        return dragCoefficient;
+        float axis = aircraftControl.throttle;
+        if(axis >= 0)
+        {
+            return dragCoefficient;
+        }
+        else
+        {
+            return (1 + (-axis * 2)) * dragCoefficient;
+        }
     }
     /// <summary>
     /// 받음각에 따른 양력을 반환하는 메서드

@@ -4,9 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+
 public class TargetUI : MonoBehaviour
 {
-    AircraftMaster targetObject;
+    VehicleCombat targetObject;
 
     [Header("UI / Texts")]
     [SerializeField]
@@ -52,7 +53,7 @@ public class TargetUI : MonoBehaviour
     //ObjectInfo objectInfo;
     RectTransform rectTransform;
 
-    public AircraftMaster Target
+    public VehicleCombat Target
     {
         get
         {
@@ -64,9 +65,9 @@ public class TargetUI : MonoBehaviour
             targetObject = value;
             //objectInfo = targetObject.Info;
 
-            nameText.text = targetObject.AircraftSelecter().controlAircraft.name;
-            //nicknameText.text = objectInfo.ObjectNickname;
-            targetText.gameObject.SetActive(targetObject.vehicleCombat.mainTarget);
+            nameText.text = targetObject.name;
+            nicknameText.text = targetObject.nickname;
+            targetText.gameObject.SetActive(targetObject.mainTarget);
         }
     }
 
@@ -154,22 +155,34 @@ public class TargetUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         activeCamera = Camera.main;
 
-        if(targetObject == null && activeCamera == null)
+        if(targetObject == null || targetObject.IsDead())
+        {
+            TargetUIManager.Instance.RemoveListUI(this);
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
             return;
+        }
 
         Vector3 screenPosition = activeCamera.WorldToScreenPoint(targetObject.transform.position);
-        float distance = 1000;
-        //nextTargetText.SetActive(targetObject.isNextTarget);
+        float distance = Vector3.Distance(targetObject.transform.position, kjh.GameManager.Instance.player.transform.position);
+        nextTargetText.SetActive(false);
 
         // if screenPosition.z < 0, the object is behind camera
         if(screenPosition.z > 0)
         {
             // Text
-            distanceText.text = string.Format("{0:0}", distance);
+            if(distance < 1000)
+            {
+                distanceText.text = string.Format("{0:0}m", distance);
+            }
+            else
+            {
+                distanceText.text = string.Format("{0:0.##}km", distance * 0.001f);
+            }    
+
             // UI Position
             Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(activeCamera, targetObject.transform.position);
             Vector2 position = screenPoint - screenSize * 0.5f;

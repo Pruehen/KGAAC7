@@ -2,33 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetUIManager : MonoBehaviour
+public class TargetUIManager : SceneSingleton<TargetUIManager>
 {
     [SerializeField] GameObject targetUI;
     [SerializeField] AircraftMaster aircraftMaster;
     Radar radar;
 
-    List<Transform> targetTrfList;
-    List<TargetUI> targetUIList = new List<TargetUI>();
+    List<VehicleCombat> targetList;
+    List<TargetUI> useTargetUIList = new List<TargetUI>();
+    public void RemoveListUI(TargetUI targetUI)
+    {
+        useTargetUIList.Remove(targetUI);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         radar = aircraftMaster.GetComponent<Radar>();
-        targetTrfList = radar.targetList;
+        targetList = kjh.GameManager.Instance.activeTargetList;
     }
-
+    
     // Update is called once per frame
     void FixedUpdate()
     {
-        for (int i = 0; i < targetTrfList.Count; i++)
+        for (int i = 0; i < targetList.Count; i++)
         {
-            if(targetUIList.Count == i)
+            if (useTargetUIList.Count == i)
             {
-                targetUIList.Add(Instantiate(targetUI, this.transform).GetComponent<TargetUI>());
+                GameObject item = ObjectPoolManager.Instance.DequeueObject(targetUI);
+                item.transform.SetParent(this.transform);
+                useTargetUIList.Add(item.GetComponent<TargetUI>());
             }
 
-            targetUIList[i].Target = targetTrfList[i].GetComponent<AircraftMaster>();
+            useTargetUIList[i].Target = targetList[i];
         }
     }    
 }

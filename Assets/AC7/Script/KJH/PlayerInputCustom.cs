@@ -25,6 +25,8 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
 
     public UnityEvent onClick_X;
     public UnityEvent onClick_R;
+    public UnityEvent onClick_Fdown;
+    public UnityEvent onClick_Fup;
     public UnityEvent onClick_RightMouse;
     public UnityEvent onClick_LeftMouseDown;
     public UnityEvent onClick_LeftMouseUp;
@@ -66,6 +68,14 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
         if (Input.GetKeyDown(KeyCode.R))
         {
             onClick_R.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            onClick_Fdown.Invoke();
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            onClick_Fup.Invoke();
         }
     }
 
