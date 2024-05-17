@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1340515618079156043}
   - component: {fileID: 6564199381550458246}
   - component: {fileID: 2164135537011781969}
+  - component: {fileID: 5134550722281156703}
   - component: {fileID: 3413560363963453488}
   - component: {fileID: 4119542170463338235}
   m_Layer: 0
@@ -128,10 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7cf4d963174f44993f1fe244ad29c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetGroupTrf: {fileID: 0}
-  lockOnTarget: {fileID: 0}
   radarMaxAngle: 60
-  targetList: []
+  isEnemy: 0
 --- !u!114 &1340515618079156043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,10 +169,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c407bea0bacc6a45b7ac82764538825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aircraftControl: {fileID: 0}
-  waypoint: {x: 0, y: 0, z: 0}
-  trakingTarget: {fileID: 0}
   aiLevel: 3
+--- !u!114 &5134550722281156703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900060236050395660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f541bf8bdb64aef499ad4584fa5140a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3413560363963453488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainTarget: 0
+  name: 
+  nickname: 
   onDead:
     m_PersistentCalls:
       m_Calls:

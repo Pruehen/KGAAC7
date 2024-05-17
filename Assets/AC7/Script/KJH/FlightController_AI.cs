@@ -12,7 +12,13 @@ public class FlightController_AI : MonoBehaviour
     Vector3 waypoint;
 
     bool isDead = false;  
-    [SerializeField][Range(3f, 10f)] float aiLevel;//난이도 설정. 3부터 10까지의 값을 가짐. 값이 클수록 기동을 더 빡세게 함
+    [SerializeField][Range(3f, 10f)] float aiLevel;//난이도 설정. 3부터 10까지의 값을 가짐. 값이 클수록 기동을 더 강하게 함
+
+    float targetSpeed;
+    public void SetTargetSpeed(float value)
+    {
+        targetSpeed = value;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +28,9 @@ public class FlightController_AI : MonoBehaviour
 
         isDead = false;
 
-        CreateNewWayPoint_Forward();        
+        //CreateNewWayPoint_Forward();
+
+        targetSpeed = 360;
     }
     /*private void OnDrawGizmos()
     {
@@ -39,41 +47,7 @@ public class FlightController_AI : MonoBehaviour
             return;
         }
 
-        if (WayPointOnCheck())//웨이포인트에 도달했을 경우
-        {
-            CreateNewWayPoint_Cruise();
-        }
-
         ToWayPointMove();        
-    }
-
-    bool WayPointOnCheck()//웨이포인트와의 거리가 200 미만일 경우 true 반환
-    {
-        return (Vector3.Distance(waypoint, this.transform.position) < 200);        
-    }
-
-    /// <summary>
-    /// 순항 비행하는 웨이포인트를 생성
-    /// </summary>
-    public void CreateNewWayPoint_Cruise()
-    {
-        waypoint = this.transform.position + new Vector3(this.transform.forward.x, 0, this.transform.forward.z).normalized * 5000;
-    }
-
-    /// <summary>
-    /// 직진 비행하는 웨이포인트를 생성
-    /// </summary>
-    public void CreateNewWayPoint_Forward()
-    {
-        waypoint = this.transform.position + this.transform.forward * 1000;
-    }
-
-    /// <summary>
-    /// 특정 범위 내에서 랜덤 비행하는 웨이포인트를 생성
-    /// </summary>
-    public void CreateNewWayPoint_Random(Vector3 center, float range)
-    {
-        waypoint = center + new Vector3(Random.Range(-range, range), Random.Range(1000, 6000), Random.Range(-range, range));
     }
 
     /// <summary>
@@ -105,7 +79,7 @@ public class FlightController_AI : MonoBehaviour
         float pitchOrder = 0;
         float rollOrder = 0;
         float yawOrder = 0;
-        float throttleOrder = 1;
+        float throttleOrder = targetSpeed - velocity.magnitude;
 
         if (localOrder_PD.y > -0.2f)
         {
@@ -122,7 +96,14 @@ public class FlightController_AI : MonoBehaviour
         }
         else
         {
-            rollOrder = 1;
+            if(yawOrder > 0)
+            {
+                rollOrder = 1;
+            }
+            else
+            {
+                rollOrder = -1;
+            }
         }
 
         float maxMobility = aiLevel * 0.1f;
@@ -137,6 +118,7 @@ public class FlightController_AI : MonoBehaviour
         pitchOrder = Mathf.Clamp(pitchOrder, -maxMobility, maxMobility);
         rollOrder = Mathf.Clamp(rollOrder, -1, 1);
         yawOrder = Mathf.Clamp(yawOrder, -1, 1);
+        throttleOrder = Mathf.Clamp(throttleOrder, -1, 1);
 
         aircraftControl.SetAxisValue(pitchOrder, rollOrder, yawOrder, throttleOrder);
     }

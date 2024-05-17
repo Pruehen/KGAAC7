@@ -5,7 +5,9 @@ using UnityEngine;
 public class Radar : MonoBehaviour
 {    
     VehicleCombat lockOnTarget;
-    [SerializeField] float radarMaxAngle;    
+    [SerializeField] float radarMaxAngle;
+    [SerializeField] bool isEnemy;
+    
 
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
@@ -15,12 +17,6 @@ public class Radar : MonoBehaviour
     {
         return lockOnTarget;
     }    
-
-    // Start is called before the first frame update
-    void Start()
-    {        
-
-    }
 
     private void Update()
     {
@@ -57,23 +53,30 @@ public class Radar : MonoBehaviour
     /// </summary>
     public void LockOn()
     {
-        float angleTemp = radarMaxAngle;
-        VehicleCombat targetTemp = null;
-
-        List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;
-        for (int i = 0; i < targetList.Count; i++)
+        if (!isEnemy)
         {
-            VehicleCombat itemTrf = targetList[i];
+            float angleTemp = radarMaxAngle;
+            VehicleCombat targetTemp = null;
 
-            float itemAngle = Vector3.Angle(this.transform.forward, itemTrf.transform.position - this.transform.position);
-            if (itemAngle < angleTemp)
+            List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;
+            for (int i = 0; i < targetList.Count; i++)
             {
-                targetTemp = itemTrf;
-                angleTemp = itemAngle;
+                VehicleCombat itemTrf = targetList[i];
+
+                float itemAngle = Vector3.Angle(this.transform.forward, itemTrf.transform.position - this.transform.position);
+                if (itemAngle < angleTemp)
+                {
+                    targetTemp = itemTrf;
+                    angleTemp = itemAngle;
+                }
+
             }
 
+            lockOnTarget = targetTemp;
         }
-
-        lockOnTarget = targetTemp;
+        else
+        {
+            lockOnTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
+        }
     }
 }
