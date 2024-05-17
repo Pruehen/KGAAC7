@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePos: {fileID: 9037683002944754987}
-  _fireInterval: 0.01
-  _bulletProjectile: {fileID: 6784412265874072211, guid: a57cb684b5b848a43b3820a1e772e38b, type: 3}
-  bulletSpeed: 0
+  _bulletProjectile: {fileID: 5651192895815570312, guid: 9de00e7634e92e84287b23f7d15f0f3b, type: 3}
+  bulletSpeed: 1050
 --- !u!1 &853190167377751788
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +256,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2106577080735849230}
   - component: {fileID: 4419792818022087899}
+  - component: {fileID: 8154731335104930543}
+  - component: {fileID: 944036853}
+  - component: {fileID: 944036854}
   m_Layer: 0
   m_Name: M163
   m_TagString: Untagged
@@ -298,6 +300,62 @@ MonoBehaviour:
   _minXAxis: 0
   _maxXAxis: 180
   _muzzleTrf: {fileID: 9037683002944754987}
+--- !u!65 &8154731335104930543
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618973821976248756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.69, y: 4.7, z: 11.29}
+  m_Center: {x: 0, y: 2.54, z: 0}
+--- !u!114 &944036853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618973821976248756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4317c131efe0b4f9cb030aaffac561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTarget: 0
+  name: M163
+  nickname: 
+  onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4419792818022087899}
+        m_TargetAssemblyTypeName: M163, Assembly-CSharp
+        m_MethodName: Dead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &944036854
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618973821976248756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2968746538920140763
 GameObject:
   m_ObjectHideFlags: 0

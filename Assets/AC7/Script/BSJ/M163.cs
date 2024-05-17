@@ -34,29 +34,30 @@ public class M163 : MonoBehaviour
 
     Vulcan _vulcan;
 
-
+    bool _isDead;
     private void Awake()
     {
         _turretTrf = transform.GetChild(1);
         _gunTrf = transform.GetChild(1).GetChild(0);
         _vulcan = _gunTrf.GetComponent<Vulcan>();
-        bsj.GameManager.Instance.OnPlayerSpawned += Init;
+        //bsj.GameManager.Instance.OnPlayerSpawned += Init;
     }
 
     private void Start()
     {
         _bulletSpeed = _vulcan.bulletSpeed;
-        bsj.GameManager.Instance.OnPlayerSpawned += Init;
+        //bsj.GameManager.Instance.OnPlayerSpawned += Init;
+        Init();
     }
     Vector3 prevVel;
     private void Init()
     {
-        _target = bsj.GameManager.Instance.player.GetComponent<Rigidbody>();
+        _target = kjh.GameManager.Instance.player.GetComponent<Rigidbody>();
         prevVel = _target.velocity;
     }
     void Update()
     {
-        if(IsInRange())
+        if(IsInRange() && !_isDead)
         {
             Vector3 deltaVel = _target.velocity - prevVel;
             _desiredDirection = FireControlSystem.CalcFireDirection(_muzzleTrf.position, _target, _bulletSpeed, _accuracyLoop, deltaVel);
@@ -83,5 +84,18 @@ public class M163 : MonoBehaviour
     private bool IsInAngle(float verticalAngle)
     {
         return verticalAngle >= _minXAxis && verticalAngle <= _maxXAxis;
+    }
+    public void Dead()
+    {
+        _isDead = true;
+        EffectManager.Instance.AircraftFireEffectGenerate(this.transform);
+        StartCoroutine(DeadEffect());
+    }
+
+    IEnumerator DeadEffect()
+    {
+        yield return new WaitForSeconds(2.5f);
+        EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
+        Destroy(this.gameObject);
     }
 }

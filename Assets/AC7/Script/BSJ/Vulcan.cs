@@ -5,42 +5,39 @@ using UnityEngine;
 public class Vulcan : MonoBehaviour
 {
     [SerializeField] private Transform _firePos;
-    [SerializeField] private float _fireInterval = 0.01f;
+    private float _fireInterval;
     private float _lifeTime = 0f;
 
     [SerializeField] private GameObject _bulletProjectile;
     public float bulletSpeed;
 
 
-    private void Awake()
+    private void Start()
     {
-        bulletSpeed = _bulletProjectile.GetComponent<bsj.Bullet>()._bulletSpeed;
+        _fireInterval = _bulletProjectile.GetComponent<WeaponData>().ReloadTime();
     }
+
     private void Update()
     {
-        if(_lifeTime >= _fireInterval)
-        {
-            _lifeTime = 0f;
-            Fire();
-        }
+        _lifeTime += Time.deltaTime;
     }
+
 
     public void Fire()
     {
+        if (_lifeTime >= _fireInterval)
+        {
+            _lifeTime = 0f;
+        }
+        else
+        {
+            return;
+        }
         GameObject item = ObjectPoolManager.Instance.DequeueObject(_bulletProjectile);
-        bsj.Bullet bullet = item.GetComponent<bsj.Bullet>();
+        Rigidbody bullet = item.GetComponent<Rigidbody>();
         bullet.transform.position = _firePos.position;
         bullet.transform.rotation = _firePos.rotation;
-        bullet.Init();
-        ObjectPoolManager.Instance.EnqueueObject(item, 30f);
-    }
-    public void FireTest(Vector3 pos, Quaternion rot)
-    {
-        GameObject item = ObjectPoolManager.Instance.DequeueObject(_bulletProjectile);
-        bsj.Bullet bullet = item.GetComponent<bsj.Bullet>();
-        bullet.transform.position = pos;
-        bullet.transform.rotation = rot;
-        bullet.Init();
+        bullet.velocity = bullet.transform.forward * bulletSpeed;
         ObjectPoolManager.Instance.EnqueueObject(item, 30f);
     }
 
