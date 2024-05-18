@@ -20,8 +20,8 @@ public class JetEngineController : MonoBehaviour
     float maxVolume = 1f;
     [SerializeField]
     float volumRatio = 1f;
-    [SerializeField]
-    float lowpassValue = 2500;
+    //[SerializeField]
+    //float lowpassValue = 2500;
     [SerializeField] AircraftEngineSound _engineSound;
 
     float inputValue;
@@ -32,12 +32,13 @@ public class JetEngineController : MonoBehaviour
 
     void SetEngineAudio()
     {
-        _engineSound.SetAfterburnerVolum(throttleAmount * maxVolume);
+        //_engineSound.SetAfterburnerVolum(throttleAmount * maxVolume);
+        _engineSound.SetAfterburnerVolum(throttleAmount);
     }
 
     public void SetAudioEffect(bool is1stView)
     {
-        _engineSound.SetCutoffFrequency((is1stView == true) ? lowpassValue : 22000);
+        //_engineSound.SetCutoffFrequency((is1stView == true) ? lowpassValue : 22000);
     }
 
     void OnDisable()

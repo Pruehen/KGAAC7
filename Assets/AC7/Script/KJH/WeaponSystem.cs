@@ -27,9 +27,19 @@ namespace kjh
         float flareFireDelay = 0.1f;
         float flareDelayTime = 0;
 
+        FadableAudio _gunAudio;
+
         public void SetGunTrigger(bool value)
         {
             gunTrigger = value;
+            if(value)
+            {
+                _gunAudio.Play();
+            }
+            else
+            {
+                _gunAudio.Stop();
+            }
         }
         public void SetFlareTrigger(bool value)
         {
@@ -68,6 +78,8 @@ namespace kjh
 
             gunTrigger = false;
             rigidbody = this.transform.parent.GetComponent<Rigidbody>();
+
+            _gunAudio = GetComponent<FadableAudio>();
         }
 
         // Update is called once per frame

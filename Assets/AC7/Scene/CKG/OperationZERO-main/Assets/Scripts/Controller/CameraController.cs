@@ -191,13 +191,13 @@ public class CameraController : MonoBehaviour
             case CameraIndex.FirstView:
                 engineAudioSource.clip = engineInClip;
                 engineAudioSource.Play();
-                jetEngineController.SetAudioEffect(true);
+                //jetEngineController.SetAudioEffect(true);
                 break;
                 
             case CameraIndex.ThirdView:
                 engineAudioSource.clip = engineOutClip;
                 engineAudioSource.Play();
-                jetEngineController.SetAudioEffect(false);
+                //jetEngineController.SetAudioEffect(false);
                 break;
 
             default:

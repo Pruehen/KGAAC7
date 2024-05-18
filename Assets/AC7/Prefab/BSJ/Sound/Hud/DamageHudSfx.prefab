@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8044770756667741761}
   - component: {fileID: 1550276330068146974}
   m_Layer: 0
-  m_Name: EngineSFX
+  m_Name: DamageHudSfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,18 +42,18 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 16784411322c8414aaf5802ece9dffb0, type: 2}
-  m_audioClip: {fileID: 8300000, guid: bb6ca887c0c7a8143a0ad5222ff4c601, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1907db283eaf2954882146bddec45d81, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 100
-  MaxDistance: 600
+  Priority: 0
+  DopplerLevel: 0
+  MinDistance: 700
+  MaxDistance: 3000
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -88,7 +88,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
