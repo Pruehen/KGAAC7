@@ -12,6 +12,8 @@ public class TargetUI : MonoBehaviour
     [Header("UI / Texts")]
     [SerializeField]
     RawImage frameImage;
+    [SerializeField] RawImage outerLock;
+    [SerializeField] RawImage innerLock;
 
     [SerializeField]
     TextMeshProUGUI distanceText;
@@ -68,6 +70,8 @@ public class TargetUI : MonoBehaviour
             nameText.text = targetObject.name;
             nicknameText.text = targetObject.nickname;
             targetText.gameObject.SetActive(targetObject.mainTarget);
+            isTargetted = targetObject.isTargeted;
+            SetTargetted();
         }
     }
 
@@ -98,6 +102,20 @@ public class TargetUI : MonoBehaviour
         this.isTargetted = isTargetted;
         SetBlink(isTargetted);
         frameImage.color = GameManager.NormalColor;
+    }
+
+    void SetTargetted()
+    {
+        if(isTargetted)
+        {
+            outerLock.gameObject.SetActive(true);
+            innerLock.gameObject.SetActive(true);
+        }
+        else
+        {
+            outerLock.gameObject.SetActive(false);
+            innerLock.gameObject.SetActive(false);
+        }
     }
 
     void SetBlink(bool blink)

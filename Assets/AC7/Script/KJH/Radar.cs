@@ -71,8 +71,17 @@ public class Radar : MonoBehaviour
                 }
 
             }
+            if (lockOnTarget != null)
+            {
+                lockOnTarget.isTargeted = false;
+            }
 
             lockOnTarget = targetTemp;
+
+            if(lockOnTarget != null)
+            {
+                lockOnTarget.isTargeted = true;
+            }
         }
         else
         {
