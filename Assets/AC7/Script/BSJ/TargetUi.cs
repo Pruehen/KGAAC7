@@ -43,8 +43,6 @@ public class TargetUi : MonoBehaviour
         resultPos = new Vector3(Mathf.Clamp(resultPos.x, _minx, _maxx), Mathf.Clamp(resultPos.y, _miny, _maxy), 0f);
         transform.localPosition = resultPos;
         //방향 로컬로 변환
-        //보고있는 방향을 기준으로 월드 로테이션을 받아 y 축을 스프라이트의 z축에 넣고싶음
-        //문제발생 뒤집어져있는 녀석들 발견
         Quaternion _currentItemLookRot = Quaternion.LookRotation(-_vehicleCombat.transform.forward);
         Quaternion resultRot = _currentItemLookRot * Quaternion.Inverse(_virtualMinimapPlayerAxis.rotation);
         transform.rotation = Quaternion.Euler(180f, 0f, (resultRot.eulerAngles.y));
