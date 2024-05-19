@@ -251,8 +251,8 @@ public class UIControl : MonoBehaviour
 
     public void SwitchWeapon(WeaponSlot[] weaponSlots, bool useSpecialWeapon, Missile missile, bool playAudio = true)
     {
-        mslIndicator.SetActive(!useSpecialWeapon);
-        spwIndicator.SetActive(useSpecialWeapon);
+        //mslIndicator.SetActive(!useSpecialWeapon);
+        //spwIndicator.SetActive(useSpecialWeapon);
 
         // Justify that weaponSlots contains 2 slots
         //leftMslCooldownImage.SetWeaponData(weaponSlots[0], missile.missileFrameSprite, missile.missileFillSprite);

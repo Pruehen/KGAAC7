@@ -108,6 +108,7 @@ public class Radar : MonoBehaviour
         else
         {
             lockOnTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
+            lockOnTarget.isTargeted = true;
         }
     }
 }
