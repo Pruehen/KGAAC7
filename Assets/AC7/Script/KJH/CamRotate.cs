@@ -30,9 +30,17 @@ public class CamRotate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<AudioListener>().enabled = false;
+        StartCoroutine(AudioListenerOn());
         aircraftControl = aircraftMaster.AircraftSelecter().aircraftControl;
         initLocalPos = this.transform.localPosition;
         camAxisTrf = this.transform.parent;
+    }
+
+    IEnumerator AudioListenerOn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<AudioListener>().enabled = true;
     }
 
     // Update is called once per frame
