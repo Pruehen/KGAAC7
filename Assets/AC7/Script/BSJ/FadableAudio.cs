@@ -27,7 +27,8 @@ public class FadableAudio : MonoBehaviour
     {
         if (_fadeIn)
         {
-            StartCoroutine(FadeIn(1f / _fadeInLength));
+            _audioSource.Play();
+            //StartCoroutine(FadeIn(1f / _fadeInLength));
         }
         else
         {
@@ -41,7 +42,8 @@ public class FadableAudio : MonoBehaviour
         if (_fadeOut)
         {
             _fadeOuting = true;
-            StartCoroutine(FadeOut(1f / _fadeOutLength));
+            _audioSource.Pause();
+            //StartCoroutine(FadeOut(1f / _fadeOutLength));
         }
         else
         {
@@ -80,5 +82,8 @@ public class FadableAudio : MonoBehaviour
         _fadeOuting = false;
     }
 
-
+    public bool IsPlaying()
+    {
+        return _audioSource.isPlaying;
+    }
 }
