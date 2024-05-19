@@ -310,8 +310,8 @@ public class UIControl : MonoBehaviour
     {
         firstViewAdjustAngle = new Vector2(1 / firstViewAdjustAngle.x, 1 / firstViewAdjustAngle.y);
 
-        mslIndicator.SetActive(true);
-        spwIndicator.SetActive(false);
+        //mslIndicator.SetActive(true);
+        //spwIndicator.SetActive(false);
 
         SetScoreText(0);
         SetWarningUIColor(false);
