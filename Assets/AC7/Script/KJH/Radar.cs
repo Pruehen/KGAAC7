@@ -6,6 +6,8 @@ public class Radar : MonoBehaviour
 {    
     [SerializeField] Transform lockOnTarget;
     [SerializeField] float radarMaxAngle;    
+    [SerializeField] GameObject _lockOnSfxPrefab;    
+    AudioSource _lockOnSfx;    
 
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
@@ -19,6 +21,11 @@ public class Radar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {        
+        if(_lockOnSfxPrefab != null )
+        {
+            GameObject item = Instantiate(_lockOnSfxPrefab);
+            _lockOnSfx = item.GetComponent<AudioSource>();
+        }
 
     }
 
@@ -30,12 +37,20 @@ public class Radar : MonoBehaviour
             {
                 lockOnTarget = null;
             }*/
-            if(lockOnTarget.GetComponent<VehicleCombat>().IsDead())
+            if (lockOnTarget.GetComponent<VehicleCombat>().IsDead())
             {
                 //lockOnTarget = null;
                 StartCoroutine(NextTargetLock());
             }
-        }        
+            if (!_lockOnSfx.isPlaying)
+            {
+                _lockOnSfx?.Play();
+            }
+        }
+        else
+        {
+            _lockOnSfx?.Pause();
+        }
     }
 
     IEnumerator NextTargetLock()
