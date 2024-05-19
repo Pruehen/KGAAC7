@@ -75,7 +75,7 @@ public class Radar : MonoBehaviour
     {
         if (!isEnemy)
         {
-            float angleTemp = radarMaxAngle;
+            float angleTemp = 200;
             VehicleCombat targetTemp = null;
 
             List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;
@@ -94,6 +94,8 @@ public class Radar : MonoBehaviour
             if (lockOnTarget != null)
             {
                 lockOnTarget.isTargeted = false;
+                lockOnTarget.isMissileLock = false;
+                lockOnTarget.isRaderLock = false;
             }
 
             lockOnTarget = targetTemp;
