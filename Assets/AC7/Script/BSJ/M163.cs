@@ -80,9 +80,17 @@ public class M163 : MonoBehaviour
             if (IsInAngle(verticalAngle))
             {
                 _gunTrf.rotation = Quaternion.Euler(resultRotation.eulerAngles.x, _gunTrf.rotation.eulerAngles.y, resultRotation.eulerAngles.z);
-                _vulcan.Fire();
+                _vulcan.Fire(true);
+            }
+            else
+            {
+                _vulcan.Fire(false);
             }
 
+        }
+        else
+        {
+            _vulcan.Fire(false);
         }
         prevVel = _target.velocity;
     }
