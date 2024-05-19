@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1550276330068146974}
   - component: {fileID: 1047027405542856838}
   m_Layer: 0
-  m_Name: ExplosionClose 1
+  m_Name: BulletPassing 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 16784411322c8414aaf5802ece9dffb0, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 4a228068c03921042844c4a26a04cf2d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 08a44d935daf5d94ea5951a50bc2e41d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -53,8 +53,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 0
   DopplerLevel: 0
-  MinDistance: 0
-  MaxDistance: 500
+  MinDistance: 9.9009905
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

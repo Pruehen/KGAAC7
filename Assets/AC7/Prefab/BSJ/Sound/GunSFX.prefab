@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8044770756667741761}
   - component: {fileID: 1550276330068146974}
-  - component: {fileID: 5043867732942864224}
   - component: {fileID: 1047027405542856838}
+  - component: {fileID: -8862438319458743612}
   m_Layer: 0
   m_Name: GunSFX
   m_TagString: Untagged
@@ -46,7 +46,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 16784411322c8414aaf5802ece9dffb0, type: 2}
   m_audioClip: {fileID: 8300000, guid: fb2099edb5b26a94fb82cdc7badedfd8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.154
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -55,7 +55,7 @@ AudioSource:
   Priority: 0
   DopplerLevel: 0
   MinDistance: 0
-  MaxDistance: 1000
+  MaxDistance: 3000
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -130,31 +130,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!169 &5043867732942864224
-AudioLowPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759765917466483415}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_LowpassResonanceQ: 1
-  lowpassLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.2911778
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1047027405542856838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +143,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playAudio: 0
+--- !u!164 &-8862438319458743612
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759765917466483415}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: 0
+  m_RoomHF: 0
+  m_DecayTime: 0.53
+  m_DecayHFRatio: 0.5
+  m_ReflectionsLevel: -10000
+  m_ReverbLevel: 0
+  m_ReverbDelay: 0.04
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 27
