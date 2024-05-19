@@ -19,12 +19,15 @@ public class MainMenuController : MonoBehaviour
     GameObject mainMenuScreen;
     
     [SerializeField]
-    GameObject difficultyMenuScreen;
+    GameObject selectPlayScreen;
+    [SerializeField]
+    GameObject missionSettings;
     [SerializeField]
     GameObject settingsScreen;
     [SerializeField]
     GameObject resultScreen;
-
+    [SerializeField]
+    GameObject airCombatSettings;
     [SerializeField]
     TextMeshProUGUI descriptionText;
     
@@ -135,11 +138,18 @@ public class MainMenuController : MonoBehaviour
         GameSettings.difficultySetting = (GameSettings.Difficulty)difficulty;
     }
     
-    public void ShowDifficultySettings()
+    public void ShowSelectPlayScreen()
     {
-        SetCurrentActiveScreen(difficultyMenuScreen);
+        SetCurrentActiveScreen(selectPlayScreen);
     }
-
+    public void ShowMissonSettings()
+    {
+        SetCurrentActiveScreen(missionSettings);
+    }
+    public void ShowAirCombatSettings()
+    {
+        SetCurrentActiveScreen(airCombatSettings);
+    }
     public void ShowMainMenu()
     {
         SetCurrentActiveScreen(mainMenuScreen);
