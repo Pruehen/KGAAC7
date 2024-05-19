@@ -18,8 +18,19 @@ namespace bsj
             AudioSource source = item.GetComponent<AudioSource>();
             source.loop = loop;
             source.Play();
-            if(!loop)
-                StartCoroutine(DelayEnqueue(item ,source.clip.length));
+            if (!loop)
+                StartCoroutine(DelayEnqueue(item, source.clip.length));
+            return item;
+        }
+        public GameObject SpawnInPosition(GameObject prefab, Vector3 position, bool loop = false)
+        {
+            GameObject item = ObjectPoolManager.Instance.DequeueObject(prefab);
+            item.transform.position = position;
+            AudioSource source = item.GetComponent<AudioSource>();
+            source.loop = loop;
+            source.Stop();
+            if (!loop)
+                StartCoroutine(DelayEnqueue(item, source.clip.length));
             return item;
         }
         /// <summary>
@@ -32,7 +43,14 @@ namespace bsj
         /// <returns></returns>
         public GameObject PlayAttached(GameObject prefab, Transform parent, bool loop = false)
         {
-            GameObject item = PlayInPosition(prefab,parent.position, loop);
+            GameObject item = PlayInPosition(prefab, Vector3.zero, loop);
+            item.transform.SetParent(parent, false);
+            return item;
+        }
+
+        public GameObject SpawnAttached(GameObject prefab, Transform parent, bool loop = false)
+        {
+            GameObject item = SpawnInPosition(prefab, Vector3.zero, loop);
             item.transform.SetParent(parent, false);
             return item;
         }
