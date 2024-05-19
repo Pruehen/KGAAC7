@@ -8,7 +8,9 @@ public class VehicleCombat : MonoBehaviour, IFightable
     public bool mainTarget = false;
     public string name;
     public string nickname;
-    public int targetedLevel;
+    public bool isTargeted;
+    public bool isRaderLock;
+    public bool isMissileLock;
 
     void IFightable.DealDamage(IFightable target, float damage)
     {
@@ -26,7 +28,9 @@ public class VehicleCombat : MonoBehaviour, IFightable
     {
         combat.Init(this.transform, 100);        
         combat.OnDead += Dead;
-        targetedLevel = 0;
+        isTargeted = false;
+        isRaderLock = false;
+        isMissileLock = false;
     }
 
     public bool IsDead()

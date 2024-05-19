@@ -46,7 +46,7 @@ public class TargetUI : MonoBehaviour
     [SerializeField]
     float blinkRepeatTime;
 
-    int targetedLevel;
+    bool isTargeted;
     bool isNextTarget;
     bool isBlinking;
 
@@ -75,7 +75,7 @@ public class TargetUI : MonoBehaviour
             nameText.text = targetObject.name;
             nicknameText.text = targetObject.nickname;
             targetText.gameObject.SetActive(targetObject.mainTarget);
-            targetedLevel = targetObject.targetedLevel;
+            isTargeted = targetObject.isTargeted;
             SetTargetted();
         }
     }
@@ -111,20 +111,29 @@ public class TargetUI : MonoBehaviour
 
     void SetTargetted()
     {
-        if(targetedLevel == 0)
-        {
-            outerLock.gameObject.SetActive(false);
-            innerLock.gameObject.SetActive(false);
-        }
-        else
+        if(isTargeted)
         {
             outerLock.gameObject.SetActive(true);
             innerLock.gameObject.SetActive(true);
         }
+        else
+        {
+            outerLock.gameObject.SetActive(false);
+            innerLock.gameObject.SetActive(false);
+        }
     }
     void TargetIsInRange()
     {
-        if(targetObject.targetedLevel >= 2)
+        if(targetObject.isRaderLock)
+        {
+            innerLock.color = warningColor;
+        }
+        else
+        {
+            innerLock.color = normalColor;
+        }
+
+        if (targetObject.isMissileLock)
         {
             outerLock.color = warningColor;
         }

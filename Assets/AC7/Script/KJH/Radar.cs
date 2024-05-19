@@ -27,17 +27,26 @@ public class Radar : MonoBehaviour
     private void Update()
     {
         if (lockOnTarget != null)
-        {           
-            if (Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position) <= weaponSystem.UseMissileSeekerAngle())
+        {
+            float toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
+            if (toTargetAngle <= weaponSystem.UseMissileSeekerAngle())
             {
-                lockOnTarget.targetedLevel = 2;
+                lockOnTarget.isMissileLock = true;
             }
             else
             {
-                lockOnTarget.targetedLevel = 1;
+                lockOnTarget.isMissileLock = false;
+            }
+            if (toTargetAngle <= radarMaxAngle)
+            {
+                lockOnTarget.isRaderLock = true;
+            }
+            else
+            {
+                lockOnTarget.isRaderLock = false;
             }
 
-            if(lockOnTarget.GetComponent<VehicleCombat>().IsDead())
+            if (lockOnTarget.GetComponent<VehicleCombat>().IsDead())
             {
                 //lockOnTarget = null;
                 StartCoroutine(NextTargetLock());
@@ -84,14 +93,14 @@ public class Radar : MonoBehaviour
             }
             if (lockOnTarget != null)
             {
-                lockOnTarget.targetedLevel = 0;
+                lockOnTarget.isTargeted = false;
             }
 
             lockOnTarget = targetTemp;
 
             if(lockOnTarget != null)
             {
-                lockOnTarget.targetedLevel = 1;
+                lockOnTarget.isTargeted = true;
             }
         }
         else
