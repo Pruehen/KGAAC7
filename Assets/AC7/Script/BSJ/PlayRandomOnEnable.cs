@@ -18,20 +18,23 @@ public class PlayRandomOnEnable : MonoBehaviour
         float dist = Vector3.Distance(kjh.GameManager.Instance.player.transform.position, transform.position);
         if(dist >= 1000f)
         {
-            PlaySound(_farSfxPrefabs[Random.Range(0, _farSfxPrefabs.Length)]);
+            if (!(_farSfxPrefabs.Length == 0))
+                PlaySound(_farSfxPrefabs[Random.Range(0, _farSfxPrefabs.Length)]);
         }
         else if( dist >= 200f)
         {
-            PlaySound(_midSfxPrefabs[Random.Range(0, _midSfxPrefabs.Length)]);
+            if (!(_midSfxPrefabs.Length == 0))
+                PlaySound(_midSfxPrefabs[Random.Range(0, _midSfxPrefabs.Length)]);
         }
         else
         {
-            PlaySound(_closeSfxPrefabs[Random.Range(0, _closeSfxPrefabs.Length)]);
+            if (!(_closeSfxPrefabs.Length == 0))
+                PlaySound(_closeSfxPrefabs[Random.Range(0, _closeSfxPrefabs.Length)]);
         }
 
     }
     private void PlaySound(GameObject sfxPrefab)
     {
-        bsj.SoundManager.Instance.PlayInPosition(sfxPrefab, transform.position);
+        bsj.SoundManager.Instance.PlayAttached(sfxPrefab, transform);
     }
 }
