@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSystem: {fileID: 0}
-  _gunSound: {fileID: 0}
 --- !u!114 &6564199381550458246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +349,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 900060236050395662}
     m_Modifications:
+    - target: {fileID: 401730714503322099, guid: e955578089c3a024fa91f5e5c7598d3b, type: 3}
+      propertyPath: volumRatio
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967664719725082392, guid: e955578089c3a024fa91f5e5c7598d3b, type: 3}
+      propertyPath: volumRatio
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7461215751716273133, guid: e955578089c3a024fa91f5e5c7598d3b, type: 3}
       propertyPath: m_Name
       value: MiG-29A
