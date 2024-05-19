@@ -17,6 +17,11 @@ namespace kjh
             float coolTime = weaponPrfList[equipedWeaponIndexList[index]].GetComponent<WeaponData>().ReloadTime();
             return 1 - (weaponCoolDownList[index] / coolTime);
         }
+        public bool ActiveMissile(int index)
+        {
+            return (equipedWeaponIndexList[index] == useWeaponIndex);
+        }
+
         public float UseMissileSeekerAngle()
         {
             return weaponDataList[useWeaponIndex].MaxSeekerAngle();
@@ -24,6 +29,7 @@ namespace kjh
 
 
         int useWeaponIndex;
+        public System.Action weaponChange;
 
         [SerializeField] GameObject bulletPrf;
         [SerializeField] Transform gunFireTrf;
@@ -57,6 +63,7 @@ namespace kjh
             {
                 useWeaponIndex = 0;
             }
+            weaponChange?.Invoke();
 
             //Debug.Log(useWeaponIndex);
         }
