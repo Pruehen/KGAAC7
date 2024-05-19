@@ -1,3 +1,4 @@
+using kjh;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class Radar : MonoBehaviour
     VehicleCombat lockOnTarget;
     [SerializeField] float radarMaxAngle;
     [SerializeField] bool isEnemy;
-    
+    WeaponSystem weaponSystem;
 
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
@@ -16,16 +17,26 @@ public class Radar : MonoBehaviour
     public VehicleCombat GetTarget()
     {
         return lockOnTarget;
-    }    
+    }
+
+    private void Start()
+    {
+        weaponSystem = GetComponent<AircraftMaster>().AircraftSelecter().weaponSystem;
+    }
 
     private void Update()
     {
         if (lockOnTarget != null)
-        {
-            /*if(Vector3.Angle(this.transform.forward, lockOnTarget.position - this.transform.position) > radarMaxAngle)
+        {           
+            if (Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position) <= weaponSystem.UseMissileSeekerAngle())
             {
-                lockOnTarget = null;
-            }*/
+                lockOnTarget.targetedLevel = 2;
+            }
+            else
+            {
+                lockOnTarget.targetedLevel = 1;
+            }
+
             if(lockOnTarget.GetComponent<VehicleCombat>().IsDead())
             {
                 //lockOnTarget = null;
@@ -73,14 +84,14 @@ public class Radar : MonoBehaviour
             }
             if (lockOnTarget != null)
             {
-                lockOnTarget.isTargeted = false;
+                lockOnTarget.targetedLevel = 0;
             }
 
             lockOnTarget = targetTemp;
 
             if(lockOnTarget != null)
             {
-                lockOnTarget.isTargeted = true;
+                lockOnTarget.targetedLevel = 1;
             }
         }
         else

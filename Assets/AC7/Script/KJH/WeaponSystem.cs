@@ -6,7 +6,8 @@ namespace kjh
 {
     public class WeaponSystem : MonoBehaviour
     {
-        [SerializeField] List<GameObject> weaponPrfList;      
+        [SerializeField] List<GameObject> weaponPrfList;        
+        List<WeaponData> weaponDataList = new List<WeaponData>();
         [SerializeField] List<Transform> fireTrfList;
         [SerializeField] List<int> equipedWeaponIndexList;
         List<float> weaponCoolDownList; //MSL 무기 개수        
@@ -16,6 +17,11 @@ namespace kjh
             float coolTime = weaponPrfList[equipedWeaponIndexList[index]].GetComponent<WeaponData>().ReloadTime();
             return 1 - (weaponCoolDownList[index] / coolTime);
         }
+        public float UseMissileSeekerAngle()
+        {
+            return weaponDataList[useWeaponIndex].MaxSeekerAngle();
+        }
+
 
         int useWeaponIndex;
 
@@ -56,7 +62,7 @@ namespace kjh
         }
 
         // Start is called before the first frame update
-        void Start()
+        public void Init()
         {
             useWeaponIndex = 0;
 
@@ -69,6 +75,11 @@ namespace kjh
             gunTrigger = false;
             rigidbody = this.transform.parent.GetComponent<Rigidbody>();
             vehicleCombat = this.transform.parent.GetComponent<VehicleCombat>();
+
+            for (int i = 0; i < weaponPrfList.Count; i++)
+            {
+                weaponDataList.Add(weaponPrfList[i].GetComponent<WeaponData>());
+            }
         }
 
         // Update is called once per frame

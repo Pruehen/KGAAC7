@@ -37,11 +37,16 @@ public class TargetUI : MonoBehaviour
     GameObject blinkUIObject;
     [SerializeField]
     GameObject nextTargetText;
-    
+
+    [SerializeField]
+    Color normalColor;
+    [SerializeField]
+    Color warningColor;
+
     [SerializeField]
     float blinkRepeatTime;
 
-    bool isTargetted;
+    int targetedLevel;
     bool isNextTarget;
     bool isBlinking;
 
@@ -70,7 +75,7 @@ public class TargetUI : MonoBehaviour
             nameText.text = targetObject.name;
             nicknameText.text = targetObject.nickname;
             targetText.gameObject.SetActive(targetObject.mainTarget);
-            isTargetted = targetObject.isTargeted;
+            targetedLevel = targetObject.targetedLevel;
             SetTargetted();
         }
     }
@@ -99,24 +104,36 @@ public class TargetUI : MonoBehaviour
 
     public void SetTargetted(bool isTargetted)
     {
-        this.isTargetted = isTargetted;
+        //this.isTargetted = isTargetted;
         SetBlink(isTargetted);
         frameImage.color = GameManager.NormalColor;
     }
 
     void SetTargetted()
     {
-        if(isTargetted)
-        {
-            outerLock.gameObject.SetActive(true);
-            innerLock.gameObject.SetActive(true);
-        }
-        else
+        if(targetedLevel == 0)
         {
             outerLock.gameObject.SetActive(false);
             innerLock.gameObject.SetActive(false);
         }
+        else
+        {
+            outerLock.gameObject.SetActive(true);
+            innerLock.gameObject.SetActive(true);
+        }
     }
+    void TargetIsInRange()
+    {
+        if(targetObject.targetedLevel >= 2)
+        {
+            outerLock.color = warningColor;
+        }
+        else
+        {
+            outerLock.color = normalColor;
+        }
+    }
+
 
     void SetBlink(bool blink)
     {
@@ -215,6 +232,8 @@ public class TargetUI : MonoBehaviour
 
 
         uiObject.SetActive(isOutsideOfCamera == false && isInvisible == true && distance < hideDistance);
+
+        TargetIsInRange();
 
         //GameManager.TargetController.ShowTargetArrow(isOutsideOfCamera && distance < hideDistance);
     }

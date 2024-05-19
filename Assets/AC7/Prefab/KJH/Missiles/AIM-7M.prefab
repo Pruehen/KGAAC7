@@ -175,7 +175,6 @@ MonoBehaviour:
   explosionEffect: {fileID: 121360, guid: 7e6ae9c85baca254d860fe1519edd734, type: 3}
   smoke: {fileID: 2380172070393761964}
   motor: {fileID: 6060339062784575714}
-  _explosionSfx: {fileID: 1759765917466483415, guid: c402a29adcff12f47b99ced058cb215e, type: 3}
   speed: 0
   sideForcef: 0
 --- !u!114 &-859180380403536392
@@ -209,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 110
   reloadTime: 20
+  maxSeekerAngle: 55
 --- !u!1 &8186166486042749729
 GameObject:
   m_ObjectHideFlags: 0
