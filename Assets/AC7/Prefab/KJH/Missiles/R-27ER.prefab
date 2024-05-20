@@ -209,6 +209,7 @@ MonoBehaviour:
   dmg: 110
   reloadTime: 20
   maxSeekerAngle: 55
+  lockOnRange: 35000
 --- !u!1 &9002579355076675030
 GameObject:
   m_ObjectHideFlags: 0

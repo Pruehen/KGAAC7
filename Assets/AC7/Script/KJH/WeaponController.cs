@@ -7,7 +7,7 @@ namespace kjh
     public class WeaponController : MonoBehaviour
     {
         AircraftSelecter aircraftSelecter;
-        WeaponSystem weaponSystem;
+        kjh.WeaponSystem weaponSystem;
         Radar radar;
         Rigidbody rigidbody;
 
@@ -19,10 +19,12 @@ namespace kjh
             weaponSystem = aircraftSelecter.weaponSystem;
         }
 
-        // Update is called once per frame
-        void Update()
+        public WeaponData GetUseWeaponData()
         {
-            
+            if(weaponSystem == null)
+                weaponSystem = aircraftSelecter.weaponSystem;
+
+            return weaponSystem.UseWeaponData();
         }
 
         /// <summary>
@@ -30,13 +32,17 @@ namespace kjh
         /// </summary>
         public void Fire()
         {
-            weaponSystem.Fire(rigidbody.velocity, radar.GetTarget());
+            weaponSystem.Fire(rigidbody.velocity, radar.GetTarget(), radar.toTargetAngle, radar.toTargetDistance);
         }
 
         /// <summary>
         /// 웨폰 시스템의 무기를 교체하는 메서드
         /// </summary>
-        public void ChangeWeapon()
+        public int ChangeWeapon()
+        {
+            return weaponSystem.ChangeWeaponIndex();
+        }
+        public void ChangeWeaponVoid()
         {
             weaponSystem.ChangeWeaponIndex();
         }

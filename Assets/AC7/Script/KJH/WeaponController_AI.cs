@@ -1,55 +1,62 @@
 using kjh;
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponController_AI : MonoBehaviour
 {
-    AircraftSelecter aircraftSelecter;
-    WeaponSystem weaponSystem;
+    kjh.WeaponController weaponController;
+    //WeaponSystem weaponSystem;
+    int useWeaponIndex = 0;
+    Transform target;
     Radar radar;
-    Rigidbody rigidbody;
+    [SerializeField][Range(3f, 10f)] float aiLevel;//ë‚œì´ë„ ì„¤ì •. 3ë¶€í„° 10ê¹Œì§€ì˜ ê°’ì„ ê°€ì§. ê°’ì´ í´ìˆ˜ë¡ ë¬´ì¥ì„ íš¨ìœ¨ì ì´ê³  ë¹ ë¥´ê²Œ ë°œì‚¬í•¨
 
-    void Awake()
+    //public bool isEngage { get; set; }
+    void Start()
     {
-        aircraftSelecter = GetComponent<AircraftSelecter>();
-        rigidbody = GetComponent<Rigidbody>();
+        weaponController = GetComponent<kjh.WeaponController>();
+        //weaponSystem = GetComponent<WeaponSystem>();
         radar = GetComponent<Radar>();
-        weaponSystem = aircraftSelecter.weaponSystem;
+        target = kjh.GameManager.Instance.player.transform;        
+    }
+
+    public void StartWeaponFireCheck()
+    {
+        StartCoroutine(MissileFireCheck(11 - aiLevel));
     }
 
     // Update is called once per frame
-    void Update()
+    IEnumerator MissileFireCheck(float time)
     {
+        while (true)
+        {
+            yield return new WaitForSeconds(time);
+            float toTargetAngle = radar.toTargetAngle;
+            float distance = radar.toTargetDistance;
 
-    }
+            WeaponData weaponData = weaponController.GetUseWeaponData();
 
-    /// <summary>
-    /// ¿şÆù ½Ã½ºÅÛ¿¡ ¹«Àå ¹ß»ç¸¦ ¿äÃ»ÇÏ´Â ¸Ş¼­µå
-    /// </summary>
-    public void Fire()
-    {
-        weaponSystem.Fire(rigidbody.velocity, radar.GetTarget());
-    }
+            float weaponMaxAngle = weaponData.MaxSeekerAngle();
+            float weaponMaxRange = weaponData.LockOnRange();
 
-    /// <summary>
-    /// ¿şÆù ½Ã½ºÅÛÀÇ ¹«±â¸¦ ±³Ã¼ÇÏ´Â ¸Ş¼­µå
-    /// </summary>
-    public void ChangeWeapon()
-    {
-        weaponSystem.ChangeWeaponIndex();
-    }
+            if (useWeaponIndex == 0 && weaponMaxRange < distance)
+            {
+                useWeaponIndex = weaponController.ChangeWeapon();
+                weaponMaxRange = weaponController.GetUseWeaponData().LockOnRange();
+            }
+            else if (useWeaponIndex == 1 && weaponMaxRange > distance)
+            {
+                useWeaponIndex = weaponController.ChangeWeapon();
+                weaponMaxRange = weaponController.GetUseWeaponData().LockOnRange();
+            }
 
-    /// <summary>
-    /// ¿şÆù ½Ã½ºÅÛÀÇ ±â°üÆ÷ Æ®¸®°Å¸¦ ¼³Á¤ÇÏ´Â ¸Ş¼­µå
-    /// </summary>
-    /// <param name="value"></param>
-    public void SetGunTrigger(bool value)
-    {
-        weaponSystem.SetGunTrigger(value);
-    }
-    public void SetFlareTrigger(bool value)
-    {
-        weaponSystem.SetFlareTrigger(value);
+            if (weaponMaxRange > distance && weaponMaxAngle > toTargetAngle)
+            {
+                radar.LockOn();
+                weaponController.Fire();
+            }
+        }
     }
 }

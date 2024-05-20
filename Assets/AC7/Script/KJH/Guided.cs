@@ -11,12 +11,16 @@ public class Guided : MonoBehaviour
     /// 유도 미사일의 타겟을 지정해주는 메서드
     /// </summary>
     /// <param name="target"></param>
-    public void SetTarget(VehicleCombat target)
-    {
+    public void SetTarget(VehicleCombat target, float angle, float distance)
+    {        
         if (target != null)
         {
-            this.target = target;
-            target.onFlare += EIRCM;
+            WeaponData weaponData = GetComponent<WeaponData>();
+            if (angle <= weaponData.MaxSeekerAngle() && distance <= weaponData.LockOnRange())
+            {
+                this.target = target;
+                target.onFlare += EIRCM;
+            }            
         }
     }
 

@@ -29500,7 +29500,7 @@ PrefabInstance:
       objectReference: {fileID: 886787195}
     - target: {fileID: 4218927256130131829, guid: da1e9e173d1f46149893f3ac2a4caec2, type: 3}
       propertyPath: onClick_R.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeWeapon
+      value: ChangeWeaponVoid
       objectReference: {fileID: 0}
     - target: {fileID: 4218927256130131829, guid: da1e9e173d1f46149893f3ac2a4caec2, type: 3}
       propertyPath: onClick_X.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -30617,23 +30617,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 500519668959064266, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
       propertyPath: aiLevel
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 500519669157325567, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
       propertyPath: aiLevel
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 500519669604658277, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
       propertyPath: aiLevel
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 500519669726754722, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
       propertyPath: aiLevel
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 500519669849831920, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
       propertyPath: aiLevel
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1259991924573250009, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
       propertyPath: m_RootOrder

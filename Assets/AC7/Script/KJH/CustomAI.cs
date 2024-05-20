@@ -18,6 +18,7 @@ public interface IFlightStratage
 public class CustomAI : MonoBehaviour
 {
     FlightController_AI flightController_AI;
+    WeaponController_AI weaponController_AI;
     [Header("비행 경로 지정")]
     public List<Vector3> wayPointList;//미리 지정된 비행 경로
     public bool wayPointLoop;//마지막 경로에 도착했을 때 처음 경로로 돌아갈건지
@@ -88,6 +89,7 @@ public class CustomAI : MonoBehaviour
         SetFormationPos(spreadValue);
 
         flightController_AI = GetComponent<FlightController_AI>();
+        weaponController_AI = GetComponent<WeaponController_AI>();
 
         flightStratagesList.Add(new MoveToWaypoints(this));
         flightStratagesList.Add(new Formation(this));
@@ -116,6 +118,7 @@ public class CustomAI : MonoBehaviour
         if (!isEngage)
         {
             isEngage = true;
+            weaponController_AI.StartWeaponFireCheck();
             ChangeStratage(3);
         }                    
     }

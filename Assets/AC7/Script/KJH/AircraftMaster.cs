@@ -34,8 +34,7 @@ public class AircraftMaster : MonoBehaviour
 
         if (aiControl)
         {
-            GetComponent<FlightController>().enabled = false;
-            GetComponent<kjh.WeaponController>().enabled = false;
+            GetComponent<FlightController>().enabled = false;            
         }
         else
         {
