@@ -50,7 +50,7 @@ public class FadableAudio : MonoBehaviour
         else
         {
             _audioSource.volume = 0f;
-            _audioSource.Stop();
+            _audioSource.Pause();
         }
     }
 
