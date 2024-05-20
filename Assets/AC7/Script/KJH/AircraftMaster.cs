@@ -62,7 +62,7 @@ public class AircraftMaster : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         if(_isPlayer)
         {
-            kjh.GameManager.Instance.GameEnd(false);
+            kjh.GameManager.Instance.GameEnd(false, .3f);
         }
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
         //플레이어가 죽었을경우 카메라 뗌
