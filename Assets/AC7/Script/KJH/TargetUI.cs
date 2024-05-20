@@ -115,11 +115,17 @@ public class TargetUI : MonoBehaviour
         {
             outerLock.gameObject.SetActive(true);
             innerLock.gameObject.SetActive(true);
+            nameText.gameObject.SetActive(true);
+            nicknameText.gameObject.SetActive(true);     
+            distanceText.gameObject.SetActive(true);
         }
         else
         {
             outerLock.gameObject.SetActive(false);
             innerLock.gameObject.SetActive(false);
+            nameText.gameObject.SetActive(false);
+            nicknameText.gameObject.SetActive(false);
+            distanceText.gameObject.SetActive(false);
         }
     }
     void TargetIsInRange()

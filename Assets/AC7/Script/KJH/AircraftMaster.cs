@@ -7,6 +7,7 @@ using UnityEngine;
 public class AircraftMaster : MonoBehaviour
 {
     [SerializeField] bool _isPlayer = false;
+    public bool IsPlayer() { return _isPlayer; }
     [SerializeField] bool aiControl;
     AircraftSelecter aircraftSelecter;
     public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }

@@ -1,17 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MissileIndicatorController : MonoBehaviour
+public class MissileIndicatorController : SceneSingleton<MissileIndicatorController>
 {
     [SerializeField]
-    ObjectPool mslIndicatorObjectPool;
+    GameObject mslIndicatorPrf;
 
-    public void AddMissileIndicator(Missile missile)
+    public void AddMissileIndicator(Guided missile)
     {
-        GameObject obj = mslIndicatorObjectPool.GetPooledObject();
-        obj.GetComponent<MissileIndicator>().Missile = missile;
-        obj.transform.SetParent(transform);
-        obj.SetActive(true);
+        GameObject obj = ObjectPoolManager.Instance.DequeueObject(mslIndicatorPrf);
+        obj.transform.SetParent(this.transform);
+        obj.transform.localPosition = Vector3.zero;
+        obj.GetComponent<MissileIndicator>().Missile = missile;                
+    }
+
+    public void RemoveMissileIndicator(Guided missile)
+    {
+        //missile.GetComponent<MissileIndicator>().Missile = null;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ public class MissileIndicator : MonoBehaviour
 
     Vector3 shrinkScale;
 
-    Missile missile;
+    Guided missile;
     Transform missileTransform;
     Transform aircraftTransform;
     RectTransform rectTransform;
@@ -23,12 +24,12 @@ public class MissileIndicator : MonoBehaviour
     bool isEmergency = false;
     RawImage rawImage;
 
-    public Missile Missile
+    public Guided Missile
     {
         set
         {
             missile = value;
-            missileTransform = missile.transform;
+            missileTransform = value.transform;            
         }
     }
 
@@ -45,14 +46,13 @@ public class MissileIndicator : MonoBehaviour
 
     void Start()
     {
-        aircraftTransform = GameManager.PlayerAircraft.transform;
+        aircraftTransform = kjh.GameManager.Instance.player.transform;
         shrinkScale = Vector3.one * shrinkScaleValue;
     }
 
     void OnEnable()
     {
-        rectTransform.localScale = Vector3.one;
-        rectTransform.localPosition = Vector3.zero;
+        rectTransform.localScale = Vector3.one;        
 
         rawImage.enabled = false;
         isEmergency = false;
@@ -66,17 +66,18 @@ public class MissileIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(missile == null || aircraftTransform == null) return;
+        if(aircraftTransform == null) return;
 
-        if(missile.IsDisabled)
+        if(!missile.Target() || missileTransform == null)
         {
-            gameObject.SetActive(false);
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
+            return;
         }
 
         Vector3 relativePos = missileTransform.position - aircraftTransform.position;
         // Emergency check
         float distance = relativePos.magnitude;
-        if(isEmergency == false && distance < GameManager.PlayerAircraft.MissileEmergencyDistance)
+        if(isEmergency == false && distance < 5000)
         {
             isEmergency = true;
             InvokeRepeating("Blink", blinkTimer, blinkTimer);
@@ -89,7 +90,7 @@ public class MissileIndicator : MonoBehaviour
 
         // Set Angle
         float angle = Mathf.Atan2(-relativePos.x, relativePos.z) * Mathf.Rad2Deg;
-        angle += GameManager.CameraController.GetActiveCamera().transform.eulerAngles.y;
+        angle += Camera.main.transform.eulerAngles.y;
         rectTransform.localEulerAngles = new Vector3(0, 0, angle);
 
         if(rawImage.enabled == false && isEmergency == false)

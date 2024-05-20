@@ -6,6 +6,10 @@ public class Guided : MonoBehaviour
 {
     [SerializeField] int EIRCM_Count;
     [SerializeField] VehicleCombat target;
+    public bool Target()
+    {
+        return target != null;
+    }
 
     /// <summary>
     /// 유도 미사일의 타겟을 지정해주는 메서드
@@ -20,7 +24,13 @@ public class Guided : MonoBehaviour
             {
                 this.target = target;
                 target.onFlare += EIRCM;
-            }            
+
+                MWR mwr;
+                if(target.TryGetComponent<MWR>(out mwr))
+                {
+                    mwr.AddMissile(this);
+                }
+            }
         }
     }
 
@@ -32,6 +42,11 @@ public class Guided : MonoBehaviour
         if(target != null)
         {
             target.onFlare -= EIRCM;
+            MWR mwr;
+            if (target.TryGetComponent<MWR>(out mwr))
+            {
+                mwr.RemoveMissile(this);
+            }
         }
         this.target = null;        
     }

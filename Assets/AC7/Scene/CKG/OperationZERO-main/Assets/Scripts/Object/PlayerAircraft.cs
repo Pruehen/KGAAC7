@@ -50,7 +50,7 @@ public class PlayerAircraft : TargetObject
     public override void AddLockedMissile(Missile missile)
     {
         base.AddLockedMissile(missile);
-        missileIndicatorController.AddMissileIndicator(missile);
+        //missileIndicatorController.AddMissileIndicator(missile);
     }
 
     public void DisableAllMissiles()
