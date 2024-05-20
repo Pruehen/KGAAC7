@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1047027405542856838}
   - component: {fileID: -2087154475758710835}
   m_Layer: 0
-  m_Name: RandomExplosionSFX
+  m_Name: RandomBulletPassing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759765917466483415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2395.5837, y: 132.48285, z: 2084.779}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58,6 +58,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec8f1599a6b6524aab48955044dde5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxPrefabs:
-  - {fileID: 1759765917466483415, guid: e4eecf586afcefe4c80d7c4baf839fd6, type: 3}
-  - {fileID: 1759765917466483415, guid: 242564f3fc4166f4986ed67dcbfd71d6, type: 3}
+  _closeSfxPrefabs:
+  - {fileID: 1759765917466483415, guid: 51f4b9e6c00c7274197facd01298ba18, type: 3}
+  - {fileID: 1759765917466483415, guid: 280b93dd001746040b5f539a4bcbfcfd, type: 3}
+  - {fileID: 1759765917466483415, guid: 634c9e534c8d3f44ea6f13228325147f, type: 3}
+  - {fileID: 1759765917466483415, guid: 316b3af963b13fe4cae03f9afbf0a456, type: 3}
+  - {fileID: 1759765917466483415, guid: 75e2135080c696643bff4e1a1ae67fcf, type: 3}
+  _midSfxPrefabs: []
+  _farSfxPrefabs: []

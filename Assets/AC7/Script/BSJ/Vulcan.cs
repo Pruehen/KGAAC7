@@ -11,34 +11,53 @@ public class Vulcan : MonoBehaviour
     [SerializeField] private GameObject _bulletProjectile;
     public float bulletSpeed;
 
+    bool _firing;
+    FadableAudio _gunSound;
 
     private void Start()
     {
         _fireInterval = _bulletProjectile.GetComponent<WeaponData>().ReloadTime();
+        _gunSound = GetComponent<FadableAudio>();
     }
 
     private void Update()
     {
         _lifeTime += Time.deltaTime;
+
+        if(_firing)
+        {
+            if (_lifeTime >= _fireInterval)
+            {
+                _lifeTime = 0f;
+            }
+            else
+            {
+                return;
+            }
+            GameObject item = ObjectPoolManager.Instance.DequeueObject(_bulletProjectile);
+            Rigidbody bullet = item.GetComponent<Rigidbody>();
+            bullet.transform.position = _firePos.position;
+            bullet.transform.rotation = _firePos.rotation;
+            bullet.velocity = bullet.transform.forward * bulletSpeed;
+        }
     }
 
 
-    public void Fire()
+    public void Fire(bool trigger)
     {
-        if (_lifeTime >= _fireInterval)
+        if (trigger)
         {
-            _lifeTime = 0f;
+            _firing = true;
+            if(!_gunSound.IsPlaying())
+            {
+                _gunSound.Play();
+            }
         }
         else
         {
-            return;
+            _firing = false;
+            _gunSound.Stop();
         }
-        GameObject item = ObjectPoolManager.Instance.DequeueObject(_bulletProjectile);
-        Rigidbody bullet = item.GetComponent<Rigidbody>();
-        bullet.transform.position = _firePos.position;
-        bullet.transform.rotation = _firePos.rotation;
-        bullet.velocity = bullet.transform.forward * bulletSpeed;
-        ObjectPoolManager.Instance.EnqueueObject(item, 30f);
     }
 
 }

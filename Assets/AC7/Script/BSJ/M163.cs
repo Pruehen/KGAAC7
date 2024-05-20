@@ -26,13 +26,15 @@ public class M163 : MonoBehaviour
     /// 총구 위치
     /// </summary>
     [SerializeField] Transform _muzzleTrf;
-    Transform _turretTrf;
     Transform _gunTrf;
-    Rigidbody _target;
+    Transform _turretTrf;
+    [SerializeField] bool _customTarget;
+    [SerializeField] Rigidbody _target;
 
     float _bulletSpeed;
 
     Vulcan _vulcan;
+    private SmoothRotation _muzzleRotator;
 
     bool _isDead;
     private void Awake()
@@ -40,6 +42,7 @@ public class M163 : MonoBehaviour
         _turretTrf = transform.GetChild(1);
         _gunTrf = transform.GetChild(1).GetChild(0);
         _vulcan = _gunTrf.GetComponent<Vulcan>();
+        _muzzleRotator = _muzzleTrf.GetComponent<SmoothRotation>();
         //bsj.GameManager.Instance.OnPlayerSpawned += Init;
     }
 
@@ -52,30 +55,46 @@ public class M163 : MonoBehaviour
     Vector3 prevVel;
     private void Init()
     {
-        _target = kjh.GameManager.Instance.player.GetComponent<Rigidbody>();
+        _target = (_customTarget) ? _target : kjh.GameManager.Instance.player.GetComponent<Rigidbody>();
         prevVel = _target.velocity;
     }
     void Update()
     {
-        if(IsInRange() && !_isDead)
+        if (IsInRange() && !_isDead)
         {
+            //타겟 적중을 위한 각도 계산
             Vector3 deltaVel = _target.velocity - prevVel;
             _desiredDirection = FireControlSystem.CalcFireDirection(_muzzleTrf.position, _target, _bulletSpeed, _accuracyLoop, deltaVel);
             Quaternion targetRot = Quaternion.LookRotation(_desiredDirection);
 
-            _turretTrf.rotation = Quaternion.Euler(new Vector3(0f, targetRot.eulerAngles.y, 0f));
+
+            _muzzleRotator.UpdateTargetRotation(targetRot);
+
+            Quaternion resultRotation = _muzzleRotator.GetRotation();
+
+            _turretTrf.rotation = Quaternion.Euler(0f, resultRotation.eulerAngles.y, 0f);
+
             float verticalAngle = Mathf.Asin(_desiredDirection.y) * Mathf.Rad2Deg;
 
-            if(IsInAngle(verticalAngle))
+            //사격가능 각도인지 확인 후 조준 발사
+            if (IsInAngle(verticalAngle))
             {
-                _muzzleTrf.localRotation = Quaternion.Euler(new Vector3(-verticalAngle, 0, 0));
-                _vulcan.Fire();
+                _gunTrf.rotation = Quaternion.Euler(resultRotation.eulerAngles.x, _gunTrf.rotation.eulerAngles.y, resultRotation.eulerAngles.z);
+                _vulcan.Fire(true);
+            }
+            else
+            {
+                _vulcan.Fire(false);
             }
 
         }
+        else
+        {
+            _vulcan.Fire(false);
+        }
         prevVel = _target.velocity;
     }
-    
+
     private bool IsInRange()
     {
         return Vector3.Distance(_target.position, transform.position) < _range;
@@ -99,3 +118,4 @@ public class M163 : MonoBehaviour
         Destroy(this.gameObject);
     }
 }
+

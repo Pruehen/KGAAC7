@@ -98,10 +98,10 @@ public class MinimapController : SceneSingleton<MinimapController>
                 break;
         }*/
 
-        for(int i = 0; i < minimaps.Length; i++)
-        {
-            minimaps[i].gameObject.SetActive(i == minimapIndex);
-        }
+        //for(int i = 0; i < minimaps.Length; i++)
+        //{
+        //    minimaps[i].gameObject.SetActive(i == minimapIndex);
+        //}
 
         //cameraSize = new Vector2(minimapCamera.orthographicSize, minimapCamera.orthographicSize * minimapCamera.aspect);
     }

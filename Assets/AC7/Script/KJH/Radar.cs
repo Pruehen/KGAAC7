@@ -10,6 +10,9 @@ public class Radar : MonoBehaviour
     [SerializeField] bool isEnemy;
     WeaponSystem weaponSystem;
 
+    [SerializeField] GameObject _lockOnSfxPrefab;
+    AudioSource _lockOnSfx;
+
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
     /// </summary>
@@ -22,6 +25,12 @@ public class Radar : MonoBehaviour
     private void Start()
     {
         weaponSystem = GetComponent<AircraftMaster>().AircraftSelecter().weaponSystem;
+
+        if (_lockOnSfxPrefab != null)
+        {
+            GameObject item = Instantiate(_lockOnSfxPrefab);
+            _lockOnSfx = item.GetComponent<AudioSource>();
+        }
     }
 
     private void Update()
@@ -51,7 +60,15 @@ public class Radar : MonoBehaviour
                 //lockOnTarget = null;
                 StartCoroutine(NextTargetLock());
             }
-        }        
+            if (!_lockOnSfx.isPlaying)
+            {
+                _lockOnSfx?.Play();
+            }
+        }
+        else
+        {
+            _lockOnSfx?.Pause();
+        }
     }
 
     IEnumerator NextTargetLock()

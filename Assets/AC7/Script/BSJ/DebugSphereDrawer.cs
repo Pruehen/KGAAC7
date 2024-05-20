@@ -18,10 +18,10 @@ public class DebugSphereDrawer : SceneSingleton<DebugSphereDrawer>
         {
             Gizmos.color = colors[i];
             Gizmos.DrawSphere(poss[i], radis[i]);
-            poss.Clear();
-            radis.Clear();
-            colors.Clear();
         }
+        poss.Clear();
+        radis.Clear();
+        colors.Clear();
     }
     public void AddSphere(Vector3 position, float radius, Color color)
     {

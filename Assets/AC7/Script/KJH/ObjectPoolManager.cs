@@ -130,6 +130,8 @@ public class ObjectPoolManager : SceneSingleton<ObjectPoolManager>
     }
     private IEnumerator DelayedEnqueu(GameObject item, float time)
     {
+
+        Debug.Assert(item == null, "delayed returning pool item is null");
         yield return new WaitForSeconds(time);
         EnqueueObject(item);
     }
