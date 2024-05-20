@@ -6,6 +6,7 @@ using UnityEngine;
 //전투 기능을 우선 여기에 붙여봤음.
 public class AircraftMaster : MonoBehaviour
 {
+    [SerializeField] bool _isPlayer = false;
     [SerializeField] bool aiControl;
     AircraftSelecter aircraftSelecter;
     public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
@@ -54,6 +55,11 @@ public class AircraftMaster : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
+        if(_isPlayer)
+        {
+            kjh.GameManager.Instance.ShowResult(false);
+            Camera.main.transform.SetParent(null);
+        }
         Destroy(this.gameObject);
     }
 }

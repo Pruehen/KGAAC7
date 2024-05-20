@@ -45,7 +45,7 @@ namespace kjh
         /// <summary>
         /// 미션 성공시 호출되어 경과창을 띄워줌
         /// </summary>
-        public void CompleteMission()
+        public void ShowResult(bool _gameOver)
         {
             //일단 전투 결과를 보여준 후
             //확인을 누르면 
