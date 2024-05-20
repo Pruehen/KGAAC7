@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +28,8 @@ public class CustomAI : MonoBehaviour
     public Vector3 formationLocalPos;//편대장 기준 자신의 로컬 좌표
 
     public Transform target;
+    public System.Action engage;
+
     public void SetTarget(Transform target)
     {
         this.target = target;

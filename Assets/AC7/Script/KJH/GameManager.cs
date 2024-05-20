@@ -31,7 +31,10 @@ namespace kjh
         {
             for (int i = 0; i < targetTrf.childCount; i++)
             {
-                AddActiveTarget(targetTrf.GetChild(i).GetComponent<VehicleCombat>());
+                for (int j = 0; j < targetTrf.GetChild(i).childCount; j++)
+                {
+                    AddActiveTarget(targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>());
+                }                
                 //activeTargetList[i].onDeadWithSelf.AddListener(RemoveActiveTarget);
             }
         }
