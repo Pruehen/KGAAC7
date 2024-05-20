@@ -8,4 +8,7 @@ public class WeaponData : MonoBehaviour
     public float Dmg() { return dmg; }
     [SerializeField] float reloadTime;
     public float ReloadTime() { return reloadTime; }
+
+    [SerializeField] float maxSeekerAngle;
+    public float MaxSeekerAngle() { return maxSeekerAngle; }
 }

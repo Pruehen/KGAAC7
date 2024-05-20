@@ -30,13 +30,21 @@ public class CamRotate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<AudioListener>().enabled = false;
+        StartCoroutine(AudioListenerOn());
         aircraftControl = aircraftMaster.AircraftSelecter().aircraftControl;
         initLocalPos = this.transform.localPosition;
         camAxisTrf = this.transform.parent;
     }
 
+    IEnumerator AudioListenerOn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<AudioListener>().enabled = true;
+    }
+
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {        
         float throttle = aircraftControl.throttle;                
 
@@ -52,8 +60,11 @@ public class CamRotate : MonoBehaviour
             if(vehicleCombat != null)
             {
                 viewTargetTrf = vehicleCombat.transform;//레이더 타겟으로 카메라의 타겟을 지정            
+            }            
+            else
+            {
+                viewTargetTrf = null;
             }
-            
 
             if(viewTargetTrfTemp != viewTargetTrf)//타겟이 변경되었을 경우
             {

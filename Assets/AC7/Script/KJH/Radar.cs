@@ -1,3 +1,4 @@
+using kjh;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,12 @@ using UnityEngine;
 public class Radar : MonoBehaviour
 {    
     VehicleCombat lockOnTarget;
-    [SerializeField] float radarMaxAngle;    
+    [SerializeField] float radarMaxAngle;
+    [SerializeField] bool isEnemy;
+    WeaponSystem weaponSystem;
+
+    [SerializeField] GameObject _lockOnSfxPrefab;
+    AudioSource _lockOnSfx;
 
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
@@ -14,28 +20,61 @@ public class Radar : MonoBehaviour
     public VehicleCombat GetTarget()
     {
         return lockOnTarget;
-    }    
+    }
 
-    // Start is called before the first frame update
-    void Start()
-    {        
+    private void Start()
+    {
+        weaponSystem = GetComponent<AircraftMaster>().AircraftSelecter().weaponSystem;
 
+        if (_lockOnSfxPrefab != null)
+        {
+            GameObject item = Instantiate(_lockOnSfxPrefab);
+            _lockOnSfx = item.GetComponent<AudioSource>();
+        }
     }
 
     private void Update()
     {
         if (lockOnTarget != null)
         {
-            /*if(Vector3.Angle(this.transform.forward, lockOnTarget.position - this.transform.position) > radarMaxAngle)
+            float toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
+            if (toTargetAngle <= weaponSystem.UseMissileSeekerAngle())
             {
-                lockOnTarget = null;
-            }*/
-            if(lockOnTarget.GetComponent<VehicleCombat>().IsDead())
+                lockOnTarget.isMissileLock = true;
+            }
+            else
+            {
+                lockOnTarget.isMissileLock = false;
+            }
+            if (toTargetAngle <= radarMaxAngle)
+            {
+                lockOnTarget.isRaderLock = true;
+            }
+            else
+            {
+                lockOnTarget.isRaderLock = false;
+            }
+
+            if (lockOnTarget.GetComponent<VehicleCombat>().IsDead())
             {
                 //lockOnTarget = null;
                 StartCoroutine(NextTargetLock());
             }
-        }        
+
+            if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
+            {
+                _lockOnSfx?.Play();
+                Debug.Log("소리");
+            }
+            else if(!lockOnTarget.isMissileLock)
+            {
+                _lockOnSfx?.Pause();
+            }
+        }
+        else
+        {
+            _lockOnSfx?.Pause();
+        }
     }
 
     IEnumerator NextTargetLock()
@@ -57,23 +96,42 @@ public class Radar : MonoBehaviour
     /// </summary>
     public void LockOn()
     {
-        float angleTemp = radarMaxAngle;
-        VehicleCombat targetTemp = null;
-
-        List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;
-        for (int i = 0; i < targetList.Count; i++)
+        if (!isEnemy)
         {
-            VehicleCombat itemTrf = targetList[i];
+            float angleTemp = 200;
+            VehicleCombat targetTemp = null;
 
-            float itemAngle = Vector3.Angle(this.transform.forward, itemTrf.transform.position - this.transform.position);
-            if (itemAngle < angleTemp)
+            List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;
+            for (int i = 0; i < targetList.Count; i++)
             {
-                targetTemp = itemTrf;
-                angleTemp = itemAngle;
+                VehicleCombat itemTrf = targetList[i];
+
+                float itemAngle = Vector3.Angle(this.transform.forward, itemTrf.transform.position - this.transform.position);
+                if (itemAngle < angleTemp)
+                {
+                    targetTemp = itemTrf;
+                    angleTemp = itemAngle;
+                }
+
+            }
+            if (lockOnTarget != null)
+            {
+                lockOnTarget.isTargeted = false;
+                lockOnTarget.isMissileLock = false;
+                lockOnTarget.isRaderLock = false;
             }
 
-        }
+            lockOnTarget = targetTemp;
 
-        lockOnTarget = targetTemp;
+            if(lockOnTarget != null)
+            {
+                lockOnTarget.isTargeted = true;
+            }
+        }
+        else
+        {
+            lockOnTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
+            lockOnTarget.isTargeted = true;
+        }
     }
 }

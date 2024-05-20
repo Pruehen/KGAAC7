@@ -162,7 +162,7 @@ public class UIControl : MonoBehaviour
     public void SetHeading(float heading)
     {
         headingUIController.SetHeading(heading);
-        minimapCompass.SetCompass(heading);
+        //minimapCompass.SetCompass(heading);
     }
 
     void SetTime()
@@ -251,8 +251,8 @@ public class UIControl : MonoBehaviour
 
     public void SwitchWeapon(WeaponSlot[] weaponSlots, bool useSpecialWeapon, Missile missile, bool playAudio = true)
     {
-        mslIndicator.SetActive(!useSpecialWeapon);
-        spwIndicator.SetActive(useSpecialWeapon);
+        //mslIndicator.SetActive(!useSpecialWeapon);
+        //spwIndicator.SetActive(useSpecialWeapon);
 
         // Justify that weaponSlots contains 2 slots
         //leftMslCooldownImage.SetWeaponData(weaponSlots[0], missile.missileFrameSprite, missile.missileFillSprite);
@@ -310,8 +310,8 @@ public class UIControl : MonoBehaviour
     {
         firstViewAdjustAngle = new Vector2(1 / firstViewAdjustAngle.x, 1 / firstViewAdjustAngle.y);
 
-        mslIndicator.SetActive(true);
-        spwIndicator.SetActive(false);
+        //mslIndicator.SetActive(true);
+        //spwIndicator.SetActive(false);
 
         SetScoreText(0);
         SetWarningUIColor(false);

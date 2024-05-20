@@ -6,7 +6,8 @@ namespace kjh
 {
     public class WeaponSystem : MonoBehaviour
     {
-        [SerializeField] List<GameObject> weaponPrfList;      
+        [SerializeField] List<GameObject> weaponPrfList;        
+        List<WeaponData> weaponDataList = new List<WeaponData>();
         [SerializeField] List<Transform> fireTrfList;
         [SerializeField] List<int> equipedWeaponIndexList;
         List<float> weaponCoolDownList; //MSL 무기 개수        
@@ -16,8 +17,19 @@ namespace kjh
             float coolTime = weaponPrfList[equipedWeaponIndexList[index]].GetComponent<WeaponData>().ReloadTime();
             return 1 - (weaponCoolDownList[index] / coolTime);
         }
+        public bool ActiveMissile(int index)
+        {
+            return (equipedWeaponIndexList[index] == useWeaponIndex);
+        }
+
+        public float UseMissileSeekerAngle()
+        {
+            return weaponDataList[useWeaponIndex].MaxSeekerAngle();
+        }
+
 
         int useWeaponIndex;
+        public System.Action weaponChange;
 
         [SerializeField] GameObject bulletPrf;
         [SerializeField] Transform gunFireTrf;
@@ -51,12 +63,13 @@ namespace kjh
             {
                 useWeaponIndex = 0;
             }
+            weaponChange?.Invoke();
 
             //Debug.Log(useWeaponIndex);
         }
 
         // Start is called before the first frame update
-        void Start()
+        public void Init()
         {
             useWeaponIndex = 0;
 
@@ -69,6 +82,11 @@ namespace kjh
             gunTrigger = false;
             rigidbody = this.transform.parent.GetComponent<Rigidbody>();
             vehicleCombat = this.transform.parent.GetComponent<VehicleCombat>();
+
+            for (int i = 0; i < weaponPrfList.Count; i++)
+            {
+                weaponDataList.Add(weaponPrfList[i].GetComponent<WeaponData>());
+            }
         }
 
         // Update is called once per frame
@@ -132,16 +150,26 @@ namespace kjh
             Transform firePoint = null;
 
             bool canFire = false;
-
+            
             for (int i = 0; i < weaponCoolDownList.Count; i++)
             {
-                if (equipedWeaponIndexList[i] == useWeaponIndex)
+                int k;
+                if(i % 2 == 0)
                 {
-                    if (weaponCoolDownList[i] <= 0)
+                    k = i / 2;
+                }
+                else
+                {
+                    k = weaponCoolDownList.Count - (i / 2) - 1;
+                }
+
+                if (equipedWeaponIndexList[k] == useWeaponIndex)
+                {
+                    if (weaponCoolDownList[k] <= 0)
                     {
-                        firePoint = fireTrfList[i];
-                        fireTrfList[i].gameObject.SetActive(false);
-                        weaponCoolDownList[i] = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
+                        firePoint = fireTrfList[k];
+                        fireTrfList[k].gameObject.SetActive(false);
+                        weaponCoolDownList[k] = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
                         canFire = true;
                         break;
                     }
@@ -150,7 +178,6 @@ namespace kjh
                 {
                     continue;
                 }
-
             }
 
             if (canFire)

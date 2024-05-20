@@ -8,6 +8,7 @@ public class CooldownImage : MonoBehaviour
     [SerializeField] int index;
     public Image frameImage;
     public Image fillImage;
+    public GameObject indicator;
 
     float remainCooldown;
     float maxCooldown;
@@ -40,11 +41,26 @@ public class CooldownImage : MonoBehaviour
     {
         remainCooldown = maxCooldown = 0;
         weaponSystem = kjh.GameManager.Instance.player.AircraftSelecter().weaponSystem;
+        weaponSystem.weaponChange += SetIndicator;
+
+        SetIndicator();
     }
 
     // Update is called once per frame
     void Update()
     {
         fillImage.fillAmount = weaponSystem.MslCoolDownRatio(index);
+    }
+
+    void SetIndicator()
+    {
+        if(weaponSystem.ActiveMissile(index))
+        {
+            indicator.SetActive(true);
+        }
+        else
+        {
+            indicator.SetActive(false);
+        }
     }
 }

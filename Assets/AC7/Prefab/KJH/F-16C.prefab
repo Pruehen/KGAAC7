@@ -20970,9 +20970,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enginePower: 12
-  pitchTorque: 4
-  rollTorque: 20
-  yawTorque: 1.5
+  pitchTorque: 3.5
+  rollTorque: 25
+  yawTorque: 1
   enginePowerCurve:
     serializedVersion: 2
     m_Curve:
@@ -21019,8 +21019,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: -0.0024414062
+      time: 20
+      value: 0
       inSlope: 0.0028370994
       outSlope: 0.0028370994
       tangentMode: 0
@@ -21028,7 +21028,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.7333333
     - serializedVersion: 3
-      time: 230
+      time: 300
       value: 1
       inSlope: 0
       outSlope: 0
@@ -21851,6 +21851,10 @@ PrefabInstance:
     - target: {fileID: 2206844386168213222, guid: 5fddae46b54dd0a4b9323cfd7c6a7dc3, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2877160634197634789, guid: 5fddae46b54dd0a4b9323cfd7c6a7dc3, type: 3}
+      propertyPath: volumRatio
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5139957163490176079, guid: 5fddae46b54dd0a4b9323cfd7c6a7dc3, type: 3}
       propertyPath: m_Name

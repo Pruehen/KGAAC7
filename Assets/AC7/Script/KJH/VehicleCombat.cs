@@ -8,6 +8,10 @@ public class VehicleCombat : MonoBehaviour, IFightable
     public bool mainTarget = false;
     public string name;
     public string nickname;
+    public bool isTargeted;
+    public bool isRaderLock;
+    public bool isMissileLock;
+
     void IFightable.DealDamage(IFightable target, float damage)
     {
         throw new System.NotImplementedException();
@@ -24,6 +28,9 @@ public class VehicleCombat : MonoBehaviour, IFightable
     {
         combat.Init(this.transform, 100);        
         combat.OnDead += Dead;
+        isTargeted = false;
+        isRaderLock = false;
+        isMissileLock = false;
     }
 
     public bool IsDead()
@@ -43,7 +50,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
     /// </summary>
     public void FlareDeploy()
     {
-        onFlare.Invoke();
+        onFlare?.Invoke();
     }
 
     public UnityEvent onDead;

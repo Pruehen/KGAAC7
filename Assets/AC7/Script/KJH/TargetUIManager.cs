@@ -6,7 +6,6 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
 {
     [SerializeField] GameObject targetUI;
     [SerializeField] AircraftMaster aircraftMaster;
-    Radar radar;
 
     List<VehicleCombat> targetList;
     List<TargetUI> useTargetUIList = new List<TargetUI>();
@@ -18,12 +17,11 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
     // Start is called before the first frame update
     void Start()
     {
-        radar = aircraftMaster.GetComponent<Radar>();
         targetList = kjh.GameManager.Instance.activeTargetList;
     }
     
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         for (int i = 0; i < targetList.Count; i++)
         {

@@ -32,6 +32,7 @@ public class AircraftSelecter : MonoBehaviour
         this.controlAircraft.SetActive(true);
         aircraftData = controlAircraft.GetComponent<AircraftData>();
         weaponSystem = controlAircraft.GetComponent<kjh.WeaponSystem>();
+        weaponSystem.Init();
         aircraftControl = controlAircraft.GetComponent<AircraftControl>();
     }
 

@@ -148,7 +148,7 @@ Rigidbody:
   m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &6445041468265237183
@@ -168,7 +168,7 @@ MonoBehaviour:
   sustainTime: 5.3
   boostPower: 155.7
   sustainPower: 113
-  liftPower: 3
+  liftPower: 2
   maxLiftTime: 60
   safeTime: 2
   explosionEffect: {fileID: 121360, guid: 7e6ae9c85baca254d860fe1519edd734, type: 3}
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d941a5b0efacf449a3bf09ef306c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTrf: {fileID: 0}
+  EIRCM_Count: 0
   maxTurnRate: 45
   maxSideForce: 400
   isTVC: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 110
   reloadTime: 20
+  maxSeekerAngle: 115
 --- !u!1 &8186166486042749729
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,6 +39,7 @@ public class AircraftMaster : MonoBehaviour
         else
         {
             GetComponent<FlightController_AI>().enabled = false;
+            GetComponent<CustomAI>().enabled = false;
         }
     }
 

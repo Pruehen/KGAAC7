@@ -7,12 +7,12 @@ public class VaporEffect : MonoBehaviour
     [SerializeField] List<ParticleSystem> strakeVaperEffect;
     [SerializeField] List<ParticleSystem> wingVaperEffect;
 
+    bool alpha2Over = false;
     bool alpha5Over = false;
-    bool alpha10Over = false;
     private void Start()
     {
+        alpha2Over = false;
         alpha5Over = false;
-        alpha10Over = false;
     }
 
     /// <summary>
@@ -24,37 +24,37 @@ public class VaporEffect : MonoBehaviour
     {
         if(speed > 80)
         {
-            if (alpha5Over == false && aoa > 5)
+            if (alpha2Over == false && aoa > 2)
+            {
+                alpha2Over = true;
+                SetParticleEffect(strakeVaperEffect, true);
+            }
+            if (alpha2Over == true && aoa < 2)
+            {
+                alpha2Over = false;
+                SetParticleEffect(strakeVaperEffect, false);
+            }
+            if(alpha5Over == false && aoa > 5)
             {
                 alpha5Over = true;
-                SetParticleEffect(strakeVaperEffect, true);
+                SetParticleEffect(wingVaperEffect, true);
             }
             if (alpha5Over == true && aoa < 5)
             {
                 alpha5Over = false;
-                SetParticleEffect(strakeVaperEffect, false);
-            }
-            if(alpha10Over == false && aoa > 10)
-            {
-                alpha10Over = true;
-                SetParticleEffect(wingVaperEffect, true);
-            }
-            if (alpha10Over == true && aoa < 10)
-            {
-                alpha10Over = false;
                 SetParticleEffect(wingVaperEffect, false);
             }
         }
         else
         {
-            if(alpha5Over)
+            if(alpha2Over)
             {
-                alpha5Over = false;
+                alpha2Over = false;
                 SetParticleEffect(strakeVaperEffect, false);
             }
-            if (alpha10Over) 
+            if (alpha5Over) 
             {
-                alpha10Over = false;
+                alpha5Over = false;
                 SetParticleEffect(wingVaperEffect, false);
             }
         }

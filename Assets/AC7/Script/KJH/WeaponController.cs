@@ -10,7 +10,9 @@ namespace kjh
         [SerializeField] WeaponSystem weaponSystem;
         Radar radar;
         Rigidbody rigidbody;
-        
+
+
+
         void Awake()
         {
             aircraftSelecter = GetComponent<AircraftSelecter>();

@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1759765917466483415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8044770756667741761}
+  - component: {fileID: 1047027405542856838}
+  - component: {fileID: -2087154475758710835}
+  m_Layer: 0
+  m_Name: RandomExplosionByDistanceSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8044770756667741761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759765917466483415}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1047027405542856838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759765917466483415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e0d1d53c1798e4bbdd9b9ab18c908b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudio: 0
+--- !u!114 &-2087154475758710835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759765917466483415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec8f1599a6b6524aab48955044dde5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _closeSfxPrefabs:
+  - {fileID: 1759765917466483415, guid: aea3ec55c559e7b42b3503356d9c7a0c, type: 3}
+  - {fileID: 1759765917466483415, guid: 4928714d81ba0b64cbdc8aa1df7b2fc1, type: 3}
+  - {fileID: 1759765917466483415, guid: 1880095fb1822114c8a00ee18d5b27a0, type: 3}
+  _midSfxPrefabs:
+  - {fileID: 1759765917466483415, guid: e6744b0f501fafb48ab6730e24e7c2b5, type: 3}
+  - {fileID: 1759765917466483415, guid: 39da4da6251ebb14597fa8ac52c0b405, type: 3}
+  - {fileID: 1759765917466483415, guid: f5de086e58612034b82cc794960d0143, type: 3}
+  _farSfxPrefabs:
+  - {fileID: 1759765917466483415, guid: 242564f3fc4166f4986ed67dcbfd71d6, type: 3}
+  - {fileID: 1759765917466483415, guid: e4eecf586afcefe4c80d7c4baf839fd6, type: 3}

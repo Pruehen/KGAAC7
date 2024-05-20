@@ -12,6 +12,8 @@ public class TargetUI : MonoBehaviour
     [Header("UI / Texts")]
     [SerializeField]
     RawImage frameImage;
+    [SerializeField] RawImage outerLock;
+    [SerializeField] RawImage innerLock;
 
     [SerializeField]
     TextMeshProUGUI distanceText;
@@ -35,11 +37,16 @@ public class TargetUI : MonoBehaviour
     GameObject blinkUIObject;
     [SerializeField]
     GameObject nextTargetText;
-    
+
+    [SerializeField]
+    Color normalColor;
+    [SerializeField]
+    Color warningColor;
+
     [SerializeField]
     float blinkRepeatTime;
 
-    bool isTargetted;
+    bool isTargeted;
     bool isNextTarget;
     bool isBlinking;
 
@@ -68,6 +75,8 @@ public class TargetUI : MonoBehaviour
             nameText.text = targetObject.name;
             nicknameText.text = targetObject.nickname;
             targetText.gameObject.SetActive(targetObject.mainTarget);
+            isTargeted = targetObject.isTargeted;
+            SetTargetted();
         }
     }
 
@@ -95,10 +104,45 @@ public class TargetUI : MonoBehaviour
 
     public void SetTargetted(bool isTargetted)
     {
-        this.isTargetted = isTargetted;
+        //this.isTargetted = isTargetted;
         SetBlink(isTargetted);
         frameImage.color = GameManager.NormalColor;
     }
+
+    void SetTargetted()
+    {
+        if(isTargeted)
+        {
+            outerLock.gameObject.SetActive(true);
+            innerLock.gameObject.SetActive(true);
+        }
+        else
+        {
+            outerLock.gameObject.SetActive(false);
+            innerLock.gameObject.SetActive(false);
+        }
+    }
+    void TargetIsInRange()
+    {
+        if(targetObject.isRaderLock)
+        {
+            innerLock.color = warningColor;
+        }
+        else
+        {
+            innerLock.color = normalColor;
+        }
+
+        if (targetObject.isMissileLock)
+        {
+            outerLock.color = warningColor;
+        }
+        else
+        {
+            outerLock.color = normalColor;
+        }
+    }
+
 
     void SetBlink(bool blink)
     {
@@ -155,7 +199,7 @@ public class TargetUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         activeCamera = Camera.main;
 
@@ -197,6 +241,8 @@ public class TargetUI : MonoBehaviour
 
 
         uiObject.SetActive(isOutsideOfCamera == false && isInvisible == true && distance < hideDistance);
+
+        TargetIsInRange();
 
         //GameManager.TargetController.ShowTargetArrow(isOutsideOfCamera && distance < hideDistance);
     }

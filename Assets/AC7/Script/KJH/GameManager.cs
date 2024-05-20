@@ -32,13 +32,8 @@ namespace kjh
             for (int i = 0; i < targetTrf.childCount; i++)
             {
                 AddActiveTarget(targetTrf.GetChild(i).GetComponent<VehicleCombat>());
+                //activeTargetList[i].onDeadWithSelf.AddListener(RemoveActiveTarget);
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
