@@ -21104,6 +21104,7 @@ GameObject:
   - component: {fileID: -6878497345927804877}
   - component: {fileID: 1206920244328171021}
   - component: {fileID: 7978342567303173913}
+  - component: {fileID: 2575108002425694393}
   m_Layer: 0
   m_Name: F-15C
   m_TagString: Untagged
@@ -21391,6 +21392,25 @@ MonoBehaviour:
   wingVaperEffect:
   - {fileID: 3919413908694149510}
   - {fileID: 50205822579353997}
+--- !u!114 &2575108002425694393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461215751716273133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617220b7f5e83a841b3f86867e71bfa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parent: {fileID: 0}
+  _volume: 1
+  _fadeIn: 0
+  _fadeOut: 0
+  _fadeInLength: 0.5
+  _fadeOutLength: 0.5
+  _SfxPrefab: {fileID: 1759765917466483415, guid: 21f8502322eaa7244aae0738f136b53b, type: 3}
 --- !u!1 &7507471152206672868
 GameObject:
   m_ObjectHideFlags: 0

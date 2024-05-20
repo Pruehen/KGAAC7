@@ -30,7 +30,7 @@ namespace bsj
             {
                 yield return null;
 
-                Camera.main.transform.position.DrawSphere(3f, Color.red);
+                //Camera.main.transform.position.DrawSphere(3f, Color.red);
                 _cam.transform.LookAt(kjh.GameManager.Instance.player.transform.position);
                 if(_playerTrf == null)
                     yield break;

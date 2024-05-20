@@ -32,6 +32,8 @@ namespace kjh
         /// </summary>
         public void Fire()
         {
+            if (weaponSystem == null)
+                weaponSystem = aircraftSelecter.weaponSystem;
             weaponSystem.Fire(rigidbody.velocity, radar.GetTarget(), radar.toTargetAngle, radar.toTargetDistance);
         }
 
@@ -40,10 +42,14 @@ namespace kjh
         /// </summary>
         public int ChangeWeapon()
         {
+            if (weaponSystem == null)
+                weaponSystem = aircraftSelecter.weaponSystem;
             return weaponSystem.ChangeWeaponIndex();
         }
         public void ChangeWeaponVoid()
         {
+            if (weaponSystem == null)
+                weaponSystem = aircraftSelecter.weaponSystem;
             weaponSystem.ChangeWeaponIndex();
         }
 
@@ -53,10 +59,14 @@ namespace kjh
         /// <param name="value"></param>
         public void SetGunTrigger(bool value)
         {
+            if (weaponSystem == null)
+                weaponSystem = aircraftSelecter.weaponSystem;
             weaponSystem.SetGunTrigger(value);
         }
         public void SetFlareTrigger(bool value)
         {
+            if (weaponSystem == null)
+                weaponSystem = aircraftSelecter.weaponSystem;
             weaponSystem.SetFlareTrigger(value);
         }
     }
