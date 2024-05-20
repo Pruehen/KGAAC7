@@ -6,30 +6,37 @@ namespace bsj
 {
     public class DeathCam : MonoBehaviour
     {
-        Vector3 _deathcamTarget;
+        Transform _playerTrf;
         Camera _cam;
 
         void Start()
         {
             _cam = Camera.main;
             Vector3 offset = Vector3.up * 500f;
-            _deathcamTarget = kjh.GameManager.Instance.player.transform.position + offset;
             GetComponent<VehicleCombat>().onDead.AddListener(Play);
+            _playerTrf = kjh.GameManager.Instance.player.transform;
         }
 
         public void Play()
         {
-            StartCoroutine(MoveCam(_deathcamTarget, 60f));
+            Camera.main.transform.SetParent(null, true);
+            StartCoroutine(MoveCam( 60f));
         }
 
-        private IEnumerator MoveCam(Vector3 toPos, float rotateSpeed)
+        private IEnumerator MoveCam(float rotateSpeed)
         {
+            Vector3 initialOffset =  -_playerTrf.position + _cam.transform.position;
             while (true)
             {
                 yield return null;
+
+                Camera.main.transform.position.DrawSphere(3f, Color.red);
                 _cam.transform.LookAt(kjh.GameManager.Instance.player.transform.position);
-                Vector3 vel = Vector3.zero;
-                _cam.transform.position += Vector3.up * Time.deltaTime * 100f;
+                if(_playerTrf == null)
+                    yield break;
+                float offset = 100f * Time.deltaTime;
+                _cam.transform.position = _playerTrf.position + initialOffset;
+                initialOffset += offset * Vector3.up;
             }
         }
     }

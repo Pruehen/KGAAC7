@@ -47,6 +47,12 @@ public class AircraftMaster : MonoBehaviour
 
     public void Dead()
     {
+        if (_isPlayer)
+        {
+            Camera.main.transform.SetParent(null);
+            Camera.main.transform.GetComponent<CamRotate>().enabled = false;
+
+        }
         EffectManager.Instance.AircraftFireEffectGenerate(this.transform);
         StartCoroutine(DeadEffect());
     }
@@ -54,12 +60,12 @@ public class AircraftMaster : MonoBehaviour
     IEnumerator DeadEffect()
     {
         yield return new WaitForSeconds(2.5f);
-        EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
         if(_isPlayer)
         {
-            kjh.GameManager.Instance.ShowResult(false);
-            Camera.main.transform.SetParent(null);
+            kjh.GameManager.Instance.GameEnd(false);
         }
+        EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
+        //플레이어가 죽었을경우 카메라 뗌
         Destroy(this.gameObject);
     }
 }
