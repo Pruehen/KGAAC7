@@ -29,6 +29,7 @@ public class CustomAI : MonoBehaviour
 
     public Transform target;
     public System.Action engage;
+    bool isEngage;
 
     public void SetTarget(Transform target)
     {
@@ -80,14 +81,41 @@ public class CustomAI : MonoBehaviour
         flightStratagesList.Add(new Formation(this));
         flightStratagesList.Add(new CircleFlight(this));
 
-        if(flightLeader == null)//편대장이거나 단독 개체일 경우
+        isEngage = false;
+
+        if (flightLeader == null)//편대장이거나 단독 개체일 경우
         {
             currentflightStratage = flightStratagesList[0];
+            engage += Engage;
         }
         else//편대원일 경우
         {
             currentflightStratage = flightStratagesList[1];
+            flightLeader.GetComponent<CustomAI>().engage += this.Engage;
         }
+    }
+
+    void Engage()//자신의 상태를 교전 상태로 수정
+    {
+        if (!isEngage)
+        {
+            Debug.Log("교전 상태 진입");
+        }                    
+    }
+
+    /// <summary>
+    /// 자기 기체가 피격당했을 때 호출되는 메서드. 편대원 상태를 교전 상태로 변경하는 역할.
+    /// </summary>
+    public void TakeDamage()
+    {
+        if (flightLeader == null)//편대장이거나 단독 개체일 경우
+        {
+            engage?.Invoke();//연결된 편대원들의 Engage 메서드를 실행시킴.
+        }
+        else
+        {
+            flightLeader.GetComponent<CustomAI>().engage?.Invoke();//편대장에게 교전 명령 신청
+        }    
     }
 
     private void Update()
