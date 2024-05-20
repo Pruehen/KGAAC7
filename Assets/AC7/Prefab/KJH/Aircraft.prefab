@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -6224072715111857092}
   - component: {fileID: 1340515618079156043}
   - component: {fileID: 6564199381550458246}
+  - component: {fileID: 5022171109304261273}
   - component: {fileID: 2164135537011781969}
   - component: {fileID: 5134550722281156703}
   - component: {fileID: 3413560363963453488}
@@ -133,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radarMaxAngle: 60
   isEnemy: 0
+  _lockOnSfxPrefab: {fileID: 0}
 --- !u!114 &1340515618079156043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSystem: {fileID: 0}
-  _gunSound: {fileID: 0}
 --- !u!114 &6564199381550458246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +161,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aircraftControl: {fileID: 0}
+--- !u!114 &5022171109304261273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900060236050395660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11949d52b1cc09747850f37ac17b7261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2164135537011781969
 MonoBehaviour:
   m_ObjectHideFlags: 0

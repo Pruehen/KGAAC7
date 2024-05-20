@@ -5021,6 +5021,7 @@ MonoBehaviour:
   dmg: 55
   reloadTime: 10
   maxSeekerAngle: 85
+  lockOnRange: 5000
 --- !u!1001 &973271792675950601
 PrefabInstance:
   m_ObjectHideFlags: 0

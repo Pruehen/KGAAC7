@@ -13,6 +13,9 @@ public class Radar : MonoBehaviour
     [SerializeField] GameObject _lockOnSfxPrefab;
     AudioSource _lockOnSfx;
 
+    public float toTargetAngle { get; private set; }
+    public float toTargetDistance { get; private set; }
+
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
     /// </summary>
@@ -37,38 +40,45 @@ public class Radar : MonoBehaviour
     {
         if (lockOnTarget != null)
         {
-            float toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-            if (toTargetAngle <= weaponSystem.UseMissileSeekerAngle())
-            {
-                lockOnTarget.isMissileLock = true;
-            }
-            else
-            {
-                lockOnTarget.isMissileLock = false;
-            }
-            if (toTargetAngle <= radarMaxAngle)
-            {
-                lockOnTarget.isRaderLock = true;
-            }
-            else
-            {
-                lockOnTarget.isRaderLock = false;
-            }
+            toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
+            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
 
-            if (lockOnTarget.GetComponent<VehicleCombat>().IsDead())
+            if (!isEnemy)
             {
-                //lockOnTarget = null;
-                StartCoroutine(NextTargetLock());
-            }
+                WeaponData weaponData = weaponSystem.UseWeaponData();
 
-            if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
-            {
-                _lockOnSfx?.Play();
-                Debug.Log("소리");
-            }
-            else if(!lockOnTarget.isMissileLock)
-            {
-                _lockOnSfx?.Pause();
+                if (toTargetAngle <= weaponData.MaxSeekerAngle() && toTargetDistance <= weaponData.LockOnRange())
+                {
+                    lockOnTarget.isMissileLock = true;
+                }
+                else
+                {
+                    lockOnTarget.isMissileLock = false;
+                }
+                if (toTargetAngle <= radarMaxAngle)
+                {
+                    lockOnTarget.isRaderLock = true;
+                }
+                else
+                {
+                    lockOnTarget.isRaderLock = false;
+                }
+
+                if (lockOnTarget.GetComponent<VehicleCombat>().IsDead())
+                {
+                    //lockOnTarget = null;
+                    StartCoroutine(NextTargetLock());
+                }
+
+                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
+                {
+                    _lockOnSfx?.Play();
+                    Debug.Log("소리");
+                }
+                else if (!lockOnTarget.isMissileLock)
+                {
+                    _lockOnSfx?.Pause();
+                }
             }
         }
         else

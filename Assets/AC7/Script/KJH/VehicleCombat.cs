@@ -20,6 +20,11 @@ public class VehicleCombat : MonoBehaviour, IFightable
     void IFightable.TakeDamage(float damage)
     {
         combat.TakeDamage(damage);
+        CustomAI customAI;
+        if(TryGetComponent<CustomAI>(out customAI))
+        {
+            customAI.TakeDamage();
+        }
     }
 
     Combat combat = new Combat();
