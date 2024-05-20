@@ -35,8 +35,15 @@ namespace bsj
                 if(_playerTrf == null)
                     yield break;
                 float offset = 100f * Time.deltaTime;
-                _cam.transform.position = _playerTrf.position + initialOffset;
-                initialOffset += offset * Vector3.up;
+                if(_playerTrf.position.y > 0f)
+                {
+                    _cam.transform.position = new Vector3(_playerTrf.position.x, _playerTrf.position.y, _playerTrf.position.z) + initialOffset;
+                    initialOffset += offset * Vector3.up;
+                }
+                else
+                {
+                    _cam.transform.position = new Vector3(_playerTrf.position.x, _cam.transform.position.y, _playerTrf.position.z) + initialOffset;
+                }
             }
         }
     }
