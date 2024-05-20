@@ -10,20 +10,19 @@ public class MainMenuController : MonoBehaviour
     private static MainMenuController instance = null;
     
     [SerializeField]
-    UnityEngine.InputSystem.PlayerInput playerInput;
+    PlayerInput playerInput;
 
     [SerializeField]
     FadeController fadeController;
 
     [SerializeField]
     GameObject mainMenuScreen;
-    
     [SerializeField]
     GameObject selectPlayScreen;
     [SerializeField]
     GameObject missionSettings;
     [SerializeField]
-    GameObject settingsScreen;
+    GameObject optionScreen;
     [SerializeField]
     GameObject resultScreen;
     [SerializeField]
@@ -65,7 +64,7 @@ public class MainMenuController : MonoBehaviour
         }
     }
     
-    public static UnityEngine.InputSystem.PlayerInput PlayerInput
+    public static PlayerInput PlayerInput
     {
         get { return Instance?.playerInput; }
     }
@@ -157,7 +156,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowSettingsMenu()
     {
-        SetCurrentActiveScreen(settingsScreen);
+        SetCurrentActiveScreen(optionScreen);
     }
 
     public void ShowResultMenu()
@@ -225,7 +224,7 @@ public class MainMenuController : MonoBehaviour
         
         mainMenuScreen.SetActive(false);
         resultScreen.SetActive(false);
-        settingsScreen.SetActive(false);
+        optionScreen.SetActive(false);
 
         playerInput.enabled = true;
         playerInput.actions.Disable();
