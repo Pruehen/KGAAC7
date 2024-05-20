@@ -245,6 +245,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4317c131efe0b4f9cb030aaffac561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &165293704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 324825158960169905, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+  m_PrefabInstance: {fileID: 1005634478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &503912100
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +593,10 @@ PrefabInstance:
       propertyPath: _result.y
       value: 440
       objectReference: {fileID: 0}
+    - target: {fileID: 8198170890872490375, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: controlAircraft
+      value: 
+      objectReference: {fileID: 165293704}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
 --- !u!1 &1199731456
