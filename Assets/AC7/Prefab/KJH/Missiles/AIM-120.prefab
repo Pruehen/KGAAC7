@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2014240417026750983
+--- !u!1 &2736196678140391757
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8403699317050662243}
-  - component: {fileID: 4258100082755389159}
-  - component: {fileID: 6200457600734462899}
-  m_Layer: 12
-  m_Name: PL-11 (2)
+  - component: {fileID: 2071411611371060459}
+  - component: {fileID: 6745640734911231333}
+  - component: {fileID: 5700556503161872259}
+  m_Layer: 0
+  m_Name: F-15C Eagle.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8403699317050662243
+--- !u!4 &2071411611371060459
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014240417026750983}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.026090633, y: 0.026090633, z: 0.026090633}
+  m_GameObject: {fileID: 2736196678140391757}
+  m_LocalRotation: {x: 0.00000003774895, y: -0, z: 0, w: -1}
+  m_LocalPosition: {x: 0, y: -0, z: -0.342}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6445041468265237181}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!33 &4258100082755389159
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6745640734911231333
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014240417026750983}
-  m_Mesh: {fileID: 7730741275797227379, guid: c838cbc0d71e2bf40876814cfa9d0d64, type: 3}
---- !u!23 &6200457600734462899
+  m_GameObject: {fileID: 2736196678140391757}
+  m_Mesh: {fileID: 5329635150962615362, guid: 4e2f67b210098174ba16ec1b5e736e02, type: 3}
+--- !u!23 &5700556503161872259
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014240417026750983}
+  m_GameObject: {fileID: 2736196678140391757}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8cc30a0c93c080d4880ad294ace99c8d, type: 2}
+  - {fileID: 2100000, guid: 62d1385b76783f64b8add555855496ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,8 +117,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7051776194202253058}
-  - {fileID: 8403699317050662243}
   - {fileID: 7825693465396072864}
+  - {fileID: 2071411611371060459}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -189,7 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EIRCM_Count: 15
-  maxTurnRate: 25
+  target: {fileID: 0}
+  maxTurnRate: 45
   maxSideForce: 400
   isTVC: 0
   traceAngleLimit: 50
@@ -207,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 110
   reloadTime: 20
-  maxSeekerAngle: 115
+  maxSeekerAngle: 40
   lockOnRange: 25000
 --- !u!1 &8186166486042749729
 GameObject:
@@ -5030,7 +5031,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3200098332338511442, guid: 5bea366efef61bd4e8bd4487d7e91228, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3200098332338511442, guid: 5bea366efef61bd4e8bd4487d7e91228, type: 3}
       propertyPath: m_LocalPosition.x

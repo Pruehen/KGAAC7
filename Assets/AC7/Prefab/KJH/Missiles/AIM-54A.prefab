@@ -190,7 +190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EIRCM_Count: 15
-  maxTurnRate: 15
+  target: {fileID: 0}
+  maxTurnRate: 20
   maxSideForce: 160
   isTVC: 0
   traceAngleLimit: 30
@@ -208,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 110
   reloadTime: 20
-  maxSeekerAngle: 55
+  maxSeekerAngle: 15
   lockOnRange: 50000
 --- !u!1 &9002579355076675030
 GameObject:

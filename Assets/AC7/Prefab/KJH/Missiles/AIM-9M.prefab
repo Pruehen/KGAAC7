@@ -5002,7 +5002,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EIRCM_Count: 5
-  maxTurnRate: 30
+  target: {fileID: 0}
+  maxTurnRate: 40
   maxSideForce: 300
   isTVC: 0
   traceAngleLimit: 40
@@ -5020,7 +5021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 55
   reloadTime: 10
-  maxSeekerAngle: 85
+  maxSeekerAngle: 30
   lockOnRange: 5000
 --- !u!1001 &973271792675950601
 PrefabInstance:

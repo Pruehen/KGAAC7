@@ -136,12 +136,16 @@ public class Radar : MonoBehaviour
             if(lockOnTarget != null)
             {
                 lockOnTarget.isTargeted = true;
+                toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
+                toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
             }
         }
         else
         {
             lockOnTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
             lockOnTarget.isTargeted = true;
+            toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
+            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
         }
     }
 }

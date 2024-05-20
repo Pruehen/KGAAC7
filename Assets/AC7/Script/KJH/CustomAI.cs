@@ -15,6 +15,13 @@ public interface IFlightStratage
     public float ReturnNewSpeed();//새로운 타겟 속도를 반환
 }
 
+public enum EngageRule
+{
+    none,
+    passive,
+    active
+}
+
 public class CustomAI : MonoBehaviour
 {
     FlightController_AI flightController_AI;
@@ -28,6 +35,9 @@ public class CustomAI : MonoBehaviour
     public Transform flightLeader;//편대장기의 트랜스폼. null일 경우 편대장이거나 단독 개체
     public float spreadValue = 1;
     public Vector3 formationLocalPos;//편대장 기준 자신의 로컬 좌표
+
+    [Header("교전 규칙")]
+    public EngageRule engageRule;
 
     public Transform target;
     public System.Action engage;
@@ -111,11 +121,15 @@ public class CustomAI : MonoBehaviour
         }
 
         StartCoroutine(Order());
+        if(engageRule == EngageRule.active)
+        {
+            StartCoroutine(StartEngage());
+        }
     }
 
     void Engage()//자신의 상태를 교전 상태로 수정
     {
-        if (!isEngage)
+        if (!isEngage && engageRule != EngageRule.none)
         {
             isEngage = true;
             weaponController_AI.StartWeaponFireCheck();
@@ -124,9 +138,9 @@ public class CustomAI : MonoBehaviour
     }
 
     /// <summary>
-    /// 자기 기체가 피격당했을 때 호출되는 메서드. 편대원 상태를 교전 상태로 변경하는 역할.
+    /// 교전 실행 시 호출되는 메서드. 편대원 상태를 교전 상태로 변경하는 역할.
     /// </summary>
-    public void TakeDamage()
+    public void EngageOrder()
     {
         if (flightLeader == null)//편대장이거나 단독 개체일 경우
         {
@@ -137,10 +151,10 @@ public class CustomAI : MonoBehaviour
             flightLeader.GetComponent<CustomAI>().engage?.Invoke();//편대장에게 교전 명령 신청
         }    
     }
-
-    private void Update()
+    IEnumerator StartEngage()
     {
-
+        yield return new WaitForSeconds(1);
+        EngageOrder();
     }
 
     IEnumerator Order()

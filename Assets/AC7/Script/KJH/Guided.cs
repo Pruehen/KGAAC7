@@ -5,7 +5,7 @@ using UnityEngine;
 public class Guided : MonoBehaviour
 {
     [SerializeField] int EIRCM_Count;
-    VehicleCombat target;
+    [SerializeField] VehicleCombat target;
 
     /// <summary>
     /// 유도 미사일의 타겟을 지정해주는 메서드
@@ -16,7 +16,7 @@ public class Guided : MonoBehaviour
         if (target != null)
         {
             WeaponData weaponData = GetComponent<WeaponData>();
-            if (angle <= weaponData.MaxSeekerAngle() && distance <= weaponData.LockOnRange())
+            if (angle <= traceAngleLimit && distance <= weaponData.LockOnRange())
             {
                 this.target = target;
                 target.onFlare += EIRCM;
@@ -91,7 +91,7 @@ public class Guided : MonoBehaviour
                 //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
             }
 
-            if (Vector3.Angle(this.transform.forward, targetVec - this.transform.position) > traceAngleLimit)
+            if (Vector3.Angle(this.transform.forward, toTargetVec) > traceAngleLimit)
             {
                 RemoveTarget();
             }

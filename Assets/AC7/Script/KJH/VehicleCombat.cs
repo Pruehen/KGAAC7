@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class VehicleCombat : MonoBehaviour, IFightable
 {
+    public float startHp;
     public bool isPlayer;
     public bool mainTarget = false;
     public string name;
@@ -27,7 +28,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
         CustomAI customAI;
         if(TryGetComponent<CustomAI>(out customAI))
         {
-            customAI.TakeDamage();
+            customAI.EngageOrder();
         }
     }
 
@@ -35,7 +36,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
 
     private void Awake()
     {
-        combat.Init(this.transform, 100);        
+        combat.Init(this.transform, startHp);        
         combat.OnDead += Dead;
         isTargeted = false;
         isRaderLock = false;

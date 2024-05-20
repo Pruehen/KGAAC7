@@ -82,8 +82,15 @@ public class FlightController_AI : MonoBehaviour
         float throttleOrder = targetSpeed - velocity.magnitude;
 
         if (localOrder_PD.y > -0.2f)
-        {
-            pitchOrder = localOrder_PD.y;
+        {            
+            if(toTargetVecZRange < -100)
+            {
+                pitchOrder = 1;
+            }
+            else
+            {
+                pitchOrder = localOrder_PD.y;
+            }
             yawOrder = localOrder_PD.x;
             rollOrder = localOrder_PD.x * 5;
             if (toTargetVecZRange > 0 || toTargetVec.magnitude > 3000)//타겟이 자신 앞에 있으며 거리가 멀 경우, 트래킹하며 수평 유지
