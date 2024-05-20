@@ -33,6 +33,7 @@ public class WeaponController_AI : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(time);
+            radar.LockOn();
             float toTargetAngle = radar.toTargetAngle;
             float distance = radar.toTargetDistance;
 
@@ -54,7 +55,6 @@ public class WeaponController_AI : MonoBehaviour
 
             if (weaponMaxRange > distance && weaponMaxAngle > toTargetAngle)
             {
-                radar.LockOn();
                 weaponController.Fire();
             }
         }

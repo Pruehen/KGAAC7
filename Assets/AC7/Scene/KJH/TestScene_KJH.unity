@@ -11365,6 +11365,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758320871}
   m_CullTransparentMesh: 1
+--- !u!1 &760772285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2952854090460673027, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  m_PrefabInstance: {fileID: 886787190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &767766885
 GameObject:
   m_ObjectHideFlags: 0
@@ -13108,6 +13113,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: isPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4719238730020744993, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: enginePower
       value: 13.5
@@ -13143,7 +13152,7 @@ PrefabInstance:
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
-      objectReference: {fileID: 1477911078}
+      objectReference: {fileID: 760772285}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
 --- !u!114 &886787191 stripped
@@ -21501,11 +21510,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450588105}
   m_CullTransparentMesh: 1
---- !u!1 &1477911078 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1090491804934246997, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
-  m_PrefabInstance: {fileID: 886787190}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1478566601
 GameObject:
   m_ObjectHideFlags: 0
@@ -30678,6 +30682,26 @@ PrefabInstance:
     - target: {fileID: 1259991924573250009, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721877741107614264, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
+      propertyPath: aiLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721877741937625005, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
+      propertyPath: aiLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721877742058806378, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
+      propertyPath: aiLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721877742298274562, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
+      propertyPath: aiLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721877742496399671, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
+      propertyPath: aiLevel
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7227807178017333988, guid: 6a846e53c99a64644bc6e290de935d5b, type: 3}
       propertyPath: m_Name

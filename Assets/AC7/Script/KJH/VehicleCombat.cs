@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class VehicleCombat : MonoBehaviour, IFightable
 {
+    public bool isPlayer;
     public bool mainTarget = false;
     public string name;
     public string nickname;
@@ -19,6 +20,9 @@ public class VehicleCombat : MonoBehaviour, IFightable
 
     void IFightable.TakeDamage(float damage)
     {
+        if (isPlayer)
+            damage *= 0.3f;
+
         combat.TakeDamage(damage);
         CustomAI customAI;
         if(TryGetComponent<CustomAI>(out customAI))
