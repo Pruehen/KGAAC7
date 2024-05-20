@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -147,7 +148,25 @@ public class MainMenuController : MonoBehaviour
     }
     public void ShowAirCombatSettings()
     {
+        // 현재 활성화된 화면을 설정하는 메서드
         SetCurrentActiveScreen(airCombatSettings);
+
+        // airCombatSettings의 부모 오브젝트를 찾음
+        Transform parentTransform = airCombatSettings.transform.parent;
+
+        // 부모 오브젝트 아래에서 background 오브젝트를 찾음
+        Transform backgroundTransform = parentTransform.Find("Background");
+
+        // background 오브젝트가 있는지 확인하고 비활성화
+        if (backgroundTransform != null)
+        {
+            backgroundTransform.gameObject.SetActive(false);
+        }
+        Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
+        if (airCombatSelect != null)
+        {
+            airCombatSelect.gameObject.SetActive(true);
+        }
     }
     public void ShowMainMenu()
     {
