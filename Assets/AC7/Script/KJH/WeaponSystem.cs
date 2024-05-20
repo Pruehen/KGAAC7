@@ -46,9 +46,19 @@ namespace kjh
 
         VehicleCombat vehicleCombat;
 
+        FadableAudio _gunAudio;
+
         public void SetGunTrigger(bool value)
         {
             gunTrigger = value;
+            if (value)
+            {
+                _gunAudio.Play();
+            }
+            else
+            {
+                _gunAudio.Stop();
+            }
         }
         public void SetFlareTrigger(bool value)
         {
@@ -83,6 +93,9 @@ namespace kjh
             gunTrigger = false;
             rigidbody = this.transform.parent.GetComponent<Rigidbody>();
             vehicleCombat = this.transform.parent.GetComponent<VehicleCombat>();
+
+            _gunAudio = GetComponent<FadableAudio>();
+            _gunAudio.SetParent(gunFireTrf);
 
             for (int i = 0; i < weaponPrfList.Count; i++)
             {

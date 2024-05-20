@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,15 +17,16 @@ public class FadableAudio : MonoBehaviour
     private AudioSource _audioSource;
     private bool _fadeOuting;
 
-    private void Awake()
-    {
-        _audioSource = bsj.SoundManager.Instance.PlayAttached(_SfxPrefab, _parent,true).GetComponent<AudioSource>();
-        _audioSource.Stop();
-        _volume = 1f;
-    }
-
     public void Play()
     {
+        if(_audioSource == null)
+        {
+            _audioSource = bsj.SoundManager.Instance.PlayAttached(_SfxPrefab, _parent, true).GetComponent<AudioSource>();
+            _audioSource.Stop();
+            _volume = 1f;
+        }
+
+
         if (_fadeIn)
         {
             _audioSource.Play();
@@ -48,7 +50,7 @@ public class FadableAudio : MonoBehaviour
         else
         {
             _audioSource.volume = 0f;
-            _audioSource.Stop();
+            _audioSource.Pause();
         }
     }
 
@@ -85,5 +87,10 @@ public class FadableAudio : MonoBehaviour
     public bool IsPlaying()
     {
         return _audioSource.isPlaying;
+    }
+
+    public void SetParent(Transform gunFireTrf)
+    {
+        _parent = gunFireTrf;
     }
 }
