@@ -10,6 +10,7 @@ using UnityEngine;
 
 public interface IFlightStratage
 {
+    public void EnterState();
     public Vector3 ReturnNewOrder();//새로운 웨이포인트 좌표를 반환
     public float ReturnNewSpeed();//새로운 타겟 속도를 반환
 }
@@ -66,40 +67,56 @@ public class CustomAI : MonoBehaviour
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(this.transform.position, wayPointTemp);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(wayPointTemp, 30);
     }
 
-    void Awake()
+    /// <summary>
+    /// 자신의 편대 위치를 설정하는 메서드
+    /// </summary>
+    /// <param name="spreadValue"></param>
+    public void SetFormationPos(float spreadValue)
     {
         if (flightLeader != null)
         {
             formationLocalPos = flightLeader.InverseTransformPoint(this.transform.position) * spreadValue + new Vector3(0, 0, 1000);
         }
+    }
+
+    void Start()
+    {
+        SetFormationPos(spreadValue);
 
         flightController_AI = GetComponent<FlightController_AI>();
 
         flightStratagesList.Add(new MoveToWaypoints(this));
         flightStratagesList.Add(new Formation(this));
         flightStratagesList.Add(new CircleFlight(this));
+        flightStratagesList.Add(new Break(this));
+        flightStratagesList.Add(new Traking_Pure(this));
 
         isEngage = false;
 
         if (flightLeader == null)//편대장이거나 단독 개체일 경우
         {
-            currentflightStratage = flightStratagesList[0];
+            ChangeStratage(0);
             engage += Engage;
         }
         else//편대원일 경우
         {
-            currentflightStratage = flightStratagesList[1];
+            ChangeStratage(1);
             flightLeader.GetComponent<CustomAI>().engage += this.Engage;
         }
+
+        StartCoroutine(Order());
     }
 
     void Engage()//자신의 상태를 교전 상태로 수정
     {
         if (!isEngage)
         {
-            Debug.Log("교전 상태 진입");
+            isEngage = true;
+            ChangeStratage(3);
         }                    
     }
 
@@ -120,28 +137,54 @@ public class CustomAI : MonoBehaviour
 
     private void Update()
     {
-        Vector3 newWayPoint = currentflightStratage.ReturnNewOrder();
-        float targetSpeed = currentflightStratage.ReturnNewSpeed();
 
-        if(newWayPoint != wayPointTemp)//기존 저장된 경로와 다를 경우 ai의 웨이포인트를 갱신함
-        {
-            wayPointTemp = newWayPoint;
-            flightController_AI.CreateNewWayPoint_Position(newWayPoint);            
-        }
-        if(targetSpeed != targetSpeedTemp)//속도 갱신
-        {
-            targetSpeedTemp = targetSpeed;
-            flightController_AI.SetTargetSpeed(targetSpeed);
-        }
     }
 
+    IEnumerator Order()
+    {
+        while(true)
+        {            
+            Vector3 newWayPoint = currentflightStratage.ReturnNewOrder();
+            float targetSpeed = currentflightStratage.ReturnNewSpeed();
+
+            if (newWayPoint != wayPointTemp)//기존 저장된 경로와 다를 경우 ai의 웨이포인트를 갱신함
+            {
+                wayPointTemp = newWayPoint;
+                flightController_AI.CreateNewWayPoint_Position(newWayPoint);
+            }
+            if (targetSpeed != targetSpeedTemp)//속도 갱신
+            {
+                targetSpeedTemp = targetSpeed;
+                flightController_AI.SetTargetSpeed(targetSpeed);
+            }
+            yield return new WaitForSeconds(1);
+        }    
+    }
+
+    /// <summary>
+    /// 자신의 전략을 변경하는 메서드
+    /// </summary>
+    /// <param name="index"></param>
     public void ChangeStratage(int index)
     {
         currentflightStratage = flightStratagesList[index];
+        currentflightStratage.EnterState();
+    }
+
+    /// <summary>
+    /// 자신의 전략을 time초 후에 변경하는 메서드
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    public IEnumerator ChangeStratage(int index, float time)
+    {
+        yield return new WaitForSeconds(time);
+        ChangeStratage(index);
     }
 }
 
-class MoveToWaypoints : IFlightStratage//경로 비행 전략
+class MoveToWaypoints : IFlightStratage//0. 경로 비행 전략
 {
     CustomAI customAI;
     List<Vector3> wayPointList;
@@ -159,7 +202,7 @@ class MoveToWaypoints : IFlightStratage//경로 비행 전략
 
         naxtVisitIndex = 0;
     }
-
+    public void EnterState() { Debug.Log($"{customAI.gameObject.name} 상태 설정 : 경로 비행"); }
     public Vector3 ReturnNewOrder()
     {
         if (Vector3.Distance(myTrf.position, wayPointList[naxtVisitIndex]) < 100)//목표 도착 시
@@ -190,7 +233,7 @@ class MoveToWaypoints : IFlightStratage//경로 비행 전략
     }
 }
 
-class Formation : IFlightStratage//편대 비행 전략
+class Formation : IFlightStratage//1. 편대 비행 전략
 {
     CustomAI customAI;
     Transform flTrf;
@@ -209,7 +252,7 @@ class Formation : IFlightStratage//편대 비행 전략
         this.flTrf = customAI.flightLeader;
         this.formationLocalPos = customAI.formationLocalPos;
     }
-
+    public void EnterState() { Debug.Log($"{customAI.gameObject.name} 상태 설정 : 편대 비행"); }
     public Vector3 ReturnNewOrder()
     {
         if(flTrf == null)
@@ -230,7 +273,7 @@ class Formation : IFlightStratage//편대 비행 전략
     }
 }
 
-class CircleFlight : IFlightStratage //선회 비행 전략
+class CircleFlight : IFlightStratage //2. 선회 비행 전략
 {
     CustomAI customAI;
     Transform myTrf;
@@ -241,13 +284,83 @@ class CircleFlight : IFlightStratage //선회 비행 전략
         myTrf = customAI.transform;
         targetSpeed = customAI.targetSpeed;
     }
-
+    public void EnterState() { Debug.Log($"{customAI.gameObject.name} 상태 설정 : 선회 비행"); }
     public Vector3 ReturnNewOrder()
     {
         Vector3 targetPos = myTrf.position + myTrf.forward * 3000;
         targetPos.y = myTrf.position.y;
         targetPos = Quaternion.Euler(0, 30, 0) * targetPos;
         return targetPos;
+    }
+    public float ReturnNewSpeed()
+    {
+        return targetSpeed;
+    }
+}
+
+class Break : IFlightStratage //3. 편대 해체 전략
+{
+    CustomAI customAI;
+    Transform flTrf;
+    Transform myTrf;
+    Vector3 formationLocalPos;
+    Vector3 targetWorldPos;
+    float targetSpeed;
+    public Break(CustomAI customAI)
+    {
+        this.customAI = customAI;
+        this.myTrf = customAI.transform;
+        this.flTrf = customAI.flightLeader;
+        customAI.SetFormationPos(100);
+        this.formationLocalPos = customAI.formationLocalPos;
+        targetSpeed = customAI.targetSpeed;
+    }
+    public void EnterState() 
+    {
+        customAI.StartCoroutine(customAI.ChangeStratage(4, 3));
+        Debug.Log($"{customAI.gameObject.name} 상태 설정 : 편대 해체, 급기동");
+    }
+    public Vector3 ReturnNewOrder()
+    {
+        if (flTrf == null)
+        {
+            Vector3 targetPos = myTrf.position + myTrf.forward * 3000;
+            targetPos.y = myTrf.position.y * 10000;
+            return targetPos;
+        }
+        else
+        {
+            targetWorldPos = flTrf.position + (flTrf.rotation * (formationLocalPos));
+            return targetWorldPos;
+        }
+    }
+    public float ReturnNewSpeed()
+    {
+        return targetSpeed;
+    }
+}
+
+class Traking_Pure : IFlightStratage //4. 퓨어 추적 전략
+{
+    CustomAI customAI;
+    Transform targetTrf;
+    Transform myTrf;
+    float targetSpeed;
+    public Traking_Pure(CustomAI customAI)
+    {
+        this.customAI = customAI;
+        this.myTrf = customAI.transform;
+        customAI.SetTarget(kjh.GameManager.Instance.player.transform);
+        this.targetTrf = customAI.target;                
+        targetSpeed = customAI.targetSpeed;
+    }
+    public void EnterState()
+    {        
+        Debug.Log($"{customAI.gameObject.name} 상태 설정 : 퓨어 추적");
+    }
+    public Vector3 ReturnNewOrder()
+    {        
+        return targetTrf.position;
     }
     public float ReturnNewSpeed()
     {

@@ -49,7 +49,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_Name
-      value: Aircraft (4)
+      value: MiG-29
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395662, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_RootOrder
@@ -147,7 +147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_Name
-      value: Aircraft (1)
+      value: MiG-29
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395662, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_RootOrder
@@ -245,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_Name
-      value: Aircraft (3)
+      value: MiG-29
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395662, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_RootOrder
@@ -343,7 +343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_Name
-      value: Aircraft (2)
+      value: MiG-29_FL
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395662, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_RootOrder
@@ -485,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_Name
-      value: Aircraft
+      value: MiG-29
       objectReference: {fileID: 0}
     - target: {fileID: 900060236050395662, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: m_RootOrder
