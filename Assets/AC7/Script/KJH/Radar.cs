@@ -60,9 +60,15 @@ public class Radar : MonoBehaviour
                 //lockOnTarget = null;
                 StartCoroutine(NextTargetLock());
             }
-            if (!_lockOnSfx.isPlaying)
+
+            if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
             {
                 _lockOnSfx?.Play();
+                Debug.Log("¼Ò¸®");
+            }
+            else if(!lockOnTarget.isMissileLock)
+            {
+                _lockOnSfx?.Pause();
             }
         }
         else

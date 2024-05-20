@@ -21310,7 +21310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enginePower: 9
-  pitchTorque: 6
+  pitchTorque: 4.5
   rollTorque: 20
   yawTorque: 1.2
   enginePowerCurve:
@@ -21359,7 +21359,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 20
       value: 0
       inSlope: 0.000030102525
       outSlope: 0.000030102525

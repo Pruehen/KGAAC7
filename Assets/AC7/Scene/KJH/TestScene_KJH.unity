@@ -13366,6 +13366,10 @@ PrefabInstance:
       propertyPath: radarMaxAngle
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: -6224072715111857092, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: _lockOnSfxPrefab
+      value: 
+      objectReference: {fileID: 1759765917466483415, guid: 1c55af27b98083846809dab419851a85, type: 3}
     - target: {fileID: -1192869116438744633, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiControl
       value: 0
@@ -13477,7 +13481,7 @@ PrefabInstance:
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
-      objectReference: {fileID: 886787192}
+      objectReference: {fileID: 1477911078}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
 --- !u!114 &886787191 stripped
@@ -13491,11 +13495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5139a9a0bd76245a6c62df5493ecd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &886787192 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 468129949341949183, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
-  m_PrefabInstance: {fileID: 886787190}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &886787193 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 900060236050395662, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
@@ -21840,6 +21839,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450588105}
   m_CullTransparentMesh: 1
+--- !u!1 &1477911078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1090491804934246997, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  m_PrefabInstance: {fileID: 886787190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1478566601
 GameObject:
   m_ObjectHideFlags: 0

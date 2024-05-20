@@ -32,7 +32,7 @@ namespace kjh
             for (int i = 0; i < targetTrf.childCount; i++)
             {
                 AddActiveTarget(targetTrf.GetChild(i).GetComponent<VehicleCombat>());
-                activeTargetList[i].onDeadWithSelf.AddListener(RemoveActiveTarget);
+                //activeTargetList[i].onDeadWithSelf.AddListener(RemoveActiveTarget);
             }
         }
     }
