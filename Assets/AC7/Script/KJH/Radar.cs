@@ -7,6 +7,7 @@ public class Radar : MonoBehaviour
 {    
     VehicleCombat lockOnTarget;
     [SerializeField] float radarMaxAngle;
+    public float RadarMaxAngle() { return radarMaxAngle; }
     [SerializeField] bool isEnemy;
     WeaponSystem weaponSystem;
 
@@ -125,11 +126,11 @@ public class Radar : MonoBehaviour
                 VehicleCombat item = targetList[i];
 
                 float itemAngle = Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position);
-                if(itemAngle < 30 && !inRangeTargetList.Contains(item))
+                if(itemAngle < 10 && !inRangeTargetList.Contains(item))
                 {
                     inRangeTargetList.Add(item);
                 }
-                else if(itemAngle >= 30 && inRangeTargetList.Contains(item))
+                else if(itemAngle >= 10 && inRangeTargetList.Contains(item))
                 {
                     inRangeTargetList.Remove(item);
                 }
@@ -144,7 +145,7 @@ public class Radar : MonoBehaviour
                 VehicleCombat item = inRangeTargetList[i];
                 
                 if (item == null || 
-                    Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position) >= 30 || 
+                    Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position) >= 10 || 
                     item.IsDead())
                 {
                     inRangeTargetList.Remove(item);

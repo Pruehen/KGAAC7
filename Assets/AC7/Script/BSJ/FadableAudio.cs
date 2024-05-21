@@ -17,14 +17,19 @@ public class FadableAudio : MonoBehaviour
     private AudioSource _audioSource;
     private bool _fadeOuting;
 
-    public void Play()
+
+    private void Start()
     {
-        if(_audioSource == null)
+        if (_audioSource == null)
         {
             _audioSource = bsj.SoundManager.Instance.PlayAttached(_SfxPrefab, _parent, true).GetComponent<AudioSource>();
             _audioSource.Stop();
             _volume = 1f;
         }
+    }
+
+    public void Play()
+    {
 
 
         if (_fadeIn)
@@ -41,6 +46,7 @@ public class FadableAudio : MonoBehaviour
     }
     public void Stop()
     {
+
         if (_fadeOut)
         {
             _fadeOuting = true;

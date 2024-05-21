@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Minimap : MonoBehaviour
 {
-    [SerializeField] GameObject targetPrefab;
+    [SerializeField] GameObject _targetPrefab;
+    [SerializeField] GameObject _missilePrefab;
     [SerializeField] float _ratio;
     [SerializeField] Transform _virtualMinmapPlayerAxis;
     [SerializeField] Transform _leftTopBoundary;
@@ -21,6 +22,7 @@ public class Minimap : MonoBehaviour
         Init();
 
         kjh.GameManager.Instance.OnTargetAdded += InitTargetUi;
+        kjh.GameManager.Instance.OnMissileAdded += InitMissileUi;
     }
 
     private void Init()
@@ -31,15 +33,23 @@ public class Minimap : MonoBehaviour
         _maxy = _leftTopBoundary.localPosition.y;
         foreach (VehicleCombat combat in kjh.GameManager.Instance.activeTargetList)
         {
-            InitTargetUi(combat);
+            InitTargetUi(combat.transform);
         }
     }
 
-    private void InitTargetUi(VehicleCombat combat)
+    private void InitTargetUi(Transform targetTransform)
     {
         //角青矫 葛电 利 酒捞能 积己
-        GameObject uiItem = Instantiate(targetPrefab, transform);
-        uiItem.GetComponent<TargetUi>().Init(combat, _virtualMinmapPlayerAxis,
+        GameObject uiItem = Instantiate(_targetPrefab, transform);
+        uiItem.GetComponent<MinimapTargetUi>().Init(targetTransform, _virtualMinmapPlayerAxis,
+            _minx, _maxx, _miny, _maxy,
+            _iconSIze, _ratio);
+    }
+    private void InitMissileUi(Transform targetTransform)
+    {
+        //角青矫 葛电 利 酒捞能 积己
+        GameObject uiItem = Instantiate(_missilePrefab, transform);
+        uiItem.GetComponent<MinimapTargetUi>().Init(targetTransform, _virtualMinmapPlayerAxis,
             _minx, _maxx, _miny, _maxy,
             _iconSIze, _ratio);
     }

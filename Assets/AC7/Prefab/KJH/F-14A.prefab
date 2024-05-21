@@ -21310,7 +21310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c48ed4ea846eb48a3b79413e2ecc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enginePower: 9
+  enginePower: 7
   pitchTorque: 4
   rollTorque: 20
   yawTorque: 1.2

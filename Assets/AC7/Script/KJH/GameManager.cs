@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace kjh
 {
@@ -13,8 +14,12 @@ namespace kjh
         public List<VehicleCombat> activeTargetList = new List<VehicleCombat>();
         public AircraftMaster player;
 
-        public System.Action<VehicleCombat> OnTargetAdded;
+        public System.Action<Transform> OnTargetAdded;
         public System.Action<int> targetCountChanged;
+
+
+        public System.Action<Transform> OnMissileAdded;
+        public System.Action<Transform> OnMissileRemoved;
 
         /// <summary>
         /// 게임매니저에 타겟을 추가
@@ -23,7 +28,7 @@ namespace kjh
         {
             activeTargetList.Add(vehicleCombat);
             targetCountChanged?.Invoke(activeTargetList.Count);
-            OnTargetAdded?.Invoke(vehicleCombat);
+            OnTargetAdded?.Invoke(vehicleCombat.transform);
         }
 
 
@@ -58,6 +63,7 @@ namespace kjh
             //페이드아웃한 후
             //씬을 이동시킨다
             //씬매니저
+            Debug.Assert(_gameResultUi != null);
             StartCoroutine(DelayedCall(delay, _gameResultUi.FadeIn));
         }
 
@@ -76,16 +82,31 @@ namespace kjh
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             Debug.Log("ReturnToMainMenu");
         }
-        public void FadeIn(Graphic image, float time, System.Action fadeEnd = null)
+
+        public void ReloadCurrentScene()
         {
-            StartCoroutine(FadeInCoroutine(image, time, fadeEnd));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            Debug.Log("ReloadScene");
         }
 
-        private IEnumerator FadeInCoroutine(Graphic image, float time, System.Action fadeEnd = null)
+        public void FadeIn(Graphic image, float time, bool onlyActiveSelf = false, System.Action fadeEnd = null)
+        {
+            StartCoroutine(FadeInCoroutine(image, time, onlyActiveSelf, fadeEnd));
+        }
+
+        private IEnumerator FadeInCoroutine(Graphic image, float time, bool onlyActiveSelf = false, System.Action fadeEnd = null)
         {
             float alpha = 0f;
             image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
             image.gameObject.SetActive(true);
+
+            if (onlyActiveSelf)
+            {
+                for (int i = 0; i < image.transform.childCount; i++)
+                {
+                    image.transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
             while (image.color.a < 1f)
             {
                 alpha += Time.deltaTime / time;
@@ -93,9 +114,18 @@ namespace kjh
                 yield return null;
             }
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
-            image.transform.GetChild(0).gameObject.SetActive(true);
             fadeEnd?.Invoke();
             yield break;
+        }
+
+        public void NotifyMissileSpawn(Transform missileTransform)
+        {
+
+            OnMissileAdded?.Invoke(missileTransform);
+        }
+        public void NotifyMissileRemoved(Transform missileTransform)
+        {
+            OnMissileRemoved?.Invoke(missileTransform);
         }
     }
 }

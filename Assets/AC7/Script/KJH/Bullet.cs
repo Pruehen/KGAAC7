@@ -46,11 +46,15 @@ namespace kjh
         private void OnTriggerEnter(Collider other)
         {
             IFightable fightable;
+            GenerateBullePassSfx bulletPassing;
             if (other.transform.TryGetComponent<IFightable>(out fightable))
             {
                 fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
             }
-
+            if(other.TryGetComponent<GenerateBullePassSfx>(out bulletPassing))
+            {
+                return;
+            }
             DestroyObject();
         }
 

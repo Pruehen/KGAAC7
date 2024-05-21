@@ -14,6 +14,8 @@ namespace kjh
         public List<int> EquipedWeaponIndexList() { return equipedWeaponIndexList; }
         List<float> weaponCoolDownList; //MSL 무기 개수        
 
+        float innerFireDelay = 0;
+
         public float MslCoolDownRatio(int index) //0부터 시작해서 참
         {
             float coolTime = weaponPrfList[equipedWeaponIndexList[index]].GetComponent<WeaponData>().ReloadTime();
@@ -119,6 +121,10 @@ namespace kjh
                 }
             }
 
+            if (innerFireDelay < 0.1f)
+            {
+                innerFireDelay += Time.deltaTime;
+            }
             GunFire();
             FlareDeploy();
         }
@@ -159,8 +165,11 @@ namespace kjh
         /// </summary>
         /// <param name="aircraftVelocity"></param>
         /// <param name="target"></param>
-        public void Fire(Vector3 aircraftVelocity, VehicleCombat target, float angle, float distance)
-        {            
+        public void Fire(Vector3 aircraftVelocity, Radar radar)
+        {
+            if (innerFireDelay < 0.1f)
+                return;
+
             GameObject useWeaponPrf = weaponPrfList[useWeaponIndex];
             Transform firePoint = null;
 
@@ -204,7 +213,7 @@ namespace kjh
                 Guided guided;
                 if (item.TryGetComponent(out guided))
                 {
-                    guided.SetTarget(target, angle, distance);
+                    guided.SetTarget(radar);
                 }
             }
         }
