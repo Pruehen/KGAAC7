@@ -21872,10 +21872,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2877160634197634789, guid: 5fddae46b54dd0a4b9323cfd7c6a7dc3, type: 3}
-      propertyPath: volumRatio
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 5139957163490176079, guid: 5fddae46b54dd0a4b9323cfd7c6a7dc3, type: 3}
       propertyPath: m_Name
       value: JetEngine

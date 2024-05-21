@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +13,17 @@ namespace kjh
         public List<VehicleCombat> activeTargetList = new List<VehicleCombat>();
         public AircraftMaster player;
 
+        public System.Action<VehicleCombat> OnTargetAdded;
+        public System.Action<int> targetCountChanged;
+
         /// <summary>
         /// 게임매니저에 타겟을 추가
         /// </summary>
         public void AddActiveTarget(VehicleCombat vehicleCombat)
         {
             activeTargetList.Add(vehicleCombat);
+            targetCountChanged?.Invoke(activeTargetList.Count);
+            OnTargetAdded?.Invoke(vehicleCombat);
         }
 
 
@@ -29,6 +33,7 @@ namespace kjh
         public void RemoveActiveTarget(VehicleCombat vehicleCombat)
         {
             activeTargetList.Remove(vehicleCombat);
+            targetCountChanged?.Invoke(activeTargetList.Count);
         }
 
         private void Awake()
@@ -46,15 +51,22 @@ namespace kjh
         /// <summary>
         /// 미션 성공시 호출되어 경과창을 띄워줌
         /// </summary>
-        public void GameEnd(bool _win, float fadeInTime)
+        public void GameEnd(bool _win, float fadeInTime, float delay = 0f)
         {
             //일단 전투 결과를 보여준 후
             //확인을 누르면 
             //페이드아웃한 후
             //씬을 이동시킨다
             //씬매니저
-            _gameResultUi.FadeIn();
+            StartCoroutine(DelayedCall(delay, _gameResultUi.FadeIn));
         }
+
+        private IEnumerator DelayedCall(float time, System.Action action)
+        {
+            yield return new WaitForSeconds(time);
+            action?.Invoke();
+        }
+
         /// <summary>
         /// 메인메뉴로 돌아감
         /// 전투완료 버튼 누를시 호출

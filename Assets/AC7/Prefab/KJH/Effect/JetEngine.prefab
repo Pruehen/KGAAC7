@@ -4830,7 +4830,7 @@ MonoBehaviour:
   accelLerpAmount: 1
   brakeLerpAmount: 1
   maxVolume: 1
-  volumRatio: 0.01
+  volumRatio: 0.05
   _engineSound: {fileID: 0}
 --- !u!114 &-7623346490407833883
 MonoBehaviour:
