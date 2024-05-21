@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class MainMenuController : MonoBehaviour
     GameObject resultScreen;
     [SerializeField]
     GameObject airCombatSettings;
+    [SerializeField]
+    GameObject LoadingScreen;
     [SerializeField]
     TextMeshProUGUI descriptionText;
     
@@ -152,20 +155,8 @@ public class MainMenuController : MonoBehaviour
     }
     public void ShowAirCombatSettings()
     {
-        // 현재 활성화된 화면을 설정하는 메서드
-        SetCurrentActiveScreen(airCombatSettings);
-
-        // airCombatSettings의 부모 오브젝트를 찾음
-        Transform parentTransform = airCombatSettings.transform.parent;
-
-        // 부모 오브젝트 아래에서 background 오브젝트를 찾음
-        Transform backgroundTransform = parentTransform.Find("Background");
-
-        // background 오브젝트가 있는지 확인하고 비활성화
-        if (backgroundTransform != null)
-        {
-            backgroundTransform.gameObject.SetActive(false);
-        }
+        SetCurrentActiveScreen(LoadingScreen);
+        airCombatSettings.SetActive(true);
         Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
         Transform airCombatEnvironment = airCombatSettings.transform.Find("AirCombatEnvironment");
         if (airCombatSelect != null)
@@ -176,7 +167,8 @@ public class MainMenuController : MonoBehaviour
         {
             airCombatEnvironment.gameObject.SetActive(true);
         }
-        onNavigateEvent.Invoke();
+        StartCoroutine(OnAirCombatScreen());
+        
     }
     public void ShowMainMenu()
     {
@@ -193,6 +185,10 @@ public class MainMenuController : MonoBehaviour
         SetCurrentActiveScreen(resultScreen);
     }
 
+    public void ShowLoadingMenu()
+    {
+        
+    }
     public void StartMission()
     {
         playerInput.enabled = false;
@@ -241,7 +237,26 @@ public class MainMenuController : MonoBehaviour
         SetCurrentActiveScreen(mainMenuScreen);
     }
 
-    
+    IEnumerator OnAirCombatScreen()
+    {
+        yield return new WaitForSeconds(5);
+        Transform parentTransform = airCombatSettings.transform.parent;
+        Transform backgroundTransform = parentTransform.Find("Background");
+        if (backgroundTransform != null)
+        {
+            backgroundTransform.gameObject.SetActive(false);
+        }
+        LoadingScreen.SetActive(false);
+        Transform selectUI = airCombatSettings.transform.Find("SelectUI");
+        if (selectUI != null)
+        {
+            selectUI.gameObject.SetActive(true);
+        }
+        currentMenuController = airCombatSettings.GetComponent<MenuController>();
+        onNavigateEvent.Invoke();
+    }
+
+
 
     void Awake()
     {
