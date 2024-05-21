@@ -196,11 +196,9 @@ public class MainMenuController : MonoBehaviour
     public void StartMission()
     {
         playerInput.enabled = false;
-        LoadingController.sceneName = "ZERO";
-
+        LoadingController.sceneName = "TestScene_KJH";
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
-
         currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
     }
 
@@ -211,7 +209,6 @@ public class MainMenuController : MonoBehaviour
 
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
-
         currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
     }
 
