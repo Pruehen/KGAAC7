@@ -100,7 +100,8 @@ public class Radar : MonoBehaviour
             Gizmos.DrawSphere(lockOnTarget.position, 20);
         }
     }*/
-
+    List<VehicleCombat> inRangeTargetList = new List<VehicleCombat>();
+    int iterator = 0;
     /// <summary>
     /// 레이더에 락온 명령을 내리는 메서드
     /// </summary>
@@ -111,19 +112,43 @@ public class Radar : MonoBehaviour
             float angleTemp = 200;
             VehicleCombat targetTemp = null;
 
-            List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;
+            List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;            
+
             for (int i = 0; i < targetList.Count; i++)
             {
-                VehicleCombat itemTrf = targetList[i];
+                VehicleCombat item = targetList[i];
 
-                float itemAngle = Vector3.Angle(this.transform.forward, itemTrf.transform.position - this.transform.position);
+                float itemAngle = Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position);
+                if(itemAngle < 30 && !inRangeTargetList.Contains(item))
+                {
+                    inRangeTargetList.Add(item);
+                }
+                else if(itemAngle >= 30 && inRangeTargetList.Contains(item))
+                {
+                    inRangeTargetList.Remove(item);
+                }
                 if (itemAngle < angleTemp)
                 {
-                    targetTemp = itemTrf;
-                    angleTemp = itemAngle;
+                    targetTemp = item;
+                    angleTemp = itemAngle;                    
+                }
+            }
+            for (int i = 0; i < inRangeTargetList.Count; i++)
+            {
+                VehicleCombat item = inRangeTargetList[i];
+                if (item == null)
+                {
+                    inRangeTargetList.Remove(item);
+                    continue;
                 }
 
+                float itemAngle = Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position);
+                if (itemAngle >= 30)
+                {
+                    inRangeTargetList.Remove(item);
+                }
             }
+
             if (lockOnTarget != null)
             {
                 lockOnTarget.isTargeted = false;
@@ -131,7 +156,20 @@ public class Radar : MonoBehaviour
                 lockOnTarget.isRaderLock = false;
             }
 
-            lockOnTarget = targetTemp;
+            if (inRangeTargetList.Count == 0)
+            {
+                lockOnTarget = targetTemp;
+            }
+            else
+            {
+                if(iterator >= inRangeTargetList.Count)
+                {
+                    iterator = 0;
+                }
+
+                lockOnTarget = inRangeTargetList[iterator];
+                iterator++;
+            }
 
             if(lockOnTarget != null)
             {
