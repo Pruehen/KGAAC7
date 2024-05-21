@@ -48,7 +48,7 @@ public class Guided : MonoBehaviour
                 mwr.RemoveMissile(this);
             }
         }
-        this.target = null;        
+        this.target = null;
     }
 
     [SerializeField] protected float maxTurnRate;//최대 토크

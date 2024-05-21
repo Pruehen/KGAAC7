@@ -38,7 +38,7 @@ public class MinimapTargetUi : MonoBehaviour
         }
         else
         {
-            transform.GetComponent<Guided>().OnRemove += RemoveTargetUi;
+            //transform.GetComponent<Guided>().OnRemove += RemoveTargetUi;
         }
     }
 
