@@ -159,7 +159,7 @@ namespace kjh
         /// </summary>
         /// <param name="aircraftVelocity"></param>
         /// <param name="target"></param>
-        public void Fire(Vector3 aircraftVelocity, VehicleCombat target, float angle, float distance)
+        public void Fire(Vector3 aircraftVelocity, Radar radar)
         {            
             GameObject useWeaponPrf = weaponPrfList[useWeaponIndex];
             Transform firePoint = null;
@@ -204,7 +204,7 @@ namespace kjh
                 Guided guided;
                 if (item.TryGetComponent(out guided))
                 {
-                    guided.SetTarget(target, angle, distance);
+                    guided.SetTarget(radar);
                 }
             }
         }

@@ -409,9 +409,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9082855684713566447, guid: 186e515e1a7a4014d8e32a32edfd7ed5, type: 3}
+      propertyPath: _distance
+      value: 30000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082855684713566447, guid: 186e515e1a7a4014d8e32a32edfd7ed5, type: 3}
       propertyPath: _enemyParent
       value: 
       objectReference: {fileID: 2060595784}
+    - target: {fileID: 9082855684713566447, guid: 186e515e1a7a4014d8e32a32edfd7ed5, type: 3}
+      propertyPath: _startSpawnCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9082855684713566447, guid: 186e515e1a7a4014d8e32a32edfd7ed5, type: 3}
       propertyPath: _sqrList.Array.data[0]
       value: 
@@ -709,6 +717,10 @@ PrefabInstance:
       propertyPath: enginePower
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 8198170890872490375, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: controlAircraft
+      value: 
+      objectReference: {fileID: 1449844392}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
 --- !u!1 &1133528869
@@ -1080,6 +1092,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1449844392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2547510581855610343, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+  m_PrefabInstance: {fileID: 1005634478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1454801634
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Guided : MonoBehaviour
 {
-    [SerializeField] int EIRCM_Count;
-    [SerializeField] VehicleCombat target;
+    [SerializeField] protected int EIRCM_Count;
+    [SerializeField] protected VehicleCombat target;
     public bool Target()
     {
         return target != null;
@@ -15,18 +15,18 @@ public class Guided : MonoBehaviour
     /// 유도 미사일의 타겟을 지정해주는 메서드
     /// </summary>
     /// <param name="target"></param>
-    public void SetTarget(VehicleCombat target, float angle, float distance)
-    {        
-        if (target != null)
+    public virtual void SetTarget(Radar radar)
+    {
+        WeaponData weaponData = GetComponent<WeaponData>();
+        if (radar.toTargetAngle <= weaponData.MaxSeekerAngle() && radar.toTargetDistance <= weaponData.LockOnRange())
         {
-            WeaponData weaponData = GetComponent<WeaponData>();
-            if (angle <= weaponData.MaxSeekerAngle() && distance <= weaponData.LockOnRange())
+            this.target = radar.GetTarget();
+            if (target != null)
             {
-                this.target = target;
                 target.onFlare += EIRCM;
 
                 MWR mwr;
-                if(target.TryGetComponent<MWR>(out mwr))
+                if (target.TryGetComponent<MWR>(out mwr))
                 {
                     mwr.AddMissile(this);
                 }
@@ -51,10 +51,10 @@ public class Guided : MonoBehaviour
         this.target = null;        
     }
 
-    [SerializeField] float maxTurnRate;//최대 토크
-    [SerializeField] float maxSideForce;//최대 기동력
-    [SerializeField] bool isTVC;//추력 편향 노즐 여부
-    [SerializeField] float traceAngleLimit;//추적 한계각. 이 각도를 넘어가면 추적을 중단함
+    [SerializeField] protected float maxTurnRate;//최대 토크
+    [SerializeField] protected float maxSideForce;//최대 기동력
+    [SerializeField] protected bool isTVC;//추력 편향 노즐 여부
+    [SerializeField] protected float traceAngleLimit;//추적 한계각. 이 각도를 넘어가면 추적을 중단함
 
     Rocket rocket;
     Rigidbody rigidbody;

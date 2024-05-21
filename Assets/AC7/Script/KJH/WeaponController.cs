@@ -34,7 +34,7 @@ namespace kjh
         {
             if (weaponSystem == null)
                 weaponSystem = aircraftSelecter.weaponSystem;
-            weaponSystem.Fire(rigidbody.velocity, radar.GetTarget(), radar.toTargetAngle, radar.toTargetDistance);
+            weaponSystem.Fire(rigidbody.velocity, radar);
         }
 
         /// <summary>
