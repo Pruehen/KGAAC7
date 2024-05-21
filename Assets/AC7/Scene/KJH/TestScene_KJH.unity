@@ -182,6 +182,38 @@ PrefabInstance:
       propertyPath: engageRule
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[0].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[0].z
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].x
+      value: -10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].z
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[2].x
+      value: -10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[2].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[3].y
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 6898151919198500524, guid: 365578c0a0e16104890de467358f74f7, type: 3}
       propertyPath: engageRule
       value: 1
@@ -870,6 +902,38 @@ PrefabInstance:
       propertyPath: engageRule
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[0].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[0].z
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].x
+      value: -10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].z
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[2].x
+      value: -10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[2].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[3].y
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 6898151919198500524, guid: 365578c0a0e16104890de467358f74f7, type: 3}
       propertyPath: engageRule
       value: 1
@@ -1066,6 +1130,54 @@ PrefabInstance:
     - target: {fileID: 1259991924573250009, guid: 365578c0a0e16104890de467358f74f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151918562847729, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: engageRule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: engageRule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[0].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[0].z
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].x
+      value: -10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[1].z
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[2].x
+      value: -10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[2].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919060544875, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: wayPointList.Array.data[3].y
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919198500524, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: engageRule
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898151919355132158, guid: 365578c0a0e16104890de467358f74f7, type: 3}
+      propertyPath: engageRule
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7227807178017333988, guid: 365578c0a0e16104890de467358f74f7, type: 3}
       propertyPath: m_Name

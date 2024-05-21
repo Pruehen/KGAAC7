@@ -116,7 +116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -128,7 +128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: targetSpeed
-      value: 360
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: flightLeader
@@ -239,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -251,7 +251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: targetSpeed
-      value: 360
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: flightLeader
@@ -362,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -374,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: targetSpeed
-      value: 360
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointLoop
@@ -521,7 +521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -533,7 +533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: targetSpeed
-      value: 360
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: flightLeader

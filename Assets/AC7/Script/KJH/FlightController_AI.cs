@@ -29,8 +29,6 @@ public class FlightController_AI : MonoBehaviour
         isDead = false;
 
         //CreateNewWayPoint_Forward();
-
-        targetSpeed = 360;
     }
     /*private void OnDrawGizmos()
     {
