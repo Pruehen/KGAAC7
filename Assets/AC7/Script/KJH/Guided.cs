@@ -20,7 +20,7 @@ public class Guided : MonoBehaviour
         if (target != null)
         {
             WeaponData weaponData = GetComponent<WeaponData>();
-            if (angle <= traceAngleLimit && distance <= weaponData.LockOnRange())
+            if (angle <= weaponData.MaxSeekerAngle() && distance <= weaponData.LockOnRange())
             {
                 this.target = target;
                 target.onFlare += EIRCM;
