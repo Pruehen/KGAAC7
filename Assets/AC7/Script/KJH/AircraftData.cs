@@ -58,7 +58,7 @@ public class AircraftData : MonoBehaviour
         {
             pitch = aircraftControl.pitch * 0.5f;
         }
-        return pitchTorque * torqueCurve.Evaluate(speed) * pitch;
+        return pitchTorque * torqueCurve.Evaluate(speed) * pitch * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
     }
     /// <summary>
     /// 항공기가 저속일 때 스톨 토크를 반환하는 메서드
@@ -87,7 +87,7 @@ public class AircraftData : MonoBehaviour
     /// <returns></returns>
     public float RollTorque(float speed)
     {
-        return rollTorque * torqueCurve.Evaluate(speed) * aircraftControl.roll;
+        return rollTorque * torqueCurve.Evaluate(speed) * aircraftControl.roll * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
     }
     /// <summary>
     /// 현재 속도에 따른 요 축 토크를 반환하는 메서드
@@ -96,7 +96,7 @@ public class AircraftData : MonoBehaviour
     /// <returns></returns>
     public float YawTorque(float speed)
     {
-        return yawTorque * torqueCurve.Evaluate(speed) * aircraftControl.yaw;
+        return yawTorque * torqueCurve.Evaluate(speed) * aircraftControl.yaw * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
     }
     /// <summary>
     /// 항력 계수를 반환하는 메서드. 에어브레이크 기능 추가됨
@@ -111,7 +111,7 @@ public class AircraftData : MonoBehaviour
         }
         else
         {
-            return (1 + (-axis * 2)) * dragCoefficient;
+            return (1 + (-axis * 5)) * dragCoefficient;
         }
     }
     /// <summary>

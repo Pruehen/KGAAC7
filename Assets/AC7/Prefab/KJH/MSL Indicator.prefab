@@ -86,6 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f655c4c9745c44aa93adcc7d892d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blinkTimer: 0.2
-  shrinkScaleValue: 1.5
+  blinkTimer: 0.1
+  shrinkScaleValue: 0.8
   shrinkLerpAmount: 2

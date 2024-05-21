@@ -37,8 +37,9 @@ public class CooldownImage : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Init(int index)
     {
+        this.index = index;        
         remainCooldown = maxCooldown = 0;
         weaponSystem = kjh.GameManager.Instance.player.AircraftSelecter().weaponSystem;
         weaponSystem.weaponChange += SetIndicator;

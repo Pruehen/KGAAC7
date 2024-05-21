@@ -90,7 +90,7 @@ public class CustomAI : MonoBehaviour
     {
         if (flightLeader != null)
         {
-            formationLocalPos = flightLeader.InverseTransformPoint(this.transform.position) * spreadValue + new Vector3(0, 0, 1000);
+            formationLocalPos = flightLeader.InverseTransformPoint(this.transform.position) * spreadValue + new Vector3(0, 0, 2000);
         }
     }
 
@@ -222,7 +222,7 @@ class MoveToWaypoints : IFlightStratage//0. 경로 비행 전략
     public void EnterState() { Debug.Log($"{customAI.gameObject.name} 상태 설정 : 경로 비행"); }
     public Vector3 ReturnNewOrder()
     {
-        if (Vector3.Distance(myTrf.position, wayPointList[naxtVisitIndex]) < 100)//목표 도착 시
+        if (Vector3.Distance(myTrf.position, wayPointList[naxtVisitIndex]) < 300)//목표 도착 시
         {
             naxtVisitIndex++;
             if (isLoop && wayPointList.Count <= naxtVisitIndex)
@@ -259,7 +259,7 @@ class Formation : IFlightStratage//1. 편대 비행 전략
     Vector3 targetWorldPos;
 
     float distanceTemp;
-    float p = 40;
+    float p = 120;
     float d = 3000;
 
     public Formation(CustomAI customAI)
@@ -283,7 +283,7 @@ class Formation : IFlightStratage//1. 편대 비행 전략
     }
     public float ReturnNewSpeed()
     {
-        float distance = (targetWorldPos - myTrf.position).magnitude - 1000;
+        float distance = (targetWorldPos - myTrf.position).magnitude - 2000;
         float distanceDiff = distance - distanceTemp;
         distanceTemp = distance;
         return distance * p + distanceDiff * d;
@@ -369,7 +369,7 @@ class Traking_Pure : IFlightStratage //4. 퓨어 추적 전략
         this.myTrf = customAI.transform;
         customAI.SetTarget(kjh.GameManager.Instance.player.transform);
         this.targetTrf = customAI.target;                
-        targetSpeed = customAI.targetSpeed;
+        targetSpeed = customAI.targetSpeed + 200;
     }
     public void EnterState()
     {        

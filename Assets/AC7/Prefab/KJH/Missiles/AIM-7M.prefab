@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6445041468265237180}
   - component: {fileID: 6445041468265237182}
   - component: {fileID: 6445041468265237183}
-  - component: {fileID: -859180380403536392}
+  - component: {fileID: 7707449696368327109}
   - component: {fileID: -4268455925729301788}
   m_Layer: 12
   m_Name: AIM-7M
@@ -177,7 +177,7 @@ MonoBehaviour:
   motor: {fileID: 6060339062784575714}
   speed: 0
   sideForcef: 0
---- !u!114 &-859180380403536392
+--- !u!114 &7707449696368327109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,15 +186,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6445041468265237155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d941a5b0efacf449a3bf09ef306c71, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bd781ae820e086488e9c3ada5e65795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EIRCM_Count: 10
+  EIRCM_Count: 20
   target: {fileID: 0}
   maxTurnRate: 30
   maxSideForce: 250
   isTVC: 0
-  traceAngleLimit: 30
+  traceAngleLimit: 60
 --- !u!114 &-4268455925729301788
 MonoBehaviour:
   m_ObjectHideFlags: 0
