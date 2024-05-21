@@ -33,6 +33,7 @@ public class Guided_SARH : Guided
                 {
                     mwr.AddMissile(this);
                 }
+                kjh.GameManager.Instance.AddMissile(transform);
             }
         }
     }

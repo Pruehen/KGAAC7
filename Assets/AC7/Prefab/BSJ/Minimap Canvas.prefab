@@ -304,7 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0fa2d8dcdeadd47a0673fcf42fe6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 9083849278705724238, guid: 448afbee2ea8bc84c9787829f4b6bd50, type: 3}
+  _targetPrefab: {fileID: 9083849278705724238, guid: 448afbee2ea8bc84c9787829f4b6bd50, type: 3}
+  _missilePrefab: {fileID: 9083849278705724238, guid: 8bbc055f31a8f5b41a87ee8e90db5f7a, type: 3}
   _ratio: 0.015
   _virtualMinmapPlayerAxis: {fileID: 0}
   _leftTopBoundary: {fileID: 5045056865234245482}
