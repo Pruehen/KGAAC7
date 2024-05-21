@@ -13,7 +13,7 @@ public class EffectManager : SceneSingleton<EffectManager>
         effect.transform.position = position;
         effect.transform.rotation = Quaternion.identity;
 
-        StartCoroutine(EffectEnqueue(effect, 5));
+        StartCoroutine(EffectEnqueue(effect, 15));
     }
 
     public void AircraftExplosionEffectGenerate(Vector3 position)

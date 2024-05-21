@@ -19,7 +19,7 @@ namespace bsj
             source.loop = loop;
             source.Play();
             if (!loop)
-                StartCoroutine(DelayEnqueue(item, source.clip.length));
+                StartCoroutine(DelayEnqueue(item, source.clip.length + 4f));
             return item;
         }
         public GameObject SpawnInPosition(GameObject prefab, Vector3 position, bool loop = false)
