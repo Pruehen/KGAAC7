@@ -14,8 +14,12 @@ namespace kjh
         public List<VehicleCombat> activeTargetList = new List<VehicleCombat>();
         public AircraftMaster player;
 
-        public System.Action<VehicleCombat> OnTargetAdded;
+        public System.Action<Transform> OnTargetAdded;
         public System.Action<int> targetCountChanged;
+
+
+        public System.Action<Transform> OnMissileAdded;
+        public System.Action<Transform> OnMissileRemoved;
 
         /// <summary>
         /// 게임매니저에 타겟을 추가
@@ -24,7 +28,7 @@ namespace kjh
         {
             activeTargetList.Add(vehicleCombat);
             targetCountChanged?.Invoke(activeTargetList.Count);
-            OnTargetAdded?.Invoke(vehicleCombat);
+            OnTargetAdded?.Invoke(vehicleCombat.transform);
         }
 
 
@@ -114,5 +118,14 @@ namespace kjh
             yield break;
         }
 
+        public void NotifyMissileSpawn(Transform missileTransform)
+        {
+
+            OnMissileAdded?.Invoke(missileTransform);
+        }
+        public void NotifyMissileRemoved(Transform missileTransform)
+        {
+            OnMissileRemoved?.Invoke(missileTransform);
+        }
     }
 }
