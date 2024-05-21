@@ -11,6 +11,7 @@ namespace kjh
         public List<WeaponData> WeaponDataList() { return weaponDataList; }
         [SerializeField] List<Transform> fireTrfList;
         [SerializeField] List<int> equipedWeaponIndexList;
+        public List<int> EquipedWeaponIndexList() { return equipedWeaponIndexList; }
         List<float> weaponCoolDownList; //MSL 무기 개수        
 
         public float MslCoolDownRatio(int index) //0부터 시작해서 참

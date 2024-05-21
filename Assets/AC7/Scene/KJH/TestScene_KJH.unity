@@ -629,6 +629,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837729205709971096, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 837729205709971096, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837729205709971096, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 837729205709971096, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 837729205709971097, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 837729205709971097, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 837729205709971097, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 837729206076763131, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
       propertyPath: targetTrf
       value: 
@@ -649,10 +677,14 @@ PrefabInstance:
       propertyPath: _result.y
       value: 440
       objectReference: {fileID: 0}
-    - target: {fileID: 6400432194583944780, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
-      propertyPath: _ratio
-      value: 0.015
+    - target: {fileID: 3507998310905056375, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 8198170890872490375, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: controlAircraft
+      value: 
+      objectReference: {fileID: 1586297015}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
 --- !u!1 &1133528869
@@ -1098,6 +1130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4317c131efe0b4f9cb030aaffac561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1586297015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 999543976510180635, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+  m_PrefabInstance: {fileID: 1005634478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1609193044
 GameObject:
   m_ObjectHideFlags: 0
