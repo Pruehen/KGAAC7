@@ -91,8 +91,12 @@ public class Radar : MonoBehaviour
 
     IEnumerator NextTargetLock()
     {
-        yield return new WaitForSeconds(2);        
-        LockOn();        
+        yield return new WaitForSeconds(2);
+        if (onNextLockOn)
+        {
+            Debug.Log("적 사망에 따른 락온 발생");
+            LockOn();
+        }
     }
 
     /*private void OnDrawGizmos()
@@ -138,16 +142,13 @@ public class Radar : MonoBehaviour
             for (int i = 0; i < inRangeTargetList.Count; i++)
             {
                 VehicleCombat item = inRangeTargetList[i];
-                if (item == null)
+                
+                if (item == null || 
+                    Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position) >= 30 || 
+                    item.IsDead())
                 {
                     inRangeTargetList.Remove(item);
-                    continue;
-                }
-
-                float itemAngle = Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position);
-                if (itemAngle >= 30)
-                {
-                    inRangeTargetList.Remove(item);
+                    i--;
                 }
             }
 
@@ -177,8 +178,8 @@ public class Radar : MonoBehaviour
             {
                 lockOnTarget.isTargeted = true;
                 toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-                toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
-            }
+                toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);               
+            }            
             onNextLockOn = false;
         }
         else
