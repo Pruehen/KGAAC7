@@ -67,6 +67,8 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void OnTargetCountChanged(int count)
     {
+        if(_sqrQueue.Count <= 0)
+            return;
         if(count <= _startSpawnCount)
         {
             SpawnAtRandom(_distance);
