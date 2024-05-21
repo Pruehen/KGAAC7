@@ -7,6 +7,7 @@ public class GameResultUi : MonoBehaviour
 {
     [SerializeField] Graphic _background;
     [SerializeField] List<Graphic> _childs;
+    [SerializeField] bool _onlyActiveParent = true;
 
 
     private void Awake()
@@ -16,8 +17,14 @@ public class GameResultUi : MonoBehaviour
 
     public void FadeIn()
     {
-        _background.FadeIn(1f);
-        _background.transform.GetChild(0).gameObject.SetActive(false);
+        _background.FadeIn(1f, FadeInChild);
+        if( _onlyActiveParent )
+        {
+            for (int i = 0; i < _background.transform.childCount; i++)
+            {
+                _background.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
     }
 
     private void FadeInChild()

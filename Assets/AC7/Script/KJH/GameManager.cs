@@ -58,6 +58,7 @@ namespace kjh
             //페이드아웃한 후
             //씬을 이동시킨다
             //씬매니저
+            Debug.Assert(_gameResultUi != null);
             StartCoroutine(DelayedCall(delay, _gameResultUi.FadeIn));
         }
 
@@ -76,6 +77,13 @@ namespace kjh
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             Debug.Log("ReturnToMainMenu");
         }
+
+        public void ReloadCurrentScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            Debug.Log("ReloadScene");
+        }
+
         public void FadeIn(Graphic image, float time, System.Action fadeEnd = null)
         {
             StartCoroutine(FadeInCoroutine(image, time, fadeEnd));
@@ -93,9 +101,9 @@ namespace kjh
                 yield return null;
             }
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
-            image.transform.GetChild(0).gameObject.SetActive(true);
             fadeEnd?.Invoke();
             yield break;
         }
+
     }
 }
