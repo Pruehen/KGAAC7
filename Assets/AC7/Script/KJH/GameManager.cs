@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +13,17 @@ namespace kjh
         public List<VehicleCombat> activeTargetList = new List<VehicleCombat>();
         public AircraftMaster player;
 
+        public System.Action<VehicleCombat> OnTargetAdded;
+        public System.Action<int> targetCountChanged;
+
         /// <summary>
         /// 게임매니저에 타겟을 추가
         /// </summary>
         public void AddActiveTarget(VehicleCombat vehicleCombat)
         {
             activeTargetList.Add(vehicleCombat);
+            targetCountChanged?.Invoke(activeTargetList.Count);
+            OnTargetAdded?.Invoke(vehicleCombat);
         }
 
 
@@ -29,6 +33,7 @@ namespace kjh
         public void RemoveActiveTarget(VehicleCombat vehicleCombat)
         {
             activeTargetList.Remove(vehicleCombat);
+            targetCountChanged?.Invoke(activeTargetList.Count);
         }
 
         private void Awake()
