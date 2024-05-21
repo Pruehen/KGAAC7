@@ -16,7 +16,8 @@ public class GameResultUi : MonoBehaviour
 
     public void FadeIn()
     {
-        _background.FadeIn(1f, FadeInChild);
+        _background.FadeIn(1f);
+        _background.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     private void FadeInChild()
