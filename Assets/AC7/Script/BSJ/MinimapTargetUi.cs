@@ -15,6 +15,9 @@ public class MinimapTargetUi : MonoBehaviour
     private Transform _virtualMinimapPlayerAxis;
     Vector3 _gap;
     Vector3 _offset;
+
+    Guided _missileTarget;
+
     public void Init(Transform transform, Transform virtualMinimapPlayerAxis 
         , float minx, float maxx, float miny, float maxy
         , float iconSize, float ratio, Vector3 offset)
@@ -39,7 +42,8 @@ public class MinimapTargetUi : MonoBehaviour
         }
         else
         {
-            transform.GetComponent<Guided>().OnRemove += RemoveTargetUi;
+            _missileTarget = transform.GetComponent<Guided>();
+            _missileTarget.OnRemove += RemoveTargetUi;
         }
         _gap = new Vector3((_maxx - _minx)/2f, (_maxy - _miny)/2f, 0f);
         _offset = offset;
@@ -75,7 +79,7 @@ public class MinimapTargetUi : MonoBehaviour
 
         Vector3 dir = resultPos.normalized;
         bool xin = resultPos.y < _miny || resultPos.y > _maxy;
-        _gap.y = (resultPos.y > 0f) ? _maxy : _miny;
+        _gap.y = (resultPos.y > 0f) ? _maxy : Mathf.Abs(_miny);
         if (Mathf.Abs(resultPos.x) > _gap.x || Mathf.Abs(resultPos.y) > _gap.y) 
         {
             Vector3 dist3D = new Vector3(Mathf.Abs(_gap.x / dir.x), Mathf.Abs(_gap.y / dir.y), 0f);
@@ -98,6 +102,18 @@ public class MinimapTargetUi : MonoBehaviour
 
     private void RemoveTargetUi()
     {
-        Destroy(gameObject);
+        if (_vehicleCombat != null)
+        {
+            _vehicleCombat.onDead.RemoveListener(RemoveTargetUi);
+        }
+        else
+        {
+            if(_missileTarget != null)
+                _missileTarget.OnRemove -= RemoveTargetUi;
+        }
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+        }
     }
 }
