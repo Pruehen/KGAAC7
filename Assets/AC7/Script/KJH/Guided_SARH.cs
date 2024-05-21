@@ -4,23 +4,14 @@ using UnityEngine;
 
 public class Guided_SARH : Guided
 {
-    Rocket rocket;
-    Rigidbody rigidbody;
     Radar radar;
 
-    Vector3 targetVec;
-    Vector3 angleError_temp;
-    Vector3 orderAxis_Temp;
-
-    float pGain = 3;
-    float dGain = 200;
-
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         rocket = GetComponent<Rocket>();
         rigidbody = GetComponent<Rigidbody>();
-    }
+    }*/
 
     /// <summary>
     /// 유도 미사일의 타겟을 지정해주는 메서드
@@ -46,13 +37,12 @@ public class Guided_SARH : Guided
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    protected override void Homing()
     {
         if (target != null)
         {
             target = radar.GetTarget();
-            if (!target.isRaderLock)
+            if (radar.toTargetAngle > radar.RadarMaxAngle())
                 return;
 
             targetVec = target.transform.position;//타겟 벡터 지정

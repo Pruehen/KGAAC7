@@ -7,6 +7,7 @@ public class Radar : MonoBehaviour
 {    
     VehicleCombat lockOnTarget;
     [SerializeField] float radarMaxAngle;
+    public float RadarMaxAngle() { return radarMaxAngle; }
     [SerializeField] bool isEnemy;
     WeaponSystem weaponSystem;
 

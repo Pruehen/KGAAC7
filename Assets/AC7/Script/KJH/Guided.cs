@@ -56,15 +56,15 @@ public class Guided : MonoBehaviour
     [SerializeField] protected bool isTVC;//추력 편향 노즐 여부
     [SerializeField] protected float traceAngleLimit;//추적 한계각. 이 각도를 넘어가면 추적을 중단함
 
-    Rocket rocket;
-    Rigidbody rigidbody;
+    protected Rocket rocket;
+    protected Rigidbody rigidbody;
 
-    Vector3 targetVec;
-    Vector3 angleError_temp;
-    Vector3 orderAxis_Temp;
+    protected Vector3 targetVec;
+    protected Vector3 angleError_temp;
+    protected Vector3 orderAxis_Temp;
 
-    float pGain = 3;
-    float dGain = 200;
+    protected float pGain = 3;
+    protected float dGain = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +76,12 @@ public class Guided : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(target != null)
+        Homing();
+    }
+
+    protected virtual void Homing()
+    {
+        if (target != null)
         {
             targetVec = target.transform.position;//타겟 벡터 지정
 
