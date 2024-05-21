@@ -66,7 +66,10 @@ public class AircraftMaster : MonoBehaviour
             kjh.GameManager.Instance.GameEnd(false, .3f);
         }
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
-        //플레이어가 죽었을경우 카메라 뗌
-        Destroy(this.gameObject);
+        
+        if (!_isPlayer)
+            Destroy(this.gameObject);
+        else
+            gameObject.SetActive(false);
     }
 }

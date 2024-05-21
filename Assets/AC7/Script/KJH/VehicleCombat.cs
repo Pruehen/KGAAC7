@@ -19,7 +19,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
         throw new System.NotImplementedException();
     }
 
-    void IFightable.TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         if (isPlayer)
             damage *= 0.3f;
