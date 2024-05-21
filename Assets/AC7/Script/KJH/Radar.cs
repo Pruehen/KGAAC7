@@ -15,6 +15,7 @@ public class Radar : MonoBehaviour
 
     public float toTargetAngle { get; private set; }
     public float toTargetDistance { get; private set; }
+    bool onNextLockOn = false;
 
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
@@ -64,9 +65,10 @@ public class Radar : MonoBehaviour
                     lockOnTarget.isRaderLock = false;
                 }
 
-                if (lockOnTarget.GetComponent<VehicleCombat>().IsDead())
+                if (lockOnTarget.GetComponent<VehicleCombat>().IsDead() && !onNextLockOn)
                 {
                     //lockOnTarget = null;
+                    onNextLockOn = true;
                     StartCoroutine(NextTargetLock());
                 }
 
@@ -89,8 +91,8 @@ public class Radar : MonoBehaviour
 
     IEnumerator NextTargetLock()
     {
-        yield return new WaitForSeconds(2);
-        LockOn();
+        yield return new WaitForSeconds(2);        
+        LockOn();        
     }
 
     /*private void OnDrawGizmos()
@@ -177,6 +179,7 @@ public class Radar : MonoBehaviour
                 toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
                 toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
             }
+            onNextLockOn = false;
         }
         else
         {

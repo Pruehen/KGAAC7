@@ -588,6 +588,10 @@ PrefabInstance:
       propertyPath: _result.y
       value: 440
       objectReference: {fileID: 0}
+    - target: {fileID: 6400432194583944780, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
+      propertyPath: _ratio
+      value: 0.015
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
 --- !u!1 &1133528869
