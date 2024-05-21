@@ -5001,11 +5001,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d941a5b0efacf449a3bf09ef306c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EIRCM_Count: 0
-  maxTurnRate: 40
+  EIRCM_Count: 5
+  target: {fileID: 0}
+  maxTurnRate: 60
   maxSideForce: 400
   isTVC: 1
-  traceAngleLimit: 120
+  traceAngleLimit: 60
 --- !u!114 &4366434378645098378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5020,7 +5021,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 55
   reloadTime: 10
-  maxSeekerAngle: 115
+  maxSeekerAngle: 45
+  lockOnRange: 4500
 --- !u!1001 &2066749537883914313
 PrefabInstance:
   m_ObjectHideFlags: 0

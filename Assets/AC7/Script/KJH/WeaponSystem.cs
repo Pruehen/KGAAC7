@@ -8,8 +8,10 @@ namespace kjh
     {
         [SerializeField] List<GameObject> weaponPrfList;        
         List<WeaponData> weaponDataList = new List<WeaponData>();
+        public List<WeaponData> WeaponDataList() { return weaponDataList; }
         [SerializeField] List<Transform> fireTrfList;
         [SerializeField] List<int> equipedWeaponIndexList;
+        public List<int> EquipedWeaponIndexList() { return equipedWeaponIndexList; }
         List<float> weaponCoolDownList; //MSL 무기 개수        
 
         public float MslCoolDownRatio(int index) //0부터 시작해서 참
@@ -22,13 +24,13 @@ namespace kjh
             return (equipedWeaponIndexList[index] == useWeaponIndex);
         }
 
-        public float UseMissileSeekerAngle()
+        public WeaponData UseWeaponData()
         {
-            return weaponDataList[useWeaponIndex].MaxSeekerAngle();
+            return weaponDataList[useWeaponIndex];
         }
 
 
-        int useWeaponIndex;
+        public int useWeaponIndex { get; private set; }
         public System.Action weaponChange;
 
         [SerializeField] GameObject bulletPrf;
@@ -45,9 +47,19 @@ namespace kjh
 
         VehicleCombat vehicleCombat;
 
+        FadableAudio _gunAudio;
+
         public void SetGunTrigger(bool value)
         {
             gunTrigger = value;
+            if (value)
+            {
+                _gunAudio.Play();
+            }
+            else
+            {
+                _gunAudio.Stop();
+            }
         }
         public void SetFlareTrigger(bool value)
         {
@@ -56,7 +68,7 @@ namespace kjh
         /// <summary>
         /// 현재 사용중인 무장 인덱스를 교체하는 메서드
         /// </summary>
-        public void ChangeWeaponIndex()
+        public int ChangeWeaponIndex()
         {
             useWeaponIndex++;
             if(useWeaponIndex == 2)
@@ -64,7 +76,7 @@ namespace kjh
                 useWeaponIndex = 0;
             }
             weaponChange?.Invoke();
-
+            return useWeaponIndex;
             //Debug.Log(useWeaponIndex);
         }
 
@@ -83,9 +95,12 @@ namespace kjh
             rigidbody = this.transform.parent.GetComponent<Rigidbody>();
             vehicleCombat = this.transform.parent.GetComponent<VehicleCombat>();
 
+            _gunAudio = GetComponent<FadableAudio>();
+            _gunAudio.SetParent(gunFireTrf);
+
             for (int i = 0; i < weaponPrfList.Count; i++)
             {
-                weaponDataList.Add(weaponPrfList[i].GetComponent<WeaponData>());
+                weaponDataList.Add(weaponPrfList[i].GetComponent<WeaponData>());                
             }
         }
 
@@ -144,7 +159,7 @@ namespace kjh
         /// </summary>
         /// <param name="aircraftVelocity"></param>
         /// <param name="target"></param>
-        public void Fire(Vector3 aircraftVelocity, VehicleCombat target)
+        public void Fire(Vector3 aircraftVelocity, VehicleCombat target, float angle, float distance)
         {            
             GameObject useWeaponPrf = weaponPrfList[useWeaponIndex];
             Transform firePoint = null;
@@ -189,7 +204,7 @@ namespace kjh
                 Guided guided;
                 if (item.TryGetComponent(out guided))
                 {
-                    guided.SetTarget(target);
+                    guided.SetTarget(target, angle, distance);
                 }
             }
         }

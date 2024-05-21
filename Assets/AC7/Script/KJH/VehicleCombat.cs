@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class VehicleCombat : MonoBehaviour, IFightable
 {
+    public float startHp;
+    public bool isPlayer;
     public bool mainTarget = false;
     public string name;
     public string nickname;
@@ -17,16 +19,24 @@ public class VehicleCombat : MonoBehaviour, IFightable
         throw new System.NotImplementedException();
     }
 
-    void IFightable.TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
+        if (isPlayer)
+            damage *= 0.3f;
+
         combat.TakeDamage(damage);
+        CustomAI customAI;
+        if(TryGetComponent<CustomAI>(out customAI))
+        {
+            customAI.EngageOrder();
+        }
     }
 
     Combat combat = new Combat();
 
     private void Awake()
     {
-        combat.Init(this.transform, 100);        
+        combat.Init(this.transform, startHp);        
         combat.OnDead += Dead;
         isTargeted = false;
         isRaderLock = false;

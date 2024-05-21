@@ -5,18 +5,32 @@ using UnityEngine;
 public class Guided : MonoBehaviour
 {
     [SerializeField] int EIRCM_Count;
-    VehicleCombat target;
+    [SerializeField] VehicleCombat target;
+    public bool Target()
+    {
+        return target != null;
+    }
 
     /// <summary>
     /// 유도 미사일의 타겟을 지정해주는 메서드
     /// </summary>
     /// <param name="target"></param>
-    public void SetTarget(VehicleCombat target)
-    {
+    public void SetTarget(VehicleCombat target, float angle, float distance)
+    {        
         if (target != null)
         {
-            this.target = target;
-            target.onFlare += EIRCM;
+            WeaponData weaponData = GetComponent<WeaponData>();
+            if (angle <= traceAngleLimit && distance <= weaponData.LockOnRange())
+            {
+                this.target = target;
+                target.onFlare += EIRCM;
+
+                MWR mwr;
+                if(target.TryGetComponent<MWR>(out mwr))
+                {
+                    mwr.AddMissile(this);
+                }
+            }
         }
     }
 
@@ -28,6 +42,11 @@ public class Guided : MonoBehaviour
         if(target != null)
         {
             target.onFlare -= EIRCM;
+            MWR mwr;
+            if (target.TryGetComponent<MWR>(out mwr))
+            {
+                mwr.RemoveMissile(this);
+            }
         }
         this.target = null;        
     }
@@ -87,7 +106,7 @@ public class Guided : MonoBehaviour
                 //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
             }
 
-            if (Vector3.Angle(this.transform.forward, targetVec - this.transform.position) > traceAngleLimit)
+            if (Vector3.Angle(this.transform.forward, toTargetVec) > traceAngleLimit)
             {
                 RemoveTarget();
             }

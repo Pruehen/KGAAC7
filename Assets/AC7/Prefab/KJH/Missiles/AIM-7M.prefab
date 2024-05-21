@@ -189,11 +189,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d941a5b0efacf449a3bf09ef306c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EIRCM_Count: 0
-  maxTurnRate: 45
+  EIRCM_Count: 10
+  target: {fileID: 0}
+  maxTurnRate: 30
   maxSideForce: 250
   isTVC: 0
-  traceAngleLimit: 60
+  traceAngleLimit: 30
 --- !u!114 &-4268455925729301788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 110
   reloadTime: 20
-  maxSeekerAngle: 55
+  maxSeekerAngle: 20
+  lockOnRange: 25000
 --- !u!1 &8186166486042749729
 GameObject:
   m_ObjectHideFlags: 0

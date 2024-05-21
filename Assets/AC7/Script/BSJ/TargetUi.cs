@@ -31,7 +31,7 @@ public class TargetUi : MonoBehaviour
 
     private void Update()
     {
-        if(_vehicleCombat == null) 
+        if(_vehicleCombat.IsDead() == true) 
         {
             Destroy(gameObject);
             return;

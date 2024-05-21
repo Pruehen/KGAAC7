@@ -48,7 +48,7 @@ public class CamRotate : MonoBehaviour
     {        
         float throttle = aircraftControl.throttle;                
 
-        Vector3 camTargetPos = initLocalPos + new Vector3(0, 0, -throttle);
+        Vector3 camTargetPos = initLocalPos + new Vector3(0, (isTargetTraking && viewTargetTrf != null) ? 5 : 0, -throttle);
         this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, camTargetPos, Time.fixedDeltaTime);
 
 

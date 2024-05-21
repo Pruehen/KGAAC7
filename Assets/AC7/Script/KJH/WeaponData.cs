@@ -11,4 +11,7 @@ public class WeaponData : MonoBehaviour
 
     [SerializeField] float maxSeekerAngle;
     public float MaxSeekerAngle() { return maxSeekerAngle; }
+
+    [SerializeField] float lockOnRange;
+    public float LockOnRange() {  return lockOnRange; }
 }

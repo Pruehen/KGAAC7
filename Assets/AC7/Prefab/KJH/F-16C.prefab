@@ -20891,6 +20891,7 @@ GameObject:
   - component: {fileID: -6878497345927804877}
   - component: {fileID: 1206920244328171021}
   - component: {fileID: 7961933340690944455}
+  - component: {fileID: -1607555454621209263}
   m_Layer: 0
   m_Name: F-16C
   m_TagString: Untagged
@@ -20970,7 +20971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enginePower: 12
-  pitchTorque: 3.5
+  pitchTorque: 3
   rollTorque: 25
   yawTorque: 1
   enginePowerCurve:
@@ -21133,7 +21134,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   e: 0.85
-  liftPower: 30
+  liftPower: 22
   dragCoefficient: 0.05
 --- !u!114 &1206920244328171021
 MonoBehaviour:
@@ -21179,6 +21180,25 @@ MonoBehaviour:
   wingVaperEffect:
   - {fileID: 814812260489724661}
   - {fileID: 1640603517302192233}
+--- !u!114 &-1607555454621209263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461215751716273133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617220b7f5e83a841b3f86867e71bfa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parent: {fileID: 0}
+  _volume: 1
+  _fadeIn: 0
+  _fadeOut: 0
+  _fadeInLength: 0.5
+  _fadeOutLength: 0.5
+  _SfxPrefab: {fileID: 1759765917466483415, guid: 21f8502322eaa7244aae0738f136b53b, type: 3}
 --- !u!1 &7511249943164534915
 GameObject:
   m_ObjectHideFlags: 0
@@ -21851,10 +21871,6 @@ PrefabInstance:
     - target: {fileID: 2206844386168213222, guid: 5fddae46b54dd0a4b9323cfd7c6a7dc3, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2877160634197634789, guid: 5fddae46b54dd0a4b9323cfd7c6a7dc3, type: 3}
-      propertyPath: volumRatio
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5139957163490176079, guid: 5fddae46b54dd0a4b9323cfd7c6a7dc3, type: 3}
       propertyPath: m_Name

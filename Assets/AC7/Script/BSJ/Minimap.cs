@@ -19,6 +19,8 @@ public class Minimap : MonoBehaviour
     private void Start()
     {
         Init();
+
+        kjh.GameManager.Instance.OnTargetAdded += InitTargetUi;
     }
 
     private void Init()
@@ -27,13 +29,18 @@ public class Minimap : MonoBehaviour
         _maxx = _rightBottomBoundary.localPosition.x;
         _miny = _rightBottomBoundary.localPosition.y;
         _maxy = _leftTopBoundary.localPosition.y;
-        foreach (VehicleCombat item in kjh.GameManager.Instance.activeTargetList)
+        foreach (VehicleCombat combat in kjh.GameManager.Instance.activeTargetList)
         {
-            //角青矫 葛电 利 酒捞能 积己
-            GameObject uiItem = Instantiate(targetPrefab, transform);
-            uiItem.GetComponent<TargetUi>().Init(item, _virtualMinmapPlayerAxis, 
-                _minx, _maxx, _miny, _maxy, 
-                _iconSIze, _ratio);
+            InitTargetUi(combat);
         }
+    }
+
+    private void InitTargetUi(VehicleCombat combat)
+    {
+        //角青矫 葛电 利 酒捞能 积己
+        GameObject uiItem = Instantiate(targetPrefab, transform);
+        uiItem.GetComponent<TargetUi>().Init(combat, _virtualMinmapPlayerAxis,
+            _minx, _maxx, _miny, _maxy,
+            _iconSIze, _ratio);
     }
 }
