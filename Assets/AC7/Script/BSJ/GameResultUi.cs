@@ -17,21 +17,14 @@ public class GameResultUi : MonoBehaviour
 
     public void FadeIn()
     {
-        _background.FadeIn(1f, FadeInChild);
-        if( _onlyActiveParent )
-        {
-            for (int i = 0; i < _background.transform.childCount; i++)
-            {
-                _background.transform.GetChild(i).gameObject.SetActive(false);
-            }
-        }
+        _background.FadeIn(1f, _onlyActiveParent, FadeInChild);
     }
 
     private void FadeInChild()
     {
         foreach (var child in _childs)
         {
-            child.FadeIn(1f);
+            child.FadeIn(1f, true);
         }
     }
 }

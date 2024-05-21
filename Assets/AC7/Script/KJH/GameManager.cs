@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace kjh
 {
@@ -84,16 +85,24 @@ namespace kjh
             Debug.Log("ReloadScene");
         }
 
-        public void FadeIn(Graphic image, float time, System.Action fadeEnd = null)
+        public void FadeIn(Graphic image, float time, bool onlyActiveSelf = false, System.Action fadeEnd = null)
         {
-            StartCoroutine(FadeInCoroutine(image, time, fadeEnd));
+            StartCoroutine(FadeInCoroutine(image, time, onlyActiveSelf, fadeEnd));
         }
 
-        private IEnumerator FadeInCoroutine(Graphic image, float time, System.Action fadeEnd = null)
+        private IEnumerator FadeInCoroutine(Graphic image, float time, bool onlyActiveSelf = false, System.Action fadeEnd = null)
         {
             float alpha = 0f;
             image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
             image.gameObject.SetActive(true);
+
+            if (onlyActiveSelf)
+            {
+                for (int i = 0; i < image.transform.childCount; i++)
+                {
+                    image.transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
             while (image.color.a < 1f)
             {
                 alpha += Time.deltaTime / time;

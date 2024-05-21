@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public static class ImageUiExtender
 {
-    public static void FadeIn(this Graphic image, float time, System.Action fadeEnd = null)
+    public static void FadeIn(this Graphic image, float time, bool onlyActiveSelf = false, System.Action fadeEnd = null)
     {
-        kjh.GameManager.Instance.FadeIn(image, time, fadeEnd);
+        kjh.GameManager.Instance.FadeIn(image, time, onlyActiveSelf, fadeEnd);
     }
 }
 
