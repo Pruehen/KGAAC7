@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8044770756667741761}
   - component: {fileID: 1550276330068146974}
   - component: {fileID: 1047027405542856838}
+  - component: {fileID: 8126153544996828494}
   m_Layer: 0
   m_Name: ExplosionClose 2
   m_TagString: Untagged
@@ -52,11 +53,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 0
-  DopplerLevel: 0
-  MinDistance: 0
-  MaxDistance: 500
+  DopplerLevel: 1
+  MinDistance: 135.01
+  MaxDistance: 750
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -142,3 +143,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playAudio: 0
+--- !u!164 &8126153544996828494
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759765917466483415}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: 0
+  m_RoomHF: 0
+  m_DecayTime: 1
+  m_DecayHFRatio: 0.5
+  m_ReflectionsLevel: -10000
+  m_ReverbLevel: 0
+  m_ReverbDelay: 0.04
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 27

@@ -35,10 +35,7 @@ public class Vulcan : MonoBehaviour
                 return;
             }
             GameObject item = ObjectPoolManager.Instance.DequeueObject(_bulletProjectile);
-            Rigidbody bullet = item.GetComponent<Rigidbody>();
-            bullet.transform.position = _firePos.position;
-            bullet.transform.rotation = _firePos.rotation;
-            bullet.velocity = bullet.transform.forward * bulletSpeed;
+            item.GetComponent<kjh.Bullet>().Init(_firePos.position, _firePos.rotation * Vector3.forward * bulletSpeed);
         }
     }
 

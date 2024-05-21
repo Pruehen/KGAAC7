@@ -29118,6 +29118,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 432222}
     m_Modifications:
+    - target: {fileID: 1047027405542856838, guid: c402a29adcff12f47b99ced058cb215e, type: 3}
+      propertyPath: playAudio
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1759765917466483415, guid: c402a29adcff12f47b99ced058cb215e, type: 3}
       propertyPath: m_Name
       value: RandomExplosionSFX
