@@ -34,7 +34,7 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     public UnityEvent onClick_MidMouseUp;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(!isControlable)
         { return; } 
