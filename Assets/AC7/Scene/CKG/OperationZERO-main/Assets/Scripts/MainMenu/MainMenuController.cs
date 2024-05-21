@@ -4,30 +4,34 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UIElements;
+using UnityEngine.Events;
+using Unity.VisualScripting;
 
 public class MainMenuController : MonoBehaviour
 {
     private static MainMenuController instance = null;
     
     [SerializeField]
-    UnityEngine.InputSystem.PlayerInput playerInput;
+    PlayerInput playerInput;
 
     [SerializeField]
     FadeController fadeController;
 
     [SerializeField]
     GameObject mainMenuScreen;
-    
     [SerializeField]
     GameObject selectPlayScreen;
     [SerializeField]
     GameObject missionSettings;
     [SerializeField]
-    GameObject settingsScreen;
+    GameObject optionScreen;
     [SerializeField]
     GameObject resultScreen;
     [SerializeField]
     GameObject airCombatSettings;
+    [SerializeField]
+    GameObject LoadingScreen;
     [SerializeField]
     TextMeshProUGUI descriptionText;
     
@@ -48,6 +52,8 @@ public class MainMenuController : MonoBehaviour
     GameObject currentActiveScreen = null;
     MenuController currentMenuController = null;
 
+    public UnityEvent onNavigateEvent;
+
     public void SetDescriptionText(string text)
     {
         descriptionText.text = text;
@@ -65,7 +71,7 @@ public class MainMenuController : MonoBehaviour
         }
     }
     
-    public static UnityEngine.InputSystem.PlayerInput PlayerInput
+    public static PlayerInput PlayerInput
     {
         get { return Instance?.playerInput; }
     }
@@ -77,6 +83,7 @@ public class MainMenuController : MonoBehaviour
             PlayScrollAudioClip();
             currentMenuController?.Navigate(context);
         }
+        onNavigateEvent.Invoke();
     }
 
     public void Confirm(InputAction.CallbackContext context)
@@ -148,7 +155,20 @@ public class MainMenuController : MonoBehaviour
     }
     public void ShowAirCombatSettings()
     {
-        SetCurrentActiveScreen(airCombatSettings);
+        SetCurrentActiveScreen(LoadingScreen);
+        airCombatSettings.SetActive(true);
+        Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
+        Transform airCombatEnvironment = airCombatSettings.transform.Find("AirCombatEnvironment");
+        if (airCombatSelect != null)
+        {
+            airCombatSelect.gameObject.SetActive(true);
+        }
+        if (airCombatEnvironment != null)
+        {
+            airCombatEnvironment.gameObject.SetActive(true);
+        }
+        StartCoroutine(OnAirCombatScreen());
+        
     }
     public void ShowMainMenu()
     {
@@ -157,7 +177,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowSettingsMenu()
     {
-        SetCurrentActiveScreen(settingsScreen);
+        SetCurrentActiveScreen(optionScreen);
     }
 
     public void ShowResultMenu()
@@ -165,14 +185,16 @@ public class MainMenuController : MonoBehaviour
         SetCurrentActiveScreen(resultScreen);
     }
 
+    public void ShowLoadingMenu()
+    {
+        
+    }
     public void StartMission()
     {
         playerInput.enabled = false;
-        LoadingController.sceneName = "ZERO";
-
+        LoadingController.sceneName = "TestScene_KJH";
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
-
         currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
     }
 
@@ -183,7 +205,6 @@ public class MainMenuController : MonoBehaviour
 
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
-
         currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
     }
 
@@ -216,6 +237,27 @@ public class MainMenuController : MonoBehaviour
         SetCurrentActiveScreen(mainMenuScreen);
     }
 
+    IEnumerator OnAirCombatScreen()
+    {
+        yield return new WaitForSeconds(5);
+        Transform parentTransform = airCombatSettings.transform.parent;
+        Transform backgroundTransform = parentTransform.Find("Background");
+        if (backgroundTransform != null)
+        {
+            backgroundTransform.gameObject.SetActive(false);
+        }
+        LoadingScreen.SetActive(false);
+        Transform selectUI = airCombatSettings.transform.Find("SelectUI");
+        if (selectUI != null)
+        {
+            selectUI.gameObject.SetActive(true);
+        }
+        currentMenuController = airCombatSettings.GetComponent<MenuController>();
+        onNavigateEvent.Invoke();
+    }
+
+
+
     void Awake()
     {
         if(instance == null)
@@ -225,7 +267,7 @@ public class MainMenuController : MonoBehaviour
         
         mainMenuScreen.SetActive(false);
         resultScreen.SetActive(false);
-        settingsScreen.SetActive(false);
+        optionScreen.SetActive(false);
 
         playerInput.enabled = true;
         playerInput.actions.Disable();
@@ -246,5 +288,27 @@ public class MainMenuController : MonoBehaviour
             StartCoroutine(InitMainMenu());
         }
         descriptionText.text = "";
+
+        onNavigateEvent.AddListener(UpdateAirCombatSelection);
+    }
+
+    void UpdateAirCombatSelection()
+    {
+        // Find the AirCombatSelect object
+        Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
+        if (airCombatSelect != null)
+        {
+            // Deactivate all children of airCombatSelect
+            foreach (Transform child in airCombatSelect)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            // Activate the child corresponding to the current index
+            if (currentMenuController != null && currentMenuController.currentIndex < airCombatSelect.childCount)
+            {
+                airCombatSelect.GetChild(currentMenuController.currentIndex).gameObject.SetActive(true);
+            }
+        }
     }
 }
