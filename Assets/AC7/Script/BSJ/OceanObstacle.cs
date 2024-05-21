@@ -10,9 +10,11 @@ public class OceanObstacle : MonoBehaviour
     [SerializeField] GameObject _spashVfxPrefab;
     private void OnTriggerEnter(Collider col)
     {
-        IFightable target;
-        if (col.transform.TryGetComponent<IFightable>(out target))
+        VehicleCombat target;
+        if (col.transform.TryGetComponent<VehicleCombat>(out target))
         {
+            if (target.IsDead() == true)
+                return;
             GameObject pooledItem = ObjectPoolManager.Instance.DequeueObject(_spashVfxPrefab);
             pooledItem.transform.position = col.transform.position;
             ObjectPoolManager.Instance.EnqueueObject(pooledItem, 10f);
