@@ -164,7 +164,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 0
-    m_Value: 5000
+    m_Value: 10
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -184,7 +184,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 5000
   enableVolumetricFog:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   albedo:
     m_OverrideState: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0}
   lowestCloudAltitude:
     m_OverrideState: 1
-    m_Value: 2000
+    m_Value: 8000
   cloudThickness:
     m_OverrideState: 1
     m_Value: 10000
@@ -478,13 +478,13 @@ MonoBehaviour:
     m_Value: 0.5
   densityMultiplier:
     m_OverrideState: 1
-    m_Value: 0.18
+    m_Value: 0.3
   shapeFactor:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0.97
   shapeScale:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1
   shapeOffset:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0, z: 0}
