@@ -28265,6 +28265,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2136387949388272968, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: enginePower
+      value: 19.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
       value: 3
@@ -28279,7 +28283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4719238730020744993, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: enginePower
-      value: 13.5
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 5198015637826167179, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: e
@@ -28287,7 +28291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5198015637826167179, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: enginePower
-      value: 21
+      value: 16.5
       objectReference: {fileID: 0}
     - target: {fileID: 5198015637826167179, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: torqueCurve.m_Curve.Array.data[1].time
@@ -28307,7 +28311,7 @@ PrefabInstance:
       objectReference: {fileID: 6445041468265237155, guid: 31fe54a810240ee4f9539a90517ee34f, type: 3}
     - target: {fileID: 8069216931832317917, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: enginePower
-      value: 18
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8653230334330335157, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: weaponPrf
@@ -28316,7 +28320,7 @@ PrefabInstance:
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
-      objectReference: {fileID: 5838060299111184242}
+      objectReference: {fileID: 2547510581855610343}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
 --- !u!1 &566783134763721704 stripped
@@ -28363,9 +28367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7cf4d963174f44993f1fe244ad29c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5838060299111184242 stripped
+--- !u!1 &2547510581855610343 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6531559417067857558, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2952854090460673027, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
   m_PrefabInstance: {fileID: 837729205008126436}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7264910508654370851 stripped

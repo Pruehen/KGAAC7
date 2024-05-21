@@ -701,26 +701,6 @@ PrefabInstance:
       propertyPath: _result.y
       value: 440
       objectReference: {fileID: 0}
-    - target: {fileID: 1586902881683653804, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
-      propertyPath: enginePower
-      value: 19.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864795694037676143, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
-      propertyPath: enginePower
-      value: 16.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5394798714480770757, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
-      propertyPath: enginePower
-      value: 10.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7231558662573266489, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
-      propertyPath: enginePower
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8198170890872490375, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
-      propertyPath: controlAircraft
-      value: 
-      objectReference: {fileID: 1449844392}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
 --- !u!1 &1133528869
@@ -1092,11 +1072,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1449844392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2547510581855610343, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
-  m_PrefabInstance: {fileID: 1005634478}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1454801634
 PrefabInstance:
   m_ObjectHideFlags: 0

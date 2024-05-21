@@ -34,7 +34,7 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     public UnityEvent onClick_MidMouseUp;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(!isControlable)
         { return; } 
@@ -50,7 +50,7 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
         }
         if (Input.GetMouseButtonDown(1))
         {
-            onClick_RightMouse.Invoke();
+            missileFireTrigger = true;
         }
         if (Input.GetMouseButtonDown(2))
         {
@@ -78,7 +78,15 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
             onClick_Fup.Invoke();
         }
     }
-
+    bool missileFireTrigger = false;
+    private void FixedUpdate()
+    {
+        if (missileFireTrigger)
+        {
+            onClick_RightMouse.Invoke();
+            missileFireTrigger = false;
+        }
+    }
     void OnMouseDeltaPos(InputValue inputValue)
     {
         if (!isControlable)
