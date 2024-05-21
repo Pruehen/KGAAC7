@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -48,6 +49,8 @@ public class MainMenuController : MonoBehaviour
     GameObject currentActiveScreen = null;
     MenuController currentMenuController = null;
 
+    public UnityEvent onNavigateEvent;
+
     public void SetDescriptionText(string text)
     {
         descriptionText.text = text;
@@ -77,6 +80,7 @@ public class MainMenuController : MonoBehaviour
             PlayScrollAudioClip();
             currentMenuController?.Navigate(context);
         }
+        onNavigateEvent.Invoke();
     }
 
     public void Confirm(InputAction.CallbackContext context)
@@ -163,10 +167,16 @@ public class MainMenuController : MonoBehaviour
             backgroundTransform.gameObject.SetActive(false);
         }
         Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
+        Transform airCombatEnvironment = airCombatSettings.transform.Find("AirCombatEnvironment");
         if (airCombatSelect != null)
         {
             airCombatSelect.gameObject.SetActive(true);
         }
+        if (airCombatEnvironment != null)
+        {
+            airCombatEnvironment.gameObject.SetActive(true);
+        }
+        onNavigateEvent.Invoke();
     }
     public void ShowMainMenu()
     {
@@ -234,6 +244,8 @@ public class MainMenuController : MonoBehaviour
         SetCurrentActiveScreen(mainMenuScreen);
     }
 
+    
+
     void Awake()
     {
         if(instance == null)
@@ -264,5 +276,27 @@ public class MainMenuController : MonoBehaviour
             StartCoroutine(InitMainMenu());
         }
         descriptionText.text = "";
+
+        onNavigateEvent.AddListener(UpdateAirCombatSelection);
+    }
+
+    void UpdateAirCombatSelection()
+    {
+        // Find the AirCombatSelect object
+        Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
+        if (airCombatSelect != null)
+        {
+            // Deactivate all children of airCombatSelect
+            foreach (Transform child in airCombatSelect)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            // Activate the child corresponding to the current index
+            if (currentMenuController != null && currentMenuController.currentIndex < airCombatSelect.childCount)
+            {
+                airCombatSelect.GetChild(currentMenuController.currentIndex).gameObject.SetActive(true);
+            }
+        }
     }
 }

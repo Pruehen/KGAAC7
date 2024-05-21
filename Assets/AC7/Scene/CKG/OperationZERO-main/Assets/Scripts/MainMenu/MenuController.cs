@@ -25,7 +25,7 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     AudioSource audioSource;
 
-    int currentIndex;
+    public int currentIndex;
 
     UISelect GetCurrentUISelect()
     {
