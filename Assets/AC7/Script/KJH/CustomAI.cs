@@ -265,9 +265,8 @@ class MoveToWaypoints : IFlightStratage//0. 경로 비행 전략
 
         if (wayPointList == null || wayPointList.Count <= naxtVisitIndex)//웨이포인트 리스트가 없거나, 다음에 방문할 노드가 없을 경우
         {
-            Vector3 outRangePos = myTrf.position + myTrf.forward * 100000;
-            outRangePos.y = Mathf.Clamp(outRangePos.y, 2000, 10000);
-            return outRangePos;
+            customAI.ChangeStratage(StratageType.circleFlight);
+            return myTrf.forward * 5000;
         }        
         else
         {
