@@ -58,6 +58,9 @@ public class MainMenuController : MonoBehaviour
 
     public UnityEvent onNavigateEvent;
 
+    
+    
+
     public void SetDescriptionText(string text)
     {
         descriptionText.text = text;
@@ -194,7 +197,31 @@ public class MainMenuController : MonoBehaviour
     {
         
     }
-    public void StartMission()
+    public void F16CStartMission()
+    {        
+        GameObject dummy = new GameObject();
+        dummy.name = "_F-16C";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void MIG29AStartMission()
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "_MiG-29A";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void F14AStartMission()
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "_F-14A";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void PrepareMission()
     {
         playerInput.enabled = false;
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
