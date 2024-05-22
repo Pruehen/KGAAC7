@@ -294,10 +294,12 @@ GameObject:
   - component: {fileID: 4419792818022087899}
   - component: {fileID: 944036853}
   - component: {fileID: 222575863235576338}
-  - component: {fileID: 5362563656243433386}
+  - component: {fileID: 1489391310580262431}
+  - component: {fileID: 7908098267022681743}
   - component: {fileID: -6389896688522376230}
+  - component: {fileID: 2315589381888227058}
   m_Layer: 0
-  m_Name: M163
+  m_Name: M163ActuallyShootingMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _accuracyLoop: 4
-  _range: 2000
+  _range: 10000
   _minXAxis: 0
   _maxXAxis: 180
   _muzzleTrf: {fileID: 9037683002944754987}
@@ -405,7 +407,7 @@ MonoBehaviour:
   _radar: {fileID: 0}
   _maxRotationSpeed: 0
   _smoothDuration: 0
---- !u!114 &5362563656243433386
+--- !u!114 &1489391310580262431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,12 +416,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1618973821976248756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec1a445c430be6249a90f2249abd620c, type: 3}
+  m_Script: {fileID: 11500000, guid: fea3e4b70ada30a4abd850c3ae45c525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrfList:
+  - {fileID: 6445041468265237155, guid: 279ffe80697f9a542bf33d6513fd0735, type: 3}
+  fireTrfList:
+  - {fileID: 9037683002944754987}
+  equipedWeaponIndexList: 00000000
+  bulletPrf: {fileID: 0}
+  gunFireTrf: {fileID: 0}
+  flarePrf: {fileID: 0}
+--- !u!114 &7908098267022681743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618973821976248756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566e410b2821f72488035917774c786d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _firePos: {fileID: 9037683002944754987}
-  _bulletProjectile: {fileID: 5651192895815570312, guid: 9de00e7634e92e84287b23f7d15f0f3b, type: 3}
-  bulletSpeed: 1030
+  _projectile: {fileID: 6445041468265237155, guid: 279ffe80697f9a542bf33d6513fd0735, type: 3}
+  bulletSpeed: 2000
 --- !u!114 &-6389896688522376230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +461,21 @@ MonoBehaviour:
   _fadeInLength: 0.1
   _fadeOutLength: 0.3
   _SfxPrefab: {fileID: 1759765917466483415, guid: f39555779f313d94c83567cd547678fe, type: 3}
+--- !u!114 &2315589381888227058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618973821976248756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7cf4d963174f44993f1fe244ad29c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radarMaxAngle: 90
+  isEnemy: 1
+  _lockOnSfxPrefab: {fileID: 0}
 --- !u!1 &2968746538920140763
 GameObject:
   m_ObjectHideFlags: 0

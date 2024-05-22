@@ -29,7 +29,7 @@ public class Radar : MonoBehaviour
 
     private void Start()
     {
-        weaponSystem = GetComponent<AircraftMaster>().AircraftSelecter().weaponSystem;
+        weaponSystem = GetComponent<AircraftMaster>()?.AircraftSelecter().weaponSystem;
 
         if (_lockOnSfxPrefab != null)
         {
