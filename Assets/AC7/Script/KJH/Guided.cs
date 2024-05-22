@@ -117,7 +117,7 @@ public class Guided : MonoBehaviour
 
             float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(velocity * 0.0015f, 0, 1);
 
-            if (rocket.SideForce().magnitude < maxSideForce)
+            if (rocket.SideForce().magnitude < maxSideForce * maneuverability)
             {
                 float p = (600) * pGain;
                 float d = (600) * dGain;
@@ -133,14 +133,17 @@ public class Guided : MonoBehaviour
         }
     }
 
+
+    float maneuverability = 1;
     /// <summary>
     /// 자신이 목표하고 있는 타겟이 플레어를 살포하였을 때 실행하는 메서드
     /// </summary>
     public void EIRCM()
     {
         EIRCM_Count--;
+        maneuverability *= 0.97f;
 
-        if(EIRCM_Count <= 0) 
+        if (EIRCM_Count <= 0) 
         {
             RemoveTarget();
         }
