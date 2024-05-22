@@ -73,6 +73,11 @@ public class Guided_SARH : Guided
                 rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
                 //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
             }
+
+            if (Vector3.Angle(this.transform.forward, toTargetVec) > traceAngleLimit)
+            {
+                RemoveTarget();
+            }
         }
     }
 }

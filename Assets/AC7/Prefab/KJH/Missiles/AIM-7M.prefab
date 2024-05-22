@@ -194,7 +194,7 @@ MonoBehaviour:
   maxTurnRate: 30
   maxSideForce: 250
   isTVC: 0
-  traceAngleLimit: 60
+  traceAngleLimit: 90
 --- !u!114 &-4268455925729301788
 MonoBehaviour:
   m_ObjectHideFlags: 0
