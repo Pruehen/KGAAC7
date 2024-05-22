@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CamRotate : MonoBehaviour
 {
-    [SerializeField] AircraftMaster aircraftMaster;    
+    //[SerializeField] AircraftMaster aircraftMaster;
+    AircraftMaster aircraftMaster;
     AircraftControl aircraftControl;
     Transform camAxisTrf;//실제 회전시킬 축
     [SerializeField]Transform virtualAxis;//가상 축
@@ -30,6 +31,7 @@ public class CamRotate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
         GetComponent<AudioListener>().enabled = false;
         StartCoroutine(AudioListenerOn());
         aircraftControl = aircraftMaster.AircraftSelecter().aircraftControl;
