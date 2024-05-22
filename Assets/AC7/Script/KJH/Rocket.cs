@@ -120,10 +120,9 @@ public class Rocket : MonoBehaviour
         IFightable fightable;
         if(collision.transform.TryGetComponent<IFightable>(out fightable)) 
         {
-            fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+            fightable.TakeDamage(GetComponent<WeaponData>().Dmg());            
         }
-
-        EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
+        EffectManager.Instance.EffectGenerate(explosionEffect, collision.transform.position);
         this.DestroyRocket();
     }
 

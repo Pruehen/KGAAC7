@@ -391,6 +391,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterBlock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6381447730633252051, guid: 33634e0a3b41a5946ad13dedd3f7ca42, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381447730633252051, guid: 33634e0a3b41a5946ad13dedd3f7ca42, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33634e0a3b41a5946ad13dedd3f7ca42, type: 3}
 --- !u!1 &450900466
