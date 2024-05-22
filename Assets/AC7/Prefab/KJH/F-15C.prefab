@@ -21249,12 +21249,12 @@ MonoBehaviour:
       outWeight: 0.35
     - serializedVersion: 3
       time: 800
-      value: 0
-      inSlope: -0.0015803995
-      outSlope: -0.0015803995
+      value: 0.5
+      inSlope: -0.0030064282
+      outSlope: -0.0030064282
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.10800929
+      inWeight: 0.091
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2

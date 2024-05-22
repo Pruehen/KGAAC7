@@ -8,7 +8,8 @@ using UnityEngine;
 public class OceanObstacle : MonoBehaviour
 {
     [SerializeField] GameObject _spashVfxPrefab;
-    private void OnTriggerEnter(Collider col)
+
+    private void OnCollisionEnter(Collision col)
     {
         VehicleCombat target;
         if (col.transform.TryGetComponent<VehicleCombat>(out target))

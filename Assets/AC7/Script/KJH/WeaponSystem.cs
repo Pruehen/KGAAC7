@@ -85,6 +85,9 @@ namespace kjh
         // Start is called before the first frame update
         public void Init()
         {
+            if (fireTrfList.Count == 0)
+                return;
+
             useWeaponIndex = 0;
 
             weaponCoolDownList = new List<float>();
@@ -109,6 +112,9 @@ namespace kjh
         // Update is called once per frame
         void Update()
         {
+            if (weaponCoolDownList == null || weaponCoolDownList.Count == 0)
+                return;
+
             for (int i = 0; i < weaponCoolDownList.Count; i++)
             {
                 if (weaponCoolDownList[i] > 0)

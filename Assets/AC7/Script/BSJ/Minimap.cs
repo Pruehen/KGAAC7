@@ -12,6 +12,7 @@ public class Minimap : MonoBehaviour
     [SerializeField] Transform _leftTopBoundary;
     [SerializeField] Transform _rightBottomBoundary;
     [SerializeField] float _iconSIze = 30f;
+    [SerializeField] Vector3 _offset = new Vector3(0f, 48f, 0f);
     float _minx;
     float _maxx;
     float _miny;
@@ -43,7 +44,7 @@ public class Minimap : MonoBehaviour
         GameObject uiItem = Instantiate(_targetPrefab, transform);
         uiItem.GetComponent<MinimapTargetUi>().Init(targetTransform, _virtualMinmapPlayerAxis,
             _minx, _maxx, _miny, _maxy,
-            _iconSIze, _ratio);
+            _iconSIze, _ratio, _offset);
     }
     private void InitMissileUi(Transform targetTransform)
     {
@@ -51,6 +52,6 @@ public class Minimap : MonoBehaviour
         GameObject uiItem = Instantiate(_missilePrefab, transform);
         uiItem.GetComponent<MinimapTargetUi>().Init(targetTransform, _virtualMinmapPlayerAxis,
             _minx, _maxx, _miny, _maxy,
-            _iconSIze, _ratio);
+            _iconSIze, _ratio, _offset);
     }
 }

@@ -19,7 +19,6 @@ namespace kjh
 
 
         public System.Action<Transform> OnMissileAdded;
-        public System.Action<Transform> OnMissileRemoved;
 
         /// <summary>
         /// 게임매니저에 타겟을 추가
@@ -118,14 +117,9 @@ namespace kjh
             yield break;
         }
 
-        public void NotifyMissileSpawn(Transform missileTransform)
+        public void AddMissile(Transform target)
         {
-
-            OnMissileAdded?.Invoke(missileTransform);
-        }
-        public void NotifyMissileRemoved(Transform missileTransform)
-        {
-            OnMissileRemoved?.Invoke(missileTransform);
+            OnMissileAdded?.Invoke(target);
         }
     }
 }

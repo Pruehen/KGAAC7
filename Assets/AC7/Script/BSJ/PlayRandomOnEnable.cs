@@ -64,7 +64,6 @@ public class PlayRandomOnEnable : MonoBehaviour
             if (distance < audioRange)
             {
                 PlayByDistance(distanceStamp);
-                Debug.Log("사운드 디버그" + (Time.time - timeStamp) + distanceStamp + distance + audioRange);
                 break;
             }
             audioRange += Time.deltaTime * 334f;

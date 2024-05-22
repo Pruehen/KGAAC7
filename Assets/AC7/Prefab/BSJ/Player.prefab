@@ -10387,7 +10387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &837729205695044119
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28846,10 +28846,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 566783134763721706}
     m_Modifications:
-    - target: {fileID: 2516836384330267105, guid: 38b0aff6d5eeabe4381e6b320a5b08e4, type: 3}
-      propertyPath: m_Radius
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 2516836384330267106, guid: 38b0aff6d5eeabe4381e6b320a5b08e4, type: 3}
       propertyPath: m_Name
       value: BulletPassTrigger
