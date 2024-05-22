@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1550276330068146974}
   - component: {fileID: 1047027405542856838}
   m_Layer: 0
-  m_Name: MissileSFX
+  m_Name: BulletRicochet 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,20 +43,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 16784411322c8414aaf5802ece9dffb0, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 16665ddd5465fd64d86a9c80ed585571, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: b75af277004d11740be11f0dc835cae8, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 70
+  Priority: 0
   DopplerLevel: 0
-  MinDistance: 30
-  MaxDistance: 500
+  MinDistance: 40.02
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
