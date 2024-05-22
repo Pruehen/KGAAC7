@@ -12,7 +12,7 @@ public class AircraftEngineSound : MonoBehaviour
     private AudioLowPassFilter _afterbunerLowpass;
     private float _volumRatio = 1.0f;
 
-    private void Awake()
+    private void Start()
     {
         _engineSound = bsj.SoundManager.Instance.PlayAttached(_engineSoundPrefab, transform, true).GetComponent<AudioSource>();
         _engineLowpass = _engineSound.GetComponent<AudioLowPassFilter>();
