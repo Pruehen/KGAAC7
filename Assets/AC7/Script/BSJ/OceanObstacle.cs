@@ -9,17 +9,18 @@ public class OceanObstacle : MonoBehaviour
 {
     [SerializeField] GameObject _spashVfxPrefab;
 
-    private void OnTriggerEnter(Collider col)
+    private void OnCollisionEnter(Collision collision)
     {
         VehicleCombat target;
-        if (col.transform.TryGetComponent<VehicleCombat>(out target))
+        if (collision.transform.TryGetComponent<VehicleCombat>(out target))
         {
             if (target.IsDead() == true)
                 return;
             GameObject pooledItem = ObjectPoolManager.Instance.DequeueObject(_spashVfxPrefab);
-            pooledItem.transform.position = col.transform.position;
-            ObjectPoolManager.Instance.EnqueueObject(pooledItem, 10f);
+            pooledItem.transform.position = collision.transform.position;
+            ObjectPoolManager.Instance.EnqueueObject(pooledItem, 10f);            
             target.TakeDamage(9999999f);
+            collision.transform.position += new Vector3(0, -20, 0);
         }
     }
 }
