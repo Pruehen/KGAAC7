@@ -21166,7 +21166,7 @@ MonoBehaviour:
   _a_Range: 20
   _e_Range: 20
   _r_Range: 20
-  _controlPower: 12
+  _controlPower: 7
   _engineDelay: 10
 --- !u!114 &-6878497345927804877
 MonoBehaviour:
