@@ -17,7 +17,7 @@ public class DebugSphereDrawer : SceneSingleton<DebugSphereDrawer>
         for (int i = 0; i < poss.Count; i++)
         {
             Gizmos.color = colors[i];
-            Gizmos.DrawSphere(poss[i], radis[i]);
+            Gizmos.DrawWireSphere(poss[i], radis[i]);
         }
         poss.Clear();
         radis.Clear();

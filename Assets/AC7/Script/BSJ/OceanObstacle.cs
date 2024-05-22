@@ -9,7 +9,7 @@ public class OceanObstacle : MonoBehaviour
 {
     [SerializeField] GameObject _spashVfxPrefab;
 
-    private void OnCollisionEnter(Collision col)
+    private void OnTriggerEnter(Collider col)
     {
         VehicleCombat target;
         if (col.transform.TryGetComponent<VehicleCombat>(out target))

@@ -295,6 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf84f7657fdc7f4fab4bda464a0414e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WarningVoiceSfxPrefap: {fileID: 1550276330068146974, guid: 37afe9a072f772845a61068b2a506d36, type: 3}
+  WarningBeepSfxPrefap: {fileID: 1550276330068146974, guid: c63ba46ea6e623f4e911f064598fdd4b, type: 3}
 --- !u!82 &3596005885023814913
 AudioSource:
   m_ObjectHideFlags: 0
