@@ -38,7 +38,9 @@ public class MainMenuController : MonoBehaviour
     GameObject LoadingScreen3;
     [SerializeField]
     TextMeshProUGUI descriptionText;
-    
+    [SerializeField]
+    GameObject backGround;
+
     [SerializeField]
     float initDelay;
 
@@ -134,6 +136,7 @@ public class MainMenuController : MonoBehaviour
         currentActiveScreen.SetActive(true);
     }
 
+
     public void SetLanguage(string language)
     {
         if(language.ToLower() == "en")
@@ -181,6 +184,8 @@ public class MainMenuController : MonoBehaviour
     public void ShowMainMenu()
     {
         SetCurrentActiveScreen(mainMenuScreen);
+        backGround.SetActive(true);
+        airCombatSettings.SetActive(false);
     }
 
     public void ShowSettingsMenu()
@@ -282,12 +287,7 @@ public class MainMenuController : MonoBehaviour
             airCombatEnvironment.gameObject.SetActive(true);
         }
         yield return new WaitForSecondsRealtime(5);
-        Transform parentTransform = airCombatSettings.transform.parent;
-        Transform backgroundTransform = parentTransform.Find("Background");
-        if (backgroundTransform != null)
-        {
-            backgroundTransform.gameObject.SetActive(false);
-        }
+        backGround.SetActive(false);
         loadingScreen.SetActive(false);
         Transform selectUI = airCombatSettings.transform.Find("SelectUI");
         if (selectUI != null)
