@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class OceanObstacle : MonoBehaviour
 {
-    [SerializeField] GameObject _spashVfxPrefab;
+    [SerializeField] GameObject _splashVfxPrefab;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -16,7 +16,7 @@ public class OceanObstacle : MonoBehaviour
         {
             if (target.IsDead() == true)
                 return;
-            GameObject pooledItem = ObjectPoolManager.Instance.DequeueObject(_spashVfxPrefab);
+            GameObject pooledItem = ObjectPoolManager.Instance.DequeueObject(_splashVfxPrefab);
             pooledItem.transform.position = col.transform.position;
             ObjectPoolManager.Instance.EnqueueObject(pooledItem, 10f);
             target.TakeDamage(9999999f);
