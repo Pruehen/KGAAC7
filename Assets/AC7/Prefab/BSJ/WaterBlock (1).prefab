@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7539286481240d041b89c655eb1193fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spashVfxPrefab: {fileID: 373501565748378994, guid: 5f719f55b8dacc744a0d1aa38f85b350, type: 3}
+  _splashVfxPrefab: {fileID: 373501565748378994, guid: 5f719f55b8dacc744a0d1aa38f85b350, type: 3}
 --- !u!65 &6381447730633252046
 BoxCollider:
   m_ObjectHideFlags: 0
