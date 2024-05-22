@@ -21166,7 +21166,7 @@ MonoBehaviour:
   _a_Range: 20
   _e_Range: 20
   _r_Range: 20
-  _controlPower: 12
+  _controlPower: 7
   _engineDelay: 10
 --- !u!114 &-6878497345927804877
 MonoBehaviour:
@@ -21180,8 +21180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c48ed4ea846eb48a3b79413e2ecc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enginePower: 13
-  pitchTorque: 3.5
+  enginePower: 24
+  pitchTorque: 6.5
   rollTorque: 25
   yawTorque: 1
   enginePowerCurve:
@@ -21344,7 +21344,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   e: 0.82
-  liftPower: 20
+  liftPower: 35
   dragCoefficient: 0.05
 --- !u!114 &1206920244328171021
 MonoBehaviour:

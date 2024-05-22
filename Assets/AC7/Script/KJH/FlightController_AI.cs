@@ -41,7 +41,7 @@ public class FlightController_AI : MonoBehaviour
         aircraftControl = aircraftSelecter.aircraftControl;
         if(isDead)//사망 시 조종 기능을 잠금
         {
-            aircraftControl.SetAxisValue(0, 1, 0, 0);
+            aircraftControl.SetAxisValue(0, 2, 0, 0);
             return;
         }
 
