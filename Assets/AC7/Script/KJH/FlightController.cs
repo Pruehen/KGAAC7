@@ -17,11 +17,14 @@ public class FlightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        aircraftControl = aircraftSelecter.aircraftControl;
         if (!dead)
-        {
-            aircraftControl = aircraftSelecter.aircraftControl;
-
+        {            
             aircraftControl.SetAxisValue(PlayerInputCustom.Instance.pitchAxis, PlayerInputCustom.Instance.rollAxis, PlayerInputCustom.Instance.yawAxis, PlayerInputCustom.Instance.throttleAxis);//테스트 코드
+        }
+        else
+        {
+            aircraftControl.SetAxisValue(0, 2, 0, -2);//테스트 코드
         }
     }
 

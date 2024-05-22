@@ -28,9 +28,38 @@ public class AircraftSelecter : MonoBehaviour
             this.controlAircraft.SetActive(false);
         }
 
+        if(controlAircraft == null)
+        {
+            string name;
+            if (GameObject.Find("_F-16C") != null)
+            {
+                name = "F-16C";
+            }
+            else if(GameObject.Find("_MiG-29A") != null)
+            {
+                name = "MiG-29A";
+            }
+            else if (GameObject.Find("_F-14A") != null)
+            {
+                name = "F-14A";
+            }
+            else if (GameObject.Find("_F-15C") != null)
+            {
+                name = "F-15C";
+            }
+            else
+            {
+                name = "F-16C";
+            }
+            controlAircraft = transform.Find(name).gameObject;
+            if (controlAircraft == null)
+                return;
+        }
+
         this.controlAircraft = controlAircraft;
         this.controlAircraft.SetActive(true);
         aircraftData = controlAircraft.GetComponent<AircraftData>();
+        this.gameObject.GetComponent<AircraftFM>().Init();
         weaponSystem = controlAircraft.GetComponent<kjh.WeaponSystem>();
         weaponSystem.Init();
         aircraftControl = controlAircraft.GetComponent<AircraftControl>();

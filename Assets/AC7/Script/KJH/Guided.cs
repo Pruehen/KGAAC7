@@ -6,6 +6,8 @@ public class Guided : MonoBehaviour
 {
     [SerializeField] protected int EIRCM_Count;
     [SerializeField] protected VehicleCombat target;
+
+    public System.Action OnRemove;
     public bool Target()
     {
         return target != null;
@@ -30,6 +32,7 @@ public class Guided : MonoBehaviour
                 {
                     mwr.AddMissile(this);
                 }
+                kjh.GameManager.Instance.AddMissile(transform);
             }
         }
     }
@@ -49,6 +52,7 @@ public class Guided : MonoBehaviour
             }
         }
         this.target = null;
+        OnRemove?.Invoke();
     }
 
     [SerializeField] protected float maxTurnRate;//최대 토크

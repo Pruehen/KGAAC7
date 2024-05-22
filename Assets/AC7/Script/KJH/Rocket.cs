@@ -46,7 +46,7 @@ public class Rocket : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         rigidbody = GetComponent<Rigidbody>();
         isCombustion = false;
-        cD = liftPower * 0.02f;
+        cD = liftPower * 0.015f;
 
         sphereCollider.enabled = false;
         fuseOn = false;
@@ -117,14 +117,24 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        IFightable fightable;
-        if(collision.transform.TryGetComponent<IFightable>(out fightable)) 
+        Debug.Log("Ãæµ¹");
+        VehicleCombat fightable;
+        if(collision.transform.TryGetComponent<VehicleCombat>(out fightable))
         {
             fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+            EffectManager.Instance.EffectGenerate(explosionEffect, collision.transform.position);
+            this.DestroyRocket();
+            if (fightable.isPlayer)
+            {
+                kjh.GameManager.Instance.cameraShake.MissileHitShake();
+            }
+        }
+        else
+        {
+            EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
+            this.DestroyRocket();
         }
 
-        EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
-        this.DestroyRocket();
     }
 
     void DestroyRocket()

@@ -134,7 +134,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6445041468265237182
 Rigidbody:
@@ -194,7 +194,7 @@ MonoBehaviour:
   maxTurnRate: 30
   maxSideForce: 250
   isTVC: 0
-  traceAngleLimit: 60
+  traceAngleLimit: 90
 --- !u!114 &-4268455925729301788
 MonoBehaviour:
   m_ObjectHideFlags: 0

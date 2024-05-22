@@ -9740,6 +9740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e4fb073ac4ed64e9095286b378d9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _DeploySfx: {fileID: 1759765917466483415, guid: 683bf5e8618687e4897cc803bff01fbd, type: 3}
   maxTime: 10
 --- !u!1 &7992670008998278652
 GameObject:

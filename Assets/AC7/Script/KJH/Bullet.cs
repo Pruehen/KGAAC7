@@ -9,6 +9,7 @@ namespace kjh
         SphereCollider sphereCollider;
         Rigidbody rigidbody;
         float lifeTime = 0;
+        [SerializeField] GameObject _bulletHitVfx;
 
         public void Init(Vector3 position, Vector3 velocity)
         {
@@ -45,11 +46,21 @@ namespace kjh
 
         private void OnTriggerEnter(Collider other)
         {
-            IFightable fightable;
+            VehicleCombat fightable;
             GenerateBullePassSfx bulletPassing;
-            if (other.transform.TryGetComponent<IFightable>(out fightable))
+            if (other.transform.TryGetComponent<VehicleCombat>(out fightable))
             {
                 fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+                GameObject vsfx = ObjectPoolManager.Instance.DequeueObject(_bulletHitVfx);
+
+                if(fightable.isPlayer)
+                {
+                    kjh.GameManager.Instance.cameraShake.BulletHitShake();
+                }
+
+                //Vector3 playerToBullet = (-other.transform.position + transform.position).normalized;
+                //vsfx.transform.position = other.transform.position + playerToBullet * Random.Range(10f, 22f) + other.transform.forward * 4f;
+                vsfx.transform.position = other.transform.position;
             }
             if(other.TryGetComponent<GenerateBullePassSfx>(out bulletPassing))
             {

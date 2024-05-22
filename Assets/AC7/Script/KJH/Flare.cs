@@ -6,6 +6,7 @@ public class Flare : MonoBehaviour
 {
     Rigidbody rigidbody;
     ParticleSystem particleSystem;
+    [SerializeField] GameObject _DeploySfx;
     [SerializeField] float maxTime;
     float lifeTime;
 
@@ -19,6 +20,7 @@ public class Flare : MonoBehaviour
         rigidbody.velocity = velocity;        
         particleSystem.Clear();
         particleSystem.Play();
+        bsj.SoundManager.Instance.PlayAttached(_DeploySfx,transform);
     }
 
     // Update is called once per frame

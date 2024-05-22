@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52fae546cae0ef4fb13cf2fef3f951c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletHitVfx: {fileID: 121360, guid: 0ac14ff39c0e2f34b88cc8b117203b60, type: 3}
 --- !u!114 &5792601872252130502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 1
   reloadTime: 0.05
+  maxSeekerAngle: 0
+  lockOnRange: 0
 --- !u!96 &5900910231596744783
 TrailRenderer:
   serializedVersion: 2

@@ -10,7 +10,7 @@ public class AircraftFM : MonoBehaviour
     [SerializeField] AircraftData aircraftData;
     Rigidbody rigidbody;    
 
-    private void Awake()
+    public void Init()
     {
         aircraftSelecter = GetComponent<AircraftSelecter>();
         effect = aircraftSelecter.controlAircraft.GetComponent<VaporEffect>();
@@ -54,6 +54,6 @@ public class AircraftFM : MonoBehaviour
         rigidbody.drag = Atmosphere.Drag(this.transform.position.y, aircraftData.GetDC(), velocitySpeed);
         //Debug.Log(velocitySpeed);
 
-        effect.SetEffect(velocitySpeed, aoa);
+        effect?.SetEffect(velocitySpeed, aoa);
     }
 }

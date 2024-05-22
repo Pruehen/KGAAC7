@@ -31,7 +31,11 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     GameObject airCombatSettings;
     [SerializeField]
-    GameObject LoadingScreen;
+    GameObject LoadingScreen1;
+    [SerializeField]
+    GameObject LoadingScreen2; 
+    [SerializeField]
+    GameObject LoadingScreen3;
     [SerializeField]
     TextMeshProUGUI descriptionText;
     
@@ -53,6 +57,9 @@ public class MainMenuController : MonoBehaviour
     MenuController currentMenuController = null;
 
     public UnityEvent onNavigateEvent;
+
+    
+    
 
     public void SetDescriptionText(string text)
     {
@@ -153,22 +160,23 @@ public class MainMenuController : MonoBehaviour
     {
         SetCurrentActiveScreen(missionSettings);
     }
-    public void ShowAirCombatSettings()
+    public void ShowAirCombatSettings1()
     {
-        SetCurrentActiveScreen(LoadingScreen);
-        airCombatSettings.SetActive(true);
-        Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
-        Transform airCombatEnvironment = airCombatSettings.transform.Find("AirCombatEnvironment");
-        if (airCombatSelect != null)
-        {
-            airCombatSelect.gameObject.SetActive(true);
-        }
-        if (airCombatEnvironment != null)
-        {
-            airCombatEnvironment.gameObject.SetActive(true);
-        }
-        StartCoroutine(OnAirCombatScreen());
-        
+        SetCurrentActiveScreen(LoadingScreen1);
+        StartCoroutine(OnAirCombatScreen(LoadingScreen1));
+        LoadingController.sceneName = "Mission01";
+    }
+    public void ShowAirCombatSettings2()
+    {
+        SetCurrentActiveScreen(LoadingScreen2);
+        StartCoroutine(OnAirCombatScreen(LoadingScreen2));
+        LoadingController.sceneName = "Mission02";
+    }
+    public void ShowAirCombatSettings3()
+    {
+        SetCurrentActiveScreen(LoadingScreen3);
+        StartCoroutine(OnAirCombatScreen(LoadingScreen3));
+        LoadingController.sceneName = "Mission03";
     }
     public void ShowMainMenu()
     {
@@ -189,13 +197,36 @@ public class MainMenuController : MonoBehaviour
     {
         
     }
-    public void StartMission()
+    public void F16CStartMission()
+    {        
+        GameObject dummy = new GameObject();
+        dummy.name = "_F-16C";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void MIG29AStartMission()
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "_MiG-29A";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void F14AStartMission()
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "_F-14A";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void PrepareMission()
     {
         playerInput.enabled = false;
-        LoadingController.sceneName = "TestScene_KJH";
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
-        currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
+        //currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
     }
 
     public void StartFreeFlight()
@@ -237,20 +268,36 @@ public class MainMenuController : MonoBehaviour
         SetCurrentActiveScreen(mainMenuScreen);
     }
 
-    IEnumerator OnAirCombatScreen()
+    IEnumerator OnAirCombatScreen(GameObject loadingScreen)
     {
-        yield return new WaitForSeconds(5);
+        airCombatSettings.SetActive(true);
+        Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
+        Transform airCombatEnvironment = airCombatSettings.transform.Find("AirCombatEnvironment");
+        if (airCombatSelect != null)
+        {
+            airCombatSelect.gameObject.SetActive(true);
+        }
+        if (airCombatEnvironment != null)
+        {
+            airCombatEnvironment.gameObject.SetActive(true);
+        }
+        yield return new WaitForSecondsRealtime(5);
         Transform parentTransform = airCombatSettings.transform.parent;
         Transform backgroundTransform = parentTransform.Find("Background");
         if (backgroundTransform != null)
         {
             backgroundTransform.gameObject.SetActive(false);
         }
-        LoadingScreen.SetActive(false);
+        loadingScreen.SetActive(false);
         Transform selectUI = airCombatSettings.transform.Find("SelectUI");
         if (selectUI != null)
         {
             selectUI.gameObject.SetActive(true);
+        }
+        Transform airCombatInformation = airCombatSettings.transform.Find("AirCombatInformation");
+        if (airCombatInformation != null)
+        {
+            airCombatInformation.gameObject.SetActive(true);
         }
         currentMenuController = airCombatSettings.GetComponent<MenuController>();
         onNavigateEvent.Invoke();
@@ -290,24 +337,42 @@ public class MainMenuController : MonoBehaviour
         descriptionText.text = "";
 
         onNavigateEvent.AddListener(UpdateAirCombatSelection);
+        onNavigateEvent.AddListener(UpdateAircombatInformation);
     }
 
     void UpdateAirCombatSelection()
     {
-        // Find the AirCombatSelect object
+        
         Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
         if (airCombatSelect != null)
         {
-            // Deactivate all children of airCombatSelect
+            
             foreach (Transform child in airCombatSelect)
             {
                 child.gameObject.SetActive(false);
             }
 
-            // Activate the child corresponding to the current index
+            
             if (currentMenuController != null && currentMenuController.currentIndex < airCombatSelect.childCount)
             {
                 airCombatSelect.GetChild(currentMenuController.currentIndex).gameObject.SetActive(true);
+            }
+        }
+    }
+
+    void UpdateAircombatInformation()
+    {
+        Transform airCombatInformation = airCombatSettings.transform.Find("AirCombatInformation");
+        if (airCombatInformation != null)
+        {
+            foreach (Transform child in airCombatInformation)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            if (currentMenuController != null && currentMenuController.currentIndex < airCombatInformation.childCount)
+            {
+                airCombatInformation.GetChild(currentMenuController.currentIndex).gameObject.SetActive(true);
             }
         }
     }
