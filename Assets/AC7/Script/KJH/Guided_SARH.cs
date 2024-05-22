@@ -27,12 +27,6 @@ public class Guided_SARH : Guided
             if (target != null)
             {
                 target.onFlare += EIRCM;
-
-                MWR mwr;
-                if (target.TryGetComponent<MWR>(out mwr))
-                {
-                    mwr.AddMissile(this);
-                }
                 kjh.GameManager.Instance.AddMissile(transform);
             }
         }
@@ -47,15 +41,20 @@ public class Guided_SARH : Guided
                 return;
 
             targetVec = target.transform.position;//타겟 벡터 지정
+            Vector3 toTargetVec = targetVec - this.transform.position;
+            if (toTargetVec.magnitude < 5000)
+            {
+                AddMwr();
+            }
 
-            Vector3 toTargetVec = (targetVec - this.transform.position).normalized;//방향 벡터 산출
+            Vector3 toTargetDir = (targetVec - this.transform.position).normalized;//방향 벡터 산출
 
-            Vector3 angleError_diff = toTargetVec - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
-            angleError_temp = toTargetVec;
+            Vector3 angleError_diff = toTargetDir - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
+            angleError_temp = toTargetDir;
 
 
-            Vector3 side1 = toTargetVec;
-            Vector3 side2 = toTargetVec + angleError_diff;
+            Vector3 side1 = toTargetDir;
+            Vector3 side2 = toTargetDir + angleError_diff;
             Vector3 orderAxis = Vector3.Cross(side1, side2);
 
             Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
@@ -74,7 +73,7 @@ public class Guided_SARH : Guided
                 //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
             }
 
-            if (Vector3.Angle(this.transform.forward, toTargetVec) > traceAngleLimit)
+            if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
             {
                 RemoveTarget();
             }
