@@ -267,6 +267,11 @@ public class MainMenuController : MonoBehaviour
         {
             selectUI.gameObject.SetActive(true);
         }
+        Transform airCombatInformation = airCombatSettings.transform.Find("AirCombatInformation");
+        if (airCombatInformation != null)
+        {
+            airCombatInformation.gameObject.SetActive(true);
+        }
         currentMenuController = airCombatSettings.GetComponent<MenuController>();
         onNavigateEvent.Invoke();
     }
@@ -305,24 +310,42 @@ public class MainMenuController : MonoBehaviour
         descriptionText.text = "";
 
         onNavigateEvent.AddListener(UpdateAirCombatSelection);
+        onNavigateEvent.AddListener(UpdateAircombatInformation);
     }
 
     void UpdateAirCombatSelection()
     {
-        // Find the AirCombatSelect object
+        
         Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
         if (airCombatSelect != null)
         {
-            // Deactivate all children of airCombatSelect
+            
             foreach (Transform child in airCombatSelect)
             {
                 child.gameObject.SetActive(false);
             }
 
-            // Activate the child corresponding to the current index
+            
             if (currentMenuController != null && currentMenuController.currentIndex < airCombatSelect.childCount)
             {
                 airCombatSelect.GetChild(currentMenuController.currentIndex).gameObject.SetActive(true);
+            }
+        }
+    }
+
+    void UpdateAircombatInformation()
+    {
+        Transform airCombatInformation = airCombatSettings.transform.Find("AirCombatInformation");
+        if (airCombatInformation != null)
+        {
+            foreach (Transform child in airCombatInformation)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            if (currentMenuController != null && currentMenuController.currentIndex < airCombatInformation.childCount)
+            {
+                airCombatInformation.GetChild(currentMenuController.currentIndex).gameObject.SetActive(true);
             }
         }
     }
