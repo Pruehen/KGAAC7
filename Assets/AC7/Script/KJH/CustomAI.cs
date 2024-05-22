@@ -27,7 +27,8 @@ public enum StratageType
     formation,
     circleFlight,
     breakStrtg,
-    traking_Pure
+    traking_Pure,
+    traking_Orbit
 }
 
 
@@ -131,6 +132,8 @@ public class CustomAI : MonoBehaviour
         }
 
         StartCoroutine(Order());
+        StartCoroutine(ChangeIsWingmanPosition());
+
         if(engageRule == EngageRule.active)
         {
             StartCoroutine(StartEngage());
@@ -186,6 +189,14 @@ public class CustomAI : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
         }    
+    }
+    IEnumerator ChangeIsWingmanPosition()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(30);
+            isWingmanPosition = !isWingmanPosition;
+        }
     }
 
     /// <summary>
@@ -377,6 +388,7 @@ class Traking_Pure : IFlightStratage //4. 퓨어 추적 전략
     Transform targetTrf;
     Transform myTrf;
     float targetSpeed;
+    bool isWingmanPosition;
     public Traking_Pure(CustomAI customAI)
     {
         this.customAI = customAI;
@@ -384,14 +396,57 @@ class Traking_Pure : IFlightStratage //4. 퓨어 추적 전략
         customAI.SetTarget(kjh.GameManager.Instance.player.transform);
         this.targetTrf = customAI.target;                
         targetSpeed = customAI.targetSpeed + 200;
+        this.isWingmanPosition = customAI.isWingmanPosition;
     }
     public void EnterState()
     {        
         Debug.Log($"{customAI.gameObject.name} 상태 설정 : 퓨어 추적");
     }
     public Vector3 ReturnNewOrder()
-    {        
+    {                
+        if(isWingmanPosition)
+        {
+            customAI.ChangeStratage(StratageType.traking_Orbit);
+        }
         return targetTrf.position;
+    }
+    public float ReturnNewSpeed()
+    {
+        return targetSpeed;
+    }
+}
+
+class Traking_Orbit : IFlightStratage //5. 타겟 기준 선회 전략
+{
+    CustomAI customAI;
+    Transform targetTrf;
+    Transform myTrf;
+    float targetSpeed;
+    bool isWingmanPosition;
+    Vector3 dir;
+    public Traking_Orbit(CustomAI customAI)
+    {
+        this.customAI = customAI;
+        this.myTrf = customAI.transform;
+        customAI.SetTarget(kjh.GameManager.Instance.player.transform);
+        this.targetTrf = customAI.target;
+        targetSpeed = customAI.targetSpeed + 200;
+        this.isWingmanPosition = customAI.isWingmanPosition;
+        dir = Vector3.forward * 7000;
+    }
+    public void EnterState()
+    {
+        Debug.Log($"{customAI.gameObject.name} 상태 설정 : 타겟 선회");
+    }
+    public Vector3 ReturnNewOrder()
+    {
+        if (!isWingmanPosition)
+        {
+            customAI.ChangeStratage(StratageType.traking_Pure);
+        }
+        dir = Quaternion.AngleAxis(5, Vector3.up) * dir;
+        Vector3 targetPos = targetTrf.position + dir;        
+        return targetPos;
     }
     public float ReturnNewSpeed()
     {
