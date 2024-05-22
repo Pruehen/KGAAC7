@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1305.4548, g: 1521.2102, b: 1961.1182, a: 1}
+  m_IndirectSpecularColor: {r: 1339.5117, g: 1529.2931, b: 1945.1984, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4603,7 +4603,9 @@ MonoBehaviour:
   optionScreen: {fileID: 1439299006}
   resultScreen: {fileID: 1805264404}
   airCombatSettings: {fileID: 1194729279}
-  LoadingScreen: {fileID: 375660188}
+  LoadingScreen1: {fileID: 375660188}
+  LoadingScreen2: {fileID: 1520063359}
+  LoadingScreen3: {fileID: 1670291913}
   descriptionText: {fileID: 1113450962}
   initDelay: 0.5
   audioSource: {fileID: 793258836}
@@ -8663,7 +8665,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 793258835}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: ShowAirCombatSettings
+        m_MethodName: ShowAirCombatSettings2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9957,7 +9959,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 793258835}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: ShowAirCombatSettings
+        m_MethodName: ShowAirCombatSettings1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11329,7 +11331,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 793258835}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: ShowAirCombatSettings
+        m_MethodName: ShowAirCombatSettings3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
