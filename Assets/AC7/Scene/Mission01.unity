@@ -284,7 +284,7 @@ PrefabInstance:
     - target: {fileID: 8198170890872490375, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
       propertyPath: controlAircraft
       value: 
-      objectReference: {fileID: 490099355}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
 --- !u!1 &289209134
@@ -488,11 +488,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &490099355 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5838060299111184242, guid: 98f9879858bb60f48a8a5756734192ed, type: 3}
-  m_PrefabInstance: {fileID: 80960642}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &587400593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5040955874712378943, guid: c787eace8aec9c54391ca52ff54b2f93, type: 3}
