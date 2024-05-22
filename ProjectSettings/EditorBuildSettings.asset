@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/AC7/Scene/Mission01.unity
     guid: 83aae86faa517074aa8afc671b990e65
   - enabled: 1
-    path: Assets/AC7/Scene/CKG/MainScene.unity
+    path: Assets/AC7/Scene/MainScene.unity
     guid: 91a1e1460221f554a8ca1b31357a74e5
   m_configObjects: {}
