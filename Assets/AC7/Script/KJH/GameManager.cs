@@ -17,8 +17,9 @@ namespace kjh
         public System.Action<Transform> OnTargetAdded;
         public System.Action<int> targetCountChanged;
 
-
         public System.Action<Transform> OnMissileAdded;
+
+        public CameraShake cameraShake;
 
         /// <summary>
         /// 게임매니저에 타겟을 추가
@@ -64,6 +65,8 @@ namespace kjh
             //씬매니저
             Debug.Assert(_gameResultUi != null);
             StartCoroutine(DelayedCall(delay, _gameResultUi.FadeIn));
+            //플레이어 정지
+            StartCoroutine(DelayedCall(delay + 1f,  () => player.gameObject.SetActive(false))) ;
         }
 
         private IEnumerator DelayedCall(float time, System.Action action)
@@ -78,8 +81,7 @@ namespace kjh
         /// </summary>
         public void ReturnToMainMenu()
         {
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-            Debug.Log("ReturnToMainMenu");
+            SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         }
 
         public void ReloadCurrentScene()
@@ -108,7 +110,7 @@ namespace kjh
             }
             while (image.color.a < 1f)
             {
-                alpha += Time.deltaTime / time;
+                alpha += Time.fixedUnscaledDeltaTime / time;
                 image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
                 yield return null;
             }

@@ -117,10 +117,15 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        IFightable fightable;
-        if(collision.transform.TryGetComponent<IFightable>(out fightable)) 
+        VehicleCombat fightable;
+        if(collision.transform.TryGetComponent<VehicleCombat>(out fightable)) 
         {
             fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+
+            if (fightable.isPlayer)
+            {
+                kjh.GameManager.Instance.cameraShake.MissileHitShake();
+            }
         }
 
         EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
