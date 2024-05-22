@@ -21,6 +21,16 @@ public enum EngageRule
     passive,
     active
 }
+public enum StratageType
+{
+    moveToWaypoints,
+    formation,
+    circleFlight,
+    breakStrtg,
+    traking_Pure,
+    traking_Orbit
+}
+
 
 public class CustomAI : MonoBehaviour
 {
@@ -38,6 +48,7 @@ public class CustomAI : MonoBehaviour
 
     [Header("교전 규칙")]
     public EngageRule engageRule;
+    public bool isWingmanPosition;
 
     public Transform target;
     public System.Action engage;
@@ -106,21 +117,24 @@ public class CustomAI : MonoBehaviour
         flightStratagesList.Add(new CircleFlight(this));
         flightStratagesList.Add(new Break(this));
         flightStratagesList.Add(new Traking_Pure(this));
+        flightStratagesList.Add(new Traking_Orbit(this));
 
         isEngage = false;
 
         if (flightLeader == null)//편대장이거나 단독 개체일 경우
         {
-            ChangeStratage(0);
+            ChangeStratage(StratageType.moveToWaypoints);
             engage += Engage;
         }
         else//편대원일 경우
         {
-            ChangeStratage(1);
+            ChangeStratage(StratageType.formation);
             flightLeader.GetComponent<CustomAI>().engage += this.Engage;
         }
 
         StartCoroutine(Order());
+        StartCoroutine(ChangeIsWingmanPosition());
+
         if(engageRule == EngageRule.active)
         {
             StartCoroutine(StartEngage());
@@ -177,15 +191,27 @@ public class CustomAI : MonoBehaviour
             yield return new WaitForSeconds(1);
         }    
     }
+    IEnumerator ChangeIsWingmanPosition()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(30);
+            isWingmanPosition = !isWingmanPosition;
+        }
+    }
 
     /// <summary>
     /// 자신의 전략을 변경하는 메서드
     /// </summary>
     /// <param name="index"></param>
-    public void ChangeStratage(int index)
+    void ChangeStratage(int index)
     {
         currentflightStratage = flightStratagesList[index];
         currentflightStratage.EnterState();
+    }
+    public void ChangeStratage(StratageType type)
+    {
+        ChangeStratage((int)type);
     }
 
     /// <summary>
@@ -194,10 +220,10 @@ public class CustomAI : MonoBehaviour
     /// <param name="index"></param>
     /// <param name="time"></param>
     /// <returns></returns>
-    public IEnumerator ChangeStratage(int index, float time)
+    public IEnumerator ChangeStratage(StratageType type, float time)
     {
         yield return new WaitForSeconds(time);
-        ChangeStratage(index);
+        ChangeStratage((int)type);
     }
 }
 
@@ -222,6 +248,12 @@ class MoveToWaypoints : IFlightStratage//0. 경로 비행 전략
     public void EnterState() { Debug.Log($"{customAI.gameObject.name} 상태 설정 : 경로 비행"); }
     public Vector3 ReturnNewOrder()
     {
+        if (wayPointList == null || wayPointList.Count == 0)
+        {
+            customAI.ChangeStratage(StratageType.circleFlight);
+            return myTrf.forward * 5000;
+        }
+
         if (Vector3.Distance(myTrf.position, wayPointList[naxtVisitIndex]) < 300)//목표 도착 시
         {
             naxtVisitIndex++;
@@ -233,9 +265,8 @@ class MoveToWaypoints : IFlightStratage//0. 경로 비행 전략
 
         if (wayPointList == null || wayPointList.Count <= naxtVisitIndex)//웨이포인트 리스트가 없거나, 다음에 방문할 노드가 없을 경우
         {
-            Vector3 outRangePos = myTrf.position + myTrf.forward * 100000;
-            outRangePos.y = Mathf.Clamp(outRangePos.y, 2000, 10000);
-            return outRangePos;
+            customAI.ChangeStratage(StratageType.circleFlight);
+            return myTrf.forward * 5000;
         }        
         else
         {
@@ -274,7 +305,7 @@ class Formation : IFlightStratage//1. 편대 비행 전략
     {
         if(flTrf == null)
         {
-            customAI.ChangeStratage(2);
+            customAI.ChangeStratage(StratageType.circleFlight);
             return Vector3.zero;
         }
 
@@ -334,7 +365,7 @@ class Break : IFlightStratage //3. 편대 해체 전략
     }
     public void EnterState() 
     {
-        customAI.StartCoroutine(customAI.ChangeStratage(4, 3));
+        customAI.StartCoroutine(customAI.ChangeStratage(StratageType.traking_Pure, 3));
         Debug.Log($"{customAI.gameObject.name} 상태 설정 : 편대 해체, 급기동");
     }
     public Vector3 ReturnNewOrder()
@@ -362,22 +393,62 @@ class Traking_Pure : IFlightStratage //4. 퓨어 추적 전략
     CustomAI customAI;
     Transform targetTrf;
     Transform myTrf;
-    float targetSpeed;
+    float targetSpeed;    
     public Traking_Pure(CustomAI customAI)
     {
         this.customAI = customAI;
         this.myTrf = customAI.transform;
         customAI.SetTarget(kjh.GameManager.Instance.player.transform);
         this.targetTrf = customAI.target;                
-        targetSpeed = customAI.targetSpeed + 200;
+        targetSpeed = customAI.targetSpeed + 200;        
     }
     public void EnterState()
     {        
         Debug.Log($"{customAI.gameObject.name} 상태 설정 : 퓨어 추적");
     }
     public Vector3 ReturnNewOrder()
-    {        
+    {                
+        if(customAI.isWingmanPosition)
+        {
+            customAI.ChangeStratage(StratageType.traking_Orbit);
+        }
         return targetTrf.position;
+    }
+    public float ReturnNewSpeed()
+    {
+        return targetSpeed;
+    }
+}
+
+class Traking_Orbit : IFlightStratage //5. 타겟 기준 선회 전략
+{
+    CustomAI customAI;
+    Transform targetTrf;
+    Transform myTrf;
+    float targetSpeed;    
+    Vector3 dir;
+    public Traking_Orbit(CustomAI customAI)
+    {
+        this.customAI = customAI;
+        this.myTrf = customAI.transform;
+        customAI.SetTarget(kjh.GameManager.Instance.player.transform);
+        this.targetTrf = customAI.target;
+        targetSpeed = customAI.targetSpeed + 200;        
+        dir = Vector3.forward * 7000;
+    }
+    public void EnterState()
+    {
+        Debug.Log($"{customAI.gameObject.name} 상태 설정 : 타겟 선회");
+    }
+    public Vector3 ReturnNewOrder()
+    {
+        if (!customAI.isWingmanPosition)
+        {
+            customAI.ChangeStratage(StratageType.traking_Pure);
+        }
+        dir = Quaternion.AngleAxis(5, Vector3.up) * dir;
+        Vector3 targetPos = targetTrf.position + dir;        
+        return targetPos;
     }
     public float ReturnNewSpeed()
     {

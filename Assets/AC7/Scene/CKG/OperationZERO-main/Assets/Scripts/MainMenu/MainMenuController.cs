@@ -192,7 +192,7 @@ public class MainMenuController : MonoBehaviour
     public void StartMission()
     {
         playerInput.enabled = false;
-        LoadingController.sceneName = "TestScene_KJH";
+        LoadingController.sceneName = "Mission01";
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
         currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem

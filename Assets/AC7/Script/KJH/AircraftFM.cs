@@ -54,6 +54,6 @@ public class AircraftFM : MonoBehaviour
         rigidbody.drag = Atmosphere.Drag(this.transform.position.y, aircraftData.GetDC(), velocitySpeed);
         //Debug.Log(velocitySpeed);
 
-        effect.SetEffect(velocitySpeed, aoa);
+        effect?.SetEffect(velocitySpeed, aoa);
     }
 }

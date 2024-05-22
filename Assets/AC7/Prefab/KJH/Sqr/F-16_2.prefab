@@ -130,11 +130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointLoop
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointList.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointList.Array.data[0].y
@@ -291,6 +291,10 @@ PrefabInstance:
       propertyPath: flightLeader
       value: 
       objectReference: {fileID: 1479175427200102202}
+    - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: isWingmanPosition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: formationLocalPos.x
       value: 30
