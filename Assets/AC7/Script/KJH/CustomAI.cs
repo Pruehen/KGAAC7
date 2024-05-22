@@ -21,6 +21,15 @@ public enum EngageRule
     passive,
     active
 }
+public enum StratageType
+{
+    moveToWaypoints,
+    formation,
+    circleFlight,
+    breakStrtg,
+    traking_Pure
+}
+
 
 public class CustomAI : MonoBehaviour
 {
@@ -38,6 +47,7 @@ public class CustomAI : MonoBehaviour
 
     [Header("교전 규칙")]
     public EngageRule engageRule;
+    public bool isWingmanPosition;
 
     public Transform target;
     public System.Action engage;
@@ -111,12 +121,12 @@ public class CustomAI : MonoBehaviour
 
         if (flightLeader == null)//편대장이거나 단독 개체일 경우
         {
-            ChangeStratage(0);
+            ChangeStratage(StratageType.moveToWaypoints);
             engage += Engage;
         }
         else//편대원일 경우
         {
-            ChangeStratage(1);
+            ChangeStratage(StratageType.formation);
             flightLeader.GetComponent<CustomAI>().engage += this.Engage;
         }
 
@@ -182,10 +192,14 @@ public class CustomAI : MonoBehaviour
     /// 자신의 전략을 변경하는 메서드
     /// </summary>
     /// <param name="index"></param>
-    public void ChangeStratage(int index)
+    void ChangeStratage(int index)
     {
         currentflightStratage = flightStratagesList[index];
         currentflightStratage.EnterState();
+    }
+    public void ChangeStratage(StratageType type)
+    {
+        ChangeStratage((int)type);
     }
 
     /// <summary>
@@ -194,10 +208,10 @@ public class CustomAI : MonoBehaviour
     /// <param name="index"></param>
     /// <param name="time"></param>
     /// <returns></returns>
-    public IEnumerator ChangeStratage(int index, float time)
+    public IEnumerator ChangeStratage(StratageType type, float time)
     {
         yield return new WaitForSeconds(time);
-        ChangeStratage(index);
+        ChangeStratage((int)type);
     }
 }
 
@@ -274,7 +288,7 @@ class Formation : IFlightStratage//1. 편대 비행 전략
     {
         if(flTrf == null)
         {
-            customAI.ChangeStratage(2);
+            customAI.ChangeStratage(StratageType.circleFlight);
             return Vector3.zero;
         }
 
@@ -334,7 +348,7 @@ class Break : IFlightStratage //3. 편대 해체 전략
     }
     public void EnterState() 
     {
-        customAI.StartCoroutine(customAI.ChangeStratage(4, 3));
+        customAI.StartCoroutine(customAI.ChangeStratage(StratageType.traking_Pure, 3));
         Debug.Log($"{customAI.gameObject.name} 상태 설정 : 편대 해체, 급기동");
     }
     public Vector3 ReturnNewOrder()
