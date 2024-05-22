@@ -28,6 +28,11 @@ public class AircraftSelecter : MonoBehaviour
             this.controlAircraft.SetActive(false);
         }
 
+        if(controlAircraft == null)
+        {
+            //여기서 string 데이터를 받아서 find 메서드를 통해 하위 게임오브젝트에 접근 후 할당
+        }
+
         this.controlAircraft = controlAircraft;
         this.controlAircraft.SetActive(true);
         aircraftData = controlAircraft.GetComponent<AircraftData>();
