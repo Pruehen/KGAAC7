@@ -3,7 +3,7 @@ using UnityEngine;
 public class AutoRotateCamera : MonoBehaviour
 {
     public Transform target; // 카메라가 회전할 중심 오브젝트
-    public float distance = 5.0f; // 카메라와 오브젝트 사이의 거리
+    public float distance = 10f; // 카메라와 오브젝트 사이의 거리
     public float rotationSpeed = 20.0f; // 카메라의 회전 속도
 
     private float currentAngle = 0.0f; // 현재 회전 각도

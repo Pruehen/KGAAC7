@@ -161,16 +161,19 @@ public class MainMenuController : MonoBehaviour
     {
         SetCurrentActiveScreen(LoadingScreen1);
         StartCoroutine(OnAirCombatScreen(LoadingScreen1));
+        LoadingController.sceneName = "Mission01";
     }
     public void ShowAirCombatSettings2()
     {
         SetCurrentActiveScreen(LoadingScreen2);
         StartCoroutine(OnAirCombatScreen(LoadingScreen2));
+        LoadingController.sceneName = "Mission02";
     }
     public void ShowAirCombatSettings3()
     {
         SetCurrentActiveScreen(LoadingScreen3);
         StartCoroutine(OnAirCombatScreen(LoadingScreen3));
+        LoadingController.sceneName = "Mission03";
     }
     public void ShowMainMenu()
     {
@@ -194,7 +197,6 @@ public class MainMenuController : MonoBehaviour
     public void StartMission()
     {
         playerInput.enabled = false;
-        LoadingController.sceneName = "Mission01";
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
         currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
