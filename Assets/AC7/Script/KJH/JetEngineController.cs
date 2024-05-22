@@ -55,14 +55,12 @@ public class JetEngineController : MonoBehaviour
     {
         _engineSound = GetComponent<AircraftEngineSound>();
         _engineSound.SetOverallVolumRatio(volumRatio);
-
         particleMainModule = GetComponent<ParticleSystem>().main;
         particleColor = particleMainModule.startColor.color;
         initAlpha = particleColor.a;
         throttleAmount = 0;
 
     }
-
     // Update is called once per frame
     void Update()
     {
