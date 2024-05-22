@@ -292,6 +292,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1479175427200102202}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: isWingmanPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: formationLocalPos.x
       value: 30
       objectReference: {fileID: 0}
