@@ -28115,7 +28115,7 @@ PrefabInstance:
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
-      objectReference: {fileID: 8941279101005155949}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
 --- !u!114 &4295724883156700073 stripped
@@ -28162,11 +28162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50af039552102145888aa009ffa2b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8941279101005155949 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2952854090460673027, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
-  m_PrefabInstance: {fileID: 6120225722695875182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &9038950993503485522 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -6224072715111857092, guid: 35164b758d19bed4d925ed529884fd38, type: 3}

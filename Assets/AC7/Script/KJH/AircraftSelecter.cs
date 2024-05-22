@@ -30,7 +30,7 @@ public class AircraftSelecter : MonoBehaviour
 
         if(controlAircraft == null)
         {
-            string name = null;
+            string name;
             if (GameObject.Find("_F-16C") != null)
             {
                 name = "F-16C";
@@ -46,6 +46,10 @@ public class AircraftSelecter : MonoBehaviour
             else if (GameObject.Find("_F-15C") != null)
             {
                 name = "F-15C";
+            }
+            else
+            {
+                name = "F-16C";
             }
             controlAircraft = transform.Find(name).gameObject;
             if (controlAircraft == null)
