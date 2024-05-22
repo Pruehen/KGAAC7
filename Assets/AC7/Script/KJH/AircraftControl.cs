@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 //조종면에 조종 데이터를 전달 및 조종면의 상태를 알려주는 클래스
 public class AircraftControl : MonoBehaviour

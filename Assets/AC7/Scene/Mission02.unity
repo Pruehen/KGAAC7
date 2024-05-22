@@ -2339,11 +2339,6 @@ Transform:
   m_Father: {fileID: 221749941}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &725416912 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6531559417067857558, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
-  m_PrefabInstance: {fileID: 837729205078297958}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &737757870
 GameObject:
   m_ObjectHideFlags: 0
@@ -4445,6 +4440,11 @@ Transform:
   m_Father: {fileID: 221749941}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1394676745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 468129949341949183, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  m_PrefabInstance: {fileID: 837729205078297958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1410121703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8129,7 +8129,7 @@ PrefabInstance:
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
-      objectReference: {fileID: 725416912}
+      objectReference: {fileID: 1394676745}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
 --- !u!1001 &837729205082741495

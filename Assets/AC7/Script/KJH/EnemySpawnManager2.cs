@@ -52,6 +52,7 @@ public class EnemySpawnManager2 : MonoBehaviour
         Vector3 playerPosition = kjh.GameManager.Instance.player.transform.position;
         Vector3 randomDir = new(Random.Range(-1f, 1f), 0f, Random.Range(0.5f, 1f));
         Vector3 spawnPos = playerPosition + randomDir * distance;
+        spawnPos.y = 10000;
         Quaternion rotation = Quaternion.LookRotation(-spawnPos + playerPosition);
 
         GameObject sqr = _sqrQueue.Dequeue();
