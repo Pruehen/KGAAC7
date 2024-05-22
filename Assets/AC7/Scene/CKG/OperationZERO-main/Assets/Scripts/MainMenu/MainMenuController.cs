@@ -31,7 +31,11 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     GameObject airCombatSettings;
     [SerializeField]
-    GameObject LoadingScreen;
+    GameObject LoadingScreen1;
+    [SerializeField]
+    GameObject LoadingScreen2; 
+    [SerializeField]
+    GameObject LoadingScreen3;
     [SerializeField]
     TextMeshProUGUI descriptionText;
     
@@ -153,22 +157,20 @@ public class MainMenuController : MonoBehaviour
     {
         SetCurrentActiveScreen(missionSettings);
     }
-    public void ShowAirCombatSettings()
+    public void ShowAirCombatSettings1()
     {
-        SetCurrentActiveScreen(LoadingScreen);
-        airCombatSettings.SetActive(true);
-        Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
-        Transform airCombatEnvironment = airCombatSettings.transform.Find("AirCombatEnvironment");
-        if (airCombatSelect != null)
-        {
-            airCombatSelect.gameObject.SetActive(true);
-        }
-        if (airCombatEnvironment != null)
-        {
-            airCombatEnvironment.gameObject.SetActive(true);
-        }
-        StartCoroutine(OnAirCombatScreen());
-        
+        SetCurrentActiveScreen(LoadingScreen1);
+        StartCoroutine(OnAirCombatScreen(LoadingScreen1));
+    }
+    public void ShowAirCombatSettings2()
+    {
+        SetCurrentActiveScreen(LoadingScreen2);
+        StartCoroutine(OnAirCombatScreen(LoadingScreen2));
+    }
+    public void ShowAirCombatSettings3()
+    {
+        SetCurrentActiveScreen(LoadingScreen3);
+        StartCoroutine(OnAirCombatScreen(LoadingScreen3));
     }
     public void ShowMainMenu()
     {
@@ -237,8 +239,19 @@ public class MainMenuController : MonoBehaviour
         SetCurrentActiveScreen(mainMenuScreen);
     }
 
-    IEnumerator OnAirCombatScreen()
+    IEnumerator OnAirCombatScreen(GameObject loadingScreen)
     {
+        airCombatSettings.SetActive(true);
+        Transform airCombatSelect = airCombatSettings.transform.Find("AirCombatSelect");
+        Transform airCombatEnvironment = airCombatSettings.transform.Find("AirCombatEnvironment");
+        if (airCombatSelect != null)
+        {
+            airCombatSelect.gameObject.SetActive(true);
+        }
+        if (airCombatEnvironment != null)
+        {
+            airCombatEnvironment.gameObject.SetActive(true);
+        }
         yield return new WaitForSeconds(5);
         Transform parentTransform = airCombatSettings.transform.parent;
         Transform backgroundTransform = parentTransform.Find("Background");
@@ -246,7 +259,7 @@ public class MainMenuController : MonoBehaviour
         {
             backgroundTransform.gameObject.SetActive(false);
         }
-        LoadingScreen.SetActive(false);
+        loadingScreen.SetActive(false);
         Transform selectUI = airCombatSettings.transform.Find("SelectUI");
         if (selectUI != null)
         {
