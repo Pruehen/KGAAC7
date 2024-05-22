@@ -226,7 +226,7 @@ public class MainMenuController : MonoBehaviour
         playerInput.enabled = false;
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
-        currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
+        //currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
     }
 
     public void StartFreeFlight()
@@ -281,7 +281,7 @@ public class MainMenuController : MonoBehaviour
         {
             airCombatEnvironment.gameObject.SetActive(true);
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSecondsRealtime(5);
         Transform parentTransform = airCombatSettings.transform.parent;
         Transform backgroundTransform = parentTransform.Find("Background");
         if (backgroundTransform != null)
