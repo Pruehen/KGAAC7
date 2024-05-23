@@ -6422,7 +6422,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 716203496, guid: b364f4c060c297148a22fab40e7d33ea, type: 3}
       propertyPath: loopEnd
-      value: 450
+      value: 340
+      objectReference: {fileID: 0}
+    - target: {fileID: 716203496, guid: b364f4c060c297148a22fab40e7d33ea, type: 3}
+      propertyPath: loopStart
+      value: 117.85
       objectReference: {fileID: 0}
     - target: {fileID: 9109623681741092217, guid: b364f4c060c297148a22fab40e7d33ea, type: 3}
       propertyPath: m_Name
@@ -6431,7 +6435,7 @@ PrefabInstance:
     - target: {fileID: 9109623681741092218, guid: b364f4c060c297148a22fab40e7d33ea, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 35852dca7e90ba343b9b05dae6fe4c29, type: 3}
+      objectReference: {fileID: 8300000, guid: 59d8cdb6864ec4444a59fa1b46d3d238, type: 3}
     - target: {fileID: 9109623681741092218, guid: b364f4c060c297148a22fab40e7d33ea, type: 3}
       propertyPath: m_PlayOnAwake
       value: 1

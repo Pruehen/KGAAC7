@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d941a5b0efacf449a3bf09ef306c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EIRCM_Count: 40
+  EIRCM_Count: 80
   target: {fileID: 0}
   maxTurnRate: 45
   maxSideForce: 400
