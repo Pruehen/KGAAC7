@@ -35,8 +35,8 @@ public class AntiAirController_AI : MonoBehaviour
 
     Vector3 prevVel;
 
-    [SerializeField] float _maxRotationSpeed;
-    [SerializeField] float _smoothDuration;
+    [SerializeField] float _maxRotationSpeed = 30f;
+    [SerializeField] float _smoothDuration = 1f;
 
     private void Start()
     {
@@ -51,9 +51,9 @@ public class AntiAirController_AI : MonoBehaviour
         _muzzleRotator = _muzzleTrf.GetComponent<SmoothRotation>();
         if (_muzzleRotator == null)
         {
-            SmoothRotation sr = _muzzleTrf.AddComponent<SmoothRotation>();
-            sr.Init(_maxRotationSpeed, _smoothDuration);
+            _muzzleRotator = _muzzleTrf.AddComponent<SmoothRotation>();
         }
+        _muzzleRotator.Init(_maxRotationSpeed, _smoothDuration);
         _weapon = GetComponent<IAntiAirWeapon>();
     }
     void Update()
