@@ -97,8 +97,8 @@ namespace kjh
             }
 
             gunTrigger = false;
-            rigidbody = this.transform.parent.GetComponent<Rigidbody>();
-            vehicleCombat = this.transform.parent.GetComponent<VehicleCombat>();
+            rigidbody = this.transform.parent?.GetComponent<Rigidbody>();
+            vehicleCombat = this.transform.parent?.GetComponent<VehicleCombat>();
 
             _gunAudio = GetComponent<FadableAudio>();
             _gunAudio?.SetParent(gunFireTrf);
