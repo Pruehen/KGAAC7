@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617220b7f5e83a841b3f86867e71bfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parent: {fileID: 0}
+  _parent: {fileID: 3851739192167281401}
   _volume: 1
   _fadeIn: 1
   _fadeOut: 1
