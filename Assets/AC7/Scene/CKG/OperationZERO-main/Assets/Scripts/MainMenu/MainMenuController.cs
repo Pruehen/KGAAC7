@@ -182,6 +182,7 @@ public class MainMenuController : MonoBehaviour
         StartCoroutine(OnAirCombatScreen(LoadingScreen3));
         LoadingController.sceneName = "Mission03";
     }
+
     public void ShowMainMenu()
     {
         SetCurrentActiveScreen(mainMenuScreen);
@@ -223,6 +224,22 @@ public class MainMenuController : MonoBehaviour
     {
         GameObject dummy = new GameObject();
         dummy.name = "_F-14A";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void F15CStartMission()
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "_F-15C";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void SU37AStartMission()
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "_SU-37";
         DontDestroyOnLoad(dummy);
         PrepareMission();
     }
