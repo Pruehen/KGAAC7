@@ -49,6 +49,14 @@ public class Radar : MonoBehaviour
             {
                 WeaponData weaponData = weaponSystem.UseWeaponData();
 
+                if (lockOnTarget.IsDead() && !onNextLockOn)
+                {
+                    //lockOnTarget = null;
+                    onNextLockOn = true;
+                    Debug.Log("적 사망에 따른 락온 발생");
+                    StartCoroutine(NextTargetLock());
+                }
+
                 if (toTargetAngle <= weaponData.MaxSeekerAngle() && toTargetDistance <= weaponData.LockOnRange())
                 {
                     lockOnTarget.isMissileLock = true;
@@ -64,13 +72,6 @@ public class Radar : MonoBehaviour
                 else
                 {
                     lockOnTarget.isRaderLock = false;
-                }
-
-                if (lockOnTarget.GetComponent<VehicleCombat>().IsDead() && !onNextLockOn)
-                {
-                    //lockOnTarget = null;
-                    onNextLockOn = true;
-                    StartCoroutine(NextTargetLock());
                 }
 
                 if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
@@ -135,7 +136,7 @@ public class Radar : MonoBehaviour
                 {
                     inRangeTargetList.Remove(item);
                 }
-                if (itemDistance < distanceTemp)
+                if (itemDistance < distanceTemp && !item.IsDead())
                 {
                     targetTemp = item;
                     distanceTemp = itemDistance;                    
@@ -181,15 +182,15 @@ public class Radar : MonoBehaviour
                 lockOnTarget.isTargeted = true;
                 toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
                 toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);               
-            }            
-            onNextLockOn = false;
+            }                        
         }
         else
         {
             lockOnTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
             lockOnTarget.isTargeted = true;
             toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
+            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);            
         }
+        onNextLockOn = false;
     }
 }

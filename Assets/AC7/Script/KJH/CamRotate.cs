@@ -41,7 +41,7 @@ public class CamRotate : MonoBehaviour
 
     IEnumerator AudioListenerOn()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         BGM_Player.Instance.Play();
         GetComponent<AudioListener>().enabled = true;
     }
