@@ -111,7 +111,7 @@ public class SubtitleManager : SceneSingleton<SubtitleManager>
     public void ShowSubtitleWithTime(string key, float time)
     {
         Debug.Assert(_subtitleDictionary.ContainsKey(key), "Wrong subtitle key");
-        _text.text = _subtitleDictionary[key];
+        _text.text = $"<< {_subtitleDictionary[key]} >>";
 
         _duration = time;
 

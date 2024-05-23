@@ -55,7 +55,12 @@ public class VehicleCombat : MonoBehaviour, IFightable
 
     void Dead()
     {
-        kjh.GameManager.Instance.RemoveActiveTarget(this);
+
+        if (!isPlayer)
+        {
+            kjh.GameManager.Instance.RemoveActiveTarget(this);
+            SubtitleManager.Instance.ShowSubtitle("Kill1");
+        }
         onDead.Invoke();
         //Debug.Log("Æã");
     }
