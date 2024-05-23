@@ -41,7 +41,7 @@ public class CamRotate : MonoBehaviour
 
     IEnumerator AudioListenerOn()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         GetComponent<AudioListener>().enabled = true;
     }
 
