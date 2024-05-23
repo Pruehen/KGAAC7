@@ -76,7 +76,7 @@ public class Radar : MonoBehaviour
                 if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
                 {
                     _lockOnSfx?.Play();
-                    Debug.Log("家府");
+                    //Debug.Log("家府");
                 }
                 else if (!lockOnTarget.isMissileLock)
                 {

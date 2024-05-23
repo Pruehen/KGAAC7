@@ -117,7 +117,7 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("충돌");
+        //Debug.Log("충돌");
         VehicleCombat fightable;
         if(collision.transform.TryGetComponent<VehicleCombat>(out fightable))
         {

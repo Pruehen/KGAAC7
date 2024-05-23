@@ -37,7 +37,7 @@ public class Guided : MonoBehaviour
     {
         if (mwr == null && target.TryGetComponent<MWR>(out mwr))
         {
-            Debug.Log("미사일 추가");
+            //Debug.Log("미사일 추가");
             mwr.AddMissile(this);
         }
     }
