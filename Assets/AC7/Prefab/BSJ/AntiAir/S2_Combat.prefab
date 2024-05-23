@@ -593,6 +593,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1690170143673668149}
+  - component: {fileID: 5279193412846474441}
+  - component: {fileID: 6468501506310443654}
+  - component: {fileID: 1389152779662495477}
+  - component: {fileID: 4754445327739891583}
+  - component: {fileID: 8504221534248487038}
   m_Layer: 0
   m_Name: S2_Combat
   m_TagString: Untagged
@@ -631,6 +636,92 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5279193412846474441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035451551909382287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b1b7acbcc72584d8bf703fd42948ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6468501506310443654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035451551909382287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505d2da47ddc575428868d904c10c669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHp: 300
+  isPlayer: 0
+  mainTarget: 0
+  name: 
+  nickname: 
+  isTargeted: 0
+  isRaderLock: 0
+  isMissileLock: 0
+  onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5279193412846474441}
+        m_TargetAssemblyTypeName: VehicleMaster, Assembly-CSharp
+        m_MethodName: Dead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &1389152779662495477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035451551909382287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.65, y: 8.05, z: 95.47}
+  m_Center: {x: 0, y: 3.42, z: -3.75}
+--- !u!65 &4754445327739891583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035451551909382287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.65, y: 8.05, z: 19.9}
+  m_Center: {x: 0, y: 10.25, z: 5.7}
+--- !u!65 &8504221534248487038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035451551909382287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.65, y: 8.05, z: 11.62}
+  m_Center: {x: 0, y: 10.6, z: -15}
 --- !u!1 &2469980503262215134
 GameObject:
   m_ObjectHideFlags: 0

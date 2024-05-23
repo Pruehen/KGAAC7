@@ -32,6 +32,11 @@ public class VehicleCombat : MonoBehaviour, IFightable
         }
     }
 
+    public void Die()
+    {
+        combat.Die();
+    }
+
     Combat combat = new Combat();
 
     private void Awake()
