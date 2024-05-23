@@ -5021,7 +5021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 55
   reloadTime: 10
-  maxSeekerAngle: 30
+  maxSeekerAngle: 60
   lockOnRange: 5000
 --- !u!1001 &973271792675950601
 PrefabInstance:

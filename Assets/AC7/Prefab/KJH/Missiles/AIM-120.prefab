@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 110
   reloadTime: 20
-  maxSeekerAngle: 40
+  maxSeekerAngle: 60
   lockOnRange: 25000
 --- !u!1 &8186166486042749729
 GameObject:

@@ -245,8 +245,13 @@ public class TargetUI : MonoBehaviour
                             screenPosition.x < 0 || screenPosition.x > screenSize.x || 
                             screenPosition.y < 0 || screenPosition.y > screenSize.y);
 
-
-        uiObject.SetActive(isOutsideOfCamera == false && isInvisible == true && distance < hideDistance);
+        if (isOutsideOfCamera)
+        {
+            TargetUIManager.Instance.RemoveListUI(this);
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
+            return;
+        }
+        //uiObject.SetActive(isOutsideOfCamera == false && isInvisible == true && distance < hideDistance);
 
         TargetIsInRange();
 
