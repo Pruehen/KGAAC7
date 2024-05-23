@@ -3,7 +3,7 @@ using UnityEngine;
 public class AutoRotateCamera : MonoBehaviour
 {
     public Transform target; // 카메라가 회전할 중심 오브젝트
-    public float distance = 9.8f; // 카메라와 오브젝트 사이의 거리
+    public float distance = 7.9f; // 카메라와 오브젝트 사이의 거리
     public float rotationSpeed = 20.0f; // 카메라의 회전 속도
 
     private float currentAngle = 0.0f; // 현재 회전 각도
@@ -24,9 +24,18 @@ public class AutoRotateCamera : MonoBehaviour
             // 카메라의 새로운 위치 설정
             Vector3 newPosition = new Vector3(x, target.position.y + 3f, z);
             transform.position = newPosition;
-
+            
             // 카메라가 항상 타겟을 바라보게 설정
             transform.LookAt(target);
         }
     }
+    void Start()
+    {
+        if (target)
+        {
+            Debug.Log("Initial target position: " + target.position);
+        }
+        Debug.Log("Initial camera position: " + transform.position);
+    }
+
 }
