@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class AntiAirMissileLauncher : MonoBehaviour, IAntiAirWeapon
 {
-    [SerializeField] private Transform _firePos;
+    [SerializeField] private Transform _firePos; 
+    [SerializeField] private float _launchForce = 10f; 
     private float _fireInterval;
     private float _lifeTime = 0f;
 
-    [SerializeField] private GameObject _projectile;
     public float bulletSpeed;
     bool _firing;
 
@@ -39,7 +39,7 @@ public class AntiAirMissileLauncher : MonoBehaviour, IAntiAirWeapon
             {
                 _radar.LockOn();
                 _lifeTime = 0f;
-                _weaponSystem.Fire(_playerRb.velocity, _radar);
+                _weaponSystem.Fire(_firePos.forward * _launchForce, _radar);
             }
             else
             {
