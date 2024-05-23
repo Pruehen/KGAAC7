@@ -10,6 +10,7 @@ namespace kjh
         Rigidbody rigidbody;
         float lifeTime = 0;
         [SerializeField] GameObject _bulletHitVfx;
+        [SerializeField] GameObject _waterHitVfx;
 
         public void Init(Vector3 position, Vector3 velocity)
         {
@@ -44,27 +45,36 @@ namespace kjh
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
             VehicleCombat fightable;
             GenerateBullePassSfx bulletPassing;
-            if (other.transform.TryGetComponent<VehicleCombat>(out fightable))
+            if (collision.transform.TryGetComponent<VehicleCombat>(out fightable))
             {
                 fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
                 GameObject vsfx = ObjectPoolManager.Instance.DequeueObject(_bulletHitVfx);
 
-                if(fightable.isPlayer)
+                if (fightable.isPlayer)
                 {
                     kjh.GameManager.Instance.cameraShake.BulletHitShake();
                 }
 
                 //Vector3 playerToBullet = (-other.transform.position + transform.position).normalized;
                 //vsfx.transform.position = other.transform.position + playerToBullet * Random.Range(10f, 22f) + other.transform.forward * 4f;
-                vsfx.transform.position = other.transform.position;
+                vsfx.transform.position = collision.transform.position;
             }
-            if(other.TryGetComponent<GenerateBullePassSfx>(out bulletPassing))
+            else
             {
-                return;
+                if (collision.transform.CompareTag("Water"))
+                {
+                    Vector3 contact = collision.GetContact(0).point;
+                    EffectManager.Instance.EffectGenerate(_waterHitVfx, contact);
+                }
+                else if (collision.transform.CompareTag("Ground"))
+                {
+                    Vector3 contact = collision.GetContact(0).point;
+                    EffectManager.Instance.EffectGenerate(_bulletHitVfx, contact);
+                }
             }
             DestroyObject();
         }

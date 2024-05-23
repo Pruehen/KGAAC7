@@ -4985,6 +4985,7 @@ MonoBehaviour:
   maxLiftTime: 30
   safeTime: 1
   explosionEffect: {fileID: 121360, guid: 7e6ae9c85baca254d860fe1519edd734, type: 3}
+  _waterHitVfx: {fileID: 121360, guid: fe184e298a84d2e488d934a3325ca68d, type: 3}
   smoke: {fileID: 763095674432000125}
   motor: {fileID: 8870339777096811396}
   speed: 0
