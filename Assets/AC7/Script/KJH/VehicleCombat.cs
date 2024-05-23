@@ -39,7 +39,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
 
     Combat combat = new Combat();
 
-    private void Awake()
+    protected virtual void Awake()
     {
         combat.Init(this.transform, startHp);        
         combat.OnDead += Dead;
@@ -66,6 +66,11 @@ public class VehicleCombat : MonoBehaviour, IFightable
     public void FlareDeploy()
     {
         onFlare?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        kjh.GameManager.Instance.RemoveActiveTarget(this);
     }
 
     public UnityEvent onDead;

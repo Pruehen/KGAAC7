@@ -151,7 +151,7 @@ MonoBehaviour:
   _turretTrf: {fileID: 7284499106396199392}
   _customTarget: 0
   _target: {fileID: 0}
-  _maxRotationSpeed: 30
+  _maxRotationSpeed: 180
   _smoothDuration: 1
 --- !u!114 &710817875873353803
 MonoBehaviour:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrfList:
-  - {fileID: 6445041468265237155, guid: 279ffe80697f9a542bf33d6513fd0735, type: 3}
+  - {fileID: 6445041468265237155, guid: bf158b5fa4d51ec4b99e9d6f04ee3bd4, type: 3}
   fireTrfList:
   - {fileID: 3862647867735816913}
   - {fileID: 705096993270052000}
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7cf4d963174f44993f1fe244ad29c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radarMaxAngle: 90
+  radarMaxAngle: 360
   isEnemy: 1
   _lockOnSfxPrefab: {fileID: 0}
 --- !u!1 &3189464832190977824
