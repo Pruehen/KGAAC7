@@ -404,8 +404,8 @@ MonoBehaviour:
   _turretTrf: {fileID: 1268379123456144104}
   _customTarget: 0
   _target: {fileID: 0}
-  _maxRotationSpeed: 0
-  _smoothDuration: 0
+  _maxRotationSpeed: 30
+  _smoothDuration: 1
 --- !u!114 &1489391310580262431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,7 +487,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1268379123456144104}
-  - component: {fileID: 9094345638241118243}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -512,20 +511,6 @@ Transform:
   m_Father: {fileID: 2106577080735849230}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9094345638241118243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2968746538920140763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxRotationSpeed: 60
-  _smoothDuration: 1
 --- !u!1 &6903336027811782008
 GameObject:
   m_ObjectHideFlags: 0
