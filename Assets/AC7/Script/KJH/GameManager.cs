@@ -52,7 +52,14 @@ namespace kjh
             {
                 for (int j = 0; j < targetTrf.GetChild(i).childCount; j++)
                 {
-                    AddActiveTarget(targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>());
+                    VehicleCombat combat = targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>();
+                    AddActiveTarget(combat);
+
+                    //배의 경우 파츠를 가지고 있으므로 자식을 찾아서 추가
+                    VehicleCombat[] childCombat = combat.GetComponentsInChildren<VehicleCombat>();
+                    foreach (VehicleCombat childCombatItem in childCombat)
+                    { AddActiveTarget(childCombatItem); }
+
                 }                
                 //activeTargetList[i].onDeadWithSelf.AddListener(RemoveActiveTarget);
             }

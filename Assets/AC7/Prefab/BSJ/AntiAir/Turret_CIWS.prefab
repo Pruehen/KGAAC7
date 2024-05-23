@@ -78,7 +78,7 @@ MonoBehaviour:
   startHp: 0
   isPlayer: 0
   mainTarget: 0
-  name: M163
+  name: CIWS
   nickname: 
   isTargeted: 0
   isRaderLock: 0

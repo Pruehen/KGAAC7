@@ -237,7 +237,7 @@ MonoBehaviour:
   startHp: 0
   isPlayer: 0
   mainTarget: 0
-  name: 
+  name: Ship
   nickname: 
   isTargeted: 0
   isRaderLock: 0

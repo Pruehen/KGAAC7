@@ -79,7 +79,7 @@ MonoBehaviour:
   startHp: 0
   isPlayer: 0
   mainTarget: 0
-  name: M163
+  name: Turret
   nickname: 
   isTargeted: 0
   isRaderLock: 0

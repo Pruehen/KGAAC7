@@ -362,7 +362,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9034249491332309174}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 48.4, y: 0, z: 12.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -403,10 +403,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505d2da47ddc575428868d904c10c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHp: 0
+  startHp: 300
   isPlayer: 0
   mainTarget: 0
-  name: 
+  name: Ship
   nickname: 
   isTargeted: 0
   isRaderLock: 0

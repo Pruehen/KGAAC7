@@ -22,7 +22,7 @@ public class AntiAirMissileLauncher : MonoBehaviour, IAntiAirWeapon
     {
         _weaponSystem = GetComponent<kjh.WeaponSystem>();
         //_fireInterval = _projectile.GetComponent<WeaponData>().ReloadTime();
-        _fireInterval = 3f;
+        _fireInterval = 10f;
         _playerRb = kjh.GameManager.Instance.player.GetComponent<Rigidbody>();
         _radar = GetComponent<Radar>();
 
@@ -38,7 +38,7 @@ public class AntiAirMissileLauncher : MonoBehaviour, IAntiAirWeapon
             if (_lifeTime >= _fireInterval)
             {
                 _radar.LockOn();
-                _lifeTime = 0f;
+                _lifeTime = _fireInterval - Random.Range(0f, 3f);
                 _weaponSystem.Fire(_firePos.forward * _launchForce, _radar);
             }
             else
@@ -50,9 +50,10 @@ public class AntiAirMissileLauncher : MonoBehaviour, IAntiAirWeapon
 
     public void Fire(bool trigger)
     {
-        if (trigger)
+        if (trigger && !_firing)
         {
             _firing = true;
+            _lifeTime = _fireInterval - Random.Range(0f, 3f);
         }
         else
         {
