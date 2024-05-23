@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.UIElements;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -59,9 +59,10 @@ public class MainMenuController : MonoBehaviour
     MenuController currentMenuController = null;
 
     public UnityEvent onNavigateEvent;
+    
 
-    
-    
+
+
 
     public void SetDescriptionText(string text)
     {
@@ -231,7 +232,6 @@ public class MainMenuController : MonoBehaviour
         playerInput.enabled = false;
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
-        //currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
     }
 
     public void StartFreeFlight()
@@ -325,8 +325,7 @@ public class MainMenuController : MonoBehaviour
     {
         Time.timeScale = 1;
         AudioListener.pause = false;
-
-        if(ResultData.missionName != "")
+        if (ResultData.missionName != "")
         {
             SetCurrentActiveScreen(resultScreen);
         }
