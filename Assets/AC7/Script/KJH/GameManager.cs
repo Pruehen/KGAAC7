@@ -17,8 +17,9 @@ namespace kjh
         public System.Action<Transform> OnTargetAdded;
         public System.Action<int> targetCountChanged;
 
-
         public System.Action<Transform> OnMissileAdded;
+
+        public CameraShake cameraShake;
 
         /// <summary>
         /// 게임매니저에 타겟을 추가
@@ -42,11 +43,23 @@ namespace kjh
 
         private void Awake()
         {
+            if(targetTrf == null)
+            {
+                targetTrf = GameObject.Find("Enemy_Transform").transform;
+            }
+
             for (int i = 0; i < targetTrf.childCount; i++)
             {
                 for (int j = 0; j < targetTrf.GetChild(i).childCount; j++)
                 {
-                    AddActiveTarget(targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>());
+                    VehicleCombat combat = targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>();
+                    AddActiveTarget(combat);
+
+                    //배의 경우 파츠를 가지고 있으므로 자식을 찾아서 추가
+                    VehicleCombat[] childCombat = combat.GetComponentsInChildren<VehicleCombat>();
+                    foreach (VehicleCombat childCombatItem in childCombat)
+                    { AddActiveTarget(childCombatItem); }
+
                 }                
                 //activeTargetList[i].onDeadWithSelf.AddListener(RemoveActiveTarget);
             }
@@ -64,6 +77,8 @@ namespace kjh
             //씬매니저
             Debug.Assert(_gameResultUi != null);
             StartCoroutine(DelayedCall(delay, _gameResultUi.FadeIn));
+            //플레이어 정지
+            StartCoroutine(DelayedCall(delay + 1f,  () => player.gameObject.SetActive(false))) ;
         }
 
         private IEnumerator DelayedCall(float time, System.Action action)
@@ -78,8 +93,7 @@ namespace kjh
         /// </summary>
         public void ReturnToMainMenu()
         {
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-            Debug.Log("ReturnToMainMenu");
+            SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         }
 
         public void ReloadCurrentScene()
@@ -108,7 +122,7 @@ namespace kjh
             }
             while (image.color.a < 1f)
             {
-                alpha += Time.deltaTime / time;
+                alpha += Time.fixedUnscaledDeltaTime / time;
                 image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
                 yield return null;
             }

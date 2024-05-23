@@ -13,6 +13,7 @@ public class FlightController_AI : MonoBehaviour
 
     bool isDead = false;  
     [SerializeField][Range(3f, 10f)] float aiLevel;//난이도 설정. 3부터 10까지의 값을 가짐. 값이 클수록 기동을 더 강하게 함
+    public float AiLevel() { return aiLevel; }
 
     float targetSpeed;
     public void SetTargetSpeed(float value)

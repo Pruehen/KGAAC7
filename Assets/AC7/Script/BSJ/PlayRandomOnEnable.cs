@@ -67,7 +67,7 @@ public class PlayRandomOnEnable : MonoBehaviour
                 break;
             }
             audioRange += Time.deltaTime * 334f;
-            transform.position.DrawSphere(audioRange, Color.yellow);
+            //transform.position.DrawSphere(audioRange, Color.yellow);
         }
     }
 }

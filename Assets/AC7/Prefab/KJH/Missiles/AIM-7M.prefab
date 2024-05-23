@@ -189,12 +189,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd781ae820e086488e9c3ada5e65795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EIRCM_Count: 20
+  EIRCM_Count: 40
   target: {fileID: 0}
   maxTurnRate: 30
   maxSideForce: 250
   isTVC: 0
-  traceAngleLimit: 60
+  traceAngleLimit: 90
 --- !u!114 &-4268455925729301788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 110
   reloadTime: 20
-  maxSeekerAngle: 20
+  maxSeekerAngle: 40
   lockOnRange: 25000
 --- !u!1 &8186166486042749729
 GameObject:
@@ -237,7 +237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8186166486042749729}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -1.917}
+  m_LocalPosition: {x: 0, y: 0, z: -2.084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5048,7 +5048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3200098332338511442, guid: 5bea366efef61bd4e8bd4487d7e91228, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.19
+      value: -2.357
       objectReference: {fileID: 0}
     - target: {fileID: 3200098332338511442, guid: 5bea366efef61bd4e8bd4487d7e91228, type: 3}
       propertyPath: m_LocalRotation.w

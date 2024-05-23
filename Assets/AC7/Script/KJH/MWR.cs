@@ -7,7 +7,7 @@ public class MWR : MonoBehaviour
     //List<Guided> incomeMissileList = new List<Guided>();
     bool isPlayer;
 
-    int _missileCount = 0;
+    public int missileCount { get; private set; }
 
     [Header ("»ç¿îµå")]
     [SerializeField] AudioSource WarningVoiceSfxPrefap;
@@ -20,6 +20,7 @@ public class MWR : MonoBehaviour
         isPlayer = GetComponent<AircraftMaster>().IsPlayer();
         WarningVoiceSfx = Instantiate(WarningVoiceSfxPrefap, transform).GetComponent<AudioSource>();
         WarningBeepSfx = Instantiate(WarningBeepSfxPrefap, transform).GetComponent<AudioSource>();
+        missileCount = 0;
     }
 
     /// <summary>
@@ -29,8 +30,8 @@ public class MWR : MonoBehaviour
     public void AddMissile(Guided missile)
     {
         //incomeMissileList.Add(missile);
-
-        if(isPlayer)
+        missileCount++;
+        if (isPlayer)
         {
             MissileIndicatorController.Instance.AddMissileIndicator(missile);
             MissileCountAdd();
@@ -44,7 +45,7 @@ public class MWR : MonoBehaviour
     public void RemoveMissile(Guided missile)
     {
         //incomeMissileList.Remove(missile);
-
+        missileCount--;
         if (isPlayer)
         {
             MissileIndicatorController.Instance.RemoveMissileIndicator(missile);
@@ -53,19 +54,17 @@ public class MWR : MonoBehaviour
     }
 
     private void MissileCountAdd()
-    {
-        _missileCount++;
+    {        
         CheckAnyTracing();
     }
     private void MissileCountRemove()
-    {
-        _missileCount--;
+    {        
         CheckAnyTracing();
     }
 
     private void CheckAnyTracing()
     {
-        if(_missileCount > 0)
+        if(missileCount > 0)
         {
             WarningVoiceSfx?.Stop();
             WarningBeepSfx?.Stop();

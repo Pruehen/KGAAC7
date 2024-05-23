@@ -26,14 +26,19 @@ public class Guided : MonoBehaviour
             if (target != null)
             {
                 target.onFlare += EIRCM;
-
-                MWR mwr;
-                if (target.TryGetComponent<MWR>(out mwr))
-                {
-                    mwr.AddMissile(this);
-                }
                 kjh.GameManager.Instance.AddMissile(transform);
             }
+        }
+    }
+
+    MWR mwr;
+
+    protected void AddMwr()
+    {
+        if (mwr == null && target.TryGetComponent<MWR>(out mwr))
+        {
+            //Debug.Log("미사일 추가");
+            mwr.AddMissile(this);
         }
     }
 
@@ -45,8 +50,7 @@ public class Guided : MonoBehaviour
         if(target != null)
         {
             target.onFlare -= EIRCM;
-            MWR mwr;
-            if (target.TryGetComponent<MWR>(out mwr))
+            if (mwr != null)
             {
                 mwr.RemoveMissile(this);
             }
@@ -89,14 +93,21 @@ public class Guided : MonoBehaviour
         {
             targetVec = target.transform.position;//타겟 벡터 지정
 
-            Vector3 toTargetVec = (targetVec - this.transform.position).normalized;//방향 벡터 산출
+            Vector3 toTargetVec = targetVec - this.transform.position;
+            if(toTargetVec.magnitude < 5000)
+            {
+                AddMwr();
+            }
 
-            Vector3 angleError_diff = toTargetVec - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
-            angleError_temp = toTargetVec;
+            Vector3 toTargetDir = toTargetVec.normalized;//방향 벡터 산출
 
+            Vector3 angleError_diff = toTargetDir - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
+            angleError_temp = toTargetDir;
 
-            Vector3 side1 = toTargetVec;
-            Vector3 side2 = toTargetVec + angleError_diff;
+            
+
+            Vector3 side1 = toTargetDir;
+            Vector3 side2 = toTargetDir + angleError_diff;
             Vector3 orderAxis = Vector3.Cross(side1, side2);
 
             Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
@@ -106,7 +117,7 @@ public class Guided : MonoBehaviour
 
             float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(velocity * 0.0015f, 0, 1);
 
-            if (rocket.SideForce().magnitude < maxSideForce)
+            if (rocket.SideForce().magnitude < maxSideForce * maneuverability)
             {
                 float p = (600) * pGain;
                 float d = (600) * dGain;
@@ -115,21 +126,24 @@ public class Guided : MonoBehaviour
                 //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
             }
 
-            if (Vector3.Angle(this.transform.forward, toTargetVec) > traceAngleLimit)
+            if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
             {
                 RemoveTarget();
             }
         }
     }
 
+
+    float maneuverability = 1;
     /// <summary>
     /// 자신이 목표하고 있는 타겟이 플레어를 살포하였을 때 실행하는 메서드
     /// </summary>
     public void EIRCM()
     {
         EIRCM_Count--;
+        maneuverability *= 0.97f;
 
-        if(EIRCM_Count <= 0) 
+        if (EIRCM_Count <= 0) 
         {
             RemoveTarget();
         }

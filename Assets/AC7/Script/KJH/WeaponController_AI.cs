@@ -29,6 +29,11 @@ public class WeaponController_AI : MonoBehaviour
         StartCoroutine(MissileFireCheck(11 - aiLevel));
     }
 
+    public void SetFlareTrigger(bool value)
+    {
+        weaponController.SetFlareTrigger(value);
+    }
+
     // Update is called once per frame
     IEnumerator MissileFireCheck(float time)
     {

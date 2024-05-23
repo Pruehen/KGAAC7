@@ -29,7 +29,7 @@ public class Radar : MonoBehaviour
 
     private void Start()
     {
-        weaponSystem = GetComponent<AircraftMaster>().AircraftSelecter().weaponSystem;
+        weaponSystem = GetComponent<AircraftMaster>()?.AircraftSelecter().weaponSystem;
 
         if (_lockOnSfxPrefab != null)
         {
@@ -49,6 +49,14 @@ public class Radar : MonoBehaviour
             {
                 WeaponData weaponData = weaponSystem.UseWeaponData();
 
+                if (lockOnTarget.IsDead() && !onNextLockOn)
+                {
+                    //lockOnTarget = null;
+                    onNextLockOn = true;
+                    Debug.Log("적 사망에 따른 락온 발생");
+                    StartCoroutine(NextTargetLock());
+                }
+
                 if (toTargetAngle <= weaponData.MaxSeekerAngle() && toTargetDistance <= weaponData.LockOnRange())
                 {
                     lockOnTarget.isMissileLock = true;
@@ -66,17 +74,10 @@ public class Radar : MonoBehaviour
                     lockOnTarget.isRaderLock = false;
                 }
 
-                if (lockOnTarget.GetComponent<VehicleCombat>().IsDead() && !onNextLockOn)
-                {
-                    //lockOnTarget = null;
-                    onNextLockOn = true;
-                    StartCoroutine(NextTargetLock());
-                }
-
                 if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
                 {
                     _lockOnSfx?.Play();
-                    Debug.Log("소리");
+                    //Debug.Log("소리");
                 }
                 else if (!lockOnTarget.isMissileLock)
                 {
@@ -116,7 +117,7 @@ public class Radar : MonoBehaviour
     {
         if (!isEnemy)
         {
-            float angleTemp = 200;
+            float distanceTemp = float.MaxValue;
             VehicleCombat targetTemp = null;
 
             List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;            
@@ -126,7 +127,8 @@ public class Radar : MonoBehaviour
                 VehicleCombat item = targetList[i];
 
                 float itemAngle = Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position);
-                if(itemAngle < 10 && !inRangeTargetList.Contains(item))
+                float itemDistance = Vector3.Distance(this.transform.position, item.transform.position);
+                if (itemAngle < 10 && !inRangeTargetList.Contains(item))
                 {
                     inRangeTargetList.Add(item);
                 }
@@ -134,10 +136,10 @@ public class Radar : MonoBehaviour
                 {
                     inRangeTargetList.Remove(item);
                 }
-                if (itemAngle < angleTemp)
+                if (itemDistance < distanceTemp && !item.IsDead())
                 {
                     targetTemp = item;
-                    angleTemp = itemAngle;                    
+                    distanceTemp = itemDistance;                    
                 }
             }
             for (int i = 0; i < inRangeTargetList.Count; i++)
@@ -180,15 +182,15 @@ public class Radar : MonoBehaviour
                 lockOnTarget.isTargeted = true;
                 toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
                 toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);               
-            }            
-            onNextLockOn = false;
+            }                        
         }
         else
         {
             lockOnTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
             lockOnTarget.isTargeted = true;
             toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
+            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);            
         }
+        onNextLockOn = false;
     }
 }

@@ -12,6 +12,13 @@ public class AircraftControl : MonoBehaviour
     [SerializeField] Transform _lr; //좌측 러더
     [SerializeField] Transform _rr; //우측 러더
     [SerializeField] List<JetEngineController> jetEngineControllers;//엔진
+
+    [Header("비필수 피봇")]
+    [SerializeField] Transform _lc;
+    [SerializeField] Transform _rc;
+    [SerializeField] Transform _lEngine;
+    [SerializeField] Transform _rEngine;
+
     void JetEngineControl()
     {
         foreach (JetEngineController jet in jetEngineControllers)
@@ -26,6 +33,11 @@ public class AircraftControl : MonoBehaviour
     Quaternion _reAxis;
     Quaternion _lrAxis;
     Quaternion _rrAxis;
+
+    Quaternion _lcAxis;
+    Quaternion _rcAxis;
+    Quaternion _lEngineAxis;
+    Quaternion _rEngineAxis;
 
     [Header("조종면 가동 범위")]
     [SerializeField] float _a_Range;
@@ -69,6 +81,17 @@ public class AircraftControl : MonoBehaviour
         _reAxis = _re.localRotation;
         _lrAxis = _lr.localRotation;
         _rrAxis = _rr.localRotation;
+
+        if (_lc != null && _rc != null)
+        {
+            _lcAxis = _lc.localRotation;
+            _rcAxis = _rc.localRotation;
+        }
+        if (_lEngine != null && _rEngine != null)
+        {
+            _lEngineAxis = _lEngine.localRotation;
+            _rEngineAxis = _rEngine.localRotation;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -86,6 +109,17 @@ public class AircraftControl : MonoBehaviour
 
         _lr.localRotation = _lrAxis * Quaternion.Euler(0, -yaw * _r_Range, 0);
         _rr.localRotation = _rrAxis * Quaternion.Euler(0, -yaw * _r_Range, 0);
+
+        if (_lc != null && _rc != null)
+        {
+            _lc.localRotation = _lcAxis * Quaternion.Euler((roll * _e_Range + pitch * _e_Range) * 0.5f, 0, 0);
+            _rc.localRotation = _rcAxis * Quaternion.Euler((-roll * _e_Range + pitch * _e_Range) * 0.5f, 0, 0);
+        }
+        if (_lEngine != null && _rEngine != null)
+        {
+            _lEngine.localRotation = _lEngineAxis * Quaternion.Euler((roll * _e_Range + -pitch * _e_Range) * 0.3f, -yaw * _r_Range * 0.5f, 0);
+            _rEngine.localRotation = _rEngineAxis * Quaternion.Euler((-roll * _e_Range + -pitch * _e_Range) * 0.3f, -yaw * _r_Range * 0.5f, 0);
+        }
 
         JetEngineControl();
     }

@@ -117,13 +117,17 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("충돌");
-        IFightable fightable;
-        if(collision.transform.TryGetComponent<IFightable>(out fightable)) 
+        //Debug.Log("충돌");
+        VehicleCombat fightable;
+        if(collision.transform.TryGetComponent<VehicleCombat>(out fightable))
         {
             fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
             EffectManager.Instance.EffectGenerate(explosionEffect, collision.transform.position);
             this.DestroyRocket();
+            if (fightable.isPlayer)
+            {
+                kjh.GameManager.Instance.cameraShake.MissileHitShake();
+            }
         }
         else
         {
