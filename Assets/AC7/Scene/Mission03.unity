@@ -1148,8 +1148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1001 &346361747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1157,6 +1157,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3353667029669454349, guid: 183ce8955f15fba4584a681e37f0da7c, type: 3}
+      propertyPath: controlAircraft
+      value: 
+      objectReference: {fileID: 346361748}
     - target: {fileID: 6120225722798073866, guid: 183ce8955f15fba4584a681e37f0da7c, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -1207,6 +1211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 183ce8955f15fba4584a681e37f0da7c, type: 3}
+--- !u!1 &346361748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5587692658154810235, guid: 183ce8955f15fba4584a681e37f0da7c, type: 3}
+  m_PrefabInstance: {fileID: 346361747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &348365311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2095,13 +2104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ad7dd5e1f1ce46b93b922046ff417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accuracyLoop: 4
-  _range: 2000
-  _minXAxis: 0
-  _maxXAxis: 180
-  _muzzleTrf: {fileID: 1220536063}
-  _customTarget: 0
-  _target: {fileID: 0}
 --- !u!1 &500340769
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,8 +2171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!114 &500340773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,8 +2255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!114 &506394310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2386,13 +2388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ad7dd5e1f1ce46b93b922046ff417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accuracyLoop: 4
-  _range: 2000
-  _minXAxis: 0
-  _maxXAxis: 180
-  _muzzleTrf: {fileID: 990578609}
-  _customTarget: 0
-  _target: {fileID: 0}
 --- !u!1 &560141425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,8 +2432,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1 &583040041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3714,13 +3709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ad7dd5e1f1ce46b93b922046ff417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accuracyLoop: 4
-  _range: 2000
-  _minXAxis: 0
-  _maxXAxis: 180
-  _muzzleTrf: {fileID: 560141426}
-  _customTarget: 0
-  _target: {fileID: 0}
 --- !u!1001 &806023244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3824,8 +3812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1 &878231517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4210,8 +4198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1 &993328448
 GameObject:
   m_ObjectHideFlags: 0
@@ -4370,8 +4358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!114 &1035587418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4636,8 +4624,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!114 &1055203912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4790,8 +4778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1 &1097025686
 GameObject:
   m_ObjectHideFlags: 0
@@ -5165,13 +5153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ad7dd5e1f1ce46b93b922046ff417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accuracyLoop: 4
-  _range: 2000
-  _minXAxis: 0
-  _maxXAxis: 180
-  _muzzleTrf: {fileID: 1862233080}
-  _customTarget: 0
-  _target: {fileID: 0}
 --- !u!1 &1176100800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5430,8 +5411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1 &1231713706
 GameObject:
   m_ObjectHideFlags: 0
@@ -6411,8 +6392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1001 &1410121703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6808,8 +6789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1 &1522687901
 GameObject:
   m_ObjectHideFlags: 0
@@ -6926,13 +6907,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ad7dd5e1f1ce46b93b922046ff417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accuracyLoop: 4
-  _range: 2000
-  _minXAxis: 0
-  _maxXAxis: 180
-  _muzzleTrf: {fileID: 330530417}
-  _customTarget: 0
-  _target: {fileID: 0}
 --- !u!1 &1525129106
 GameObject:
   m_ObjectHideFlags: 0
@@ -7367,8 +7341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!114 &1722267888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8092,8 +8066,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1 &1870456688
 GameObject:
   m_ObjectHideFlags: 0
@@ -8356,8 +8330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!1 &2009501303
 GameObject:
   m_ObjectHideFlags: 0
@@ -9380,13 +9354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ad7dd5e1f1ce46b93b922046ff417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accuracyLoop: 4
-  _range: 2000
-  _minXAxis: 0
-  _maxXAxis: 180
-  _muzzleTrf: {fileID: 9037683002150575357}
-  _customTarget: 0
-  _target: {fileID: 0}
 --- !u!135 &4419792817767429390
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9454,8 +9421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!4 &5614746745494076507
 Transform:
   m_ObjectHideFlags: 0
@@ -9538,8 +9505,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
 --- !u!23 &8018148027737284607
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9609,5 +9576,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7e5ab25df096c4cb96b01f2c9b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRotationSpeed: 60
-  smoothDuration: 0.3
+  _maxRotationSpeed: 60
+  _smoothDuration: 1
