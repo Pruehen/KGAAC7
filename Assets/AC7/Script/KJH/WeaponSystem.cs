@@ -169,9 +169,9 @@ namespace kjh
         /// <summary>
         /// 현재 적용중인 프리팹을 발사하는 메서드
         /// </summary>
-        /// <param name="aircraftVelocity"></param>
+        /// <param name="initailVelocity"></param>
         /// <param name="target"></param>
-        public void Fire(Vector3 aircraftVelocity, Radar radar)
+        public void Fire(Vector3 initailVelocity, Radar radar)
         {
             if (innerFireDelay < 0.1f)
                 return;
@@ -214,7 +214,7 @@ namespace kjh
             {
                 GameObject item = Instantiate(useWeaponPrf, firePoint.position, firePoint.rotation);
 
-                item.GetComponent<Rigidbody>().velocity = aircraftVelocity;
+                item.GetComponent<Rigidbody>().velocity = initailVelocity;
 
                 Guided guided;
                 if (item.TryGetComponent(out guided))
