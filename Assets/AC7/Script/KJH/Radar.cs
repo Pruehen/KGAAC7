@@ -116,7 +116,7 @@ public class Radar : MonoBehaviour
     {
         if (!isEnemy)
         {
-            float angleTemp = 200;
+            float distanceTemp = float.MaxValue;
             VehicleCombat targetTemp = null;
 
             List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;            
@@ -126,7 +126,8 @@ public class Radar : MonoBehaviour
                 VehicleCombat item = targetList[i];
 
                 float itemAngle = Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position);
-                if(itemAngle < 10 && !inRangeTargetList.Contains(item))
+                float itemDistance = Vector3.Distance(this.transform.position, item.transform.position);
+                if (itemAngle < 10 && !inRangeTargetList.Contains(item))
                 {
                     inRangeTargetList.Add(item);
                 }
@@ -134,10 +135,10 @@ public class Radar : MonoBehaviour
                 {
                     inRangeTargetList.Remove(item);
                 }
-                if (itemAngle < angleTemp)
+                if (itemDistance < distanceTemp)
                 {
                     targetTemp = item;
-                    angleTemp = itemAngle;                    
+                    distanceTemp = itemDistance;                    
                 }
             }
             for (int i = 0; i < inRangeTargetList.Count; i++)

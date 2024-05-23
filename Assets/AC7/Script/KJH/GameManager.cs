@@ -43,6 +43,11 @@ namespace kjh
 
         private void Awake()
         {
+            if(targetTrf == null)
+            {
+                targetTrf = GameObject.Find("Enemy_Transform").transform;
+            }
+
             for (int i = 0; i < targetTrf.childCount; i++)
             {
                 for (int j = 0; j < targetTrf.GetChild(i).childCount; j++)
