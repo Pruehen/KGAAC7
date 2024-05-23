@@ -101,7 +101,7 @@ namespace kjh
             vehicleCombat = this.transform.parent.GetComponent<VehicleCombat>();
 
             _gunAudio = GetComponent<FadableAudio>();
-            _gunAudio.SetParent(gunFireTrf);
+            _gunAudio?.SetParent(gunFireTrf);
 
             for (int i = 0; i < weaponPrfList.Count; i++)
             {

@@ -13,9 +13,11 @@ public class CameraShake : MonoBehaviour
     private Vector3 _initialPosition;
     private float _duration = 0f;
     private float _shakeTime;
+    private VehicleCombat _player;
 
     private void Start()
     {
+        _player = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
         _initialPosition = transform.localPosition;
         //StartCoroutine(DebugShake());
     }
@@ -48,16 +50,8 @@ public class CameraShake : MonoBehaviour
         }
         else
         {
-            transform.localPosition = _initialPosition;
-        }
-    }
-
-    private IEnumerator DebugShake()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(1f);
-            TriggerShake(.3f,1f,0f);
+            if( !_player.IsDead())
+                transform.localPosition = _initialPosition;
         }
     }
 }

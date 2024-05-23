@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AntiAirtMoveTest : MonoBehaviour
+public class AntiAirtTestTargetMove : MonoBehaviour
 {
     [SerializeField] private bool _dynamicMove;
     [SerializeField] private Vector3 _initialPos;

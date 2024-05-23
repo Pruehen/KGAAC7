@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vulcan : MonoBehaviour
+public class Vulcan : MonoBehaviour, IAntiAirWeapon
 {
     [SerializeField] private Transform _firePos;
     private float _fireInterval;
@@ -29,16 +29,15 @@ public class Vulcan : MonoBehaviour
             if (_lifeTime >= _fireInterval)
             {
                 _lifeTime = 0f;
+                GameObject item = ObjectPoolManager.Instance.DequeueObject(_bulletProjectile);
+                item.GetComponent<kjh.Bullet>().Init(_firePos.position, _firePos.rotation * Vector3.forward * bulletSpeed);
             }
             else
             {
                 return;
             }
-            GameObject item = ObjectPoolManager.Instance.DequeueObject(_bulletProjectile);
-            item.GetComponent<kjh.Bullet>().Init(_firePos.position, _firePos.rotation * Vector3.forward * bulletSpeed);
         }
     }
-
 
     public void Fire(bool trigger)
     {

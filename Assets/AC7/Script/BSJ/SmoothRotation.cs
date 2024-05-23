@@ -1,8 +1,8 @@
 using UnityEngine;
 public class SmoothRotation : MonoBehaviour
 {
-    public float maxRotationSpeed = 60f; // Maximum rotation speed in degrees per second
-    public float smoothDuration = 1.0f; // Duration of the smooth-in and smooth-out phases
+    [SerializeField] float _maxRotationSpeed = 60f; // Maximum rotation speed in degrees per second
+    [SerializeField] float _smoothDuration = 1.0f; // Duration of the smooth-in and smooth-out phases
 
     private Quaternion targetRotation;
     private Quaternion startRotation;
@@ -12,16 +12,22 @@ public class SmoothRotation : MonoBehaviour
     private bool isRotating = false;
     private Quaternion _currentRotation;
 
+    public void Init(float maxRotationSpeed, float smoothDuration)
+    {
+        _maxRotationSpeed = maxRotationSpeed;
+        _smoothDuration = smoothDuration;
+    }
+
     void Update()
     {
         if (isRotating)
         {
-            float deltaAngle = maxRotationSpeed * Time.deltaTime * speedFactor;
+            float deltaAngle = _maxRotationSpeed * Time.deltaTime * speedFactor;
 
             // Adjust the speed factor based on remaining angle for smooth-in and smooth-out
-            if (angleRemaining < maxRotationSpeed * smoothDuration)
+            if (angleRemaining < _maxRotationSpeed * _smoothDuration)
             {
-                speedFactor = angleRemaining / (maxRotationSpeed * smoothDuration);
+                speedFactor = angleRemaining / (_maxRotationSpeed * _smoothDuration);
             }
             else
             {
