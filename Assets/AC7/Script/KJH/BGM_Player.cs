@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BGM_Player : MonoBehaviour
+public class BGM_Player : SceneSingleton<BGM_Player>
 {
     AudioSource audioSource;
     [SerializeField] float loopStart;
@@ -11,6 +11,11 @@ public class BGM_Player : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void Play()
+    {
+        audioSource.Play();
     }
 
     private void Update()
