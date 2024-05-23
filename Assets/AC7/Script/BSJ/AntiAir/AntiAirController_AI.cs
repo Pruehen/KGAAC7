@@ -35,9 +35,6 @@ public class AntiAirController_AI : MonoBehaviour
 
     Vector3 prevVel;
 
-    [SerializeField] bool hasRadar = false;
-    [SerializeField] Radar _radar;
-
     [SerializeField] float _maxRotationSpeed;
     [SerializeField] float _smoothDuration;
 

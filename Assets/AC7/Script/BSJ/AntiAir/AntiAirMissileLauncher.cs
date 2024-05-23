@@ -9,7 +9,6 @@ public class AntiAirMissileLauncher : MonoBehaviour, IAntiAirWeapon
     private float _fireInterval;
     private float _lifeTime = 0f;
 
-    [SerializeField] private GameObject _projectile;
     public float bulletSpeed;
     bool _firing;
 
