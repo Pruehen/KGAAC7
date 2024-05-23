@@ -41,7 +41,11 @@ public class CameraShake : MonoBehaviour
 
     void LateUpdate()
     {
-        if (_shakeTime < _duration)
+        if (_player.IsDead())
+        {
+            return;
+        }
+            if (_shakeTime < _duration)
         {
             float shakeX = _shakeCurve.Evaluate(_shakeTime / _duration * _shakeMagnitudeH * Random.Range(-1f, 1f));
             float shakeY = _shakeCurve.Evaluate(_shakeTime / _duration * _shakeMagnitudeV * Random.Range(-1f, 1f));
@@ -50,7 +54,6 @@ public class CameraShake : MonoBehaviour
         }
         else
         {
-            if( !_player.IsDead())
                 transform.localPosition = _initialPosition;
         }
     }
