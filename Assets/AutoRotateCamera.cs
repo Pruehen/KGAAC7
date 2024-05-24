@@ -22,7 +22,7 @@ public class AutoRotateCamera : MonoBehaviour
             float z = target.position.z + distance * Mathf.Sin(radians);
 
             // 카메라의 새로운 위치 설정
-            Vector3 newPosition = new Vector3(x, target.position.y + 3f, z);
+            Vector3 newPosition = new Vector3(x, target.position.y + 7f, z);
             transform.position = newPosition;
             
             // 카메라가 항상 타겟을 바라보게 설정
