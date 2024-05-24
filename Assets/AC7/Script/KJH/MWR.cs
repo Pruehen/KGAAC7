@@ -14,6 +14,7 @@ public class MWR : MonoBehaviour
     [SerializeField] AudioSource WarningBeepSfxPrefap;
     AudioSource WarningVoiceSfx;
     AudioSource WarningBeepSfx;
+    [SerializeField] float _missileWarnigSfxDelay = 1f;
 
     private void Start()
     {
@@ -61,20 +62,34 @@ public class MWR : MonoBehaviour
     {        
         CheckAnyTracing();
     }
-
+    Coroutine sfxLoop;
     private void CheckAnyTracing()
     {
         if(missileCount > 0)
         {
-            WarningVoiceSfx?.Stop();
-            WarningBeepSfx?.Stop();
-            WarningVoiceSfx?.Play();
-            WarningBeepSfx?.Play();
+            if (sfxLoop == null)
+            {
+                sfxLoop = StartCoroutine(AlertSfxLoop(WarningVoiceSfx, _missileWarnigSfxDelay));
+                WarningBeepSfx?.Play();
+            }
         }
         else
         {
-            WarningVoiceSfx?.Pause();
-            WarningBeepSfx?.Pause();
+            if(sfxLoop != null)
+            {
+                WarningBeepSfx?.Pause();
+                StopCoroutine(sfxLoop);
+                sfxLoop = null;
+            }
+        }
+    }
+
+    private IEnumerator AlertSfxLoop(AudioSource audioSource, float delay)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            audioSource.Play();
         }
     }
 }
