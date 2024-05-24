@@ -346,6 +346,8 @@ GameObject:
   - component: {fileID: 6102060593351706366}
   - component: {fileID: 6669153494344097264}
   - component: {fileID: 1485620585378860246}
+  - component: {fileID: 2708864871194154240}
+  - component: {fileID: -8415215236456137404}
   m_Layer: 0
   m_Name: BattleCruiser
   m_TagString: Untagged
@@ -394,6 +396,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b1b7acbcc72584d8bf703fd42948ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCombatDestroy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2708864871194154240}
+        m_TargetAssemblyTypeName: SpawnPoolObjectOnDestroy, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -8415215236456137404}
+        m_TargetAssemblyTypeName: SpawnPoolObjectOnDestroy, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-4188175731176896398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +497,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.79, y: 5.04, z: 11.62}
   m_Center: {x: 0, y: 7.4, z: -15}
+--- !u!114 &2708864871194154240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261096313005602869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48007d7e3e2635d48857b5d1ebf80201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _randomWaterSplashVfx: {fileID: 373501565748378994, guid: 5f719f55b8dacc744a0d1aa38f85b350, type: 3}
+  _scale: 50
+--- !u!114 &-8415215236456137404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261096313005602869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48007d7e3e2635d48857b5d1ebf80201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _randomWaterSplashVfx: {fileID: 2035451551909382287, guid: cef409f191343f24daadb06cc0bdbc40, type: 3}
+  _scale: 1
 --- !u!1 &8496116624379868928
 GameObject:
   m_ObjectHideFlags: 0
