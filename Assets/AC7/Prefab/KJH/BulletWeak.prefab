@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletHitVfx: {fileID: 121360, guid: 0ac14ff39c0e2f34b88cc8b117203b60, type: 3}
-  _waterHitVfx: {fileID: 0}
+  _waterHitVfx: {fileID: 121360, guid: 2ac03f17680f50a4c8ff77fb56ac29a7, type: 3}
 --- !u!114 &5792601872252130502
 MonoBehaviour:
   m_ObjectHideFlags: 0
