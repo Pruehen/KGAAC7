@@ -117,7 +117,7 @@ public class Combat
         CalcTakeDamage(damage);;
         return true;
     }
-    public void Heal(int v)
+    public void Heal(float v)
     {
         if (_hp < _maxHp)
         {
