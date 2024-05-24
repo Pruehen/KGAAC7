@@ -12,6 +12,7 @@ public class EnemySpawnManager2 : MonoBehaviour
     [SerializeField] bool _isSpawning = true;
     [SerializeField] float _distance = 8000f;
     [SerializeField] int _startSpawnCount = 4;
+    [SerializeField] float _targetAlt = 10000;
 
     private void Awake()
     {

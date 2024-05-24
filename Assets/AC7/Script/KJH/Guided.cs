@@ -94,7 +94,7 @@ public class Guided : MonoBehaviour
             targetVec = target.transform.position;//타겟 벡터 지정
 
             Vector3 toTargetVec = targetVec - this.transform.position;
-            if(toTargetVec.magnitude < 5000)
+            if(toTargetVec.magnitude < 3000)
             {
                 AddMwr();
             }

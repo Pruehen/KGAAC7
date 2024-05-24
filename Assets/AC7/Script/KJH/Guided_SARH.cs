@@ -42,7 +42,7 @@ public class Guided_SARH : Guided
 
             targetVec = target.transform.position;//≈∏∞Ÿ ∫§≈Õ ¡ˆ¡§
             Vector3 toTargetVec = targetVec - this.transform.position;
-            if (toTargetVec.magnitude < 5000)
+            if (toTargetVec.magnitude < 3000)
             {
                 AddMwr();
             }
