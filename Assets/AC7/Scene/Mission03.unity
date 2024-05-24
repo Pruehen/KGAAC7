@@ -6981,6 +6981,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259991923516638123}
     m_Modifications:
+    - target: {fileID: 121387188464633477, guid: ff5e707a836c32f459b5c4b0b8cad96d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626222310379598105, guid: ff5e707a836c32f459b5c4b0b8cad96d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8261096313005602869, guid: ff5e707a836c32f459b5c4b0b8cad96d, type: 3}
       propertyPath: m_Name
       value: BattleCruiser (1)
@@ -8430,6 +8438,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259991923516638123}
     m_Modifications:
+    - target: {fileID: 121387188464633477, guid: ff5e707a836c32f459b5c4b0b8cad96d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626222310379598105, guid: ff5e707a836c32f459b5c4b0b8cad96d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8261096313005602869, guid: ff5e707a836c32f459b5c4b0b8cad96d, type: 3}
       propertyPath: m_Name
       value: BattleCruiser

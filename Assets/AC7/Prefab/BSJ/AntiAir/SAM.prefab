@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _accuracyLoop: 4
-  _range: 10000
+  _range: 20000
   _minXAxis: 0
   _maxXAxis: 180
   _muzzleTrf: {fileID: 9037683002944754987}
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c7cf4d963174f44993f1fe244ad29c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radarMaxAngle: 90
+  radarMaxAngle: 360
   isEnemy: 1
   _lockOnSfxPrefab: {fileID: 0}
 --- !u!114 &-6389896688522376230
