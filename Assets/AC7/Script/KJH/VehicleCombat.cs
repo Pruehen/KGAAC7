@@ -56,7 +56,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
             yield return new WaitForSeconds(1);
             if (!IsDead())
             {
-                combat.Heal(2);
+                combat.Heal(5);
             }
             else
             {

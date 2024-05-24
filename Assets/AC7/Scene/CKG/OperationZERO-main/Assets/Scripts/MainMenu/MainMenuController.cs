@@ -250,7 +250,7 @@ public class MainMenuController : MonoBehaviour
     public void SU37AStartMission()
     {
         GameObject dummy = new GameObject();
-        dummy.name = "_SU-37";
+        dummy.name = "_Su-37";
         DontDestroyOnLoad(dummy);
         PrepareMission();
     }

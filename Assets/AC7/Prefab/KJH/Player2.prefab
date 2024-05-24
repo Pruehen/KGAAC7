@@ -9475,8 +9475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fa22e8d95a55a4fa7807b367af0777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetUI: {fileID: 7682833719505869377, guid: 7ffb16242a456f94fb71ab8b6631f314, type: 3}
-  aircraftMaster: {fileID: 4295724883156700073}
+  targetUIPrf: {fileID: 0}
 --- !u!1 &6120225722009845632
 GameObject:
   m_ObjectHideFlags: 0
@@ -28103,7 +28102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: startHp
-      value: 300
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: isPlayer
