@@ -8082,11 +8082,11 @@ MonoBehaviour:
   - {fileID: 541395315}
   - {fileID: 95109960}
   _spawnCoolTimeList:
-  - 120
+  - 80
+  - 160
   - 240
-  - 360
-  - 480
-  - 600
+  - 320
+  - 400
 --- !u!1 &1291349282
 GameObject:
   m_ObjectHideFlags: 0
@@ -12107,11 +12107,13 @@ MonoBehaviour:
   - {fileID: 7227807178017333988, guid: 365578c0a0e16104890de467358f74f7, type: 3}
   - {fileID: 7227807178017333988, guid: 4199203504fdda64ab448fb9283edcc3, type: 3}
   - {fileID: 7227807178017333988, guid: 2342190471b96a649aa507d17f9e27d2, type: 3}
+  - {fileID: 7227807178017333988, guid: 2342190471b96a649aa507d17f9e27d2, type: 3}
+  - {fileID: 7227807178017333988, guid: 2342190471b96a649aa507d17f9e27d2, type: 3}
   _enemyParent: {fileID: 1176100801}
   _isSpawning: 1
   _distance: 20000
-  _startSpawnCount: 30
-  _targetAlt: 5000
+  _startSpawnCount: 5
+  _targetAlt: 3000
 --- !u!4 &1955142452
 Transform:
   m_ObjectHideFlags: 0

@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: trakingTarget
@@ -113,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: startHp
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: nickname
@@ -125,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -190,6 +190,18 @@ PrefabInstance:
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointList.Array.data[3].y
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: rollTorque
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: enginePower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: pitchTorque
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
@@ -268,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: trakingTarget
@@ -296,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -365,6 +377,18 @@ PrefabInstance:
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointList.Array.data[3].y
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: rollTorque
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: enginePower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: pitchTorque
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
@@ -443,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: trakingTarget
@@ -471,7 +495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -540,6 +564,18 @@ PrefabInstance:
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointList.Array.data[3].y
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: rollTorque
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: enginePower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: pitchTorque
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
@@ -618,7 +654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: trakingTarget
@@ -646,7 +682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -719,6 +755,18 @@ PrefabInstance:
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointList.Array.data[3].y
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: rollTorque
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: enginePower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: pitchTorque
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
@@ -797,7 +845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2164135537011781969, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: trakingTarget
@@ -825,7 +873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5022171109304261273, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: aiLevel
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: engageRule
@@ -898,6 +946,18 @@ PrefabInstance:
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: wayPointList.Array.data[3].y
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: rollTorque
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: enginePower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801890271786672843, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: pitchTorque
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
