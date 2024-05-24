@@ -37,12 +37,18 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     GameObject LoadingScreen3;
     [SerializeField]
+    GameObject LoadingScreen4;
+    [SerializeField]
     TextMeshProUGUI descriptionText;
     [SerializeField]
     GameObject backGround;
-
     [SerializeField]
     float initDelay;
+    [SerializeField]
+    GameObject airCombatInformation;
+    [SerializeField]
+    GameObject airCombatSelectUI;
+
 
     [Header("Audios")]
     
@@ -183,11 +189,20 @@ public class MainMenuController : MonoBehaviour
         LoadingController.sceneName = "Mission03";
     }
 
+    public void ShowAirCombatSettings4()
+    {
+        SetCurrentActiveScreen(LoadingScreen4);
+        StartCoroutine(OnAirCombatScreen(LoadingScreen4));
+        LoadingController.sceneName = "Mission04";
+    }
+
     public void ShowMainMenu()
     {
         SetCurrentActiveScreen(mainMenuScreen);
         backGround.SetActive(true);
         airCombatSettings.SetActive(false);
+        airCombatInformation.SetActive(false);
+        airCombatSelectUI.SetActive(false);
     }
 
     public void ShowSettingsMenu()
@@ -200,10 +215,6 @@ public class MainMenuController : MonoBehaviour
         SetCurrentActiveScreen(resultScreen);
     }
 
-    public void ShowLoadingMenu()
-    {
-        
-    }
     public void F16CStartMission()
     {        
         GameObject dummy = new GameObject();
