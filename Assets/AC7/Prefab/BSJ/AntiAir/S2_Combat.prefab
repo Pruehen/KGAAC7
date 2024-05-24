@@ -1899,6 +1899,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1690170143673668149}
     m_Modifications:
+    - target: {fileID: 2894811655609012341, guid: b72a11eb57368684f9a4e0038c7628be, type: 3}
+      propertyPath: startHp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115031118454393234, guid: b72a11eb57368684f9a4e0038c7628be, type: 3}
+      propertyPath: _range
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115031118454393234, guid: b72a11eb57368684f9a4e0038c7628be, type: 3}
+      propertyPath: _maxRotationSpeed
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3823696188377780366, guid: b72a11eb57368684f9a4e0038c7628be, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -2009,6 +2021,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4Socket_MissileLauncher (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2098727771218513270, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
+      propertyPath: startHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177088379022562449, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
+      propertyPath: _range
+      value: 20000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
 --- !u!4 &983319344501433594 stripped
@@ -2033,11 +2053,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7948886945795469, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.64
+      value: 9.67
       objectReference: {fileID: 0}
     - target: {fileID: 7948886945795469, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.61
+      value: -36.68
       objectReference: {fileID: 0}
     - target: {fileID: 7948886945795469, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2070,6 +2090,14 @@ PrefabInstance:
     - target: {fileID: 817383356146898743, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
       propertyPath: m_Name
       value: 4Socket_MissileLauncher (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098727771218513270, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
+      propertyPath: startHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177088379022562449, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
+      propertyPath: _range
+      value: 20000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
@@ -2133,6 +2161,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4Socket_MissileLauncher (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2098727771218513270, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
+      propertyPath: startHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177088379022562449, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
+      propertyPath: _range
+      value: 20000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
 --- !u!4 &5242823826072617904 stripped
@@ -2157,11 +2193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7948886945795469, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.64
+      value: 9.67
       objectReference: {fileID: 0}
     - target: {fileID: 7948886945795469, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.61
+      value: -36.68
       objectReference: {fileID: 0}
     - target: {fileID: 7948886945795469, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2194,6 +2230,14 @@ PrefabInstance:
     - target: {fileID: 817383356146898743, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
       propertyPath: m_Name
       value: 4Socket_MissileLauncher (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098727771218513270, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
+      propertyPath: startHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177088379022562449, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}
+      propertyPath: _range
+      value: 20000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34b125058c857ca4ebfe77eb0c53f114, type: 3}

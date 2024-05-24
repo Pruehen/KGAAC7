@@ -250,8 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostStartDelay: 0
   boostTime: 5
-  sustainTime: 15
-  boostPower: 200
+  sustainTime: 20
+  boostPower: 150
   sustainPower: 40
   liftPower: 2.5
   maxLiftTime: 60
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 1
-  reloadTime: 20
+  reloadTime: 80
   maxSeekerAngle: 360
   lockOnRange: 40000
 --- !u!1 &8186166486042749729
