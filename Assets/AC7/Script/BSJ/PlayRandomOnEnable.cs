@@ -23,12 +23,12 @@ public class PlayRandomOnEnable : MonoBehaviour
 
     private void PlayByDistance(float distance)
     {
-        if (distance >= 2500f)
+        if (distance >= 6000f)
         {
             if (!(_farSfxPrefabs.Length == 0))
                 PlaySound(_farSfxPrefabs[Random.Range(0, _farSfxPrefabs.Length)]);
         }
-        else if (distance >= 300f)
+        else if (distance >= 2500f)
         {
             if (!(_midSfxPrefabs.Length == 0))
                 PlaySound(_midSfxPrefabs[Random.Range(0, _midSfxPrefabs.Length)]);
@@ -47,7 +47,7 @@ public class PlayRandomOnEnable : MonoBehaviour
 
     private IEnumerator DelayPerDistance(float distance)
     {
-        float delay = distance / 334f;
+        float delay = distance / 1000f;
         yield return new WaitForSeconds(delay);
         PlayByDistance(distance);
     }
