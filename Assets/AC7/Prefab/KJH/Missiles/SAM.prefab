@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03748f7bc6086d144884175496f95844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 1
+  dmg: 110
   reloadTime: 80
   maxSeekerAngle: 360
   lockOnRange: 40000
