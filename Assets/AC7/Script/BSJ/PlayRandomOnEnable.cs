@@ -23,7 +23,7 @@ public class PlayRandomOnEnable : MonoBehaviour
 
     private void PlayByDistance(float distance)
     {
-        if (distance >= 2500f)
+        if (distance >= 5000f)
         {
             if (!(_farSfxPrefabs.Length == 0))
                 PlaySound(_farSfxPrefabs[Random.Range(0, _farSfxPrefabs.Length)]);
@@ -66,7 +66,7 @@ public class PlayRandomOnEnable : MonoBehaviour
                 PlayByDistance(distanceStamp);
                 break;
             }
-            audioRange += Time.deltaTime * 334f;
+            audioRange += Time.deltaTime * 1000f;
             //transform.position.DrawSphere(audioRange, Color.yellow);
         }
     }

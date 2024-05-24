@@ -76,10 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4317c131efe0b4f9cb030aaffac561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHp: 0
+  startHp: 50
   isPlayer: 0
   mainTarget: 0
-  name: MissileLauncher
+  name: SAM
   nickname: 
   isTargeted: 0
   isRaderLock: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _accuracyLoop: 4
-  _range: 10000
+  _range: 20000
   _minXAxis: 0
   _maxXAxis: 180
   _muzzleTrf: {fileID: 2315984824274972371}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 618580768878541554}
   - component: {fileID: 5792601872252130502}
   - component: {fileID: 5900910231596744783}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,10 +44,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5651192895815570312}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5651192895815570313
 Rigidbody:
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletHitVfx: {fileID: 121360, guid: 0ac14ff39c0e2f34b88cc8b117203b60, type: 3}
+  _waterHitVfx: {fileID: 121360, guid: 2ac03f17680f50a4c8ff77fb56ac29a7, type: 3}
 --- !u!114 &5792601872252130502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.81875, b: 0, a: 1}
+      key0: {r: 1, g: 0.5329268, b: 0, a: 1}
       key1: {r: 1, g: 0.9375001, b: 0, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

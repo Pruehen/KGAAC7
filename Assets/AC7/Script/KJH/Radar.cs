@@ -126,7 +126,7 @@ public class Radar : MonoBehaviour
             {
                 VehicleCombat item = targetList[i];
 
-                float itemAngle = Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position);
+                float itemAngle = Vector3.Angle(Camera.main.transform.forward, item.transform.position - this.transform.position);
                 float itemDistance = Vector3.Distance(this.transform.position, item.transform.position);
                 if (itemAngle < 10 && !inRangeTargetList.Contains(item))
                 {
@@ -147,7 +147,7 @@ public class Radar : MonoBehaviour
                 VehicleCombat item = inRangeTargetList[i];
                 
                 if (item == null || 
-                    Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position) >= 10 || 
+                    Vector3.Angle(Camera.main.transform.forward, item.transform.position - this.transform.position) >= 10 || 
                     item.IsDead())
                 {
                     inRangeTargetList.Remove(item);

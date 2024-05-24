@@ -3,7 +3,9 @@ guid: b52fae546cae0ef4fb13cf2fef3f951c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _bulletHitVfx: {fileID: 121360, guid: 0ac14ff39c0e2f34b88cc8b117203b60, type: 3}
+  - _waterHitVfx: {fileID: 121360, guid: 2ac03f17680f50a4c8ff77fb56ac29a7, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

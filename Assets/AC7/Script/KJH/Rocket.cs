@@ -21,6 +21,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] float safeTime;//안전 시간. 이 시간이 지난 후 콜리더 활성화
 
     [SerializeField] GameObject explosionEffect;
+    [SerializeField] GameObject _waterHitVfx;
     //[SerializeField] GameObject trail;
     [SerializeField] ParticleSystem smoke;
     [SerializeField] ParticleSystem motor;
@@ -131,7 +132,12 @@ public class Rocket : MonoBehaviour
         }
         else
         {
-            EffectManager.Instance.EffectGenerate(explosionEffect, collision.contacts[0].point);
+            Vector3 contact = collision.GetContact(0).point;
+            EffectManager.Instance.EffectGenerate(explosionEffect, contact);
+            if (collision.transform.CompareTag("Water"))
+            {
+                EffectManager.Instance.EffectGenerate(_waterHitVfx, contact);
+            }
             this.DestroyRocket();
         }
 

@@ -26299,6 +26299,7 @@ GameObject:
   - component: {fileID: 6120225723397715218}
   - component: {fileID: 6120225723397715220}
   - component: {fileID: 6120225723397715219}
+  - component: {fileID: 5920040339756073933}
   m_Layer: 5
   m_Name: HpBar
   m_TagString: Untagged
@@ -26364,6 +26365,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5920040339756073933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6120225723397715217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48e9d20964290e4b95023c2f06653e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6120225723425363952
 GameObject:
   m_ObjectHideFlags: 0
@@ -28089,6 +28102,10 @@ PrefabInstance:
       value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: startHp
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: isPlayer
       value: 1
       objectReference: {fileID: 0}
@@ -28365,6 +28382,10 @@ PrefabInstance:
       propertyPath: virtualAxis
       value: 
       objectReference: {fileID: 6120225723064897597}
+    - target: {fileID: 7895238725309148631, guid: 52c2b7fd47e7ca7408454e2fe7aa1c30, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7895238726048860968, guid: 52c2b7fd47e7ca7408454e2fe7aa1c30, type: 3}
       propertyPath: m_Name
       value: CamAxisWithCameraShake

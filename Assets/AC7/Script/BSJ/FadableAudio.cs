@@ -22,7 +22,7 @@ public class FadableAudio : MonoBehaviour
     {
         if (_audioSource == null)
         {
-            _audioSource = bsj.SoundManager.Instance.PlayAttached(_SfxPrefab, _parent, true).GetComponent<AudioSource>();
+            _audioSource = bsj.SoundManager.Instance.SpawnAttached(_SfxPrefab, _parent, true).GetComponent<AudioSource>();
             _audioSource.Stop();
             _volume = 1f;
         }
