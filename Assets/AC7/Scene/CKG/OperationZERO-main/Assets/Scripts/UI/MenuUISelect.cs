@@ -16,6 +16,9 @@ public class MenuUISelect : UISelect
     {
         anim = GetComponent<Animation>();
         textMeshPro = GetComponent<TextMeshProUGUI>();
+
+        image.rectTransform.pivot = new Vector3(0, 0.5f, 0);
+        image.rectTransform.anchoredPosition = Vector3.zero;       
     }
 
     void OnEnable()

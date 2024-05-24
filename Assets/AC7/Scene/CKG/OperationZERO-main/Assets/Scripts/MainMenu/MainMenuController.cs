@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.UIElements;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -38,7 +38,9 @@ public class MainMenuController : MonoBehaviour
     GameObject LoadingScreen3;
     [SerializeField]
     TextMeshProUGUI descriptionText;
-    
+    [SerializeField]
+    GameObject backGround;
+
     [SerializeField]
     float initDelay;
 
@@ -57,9 +59,10 @@ public class MainMenuController : MonoBehaviour
     MenuController currentMenuController = null;
 
     public UnityEvent onNavigateEvent;
+    
 
-    
-    
+
+
 
     public void SetDescriptionText(string text)
     {
@@ -134,6 +137,7 @@ public class MainMenuController : MonoBehaviour
         currentActiveScreen.SetActive(true);
     }
 
+
     public void SetLanguage(string language)
     {
         if(language.ToLower() == "en")
@@ -178,9 +182,12 @@ public class MainMenuController : MonoBehaviour
         StartCoroutine(OnAirCombatScreen(LoadingScreen3));
         LoadingController.sceneName = "Mission03";
     }
+
     public void ShowMainMenu()
     {
         SetCurrentActiveScreen(mainMenuScreen);
+        backGround.SetActive(true);
+        airCombatSettings.SetActive(false);
     }
 
     public void ShowSettingsMenu()
@@ -221,12 +228,27 @@ public class MainMenuController : MonoBehaviour
         PrepareMission();
     }
 
+    public void F15CStartMission()
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "_F-15C";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
+    public void SU37AStartMission()
+    {
+        GameObject dummy = new GameObject();
+        dummy.name = "_SU-37";
+        DontDestroyOnLoad(dummy);
+        PrepareMission();
+    }
+
     public void PrepareMission()
     {
         playerInput.enabled = false;
         fadeController.OnFadeOutComplete.AddListener(ReserveLoadScene);
         fadeController.FadeOut();
-        //currentActiveScreen.GetComponent<MenuController>().enabled = false; // Prevent MissingReferenceException about InputSystem
     }
 
     public void StartFreeFlight()
@@ -282,12 +304,7 @@ public class MainMenuController : MonoBehaviour
             airCombatEnvironment.gameObject.SetActive(true);
         }
         yield return new WaitForSecondsRealtime(5);
-        Transform parentTransform = airCombatSettings.transform.parent;
-        Transform backgroundTransform = parentTransform.Find("Background");
-        if (backgroundTransform != null)
-        {
-            backgroundTransform.gameObject.SetActive(false);
-        }
+        backGround.SetActive(false);
         loadingScreen.SetActive(false);
         Transform selectUI = airCombatSettings.transform.Find("SelectUI");
         if (selectUI != null)
@@ -325,8 +342,7 @@ public class MainMenuController : MonoBehaviour
     {
         Time.timeScale = 1;
         AudioListener.pause = false;
-
-        if(ResultData.missionName != "")
+        if (ResultData.missionName != "")
         {
             SetCurrentActiveScreen(resultScreen);
         }
