@@ -76,11 +76,6 @@ public class VehicleCombat : MonoBehaviour, IFightable
         onFlare?.Invoke();
     }
 
-    private void OnDestroy()
-    {
-        kjh.GameManager.Instance.RemoveActiveTarget(this);
-    }
-
     public UnityEvent onDead;
     public System.Action onFlare;
 }
