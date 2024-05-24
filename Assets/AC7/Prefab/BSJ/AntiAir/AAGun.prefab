@@ -50,6 +50,7 @@ MonoBehaviour:
   _firePos: {fileID: 9037683002944754987}
   _bulletProjectile: {fileID: 5651192895815570312, guid: 9de00e7634e92e84287b23f7d15f0f3b, type: 3}
   bulletSpeed: 1050
+  _bulletSpread: 0.5
 --- !u!114 &5867169116382533072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +419,7 @@ MonoBehaviour:
   _firePos: {fileID: 9037683002944754987}
   _bulletProjectile: {fileID: 5651192895815570312, guid: 9de00e7634e92e84287b23f7d15f0f3b, type: 3}
   bulletSpeed: 1030
+  _bulletSpread: 2
 --- !u!114 &-6389896688522376230
 MonoBehaviour:
   m_ObjectHideFlags: 0
