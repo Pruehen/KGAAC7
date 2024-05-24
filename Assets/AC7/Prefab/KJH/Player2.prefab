@@ -28365,6 +28365,10 @@ PrefabInstance:
       propertyPath: virtualAxis
       value: 
       objectReference: {fileID: 6120225723064897597}
+    - target: {fileID: 7895238725309148631, guid: 52c2b7fd47e7ca7408454e2fe7aa1c30, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7895238726048860968, guid: 52c2b7fd47e7ca7408454e2fe7aa1c30, type: 3}
       propertyPath: m_Name
       value: CamAxisWithCameraShake
