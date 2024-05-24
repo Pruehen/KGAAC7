@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 2315589381888227058}
   - component: {fileID: -6389896688522376230}
   m_Layer: 0
-  m_Name: M163ActuallyShootingMissile
+  m_Name: SAM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,10 +360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4317c131efe0b4f9cb030aaffac561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHp: 0
+  startHp: 50
   isPlayer: 0
   mainTarget: 0
-  name: M163
+  name: SAM
   nickname: 
   isTargeted: 0
   isRaderLock: 0
@@ -404,7 +404,7 @@ MonoBehaviour:
   _turretTrf: {fileID: 1268379123456144104}
   _customTarget: 0
   _target: {fileID: 0}
-  _maxRotationSpeed: 30
+  _maxRotationSpeed: 180
   _smoothDuration: 1
 --- !u!114 &1489391310580262431
 MonoBehaviour:
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrfList:
-  - {fileID: 6445041468265237155, guid: 279ffe80697f9a542bf33d6513fd0735, type: 3}
+  - {fileID: 6445041468265237155, guid: bf158b5fa4d51ec4b99e9d6f04ee3bd4, type: 3}
   fireTrfList:
   - {fileID: 3570227142993957389}
   - {fileID: 3570227142993957389}

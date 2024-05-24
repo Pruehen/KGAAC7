@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 5362563656243433386}
   - component: {fileID: -6389896688522376230}
   m_Layer: 0
-  m_Name: M163
+  m_Name: AAGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,10 +357,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4317c131efe0b4f9cb030aaffac561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHp: 0
+  startHp: 50
   isPlayer: 0
   mainTarget: 0
-  name: M163
+  name: AAGun
   nickname: 
   isTargeted: 0
   isRaderLock: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _accuracyLoop: 4
-  _range: 2000
+  _range: 3000
   _minXAxis: 0
   _maxXAxis: 180
   _muzzleTrf: {fileID: 9037683002944754987}
@@ -401,9 +401,7 @@ MonoBehaviour:
   _turretTrf: {fileID: 1268379123456144104}
   _customTarget: 0
   _target: {fileID: 0}
-  hasRadar: 0
-  _radar: {fileID: 0}
-  _maxRotationSpeed: 0
+  _maxRotationSpeed: 60
   _smoothDuration: 0
 --- !u!114 &5362563656243433386
 MonoBehaviour:
