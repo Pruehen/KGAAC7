@@ -37,6 +37,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     GameObject LoadingScreen3;
     [SerializeField]
+    GameObject LoadingScreen4;
+    [SerializeField]
     TextMeshProUGUI descriptionText;
     [SerializeField]
     GameObject backGround;
@@ -189,8 +191,8 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowAirCombatSettings4()
     {
-        SetCurrentActiveScreen(LoadingScreen3);
-        StartCoroutine(OnAirCombatScreen(LoadingScreen3));
+        SetCurrentActiveScreen(LoadingScreen4);
+        StartCoroutine(OnAirCombatScreen(LoadingScreen4));
         LoadingController.sceneName = "Mission04";
     }
 
