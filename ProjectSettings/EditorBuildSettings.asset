@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AC7/Scene/Mission04.unity
     guid: d52341610e5675344bddd4306fcd3e78
+  - enabled: 1
+    path: Assets/AC7/Scene/Mission05.unity
+    guid: cc8f00254d1486f49ac3a83419cfec8d
   m_configObjects: {}
