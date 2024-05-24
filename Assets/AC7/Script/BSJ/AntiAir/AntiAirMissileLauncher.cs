@@ -22,11 +22,13 @@ public class AntiAirMissileLauncher : MonoBehaviour, IAntiAirWeapon
     {
         _weaponSystem = GetComponent<kjh.WeaponSystem>();
         //_fireInterval = _projectile.GetComponent<WeaponData>().ReloadTime();
-        _fireInterval = 10f;
         _playerRb = kjh.GameManager.Instance.player.GetComponent<Rigidbody>();
         _radar = GetComponent<Radar>();
 
         _weaponSystem.Init();
+
+        int missileCount = _weaponSystem.WeaponDataList().Count;
+        _fireInterval = _weaponSystem.UseWeaponData().ReloadTime() / missileCount;
     }
 
     private void Update()
