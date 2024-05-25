@@ -12,16 +12,20 @@ public class AircraftEngineSound : MonoBehaviour
     private AudioLowPassFilter _afterbunerLowpass;
     private float _volumRatio = 1.0f;
 
-    private void Start()
+    private void Awake()
     {
-        _engineSound = bsj.SoundManager.Instance.PlayAttached(_engineSoundPrefab, transform, true).GetComponent<AudioSource>();
-        _engineLowpass = _engineSound.GetComponent<AudioLowPassFilter>();
+        _engineSound = bsj.SoundManager.Instance.SpawnAttached(_engineSoundPrefab, transform, true).GetComponent<AudioSource>();
+        _afterbunerSound = bsj.SoundManager.Instance.SpawnAttached(_afterbunerSoundPrefab, transform, true).GetComponent<AudioSource>();
         _engineSound.volume = 1f * _volumRatio;
-        _afterbunerSound = bsj.SoundManager.Instance.PlayAttached(_afterbunerSoundPrefab, transform, true).GetComponent<AudioSource>();
-        _afterbunerLowpass = _afterbunerSound.GetComponent<AudioLowPassFilter>();
         _afterbunerSound.volume = 0f;
+        _engineSound.Play();
+        _afterbunerSound.Play();
+        _engineLowpass = _engineSound.GetComponent<AudioLowPassFilter>();
+        _afterbunerLowpass = _afterbunerSound.GetComponent<AudioLowPassFilter>();
     }
-
+    private void OnEnable()
+    {
+    }
     /// <summary>
     /// 애프터버너 볼륨 업데이트
     /// </summary>
