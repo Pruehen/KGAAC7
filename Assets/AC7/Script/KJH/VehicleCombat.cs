@@ -21,9 +21,6 @@ public class VehicleCombat : MonoBehaviour, IFightable
 
     public void TakeDamage(float damage)
     {
-        if (isPlayer)
-            damage *= 0.3f;
-
         combat.TakeDamage(damage);
         CustomAI customAI;
         if(TryGetComponent<CustomAI>(out customAI))
@@ -38,7 +35,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
     }
 
     Combat combat = new Combat();
-
+    public Combat Combat() { return combat; }
     protected virtual void Awake()
     {
         combat.Init(this.transform, startHp);        
@@ -46,6 +43,26 @@ public class VehicleCombat : MonoBehaviour, IFightable
         isTargeted = false;
         isRaderLock = false;
         isMissileLock = false;
+
+        if(isPlayer)
+        {
+            StartCoroutine(Heal());
+        }
+    }
+    IEnumerator Heal()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(1);
+            if (!IsDead())
+            {
+                combat.Heal(5);
+            }
+            else
+            {
+                yield break;
+            }
+        }
     }
 
     public bool IsDead()
@@ -59,6 +76,11 @@ public class VehicleCombat : MonoBehaviour, IFightable
         {
             kjh.GameManager.Instance.RemoveActiveTarget(this);
             SubtitleManager.Instance.ShowSubtitle("Kill1");
+            SphereCollider sphereCollider;
+            if (TryGetComponent<SphereCollider>(out sphereCollider))
+            {
+                sphereCollider.enabled = false;
+            }
         }
         else
         {

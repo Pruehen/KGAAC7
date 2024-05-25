@@ -12,6 +12,7 @@ public class EnemySpawnManager2 : MonoBehaviour
     [SerializeField] bool _isSpawning = true;
     [SerializeField] float _distance = 8000f;
     [SerializeField] int _startSpawnCount = 4;
+    [SerializeField] float _targetAlt = 10000;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class EnemySpawnManager2 : MonoBehaviour
         Vector3 playerPosition = kjh.GameManager.Instance.player.transform.position;
         Vector3 randomDir = new(Random.Range(-1f, 1f), 0f, Random.Range(0.5f, 1f));
         Vector3 spawnPos = playerPosition + randomDir * distance;
-        spawnPos.y = 10000;
+        spawnPos.y = _targetAlt;
         Quaternion rotation = Quaternion.LookRotation(-spawnPos + playerPosition);
 
         GameObject sqr = _sqrQueue.Dequeue();

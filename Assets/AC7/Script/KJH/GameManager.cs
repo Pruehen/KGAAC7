@@ -26,9 +26,12 @@ namespace kjh
         /// </summary>
         public void AddActiveTarget(VehicleCombat vehicleCombat)
         {
-            activeTargetList.Add(vehicleCombat);
-            targetCountChanged?.Invoke(activeTargetList.Count);
-            OnTargetAdded?.Invoke(vehicleCombat.transform);
+            if (vehicleCombat.gameObject.activeInHierarchy && !activeTargetList.Contains(vehicleCombat))
+            {
+                activeTargetList.Add(vehicleCombat);
+                targetCountChanged?.Invoke(activeTargetList.Count);
+                OnTargetAdded?.Invoke(vehicleCombat.transform);
+            }
         }
 
 
@@ -37,8 +40,11 @@ namespace kjh
         /// </summary>
         public void RemoveActiveTarget(VehicleCombat vehicleCombat)
         {
-            activeTargetList.Remove(vehicleCombat);
-            targetCountChanged?.Invoke(activeTargetList.Count);
+            if (vehicleCombat.gameObject.activeInHierarchy && activeTargetList.Contains(vehicleCombat))
+            {
+                activeTargetList.Remove(vehicleCombat);
+                targetCountChanged?.Invoke(activeTargetList.Count);
+            }
         }
 
         private void Awake()
@@ -52,7 +58,7 @@ namespace kjh
             {
                 for (int j = 0; j < targetTrf.GetChild(i).childCount; j++)
                 {
-                    VehicleCombat combat = targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>();
+                    VehicleCombat combat = targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>();                    
                     AddActiveTarget(combat);
 
                     //배의 경우 파츠를 가지고 있으므로 자식을 찾아서 추가
@@ -60,7 +66,7 @@ namespace kjh
                     foreach (VehicleCombat childCombatItem in childCombat)
                     { AddActiveTarget(childCombatItem); }
 
-                }                
+                }
                 //activeTargetList[i].onDeadWithSelf.AddListener(RemoveActiveTarget);
             }
         }

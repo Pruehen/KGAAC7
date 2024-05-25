@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TargetUIManager : SceneSingleton<TargetUIManager>
 {
-    [SerializeField] GameObject targetUI;
-    [SerializeField] AircraftMaster aircraftMaster;
+    [SerializeField] GameObject targetUIPrf;
+    //[SerializeField] AircraftMaster aircraftMaster;
 
     List<VehicleCombat> targetList;
     List<TargetUI> useTargetUIList = new List<TargetUI>();
@@ -18,10 +18,11 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
     void Start()
     {
         targetList = kjh.GameManager.Instance.activeTargetList;
+        StartCoroutine(TargetListUpdate());
     }
     
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         for (int i = 0; i < targetList.Count; i++)
         {
@@ -34,5 +35,24 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
 
             useTargetUIList[i].Target = targetList[i];
         }
-    }    
+    } */   
+    
+    IEnumerator TargetListUpdate()
+    {        
+        while (true)
+        {
+            for (int i = 0; i < targetList.Count; i++)
+            {
+                if (useTargetUIList.Count == i)
+                {
+                    GameObject item = ObjectPoolManager.Instance.DequeueObject(targetUIPrf);
+                    item.transform.SetParent(this.transform);
+                    useTargetUIList.Add(item.GetComponent<TargetUI>());
+                }
+
+                useTargetUIList[i].Target = targetList[i];                
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
 }

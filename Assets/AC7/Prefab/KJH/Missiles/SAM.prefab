@@ -274,12 +274,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd781ae820e086488e9c3ada5e65795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EIRCM_Count: 80
+  EIRCM_Count: 60
   target: {fileID: 0}
-  maxTurnRate: 25
-  maxSideForce: 100
-  isTVC: 0
-  traceAngleLimit: 90
+  maxTurnRate: 40
+  maxSideForce: 160
+  isTVC: 1
+  traceAngleLimit: 45
 --- !u!114 &-4268455925729301788
 MonoBehaviour:
   m_ObjectHideFlags: 0

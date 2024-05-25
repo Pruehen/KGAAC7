@@ -215,8 +215,18 @@ public class TargetUI : MonoBehaviour
             ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
             return;
         }
-
         Vector3 screenPosition = activeCamera.WorldToScreenPoint(targetObject.transform.position);
+        bool isOutsideOfCamera = (screenPosition.z < 0 ||
+                    screenPosition.x < 0 || screenPosition.x > screenSize.x ||
+                    screenPosition.y < 0 || screenPosition.y > screenSize.y);
+
+        if (isOutsideOfCamera)
+        {
+            TargetUIManager.Instance.RemoveListUI(this);
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
+            return;
+        }
+        
         float distance = Vector3.Distance(targetObject.transform.position, kjh.GameManager.Instance.player.transform.position);
         nextTargetText.SetActive(false);
 
@@ -241,16 +251,7 @@ public class TargetUI : MonoBehaviour
         }
 
         // the transform is outside of camera view (not behind, we need to consider Field of View)
-        bool isOutsideOfCamera = (screenPosition.z < 0 || 
-                            screenPosition.x < 0 || screenPosition.x > screenSize.x || 
-                            screenPosition.y < 0 || screenPosition.y > screenSize.y);
 
-        if (isOutsideOfCamera)
-        {
-            TargetUIManager.Instance.RemoveListUI(this);
-            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
-            return;
-        }
         //uiObject.SetActive(isOutsideOfCamera == false && isInvisible == true && distance < hideDistance);
 
         TargetIsInRange();
