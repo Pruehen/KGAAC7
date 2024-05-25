@@ -503,7 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnObjectPrifab: {fileID: 373501565748378994, guid: 5f719f55b8dacc744a0d1aa38f85b350, type: 3}
   _scale: 40
-  _onWater: 0
+  _onWater: 1
   _lifeTime: 10
 --- !u!1 &8496116624379868928
 GameObject:

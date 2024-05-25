@@ -23,13 +23,13 @@ public class SpawnPoolObjectOnCombatDestroy : MonoBehaviour
     {
         GameObject item = ObjectPoolManager.Instance.DequeueObject(_spawnObjectPrifab);
         item.transform.localScale = Vector3.one * _scale;
-        if(_onWater)
+        item.transform.position = transform.position;
+        if (_onWater)
         {
             Vector3 onWaterPos = transform.position;
             onWaterPos.y = 0f;
             item.transform.position = onWaterPos;
         }
-        item.transform.position = transform.position;
         ObjectPoolManager.Instance.EnqueueObject(item, _lifeTime);
     }
 }
