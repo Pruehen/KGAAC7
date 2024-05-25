@@ -346,6 +346,8 @@ GameObject:
   - component: {fileID: 6102060593351706366}
   - component: {fileID: 6669153494344097264}
   - component: {fileID: 1485620585378860246}
+  - component: {fileID: 3947540911003294251}
+  - component: {fileID: 1882879093407166683}
   m_Layer: 0
   m_Name: BattleCruiser
   m_TagString: Untagged
@@ -360,7 +362,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8261096313005602869}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 74.7, y: 16, z: 11.6}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 1
@@ -394,6 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b1b7acbcc72584d8bf703fd42948ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCombatDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-4188175731176896398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +473,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.79, y: 5.04, z: 11.62}
   m_Center: {x: 0, y: -3.07, z: -15}
+--- !u!114 &3947540911003294251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261096313005602869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48007d7e3e2635d48857b5d1ebf80201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnObjectPrifab: {fileID: 2035451551909382287, guid: cef409f191343f24daadb06cc0bdbc40, type: 3}
+  _scale: 1
+  _onWater: 0
+  _lifeTime: 300
+--- !u!114 &1882879093407166683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261096313005602869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48007d7e3e2635d48857b5d1ebf80201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnObjectPrifab: {fileID: 373501565748378994, guid: 5f719f55b8dacc744a0d1aa38f85b350, type: 3}
+  _scale: 40
+  _onWater: 0
+  _lifeTime: 10
 --- !u!1 &8496116624379868928
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,6 +738,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5324027720529469657, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
+      propertyPath: _bulletSpread
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
 --- !u!4 &1590480582236000367 stripped
@@ -837,6 +878,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5324027720529469657, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
+      propertyPath: _bulletSpread
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
 --- !u!4 &4382862710226149629 stripped
@@ -910,6 +955,10 @@ PrefabInstance:
     - target: {fileID: 4493378293339621940, guid: b72a11eb57368684f9a4e0038c7628be, type: 3}
       propertyPath: m_Name
       value: Turret_Huge (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081849831508395050, guid: b72a11eb57368684f9a4e0038c7628be, type: 3}
+      propertyPath: _bulletSpread
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b72a11eb57368684f9a4e0038c7628be, type: 3}
@@ -1047,6 +1096,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5324027720529469657, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
+      propertyPath: _bulletSpread
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
 --- !u!4 &6172192252445792817 stripped
@@ -1121,6 +1174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5324027720529469657, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
+      propertyPath: _bulletSpread
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
 --- !u!4 &8356148782456806019 stripped
@@ -1194,6 +1251,10 @@ PrefabInstance:
     - target: {fileID: 2212684185730020477, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324027720529469657, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
+      propertyPath: _bulletSpread
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a42d97d092c56754c99eebb06ffd7abb, type: 3}
