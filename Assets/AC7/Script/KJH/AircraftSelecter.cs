@@ -12,6 +12,8 @@ public class AircraftSelecter : MonoBehaviour
     public kjh.WeaponSystem weaponSystem { get; private set; }
     public AircraftControl aircraftControl { get; private set; }
 
+    public string name { get; private set; }
+
     private void Awake()
     {
         SetControlAircraft(controlAircraft);
@@ -29,32 +31,31 @@ public class AircraftSelecter : MonoBehaviour
         }
 
         if(controlAircraft == null)
-        {
-            string name;            
+        {       
             if (GameObject.Find("_F-16C") != null)
             {
                 name = "F-16C";
-                Destroy(GameObject.Find("_F-16C"));
+                //Destroy(GameObject.Find("_F-16C"));
             }
             else if(GameObject.Find("_MiG-29A") != null)
             {
                 name = "MiG-29A";
-                Destroy(GameObject.Find("_MiG-29A"));
+                //Destroy(GameObject.Find("_MiG-29A"));
             }
             else if (GameObject.Find("_F-14A") != null)
             {
                 name = "F-14A";
-                Destroy(GameObject.Find("_F-14A"));
+                //Destroy(GameObject.Find("_F-14A"));
             }
             else if (GameObject.Find("_F-15C") != null)
             {
                 name = "F-15C";
-                Destroy(GameObject.Find("_F-15C"));
+                //Destroy(GameObject.Find("_F-15C"));
             }
             else if (GameObject.Find("_Su-37") != null)
             {
                 name = "Su-37";
-                Destroy(GameObject.Find("_Su-37"));
+                //Destroy(GameObject.Find("_Su-37"));
             }
             else
             {

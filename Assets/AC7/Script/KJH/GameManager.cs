@@ -87,7 +87,7 @@ namespace kjh
             StartCoroutine(DelayedCall(delay + 1f,  () => player.gameObject.SetActive(false))) ;
         }
 
-        private IEnumerator DelayedCall(float time, System.Action action)
+        public IEnumerator DelayedCall(float time, System.Action action)
         {
             yield return new WaitForSeconds(time);
             action?.Invoke();
@@ -99,11 +99,14 @@ namespace kjh
         /// </summary>
         public void ReturnToMainMenu()
         {
+            
+            Destroy(GameObject.Find("_"+ kjh.GameManager.Instance.player.AircraftSelecter().name));
             SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         }
 
         public void ReloadCurrentScene()
         {
+            bsj.SoundManager.Instance.Reset();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
             Debug.Log("ReloadScene");
         }
