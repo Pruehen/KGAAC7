@@ -25,9 +25,9 @@ TagManager:
   - UI_Target
   - Minimap
   - Bullet
-  - 
-  - 
-  - 
+  - Enemy
+  - EnemyBullet
+  - EnemyMissile
   - 
   - 
   - 

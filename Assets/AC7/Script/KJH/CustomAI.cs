@@ -514,7 +514,7 @@ class MissileEvade : IFlightStratage //6. 미사일 회피 전략
     public void EnterState()
     {
         Debug.Log($"{customAI.gameObject.name} 상태 설정 : 회피 기동");
-        customAI.WeaponController_AI().SetFlareTrigger(true);
+        customAI?.WeaponController_AI().SetFlareTrigger(true);
     }
     public void ExitState() { customAI.WeaponController_AI().SetFlareTrigger(false); }
     public Vector3 ReturnNewOrder()
