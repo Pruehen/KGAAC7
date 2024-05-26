@@ -45,13 +45,6 @@ public class PlayRandomOnEnable : MonoBehaviour
         bsj.SoundManager.Instance.PlayAttached(sfxPrefab, transform);
     }
 
-    private IEnumerator DelayPerDistance(float distance)
-    {
-        float delay = distance / 334f;
-        yield return new WaitForSeconds(delay);
-        PlayByDistance(distance);
-    }
-
     private IEnumerator CheckInListhenRange()
     {
         float timeStamp = Time.time;
@@ -64,10 +57,13 @@ public class PlayRandomOnEnable : MonoBehaviour
             if (distance < audioRange)
             {
                 PlayByDistance(distanceStamp);
+                float shakePower = 1f - (Mathf.Clamp01(distance / 500f));
+                kjh.GameManager.Instance.cameraShake.TriggerShake(.3f * shakePower,.04f * shakePower, .01f * shakePower);
                 break;
             }
             audioRange += Time.deltaTime * 1000f;
             //transform.position.DrawSphere(audioRange, Color.yellow);
+            
         }
     }
 }

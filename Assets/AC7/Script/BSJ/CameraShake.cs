@@ -33,6 +33,11 @@ public class CameraShake : MonoBehaviour
     }
     public void TriggerShake(float duration, float verticalForce, float horizontalForce)
     {
+        //현재 실행중이면서 그 크기가 크면 취소
+        if(_shakeMagnitudeV > verticalForce && IsShaking())
+        {
+            return;
+        }
         _shakeTime = 0f;
         _duration = duration;
         _shakeMagnitudeV = verticalForce;
@@ -45,7 +50,7 @@ public class CameraShake : MonoBehaviour
         {
             return;
         }
-            if (_shakeTime < _duration)
+        if (IsShaking())
         {
             float shakeX = _shakeCurve.Evaluate(_shakeTime / _duration * _shakeMagnitudeH * Random.Range(-1f, 1f));
             float shakeY = _shakeCurve.Evaluate(_shakeTime / _duration * _shakeMagnitudeV * Random.Range(-1f, 1f));
@@ -56,5 +61,10 @@ public class CameraShake : MonoBehaviour
         {
                 transform.localPosition = _initialPosition;
         }
+    }
+
+    public bool IsShaking()
+    {
+        return _shakeTime < _duration;
     }
 }
