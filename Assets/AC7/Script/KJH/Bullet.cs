@@ -61,7 +61,7 @@ namespace kjh
 
                 //Vector3 playerToBullet = (-other.transform.position + transform.position).normalized;
                 //vsfx.transform.position = other.transform.position + playerToBullet * Random.Range(10f, 22f) + other.transform.forward * 4f;
-                vsfx.transform.position = collision.transform.position;
+                vsfx.transform.position = collision.GetContact(0).point;
             }
             else
             {
