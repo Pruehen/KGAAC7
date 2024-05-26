@@ -63,6 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b1b7acbcc72584d8bf703fd42948ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCombatDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3604622505360281960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4317c131efe0b4f9cb030aaffac561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHp: 0
+  startHp: 60
   isPlayer: 0
   mainTarget: 0
   name: CIWS

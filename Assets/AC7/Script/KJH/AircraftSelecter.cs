@@ -71,7 +71,7 @@ public class AircraftSelecter : MonoBehaviour
         aircraftData = controlAircraft.GetComponent<AircraftData>();
         this.gameObject.GetComponent<AircraftFM>().Init();
         weaponSystem = controlAircraft.GetComponent<kjh.WeaponSystem>();
-        weaponSystem.Init();
+        weaponSystem?.Init();
         aircraftControl = controlAircraft.GetComponent<AircraftControl>();
     }
 

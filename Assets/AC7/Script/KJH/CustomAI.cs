@@ -169,7 +169,7 @@ public class CustomAI : MonoBehaviour
         if (!isEngage && engageRule != EngageRule.none)
         {
             isEngage = true;
-            weaponController_AI.StartWeaponFireCheck();
+            weaponController_AI?.StartWeaponFireCheck();
             ChangeStratage(3);
         }                    
     }
