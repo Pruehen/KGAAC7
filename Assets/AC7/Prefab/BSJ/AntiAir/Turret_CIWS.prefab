@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3535482402029668495}
   - component: {fileID: 8677757162047096119}
   - component: {fileID: 1537055421322871111}
+  - component: {fileID: -5546998335126668937}
   m_Layer: 0
   m_Name: Turret_CIWS
   m_TagString: Untagged
@@ -159,6 +160,22 @@ MonoBehaviour:
   _fadeInLength: 0.1
   _fadeOutLength: 0.3
   _SfxPrefab: {fileID: 1759765917466483415, guid: f39555779f313d94c83567cd547678fe, type: 3}
+--- !u!54 &-5546998335126668937
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626145105310452521}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &9122045252207026061
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 687727242730434716}
   - component: {fileID: 8115232199839199244}
   - component: {fileID: 4396231835125014641}
+  - component: {fileID: -435376485919409908}
   m_Layer: 0
   m_Name: 4Socket_MissileLauncher
   m_TagString: Untagged
@@ -64,6 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b1b7acbcc72584d8bf703fd42948ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCombatDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2098727771218513270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +179,22 @@ MonoBehaviour:
   radarMaxAngle: 360
   isEnemy: 1
   _lockOnSfxPrefab: {fileID: 0}
+--- !u!54 &-435376485919409908
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817383356146898743}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2315984823330782912
 GameObject:
   m_ObjectHideFlags: 0
