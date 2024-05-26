@@ -123,7 +123,8 @@ public class Rocket : MonoBehaviour
         if(collision.transform.TryGetComponent<VehicleCombat>(out fightable))
         {
             fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
-            EffectManager.Instance.EffectGenerate(explosionEffect, collision.transform.position);
+            Vector3 contact = collision.GetContact(0).point;
+            EffectManager.Instance.EffectGenerate(explosionEffect, contact);
             this.DestroyRocket();
             if (fightable.isPlayer)
             {
