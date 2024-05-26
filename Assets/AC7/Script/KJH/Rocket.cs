@@ -120,7 +120,7 @@ public class Rocket : MonoBehaviour
     {
         //Debug.Log("Ãæµ¹");
         VehicleCombat fightable;
-        if(collision.transform.TryGetComponent<VehicleCombat>(out fightable))
+        if(collision.collider.TryGetComponent<VehicleCombat>(out fightable))
         {
             fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
             Vector3 contact = collision.GetContact(0).point;
