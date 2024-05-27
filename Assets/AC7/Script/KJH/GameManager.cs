@@ -82,6 +82,9 @@ namespace kjh
             //씬을 이동시킨다
             //씬매니저
             Debug.Assert(_gameResultUi != null);
+
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+
             StartCoroutine(DelayedCall(delay, _gameResultUi.FadeIn));
             //플레이어 정지
             StartCoroutine(DelayedCall(delay + 1f,  () => player.gameObject.SetActive(false))) ;

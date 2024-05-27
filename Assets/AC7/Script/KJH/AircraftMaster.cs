@@ -44,6 +44,11 @@ public class AircraftMaster : MonoBehaviour
             GetComponent<WeaponController_AI>().enabled = false;
             GetComponent<CustomAI>().enabled = false;
         }
+
+        if(_isPlayer)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     public void Dead()
@@ -52,6 +57,10 @@ public class AircraftMaster : MonoBehaviour
         {
             Camera.main.transform.SetParent(null);
             Camera.main.transform.GetComponent<CamRotate>().enabled = false;
+            if (_isPlayer)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
 
         }
         EffectManager.Instance.AircraftFireEffectGenerate(this.transform);
