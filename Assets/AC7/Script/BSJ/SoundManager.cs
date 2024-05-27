@@ -12,6 +12,7 @@ namespace bsj
 
         private void Start()
         {
+            Reset();
             StartCoroutine(kjh.GameManager.Instance.DelayedCall(1f, StartFadeIn));
         }
 
