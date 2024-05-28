@@ -9,7 +9,10 @@ namespace bsj
     public class SoundManager : SceneSingleton<SoundManager>
     {
         [SerializeField] AudioMixer _audioMixer;
-
+        private void Awake()
+        {
+            Reset();
+        }
         private void Start()
         {
             Reset();
