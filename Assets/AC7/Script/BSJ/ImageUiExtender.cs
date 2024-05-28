@@ -9,6 +9,10 @@ public static class ImageUiExtender
     {
         kjh.GameManager.Instance.FadeIn(image, time, onlyActiveSelf, fadeEnd);
     }
+    public static void FadeOut(this Graphic image, float time, bool onlyActiveSelf = false, System.Action fadeStart = null, System.Action fadeEnd = null)
+    {
+        kjh.GameManager.Instance.FadeOut(image, time, onlyActiveSelf, fadeStart, fadeEnd);
+    }
 }
 
 public static class TransformExtender

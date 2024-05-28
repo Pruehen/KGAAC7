@@ -27,4 +27,28 @@ public class GameResultUi : MonoBehaviour
             child.FadeIn(1f, true);
         }
     }
+    public void FadeOutResultUi()
+    {
+        FadeOutChildAndSelf();
+    }
+    private void FadeOutChildAndSelf()
+    {
+        bool once = false;
+        foreach (var child in _childs)
+        {
+            if(!once)
+            {
+                once = true;
+                child.FadeOut(1f, true, null, FadeOutSelf);
+            }
+            else
+            {
+                child.FadeOut(1f, true);
+            }
+        }
+    }
+    private void FadeOutSelf()
+    {
+        _background.FadeOut(1f, _onlyActiveParent);
+    }
 }

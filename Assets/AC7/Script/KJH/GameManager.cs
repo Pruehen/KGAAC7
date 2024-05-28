@@ -92,7 +92,7 @@ namespace kjh
 
         public IEnumerator DelayedCall(float time, System.Action action)
         {
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSecondsRealtime(time);
             action?.Invoke();
         }
 
@@ -142,13 +142,72 @@ namespace kjh
             fadeEnd?.Invoke();
             yield break;
         }
+        public void FadeOut(Graphic image, float time, bool onlyActiveSelf = false, System.Action fadeStart = null, System.Action fadeEnd = null)
+        {
+            StartCoroutine(FadeOutCoroutine(image, time, onlyActiveSelf, fadeStart, fadeEnd));
+        }
+
+        private IEnumerator FadeOutCoroutine(Graphic image, float time, bool onlyActiveSelf = false, System.Action fadeStart = null, System.Action fadeEnd = null)
+        {
+            fadeStart?.Invoke();
+            float alpha = 1f;
+            image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
+            image.gameObject.SetActive(true);
+
+            if (onlyActiveSelf)
+            {
+                for (int i = 0; i < image.transform.childCount; i++)
+                {
+                    image.transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+            while (image.color.a > 0f)
+            {
+                alpha -= Time.fixedUnscaledDeltaTime / time;
+                image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
+                yield return null;
+            }
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+            fadeEnd?.Invoke();
+            yield break;
+        }
 
         public void AddMissile(Transform target)
         {
             OnMissileAdded?.Invoke(target);
         }
 
+        public bool IsPaused { get; set; } = false;
+        public void PauseTrigget()
+        {
+            if(IsPaused)
+            {
+                IsPaused = false;
+                ResumeGame(1f, 1f);
+            }
+            else
+            {
+                IsPaused = true;
+                PauseGame(1f, 1f);
+            }
+        }
 
+        private void PauseGame(float fadeInDelay, float pauseGameDelay)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+
+            StartCoroutine(DelayedCall(fadeInDelay, _gameResultUi.FadeIn));
+            //플레이어 정지
+            StartCoroutine(DelayedCall(fadeInDelay + 1f, () => Time.timeScale = 0f));
+        }
+        private void ResumeGame(float fadeInDelay, float pauseGameDelay)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+
+            StartCoroutine(DelayedCall(fadeInDelay, _gameResultUi.FadeOutResultUi));
+            //플레이어 정지
+            StartCoroutine(DelayedCall(fadeInDelay + 1f, () => Time.timeScale = 1f));
+        }
 
 
     }

@@ -32,12 +32,15 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     public UnityEvent onClick_LeftMouseUp;
     public UnityEvent onClick_MidMouseDown;
     public UnityEvent onClick_MidMouseUp;
+    public UnityEvent onClick_ESC;
 
     // Update is called once per frame
     void Update()
     {
         if(!isControlable)
         { return; } 
+        if(kjh.GameManager.Instance.IsPaused)
+        { return; }
         ControlSurface();
 
         if (Input.GetMouseButtonDown(0))
@@ -76,6 +79,10 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
         if (Input.GetKeyUp(KeyCode.F))
         {
             onClick_Fup.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            onClick_ESC.Invoke();
         }
     }
     bool missileFireTrigger = false;
