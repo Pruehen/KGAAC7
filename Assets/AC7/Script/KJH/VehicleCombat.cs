@@ -75,7 +75,7 @@ public class VehicleCombat : MonoBehaviour, IFightable
         if (!isPlayer)
         {
             kjh.GameManager.Instance.RemoveActiveTarget(this);
-            SubtitleManager.Instance.ShowSubtitle("Kill1");
+            //SubtitleManager.Instance.ShowSubtitle("Kill1");
             SphereCollider sphereCollider;
             if (TryGetComponent<SphereCollider>(out sphereCollider))
             {

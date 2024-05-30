@@ -19,8 +19,8 @@ public class OceanObstacle : MonoBehaviour
             GameObject pooledItem = ObjectPoolManager.Instance.DequeueObject(_splashVfxPrefab);
             pooledItem.transform.position = collision.transform.position;
             ObjectPoolManager.Instance.EnqueueObject(pooledItem, 10f);            
-            target.TakeDamage(9999999f);
-            collision.transform.position += new Vector3(0, -20, 0);
+            //target.TakeDamage(9999999f);
+            //collision.transform.position += new Vector3(0, -20, 0);
         }
     }
 }

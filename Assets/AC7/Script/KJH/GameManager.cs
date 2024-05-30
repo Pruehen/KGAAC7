@@ -27,7 +27,9 @@ namespace kjh
         /// </summary>
         public void AddActiveTarget(VehicleCombat vehicleCombat)
         {
-            if (vehicleCombat.gameObject.activeInHierarchy && !activeTargetList.Contains(vehicleCombat))
+            if (vehicleCombat.gameObject.activeInHierarchy 
+                && !activeTargetList.Contains(vehicleCombat) 
+                && player.GetComponent<VehicleCombat>() != vehicleCombat)
             {
                 activeTargetList.Add(vehicleCombat);
                 targetCountChanged?.Invoke(activeTargetList.Count);

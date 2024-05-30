@@ -7,6 +7,7 @@ public class FlightController : MonoBehaviour
 {
     AircraftSelecter aircraftSelecter;
     [SerializeField] public AircraftControl aircraftControl;
+    [SerializeField] PlayerInputCustom PlayerInputCustom_input;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,8 @@ public class FlightController : MonoBehaviour
         aircraftControl = aircraftSelecter.aircraftControl;
         if (!dead)
         {            
-            aircraftControl.SetAxisValue(PlayerInputCustom.Instance.pitchAxis, PlayerInputCustom.Instance.rollAxis, PlayerInputCustom.Instance.yawAxis, PlayerInputCustom.Instance.throttleAxis);//테스트 코드
+            aircraftControl.SetAxisValue(PlayerInputCustom_input.pitchAxis, PlayerInputCustom_input.rollAxis,
+                PlayerInputCustom_input.yawAxis, PlayerInputCustom_input.throttleAxis);//테스트 코드
         }
         else
         {

@@ -1,14 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
+using Unity.VisualScripting;
 
 //사용중인 항공기의 FM 데이터를 받아서 실제 비행 물리를 적용
-public class AircraftFM : MonoBehaviour
+public class AircraftFM : NetworkBehaviour
 {
     AircraftSelecter aircraftSelecter;
     VaporEffect effect;
     [SerializeField] AircraftData aircraftData;
-    Rigidbody rigidbody;    
+    Rigidbody rigidbody;
+
+    [SyncVar] [SerializeField] float _enginePower;
+    [SyncVar] [SerializeField] float _pitchTorque;
+    [SyncVar] [SerializeField] float _rollTorque;
+    [SyncVar] [SerializeField] float _yawTorque;
+    [SyncVar] [SerializeField] Vector3 curVelocity;
 
     public void Init()
     {
@@ -16,6 +22,11 @@ public class AircraftFM : MonoBehaviour
         effect = aircraftSelecter.controlAircraft.GetComponent<VaporEffect>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.velocity = this.transform.forward * 200;
+
+        if(!this.isLocalPlayer)
+        {
+            rigidbody.interpolation = RigidbodyInterpolation.None;
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -26,14 +37,19 @@ public class AircraftFM : MonoBehaviour
         float velocitySpeed = velocity.magnitude;
         //Debug.Log(velocity);
 
+        _enginePower = aircraftData.EnginePower(velocitySpeed, this.transform.position.y);
+        _pitchTorque = -aircraftData.PitchTorque(velocitySpeed);
+        _rollTorque = -aircraftData.RollTorque(velocitySpeed);
+        _yawTorque = aircraftData.YawTorque(velocitySpeed);
+
         //엔진 추력 적용
-        rigidbody.AddForce(this.transform.forward * aircraftData.EnginePower(velocitySpeed, this.transform.position.y), ForceMode.Acceleration);
+        rigidbody.AddForce(this.transform.forward * _enginePower, ForceMode.Acceleration);
         //피치 토크 적용
-        rigidbody.AddTorque(this.transform.right * -aircraftData.PitchTorque(velocitySpeed), ForceMode.Acceleration);
+        rigidbody.AddTorque(this.transform.right * _pitchTorque, ForceMode.Acceleration);
         //롤 토크 적용
-        rigidbody.AddTorque(this.transform.forward * -aircraftData.RollTorque(velocitySpeed), ForceMode.Acceleration);
+        rigidbody.AddTorque(this.transform.forward * _rollTorque, ForceMode.Acceleration);
         //요 토크 적용
-        rigidbody.AddTorque(this.transform.up * aircraftData.YawTorque(velocitySpeed), ForceMode.Acceleration);
+        rigidbody.AddTorque(this.transform.up * _yawTorque, ForceMode.Acceleration);
         //스톨 토크 적용
         Vector3 stallAxis = Vector3.Cross(this.transform.forward, new Vector3(0, -1, 0));
         rigidbody.AddTorque(stallAxis * aircraftData.StallTorque(velocitySpeed), ForceMode.Acceleration);
@@ -55,5 +71,11 @@ public class AircraftFM : MonoBehaviour
         //Debug.Log(velocitySpeed);
 
         effect?.SetEffect(velocitySpeed, aoa);
-    }
+
+        if (this.isLocalPlayer)
+        {
+            curVelocity = rigidbody.velocity;
+        }
+        rigidbody.velocity = curVelocity;
+    }   
 }

@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Mirror;
 
-public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
+public class PlayerInputCustom : NetworkBehaviour
 {
     public bool isControlable { get; set; } = true;
     public float pitchAxis {get; private set;}
@@ -17,11 +16,6 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
 
     public System.Action OnFireEvent;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     public UnityEvent onClick_X;
     public UnityEvent onClick_R;
@@ -37,6 +31,8 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     // Update is called once per frame
     void Update()
     {
+        if (!this.isLocalPlayer) return;
+
         if(!isControlable)
         { return; } 
         if(kjh.GameManager.Instance.IsPaused)
@@ -45,11 +41,11 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
 
         if (Input.GetMouseButtonDown(0))
         {
-            onClick_LeftMouseDown.Invoke();
+            NetworkInvoke(onClick_LeftMouseDown);
         }
         if (Input.GetMouseButtonUp(0))
         {
-            onClick_LeftMouseUp.Invoke();
+            NetworkInvoke(onClick_LeftMouseUp);
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -57,40 +53,56 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
         }
         if (Input.GetMouseButtonDown(2))
         {
-            onClick_MidMouseDown.Invoke();
+            NetworkInvoke(onClick_MidMouseDown);
         }
         if (Input.GetMouseButtonUp(2))
         {
-            onClick_MidMouseUp.Invoke();
+            NetworkInvoke(onClick_MidMouseUp);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            onClick_X.Invoke();
+            NetworkInvoke(onClick_X);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            onClick_R.Invoke();
+            NetworkInvoke(onClick_R);
         }
         if (Input.GetKeyDown(KeyCode.F))
-        {
-            onClick_Fdown.Invoke();
+        {            
+            NetworkInvoke(onClick_Fdown);
         }
         if (Input.GetKeyUp(KeyCode.F))
-        {
-            onClick_Fup.Invoke();
+        {            
+            NetworkInvoke(onClick_Fup);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            onClick_ESC.Invoke();
+        {            
+            NetworkInvoke(onClick_ESC);
         }
     }
+    void NetworkInvoke(UnityEvent unityEvent)
+    {
+        unityEvent.Invoke();
+
+        if(this.isClient)
+        {
+            CommandInvoke_ClientOnly(unityEvent);
+        }
+    }
+
+    [Command]
+    void CommandInvoke_ClientOnly(UnityEvent unityEvent)
+    {
+        unityEvent.Invoke();
+    }
+
     bool missileFireTrigger = false;
     private void FixedUpdate()
     {
         if (missileFireTrigger)
         {
-            onClick_RightMouse.Invoke();
+            NetworkInvoke(onClick_RightMouse);
             missileFireTrigger = false;
         }
     }
