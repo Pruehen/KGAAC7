@@ -9,7 +9,11 @@ namespace bsj
         Transform _playerTrf;
         Camera _cam;
 
-        void Start()
+        private void Start()
+        {
+            bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+        }
+        private void OnPlayerSpawn()
         {
             _cam = Camera.main;
             Vector3 offset = Vector3.up * 500f;

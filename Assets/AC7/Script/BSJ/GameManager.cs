@@ -8,7 +8,7 @@ namespace bsj
 {
     public class GameManager : SceneSingleton<GameManager>
     {
-        public System.Action OnPlayerSpawned;
+        public System.Action AfterPlayerSpawned;
         public Transform player;
         /// <summary>
         /// 현재씬이 멀티플레이인지 확인
@@ -43,7 +43,14 @@ namespace bsj
         public void TriggerNetworkPlayerSpawn(Transform player)
         {
             this.player = player;
-            OnPlayerSpawned?.Invoke();
+            StartCoroutine(TriggerOnAfterPlayerSpawned());
+        }
+
+        private IEnumerator TriggerOnAfterPlayerSpawned()
+        {
+            yield return null;
+            yield return new WaitForSeconds(.3f);
+            AfterPlayerSpawned?.Invoke();
         }
 
 
@@ -55,7 +62,7 @@ namespace bsj
             IsNetworkScene = IsNetworkManagerExist();
             if (!IsNetworkScene)
             {
-                OnPlayerSpawned?.Invoke();
+                AfterPlayerSpawned?.Invoke();
             }
         }
 

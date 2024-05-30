@@ -15,12 +15,17 @@ public class WeaponController_AI : MonoBehaviour
     [SerializeField][Range(3f, 10f)] float aiLevel;//난이도 설정. 3부터 10까지의 값을 가짐. 값이 클수록 무장을 효율적이고 빠르게 발사함
 
     //public bool isEngage { get; set; }
-    void Start()
+    private void Awake()
+    {
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+    }
+
+    void OnPlayerSpawn()
     {
         weaponController = GetComponent<kjh.WeaponController>();
         //weaponSystem = GetComponent<WeaponSystem>();
         radar = GetComponent<Radar>();
-        target = kjh.GameManager.Instance.player.transform;      
+        target = kjh.GameManager.Instance.player.transform;
     }
 
     public void StartWeaponFireCheck()

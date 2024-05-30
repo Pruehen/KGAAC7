@@ -127,6 +127,11 @@ public class CustomAI : MonoBehaviour
 
     void Start()
     {
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+    }
+    private void OnPlayerSpawn()
+    {
+
         SetFormationPos(spreadValue);
 
         flightController_AI = GetComponent<FlightController_AI>();
@@ -158,7 +163,7 @@ public class CustomAI : MonoBehaviour
         StartCoroutine(Order());
         StartCoroutine(ChangeIsWingmanPosition());
 
-        if(engageRule == EngageRule.active)
+        if (engageRule == EngageRule.active)
         {
             StartCoroutine(StartEngage());
         }

@@ -9,7 +9,11 @@ public class HpBar : MonoBehaviour
     Combat playerCombat;
     float maxHp;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
+    {
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+    }
+    private void OnPlayerSpawn()
     {
         hpBar = GetComponent<Image>();
         playerCombat = kjh.GameManager.Instance.player.vehicleCombat.Combat();
@@ -19,6 +23,10 @@ public class HpBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(playerCombat == null) 
+        { 
+            return; 
+        }
         float hpRatio = playerCombat.GetHp() / maxHp;
         hpBar.color = new Color(1, hpRatio, hpRatio);
     }

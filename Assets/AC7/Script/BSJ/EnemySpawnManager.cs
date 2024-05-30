@@ -22,6 +22,10 @@ public class EnemySpawnManager : MonoBehaviour
     }
     private void Start()
     {
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+    }
+    private void OnPlayerSpawn()
+    {
         if (_isSpawning)
             kjh.GameManager.Instance.targetCountChanged += OnTargetCountChanged;
     }

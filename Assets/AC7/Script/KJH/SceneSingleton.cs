@@ -19,6 +19,7 @@ public class SceneSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 {
                     GameObject singletonObject = new GameObject();
                     instance = singletonObject.AddComponent<T>();
+                    Debug.LogWarning($"½Ì±ÛÅæ ¾À¿¡ ¾øÀ½{nameof(T)}");
                 }
             }
 

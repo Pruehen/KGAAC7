@@ -8,7 +8,11 @@ public class MslCoolUiSet : MonoBehaviour
     [SerializeField] GameObject mslCoolUIPrf_M;
     kjh.WeaponSystem weaponSystem;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
+    {
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+    }
+    private void OnPlayerSpawn()
     {
         weaponSystem = kjh.GameManager.Instance.player.AircraftSelecter().weaponSystem;
         List<int> weaponIndexList = weaponSystem.EquipedWeaponIndexList();

@@ -17,6 +17,10 @@ public class CameraShake : MonoBehaviour
 
     private void Start()
     {
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+    }
+    private void OnPlayerSpawn()
+    {
         _player = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
         _initialPosition = transform.localPosition;
         //StartCoroutine(DebugShake());
@@ -46,6 +50,10 @@ public class CameraShake : MonoBehaviour
 
     void LateUpdate()
     {
+        if(_player == null) 
+        {
+            return;
+        }
         if (_player.IsDead())
         {
             return;

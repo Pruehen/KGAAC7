@@ -109,6 +109,7 @@ namespace Mirror.Examples.Chat
             }
             else
             {
+                
                 connectionsPendingDisconnect.Add(conn);
 
                 // create and send msg to client so it knows to disconnect

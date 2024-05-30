@@ -8,6 +8,10 @@ public class MissionEleminate : MonoBehaviour
 
     private void Start()
     {
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+    }
+    private void OnPlayerSpawn()
+    {
         kjh.GameManager.Instance.targetCountChanged += TargetCountCheck;
     }
     private void TargetCountCheck(int count)

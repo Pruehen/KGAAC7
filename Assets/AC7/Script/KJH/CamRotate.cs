@@ -29,7 +29,11 @@ public class CamRotate : MonoBehaviour
     Vector3 initLocalPos;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
+    {
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+    }
+    private void OnPlayerSpawn()
     {
         aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
         GetComponent<AudioListener>().enabled = false;
@@ -49,6 +53,10 @@ public class CamRotate : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {        
+        if(aircraftControl == null)
+        {
+            return;
+        }
         float throttle = aircraftControl.throttle;
 
         //Vector3 camTargetPos = initLocalPos + new Vector3(0, (isTargetTraking && viewTargetTrf != null) ? 5 : 0, -throttle);

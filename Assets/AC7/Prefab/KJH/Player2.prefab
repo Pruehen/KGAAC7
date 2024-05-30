@@ -28164,6 +28164,10 @@ PrefabInstance:
       propertyPath: volumRatio
       value: 0.04
       objectReference: {fileID: 0}
+    - target: {fileID: 8496747056499064003, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: _assetId
+      value: 2167016943
+      objectReference: {fileID: 0}
     - target: {fileID: 8653230334330335157, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: weaponPrf
       value: 
