@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -54,17 +55,25 @@ namespace kjh
                 targetTrf = GameObject.Find("Target_Transform").transform;
             }
 
+            VehicleCombat myVehicleCombat = player.GetComponent<VehicleCombat>();
+
             for (int i = 0; i < targetTrf.childCount; i++)
             {
                 for (int j = 0; j < targetTrf.GetChild(i).childCount; j++)
                 {
-                    VehicleCombat combat = targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>();                    
+                    VehicleCombat combat = targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>();
+
+                    if (combat == null || myVehicleCombat == combat) continue;
+
                     AddActiveTarget(combat);
 
                     //배의 경우 파츠를 가지고 있으므로 자식을 찾아서 추가
                     VehicleCombat[] childCombat = combat.GetComponentsInChildren<VehicleCombat>();
-                    foreach (VehicleCombat childCombatItem in childCombat)
-                    { AddActiveTarget(childCombatItem); }
+                    if (childCombat.Length > 0)
+                    {
+                        foreach (VehicleCombat childCombatItem in childCombat)
+                        { AddActiveTarget(childCombatItem); }
+                    }
 
                 }
                 //activeTargetList[i].onDeadWithSelf.AddListener(RemoveActiveTarget);
