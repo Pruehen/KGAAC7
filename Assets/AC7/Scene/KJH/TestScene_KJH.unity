@@ -445,6 +445,10 @@ PrefabInstance:
       propertyPath: spawnPrefabs.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
+      propertyPath: Transform_PlayerSpawnParent
+      value: 
+      objectReference: {fileID: 1601999417}
     - target: {fileID: 5473010730410178574, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: m_Name
       value: NetworkManager
@@ -841,7 +845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1601999417}
   m_Layer: 0
-  m_Name: Enemy_Transform
+  m_Name: Target_Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

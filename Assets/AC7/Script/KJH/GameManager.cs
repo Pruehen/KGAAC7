@@ -51,7 +51,7 @@ namespace kjh
         {
             if(targetTrf == null)
             {
-                targetTrf = GameObject.Find("Enemy_Transform").transform;
+                targetTrf = GameObject.Find("Target_Transform").transform;
             }
 
             for (int i = 0; i < targetTrf.childCount; i++)
