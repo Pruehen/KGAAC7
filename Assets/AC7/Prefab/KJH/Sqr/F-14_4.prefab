@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: formationLocalPos.z
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 8496747056499064003, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: _assetId
+      value: 1241928536
+      objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
@@ -268,6 +272,10 @@ PrefabInstance:
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: formationLocalPos.z
       value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8496747056499064003, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: _assetId
+      value: 1241928536
       objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
@@ -428,6 +436,10 @@ PrefabInstance:
       propertyPath: wayPointList.Array.data[3].y
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 8496747056499064003, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: _assetId
+      value: 1241928536
+      objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
@@ -554,6 +566,10 @@ PrefabInstance:
     - target: {fileID: 5134550722281156703, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: formationLocalPos.z
       value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8496747056499064003, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: _assetId
+      value: 1241928536
       objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft

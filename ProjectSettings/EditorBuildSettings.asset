@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AC7/Scene/Mission05.unity
     guid: cc8f00254d1486f49ac3a83419cfec8d
+  - enabled: 1
+    path: Assets/AC7/Scene/KJH/TestScene_KJH.unity
+    guid: ade62ed959118f6468985d5112f83cfc
   m_configObjects: {}
