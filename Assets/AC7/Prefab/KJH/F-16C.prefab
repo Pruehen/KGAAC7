@@ -21138,7 +21138,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   e: 0.87
-  liftPower: 30
+  liftPower: 18
   dragCoefficient: 0.05
 --- !u!114 &1206920244328171021
 MonoBehaviour:

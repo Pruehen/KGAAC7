@@ -14,6 +14,8 @@ public class AircraftFM : NetworkBehaviour
     [SerializeField] float _pitchTorque;
     [SerializeField] float _rollTorque;
     [SerializeField] float _yawTorque;
+
+    [Header("동기 변수")]
     [SyncVar] [SerializeField] Vector3 _curVelocity;
     [SyncVar] [SerializeField] Vector3 _curPos;
     [SyncVar] [SerializeField] Quaternion _curRot;
@@ -86,8 +88,8 @@ public class AircraftFM : NetworkBehaviour
         }
         else
         {
-            rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, _curVelocity, Time.deltaTime);
-            this.transform.position = Vector3.Lerp(this.transform.position, _curPos, Time.deltaTime);
+            rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, _curVelocity, Time.fixedDeltaTime);
+            this.transform.position = Vector3.Lerp(this.transform.position, _curPos, Time.fixedDeltaTime);
             this.transform.rotation = _curRot;
         }        
     }

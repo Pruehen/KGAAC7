@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class Guided : MonoBehaviour
+public class Guided : NetworkBehaviour
 {
     [SerializeField] protected int EIRCM_Count;
     [SerializeField] protected VehicleCombat target;

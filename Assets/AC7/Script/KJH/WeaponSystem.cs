@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -212,7 +213,7 @@ namespace kjh
 
             if (canFire)
             {
-                GameObject item = Instantiate(useWeaponPrf, firePoint.position, firePoint.rotation);
+                GameObject item = Instantiate(useWeaponPrf, firePoint.position, firePoint.rotation);//로컬 미사일 스폰
 
                 item.GetComponent<Rigidbody>().velocity = initailVelocity;
 

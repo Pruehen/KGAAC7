@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 namespace kjh
 {
-    public class WeaponController : MonoBehaviour
+    public class WeaponController : NetworkBehaviour
     {
         AircraftSelecter aircraftSelecter;
         kjh.WeaponSystem weaponSystem;
@@ -34,6 +33,7 @@ namespace kjh
         {
             if (weaponSystem == null)
                 weaponSystem = aircraftSelecter.weaponSystem;
+
             weaponSystem.Fire(rigidbody.velocity, radar);
         }
 
