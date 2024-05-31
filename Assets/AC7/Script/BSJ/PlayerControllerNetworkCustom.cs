@@ -5,37 +5,35 @@ using UnityEngine;
 
 public class PlayerControllerNetworkCustom : NetworkBehaviour
 {
-    [SerializeField] private GameObject[] NotForMulti;
+    [SerializeField] private GameObject[] OnlyForLocal;
+    [SerializeField] private GameObject[] OnlyForServer;
+    [SerializeField] private MonoBehaviour[] OnlyForServerComponent;
 
     private void Start()
     {
 
-        if(!isLocalPlayer)
+        if (!isLocalPlayer)
         {
-            foreach(var item in NotForMulti)
+            foreach (var item in OnlyForLocal)
             {
                 item.SetActive(false);
             }
-            return;
         }
-        bsj.GameManager.Instance.TriggerNetworkPlayerSpawn(transform);
+        else
+        {
+            bsj.GameManager.Instance.TriggerNetworkPlayerSpawn(transform);
+            if(!isServer)
+            {
+                foreach (var item in OnlyForServer)
+                {
+                    item.SetActive(false);
+                }
+                foreach (var item in OnlyForServerComponent)
+                {
+                    item.enabled = false;
+                    
+                }
+            }
+        }
     }
-    private void OnPlayerSpawn()
-    {
-
-    }
-
-    [Command]
-    public void CommandFireWeaponNetwork()
-    {
-
-        RpcFireWeaponNetwork();
-    }
-
-    [ClientRpc]
-    public void RpcFireWeaponNetwork()
-    {
-
-    }
-
 }

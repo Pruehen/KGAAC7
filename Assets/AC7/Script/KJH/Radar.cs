@@ -1,11 +1,19 @@
 using kjh;
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Radar : MonoBehaviour
-{    
-    VehicleCombat lockOnTarget;
+public class Radar : NetworkBehaviour
+{
+    VehicleCombat _lockonTarget;
+    VehicleCombat lockonTarget { 
+        get { return _lockonTarget; } 
+        set { 
+            _lockonTarget = value; 
+            if (isServer)
+                OnSetLockOnTarget(_lockonTarget.netId); 
+        } }
     [SerializeField] float radarMaxAngle;
     public float RadarMaxAngle() { return radarMaxAngle; }
     [SerializeField] bool isEnemy;
@@ -14,9 +22,16 @@ public class Radar : MonoBehaviour
     [SerializeField] GameObject _lockOnSfxPrefab;
     AudioSource _lockOnSfx;
 
+
     public float toTargetAngle { get; private set; }
     public float toTargetDistance { get; private set; }
     bool onNextLockOn = false;
+
+    [ClientRpc]
+    private void OnSetLockOnTarget(uint combat)
+    {
+        _lockonTarget = NetworkClient.spawned[combat].GetComponentInChildren<VehicleCombat>();
+    }
 
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
@@ -24,7 +39,7 @@ public class Radar : MonoBehaviour
     /// <returns></returns>
     public VehicleCombat GetTarget()
     {
-        return lockOnTarget;
+        return lockonTarget;
     }
 
     private void Start()
@@ -40,16 +55,16 @@ public class Radar : MonoBehaviour
 
     private void Update()
     {
-        if (lockOnTarget != null)
+        if (lockonTarget != null)
         {
-            toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
+            toTargetAngle = Vector3.Angle(this.transform.forward, lockonTarget.transform.position - this.transform.position);
+            toTargetDistance = Vector3.Distance(this.transform.position, lockonTarget.transform.position);
 
             if (!isEnemy)
             {
                 WeaponData weaponData = weaponSystem.UseWeaponData();
 
-                if (lockOnTarget.IsDead() && !onNextLockOn)
+                if (lockonTarget.IsDead() && !onNextLockOn)
                 {
                     //lockOnTarget = null;
                     onNextLockOn = true;
@@ -59,27 +74,27 @@ public class Radar : MonoBehaviour
 
                 if (toTargetAngle <= weaponData.MaxSeekerAngle() && toTargetDistance <= weaponData.LockOnRange())
                 {
-                    lockOnTarget.isMissileLock = true;
+                    lockonTarget.isMissileLock = true;
                 }
                 else
                 {
-                    lockOnTarget.isMissileLock = false;
+                    lockonTarget.isMissileLock = false;
                 }
                 if (toTargetAngle <= radarMaxAngle)
                 {
-                    lockOnTarget.isRaderLock = true;
+                    lockonTarget.isRaderLock = true;
                 }
                 else
                 {
-                    lockOnTarget.isRaderLock = false;
+                    lockonTarget.isRaderLock = false;
                 }
 
-                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
+                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockonTarget.isMissileLock)
                 {
                     _lockOnSfx?.Play();
                     //Debug.Log("소리");
                 }
-                else if (!lockOnTarget.isMissileLock)
+                else if (!lockonTarget.isMissileLock)
                 {
                     _lockOnSfx?.Pause();
                 }
@@ -128,7 +143,7 @@ public class Radar : MonoBehaviour
 
                 if (item != null)
                 {
-                    float itemAngle = Vector3.Angle(Camera.main.transform.forward, item.transform.position - this.transform.position);
+                    float itemAngle = Vector3.Angle(transform.forward, item.transform.position - this.transform.position);
                     float itemDistance = Vector3.Distance(this.transform.position, item.transform.position);
                     if (itemAngle < 10 && !inRangeTargetList.Contains(item))
                     {
@@ -158,16 +173,16 @@ public class Radar : MonoBehaviour
                 }
             }
 
-            if (lockOnTarget != null)
+            if (lockonTarget != null)
             {
-                lockOnTarget.isTargeted = false;
-                lockOnTarget.isMissileLock = false;
-                lockOnTarget.isRaderLock = false;
+                lockonTarget.isTargeted = false;
+                lockonTarget.isMissileLock = false;
+                lockonTarget.isRaderLock = false;
             }
 
             if (inRangeTargetList.Count == 0)
             {
-                lockOnTarget = targetTemp;
+                lockonTarget = targetTemp;
             }
             else
             {
@@ -176,23 +191,23 @@ public class Radar : MonoBehaviour
                     iterator = 0;
                 }
 
-                lockOnTarget = inRangeTargetList[iterator];
+                lockonTarget = inRangeTargetList[iterator];
                 iterator++;
             }
 
-            if(lockOnTarget != null)
+            if(lockonTarget != null)
             {
-                lockOnTarget.isTargeted = true;
-                toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-                toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);               
+                lockonTarget.isTargeted = true;
+                toTargetAngle = Vector3.Angle(this.transform.forward, lockonTarget.transform.position - this.transform.position);
+                toTargetDistance = Vector3.Distance(this.transform.position, lockonTarget.transform.position);               
             }                        
         }
         else
         {
-            lockOnTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
-            lockOnTarget.isTargeted = true;
-            toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);            
+            lockonTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
+            lockonTarget.isTargeted = true;
+            toTargetAngle = Vector3.Angle(this.transform.forward, lockonTarget.transform.position - this.transform.position);
+            toTargetDistance = Vector3.Distance(this.transform.position, lockonTarget.transform.position);            
         }
         onNextLockOn = false;
     }

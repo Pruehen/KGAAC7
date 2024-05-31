@@ -22107,6 +22107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea3e4b70ada30a4abd850c3ae45c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   weaponPrfList:
   - {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
   - {fileID: 6445041468265237155, guid: 867ea82aded372f41bf6f5da31d78e1e, type: 3}

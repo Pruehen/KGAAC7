@@ -19990,6 +19990,10 @@ MonoBehaviour:
   _lr: {fileID: 7983676432171670654}
   _rr: {fileID: 534662878787165575}
   jetEngineControllers: []
+  _lc: {fileID: 0}
+  _rc: {fileID: 0}
+  _lEngine: {fileID: 0}
+  _rEngine: {fileID: 0}
   _a_Range: 20
   _e_Range: 20
   _r_Range: 20
@@ -20195,6 +20199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea3e4b70ada30a4abd850c3ae45c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   weaponPrfList: []
   fireTrfList: []
   equipedWeaponIndexList: 

@@ -1,10 +1,11 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
+public class PlayerInputCustom : NetworkBehaviour
 {
     public bool isControlable { get; set; } = true;
     public float pitchAxis {get; private set;}
@@ -35,56 +36,113 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
     public UnityEvent onClick_ESC;
 
     // Update is called once per frame
+    private enum CustmInputTypes
+    {
+        LeftMouseDown,
+        LeftMouseUp,
+        MidMouseDown,
+        MidMouseUp,
+        Click_X,
+        Click_R,
+        Click_Fdown,
+        Click_Fup,
+        Click_ESC
+    }
     void Update()
     {
+        if(!isLocalPlayer)
+        { return; }
         if(!isControlable)
         { return; } 
         if(kjh.GameManager.Instance.IsPaused)
         { return; }
         ControlSurface();
 
+        
+
         if (Input.GetMouseButtonDown(0))
         {
-            onClick_LeftMouseDown.Invoke();
+            CommandInvoke(CustmInputTypes.LeftMouseDown);
         }
         if (Input.GetMouseButtonUp(0))
         {
-            onClick_LeftMouseUp.Invoke();
+            CommandInvoke(CustmInputTypes.LeftMouseUp);
         }
         if (Input.GetMouseButtonDown(1))
         {
-            missileFireTrigger = true;
+            CommandSetMissileFireTrigger(true);
         }
         if (Input.GetMouseButtonDown(2))
         {
-            onClick_MidMouseDown.Invoke();
+            CommandInvoke(CustmInputTypes.MidMouseDown);
         }
         if (Input.GetMouseButtonUp(2))
         {
-            onClick_MidMouseUp.Invoke();
+            CommandInvoke(CustmInputTypes.MidMouseUp);
         }
-
         if (Input.GetKeyDown(KeyCode.X))
         {
-            onClick_X.Invoke();
+            CommandInvoke(CustmInputTypes.Click_X);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            onClick_R.Invoke();
+            CommandInvoke(CustmInputTypes.Click_R);
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            onClick_Fdown.Invoke();
+            CommandInvoke(CustmInputTypes.Click_Fdown);
         }
         if (Input.GetKeyUp(KeyCode.F))
         {
-            onClick_Fup.Invoke();
+            CommandInvoke(CustmInputTypes.Click_Fup);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            onClick_ESC.Invoke();
+            CommandInvoke(CustmInputTypes.Click_ESC);
         }
     }
+
+    [Command(requiresAuthority = false)]
+    private void CommandInvoke(CustmInputTypes unityEvent)
+    {
+        switch (unityEvent)
+        {   
+            case CustmInputTypes.LeftMouseDown:
+                onClick_LeftMouseDown.Invoke();
+                break;
+            case CustmInputTypes.LeftMouseUp:
+                onClick_LeftMouseUp.Invoke();
+                break;
+            case CustmInputTypes.MidMouseDown:
+                onClick_MidMouseDown.Invoke();
+                break;
+            case CustmInputTypes.MidMouseUp:
+                onClick_MidMouseUp.Invoke();
+                break;
+            case CustmInputTypes.Click_X:
+                onClick_X.Invoke();
+                break;
+            case CustmInputTypes.Click_R:
+                onClick_R.Invoke();
+                break;
+            case CustmInputTypes.Click_Fdown:
+                onClick_Fdown.Invoke();
+                break;
+            case CustmInputTypes.Click_Fup:
+                onClick_Fup.Invoke();
+                break;
+            case CustmInputTypes.Click_ESC:
+                onClick_ESC.Invoke();
+                break;
+        }
+    }    
+    
+    [Command(requiresAuthority = false)]
+    private void CommandSetMissileFireTrigger(bool trigger)
+    {
+        missileFireTrigger = trigger;
+    }    
+
     bool missileFireTrigger = false;
     private void FixedUpdate()
     {
@@ -103,51 +161,62 @@ public class PlayerInputCustom : SceneSingleton<PlayerInputCustom>
 
     void ControlSurface()//조종면 관련 인풋
     {
-        pitchAxis = 0;
-        rollAxis = 0;
-        yawAxis = 0;
-        throttleAxis = 0;
+        float pitchAxisTemp = 0;
+        float rollAxisTemp = 0;
+        float yawAxisTemp = 0;
+        float throttleAxisTemp = 0;
 
         if (Input.GetKey(KeyCode.A))//요 좌측
         {
-            yawAxis -= 1;
+            yawAxisTemp -= 1;
         }
         if (Input.GetKey(KeyCode.D))//요 우측
         {
-            yawAxis += 1;
+            yawAxisTemp += 1;
         }
         if (Input.GetKey(KeyCode.W))//피치 다운
         {
-            pitchAxis -= 1;
+            pitchAxisTemp -= 1;
         }
         if (Input.GetKey(KeyCode.S))//피치 업
         {
-            pitchAxis += 1;
+            pitchAxisTemp += 1;
         }
         if (Input.GetKey(KeyCode.Q))//롤 좌측
         {
-            rollAxis -= 1;
+            rollAxisTemp -= 1;
         }
         if (Input.GetKey(KeyCode.E))//롤 우측
         {
-            rollAxis += 1;
+            rollAxisTemp += 1;
         }
         if (Input.GetKey(KeyCode.LeftControl))//스로틀 다운
         {
-            throttleAxis -= 1;
+            throttleAxisTemp -= 1;
         }
         if (Input.GetKey(KeyCode.LeftShift))//스로틀 업
         {
-            throttleAxis += 1;
+            throttleAxisTemp += 1;
         }
 
 
-        pitchAxis -= mouseDeltaPos.y * mouseControllGain;
-        rollAxis += mouseDeltaPos.x * mouseControllGain;
+        pitchAxisTemp -= mouseDeltaPos.y * mouseControllGain;
+        rollAxisTemp += mouseDeltaPos.x * mouseControllGain;
 
-        pitchAxis = Mathf.Clamp(pitchAxis, -1, 1);
-        rollAxis = Mathf.Clamp(rollAxis, -1, 1);
+        pitchAxisTemp = Mathf.Clamp(pitchAxisTemp, -1, 1);
+        rollAxisTemp = Mathf.Clamp(rollAxisTemp, -1, 1);
+        CommandSetControlSurface(pitchAxisTemp, rollAxisTemp, yawAxisTemp, throttleAxisTemp);
     }
+
+    [Command (requiresAuthority = false)]
+    void CommandSetControlSurface(float pitch, float roll, float yaw, float throttle)
+    {
+        pitchAxis = pitch;
+        rollAxis = roll;
+        yawAxis = yaw;
+        throttleAxis = throttle;
+    }
+
     void OnFire(InputValue inputValue)
     {
 

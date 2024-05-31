@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MWR : MonoBehaviour
+public class MWR : NetworkBehaviour
 {
     //List<Guided> incomeMissileList = new List<Guided>();
     bool isPlayer;
@@ -34,7 +35,10 @@ public class MWR : MonoBehaviour
         missileCount++;
         if (isPlayer)
         {
-            MissileIndicatorController.Instance.AddMissileIndicator(missile);
+            if(isLocalPlayer)
+            {
+                MissileIndicatorController.Instance.AddMissileIndicator(missile);
+            }
             MissileCountAdd();
         }
     }

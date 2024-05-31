@@ -1,9 +1,10 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class VehicleCombat : MonoBehaviour, IFightable
+public class VehicleCombat : NetworkBehaviour, IFightable
 {
     public float startHp;
     public bool isPlayer;

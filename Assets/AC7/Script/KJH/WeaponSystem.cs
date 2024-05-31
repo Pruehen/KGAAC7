@@ -1,10 +1,11 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace kjh
 {
-    public class WeaponSystem : MonoBehaviour
+    public class WeaponSystem : NetworkBehaviour
     {
         [SerializeField] List<GameObject> weaponPrfList;        
         List<WeaponData> weaponDataList = new List<WeaponData>();
@@ -180,10 +181,12 @@ namespace kjh
             Transform firePoint = null;
 
             bool canFire = false;
+
+            int i = 0;
+            int k = 0;
             
-            for (int i = 0; i < weaponCoolDownList.Count; i++)
+            for (i = 0; i < weaponCoolDownList.Count; i++)
             {
-                int k;
                 if(i % 2 == 0)
                 {
                     k = i / 2;
@@ -213,14 +216,31 @@ namespace kjh
             if (canFire)
             {
                 GameObject item = Instantiate(useWeaponPrf, firePoint.position, firePoint.rotation);
-
+                NetworkServer.Spawn(item);
                 item.GetComponent<Rigidbody>().velocity = initailVelocity;
-
+                //CommandOnShootMissile(useWeaponIndex, k, initailVelocity, radar.netIdentity.netId);
                 Guided guided;
                 if (item.TryGetComponent(out guided))
                 {
                     guided.SetTarget(radar);
+                    
                 }
+            }
+        }
+
+
+        [Command]
+        private void CommandOnShootMissile(int useWeaponIndex, int firePointIdx, Vector3 initailVelocity, uint radarid)
+        {
+            GameObject useWeaponPrf = weaponPrfList[useWeaponIndex];
+            GameObject item = Instantiate(useWeaponPrf, fireTrfList[firePointIdx].position, fireTrfList[firePointIdx].rotation);
+            NetworkServer.Spawn(item);
+            item.GetComponent<Rigidbody>().velocity = initailVelocity;
+            Guided guided;
+            if (item.TryGetComponent(out guided))
+            {
+                NetworkServer.spawned.TryGetValue(radarid, out NetworkIdentity radarIdentity);
+                guided.SetTarget(radarIdentity.GetComponentInChildren<Radar>());
             }
         }
     }
