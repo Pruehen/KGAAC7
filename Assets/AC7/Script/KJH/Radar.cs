@@ -2,8 +2,9 @@ using kjh;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Radar : MonoBehaviour
+public class Radar : NetworkBehaviour
 {    
     VehicleCombat lockOnTarget;
     [SerializeField] float radarMaxAngle;
