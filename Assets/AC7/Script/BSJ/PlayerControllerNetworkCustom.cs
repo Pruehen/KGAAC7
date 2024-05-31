@@ -7,9 +7,12 @@ public class PlayerControllerNetworkCustom : NetworkBehaviour
 {
     [SerializeField] private GameObject[] NotForMulti;
 
+    private void Awake()
+    {
+        this.transform.parent = GameObject.Find("Target_Transform").transform;
+    }
     private void Start()
     {
-
         if(!isLocalPlayer)
         {
             foreach(var item in NotForMulti)

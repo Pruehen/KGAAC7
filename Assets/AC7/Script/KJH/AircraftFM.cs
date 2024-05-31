@@ -10,11 +10,13 @@ public class AircraftFM : NetworkBehaviour
     [SerializeField] AircraftData aircraftData;
     Rigidbody rigidbody;
 
-    [SyncVar] [SerializeField] float _enginePower;
-    [SyncVar] [SerializeField] float _pitchTorque;
-    [SyncVar] [SerializeField] float _rollTorque;
-    [SyncVar] [SerializeField] float _yawTorque;
-    [SyncVar] [SerializeField] Vector3 curVelocity;
+    [SerializeField] float _enginePower;
+    [SerializeField] float _pitchTorque;
+    [SerializeField] float _rollTorque;
+    [SerializeField] float _yawTorque;
+    [SyncVar] [SerializeField] Vector3 _curVelocity;
+    [SyncVar] [SerializeField] Vector3 _curPos;
+    [SyncVar] [SerializeField] Quaternion _curRot;
 
     public void Init()
     {
@@ -22,14 +24,15 @@ public class AircraftFM : NetworkBehaviour
         effect = aircraftSelecter.controlAircraft.GetComponent<VaporEffect>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.velocity = this.transform.forward * 200;
-
-        if(!this.isLocalPlayer)
-        {
-            rigidbody.interpolation = RigidbodyInterpolation.None;
-        }
     }
-    // Update is called once per frame
+
     void FixedUpdate()
+    {
+        FlightModelOnFixedUpdate();
+        FlightDataSyncOnFixedUpdate();        
+    }
+    
+    void FlightModelOnFixedUpdate()
     {
         aircraftData = aircraftSelecter.aircraftData;
 
@@ -71,11 +74,21 @@ public class AircraftFM : NetworkBehaviour
         //Debug.Log(velocitySpeed);
 
         effect?.SetEffect(velocitySpeed, aoa);
+    }
 
+    void FlightDataSyncOnFixedUpdate()
+    {
         if (this.isLocalPlayer)
         {
-            curVelocity = rigidbody.velocity;
+            _curVelocity = rigidbody.velocity;
+            _curPos = this.transform.position;
+            _curRot = this.transform.rotation;
         }
-        rigidbody.velocity = curVelocity;
-    }   
+        else
+        {
+            rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, _curVelocity, Time.deltaTime);
+            this.transform.position = Vector3.Lerp(this.transform.position, _curPos, Time.deltaTime);
+            this.transform.rotation = _curRot;
+        }        
+    }
 }

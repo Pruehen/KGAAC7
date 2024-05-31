@@ -20953,6 +20953,10 @@ MonoBehaviour:
   _rr: {fileID: 534662878787165575}
   jetEngineControllers:
   - {fileID: 3521734688574094247}
+  _lc: {fileID: 0}
+  _rc: {fileID: 0}
+  _lEngine: {fileID: 0}
+  _rEngine: {fileID: 0}
   _a_Range: 20
   _e_Range: 20
   _r_Range: 20
@@ -20970,8 +20974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c48ed4ea846eb48a3b79413e2ecc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enginePower: 20
-  pitchTorque: 5
+  enginePower: 10
+  pitchTorque: 4
   rollTorque: 25
   yawTorque: 1
   enginePowerCurve:
