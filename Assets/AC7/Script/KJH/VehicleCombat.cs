@@ -40,7 +40,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     protected virtual void Awake()
     {
         combat.Init(this.transform, startHp);        
-        combat.OnDead += Dead;
+        combat.OnDead += RpcDead;
         isTargeted = false;
         isRaderLock = false;
         isMissileLock = false;
@@ -69,6 +69,12 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     public bool IsDead()
     {
         return combat.IsDead();
+    }
+
+    [ClientRpc]
+    void RpcDead()
+    {
+        Dead();
     }
 
     void Dead()

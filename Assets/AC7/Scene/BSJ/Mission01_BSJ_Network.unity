@@ -284,8 +284,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterBlock (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6381447730633252045, guid: 33634e0a3b41a5946ad13dedd3f7ca42, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 33634e0a3b41a5946ad13dedd3f7ca42, type: 3}
+--- !u!1 &433839883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5473010730410178574, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
+  m_PrefabInstance: {fileID: 2098252296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &433839888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433839883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc654f29862fc2643b948f772ebb9e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  padding: 2
+  width: 150
+  height: 25
 --- !u!1001 &494568701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -429,6 +451,10 @@ PrefabInstance:
     - target: {fileID: 7227807178017333988, guid: 2342190471b96a649aa507d17f9e27d2, type: 3}
       propertyPath: m_Name
       value: F-14_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7227807178017333988, guid: 2342190471b96a649aa507d17f9e27d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7858847718057043821, guid: 2342190471b96a649aa507d17f9e27d2, type: 3}
       propertyPath: sceneId

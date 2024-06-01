@@ -7,13 +7,25 @@ using UnityEngine;
 public class Radar : NetworkBehaviour
 {
     VehicleCombat _lockonTarget;
-    VehicleCombat lockonTarget { 
-        get { return _lockonTarget; } 
-        set { 
-            _lockonTarget = value; 
-            if (isServer)
-                OnSetLockOnTarget(_lockonTarget.netId); 
-        } }
+    VehicleCombat lockonTarget
+    {
+        get
+        {
+            return _lockonTarget;
+        }
+        set
+        {
+            _lockonTarget = value;
+            RpcSetLockonTarget(value.netId);
+        }
+    }
+
+    [ClientRpc]
+    private void RpcSetLockonTarget(uint netId)
+    {
+        _lockonTarget = NetworkClient.spawned[netId].GetComponent<VehicleCombat>();
+    }
+
     [SerializeField] float radarMaxAngle;
     public float RadarMaxAngle() { return radarMaxAngle; }
     [SerializeField] bool isEnemy;
@@ -22,17 +34,42 @@ public class Radar : NetworkBehaviour
     [SerializeField] GameObject _lockOnSfxPrefab;
     AudioSource _lockOnSfx;
 
+    private bool _isRadarLock = false;
+    private bool _isMissileLock = false;
 
     public float toTargetAngle { get; private set; }
     public float toTargetDistance { get; private set; }
-    bool onNextLockOn = false;
-
-    [ClientRpc]
-    private void OnSetLockOnTarget(uint combat)
-    {
-        _lockonTarget = NetworkClient.spawned[combat].GetComponentInChildren<VehicleCombat>();
+    public bool IsMissileLock 
+    { get => _isMissileLock;
+        set
+        {
+            _isMissileLock = value;
+            RpcSetIsMissileLock(value);
+        }
     }
 
+    [ClientRpc]
+    void RpcSetIsRadarLock(bool isRadarLock)
+    {
+        _isRadarLock = isRadarLock;
+    }
+
+    public bool IsRadarLock 
+    { get => _isRadarLock; 
+        set
+        {
+            _isRadarLock = value;
+            RpcSetIsRadarLock(value);
+        }
+    }
+
+    [ClientRpc]
+    void RpcSetIsMissileLock(bool isMissileLock)
+    {
+        _isMissileLock = isMissileLock;
+    }
+
+    bool onNextLockOn = false;
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
     /// </summary>
@@ -75,18 +112,22 @@ public class Radar : NetworkBehaviour
                 if (toTargetAngle <= weaponData.MaxSeekerAngle() && toTargetDistance <= weaponData.LockOnRange())
                 {
                     lockonTarget.isMissileLock = true;
+                    IsMissileLock = true;
                 }
                 else
                 {
                     lockonTarget.isMissileLock = false;
+                    IsMissileLock = false;
                 }
                 if (toTargetAngle <= radarMaxAngle)
                 {
                     lockonTarget.isRaderLock = true;
+                    IsRadarLock = true;
                 }
                 else
                 {
                     lockonTarget.isRaderLock = false;
+                    IsRadarLock = false;
                 }
 
                 if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockonTarget.isMissileLock)
@@ -165,7 +206,7 @@ public class Radar : NetworkBehaviour
                 VehicleCombat item = inRangeTargetList[i];
                 
                 if (item == null || 
-                    Vector3.Angle(Camera.main.transform.forward, item.transform.position - this.transform.position) >= 10 || 
+                    Vector3.Angle(this.transform.forward, item.transform.position - this.transform.position) >= 10 || 
                     item.IsDead())
                 {
                     inRangeTargetList.Remove(item);
@@ -177,7 +218,9 @@ public class Radar : NetworkBehaviour
             {
                 lockonTarget.isTargeted = false;
                 lockonTarget.isMissileLock = false;
+                IsMissileLock = false;
                 lockonTarget.isRaderLock = false;
+                IsRadarLock = false;
             }
 
             if (inRangeTargetList.Count == 0)

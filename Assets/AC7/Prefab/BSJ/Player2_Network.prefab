@@ -9476,6 +9476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetUIPrf: {fileID: 7682833719505869377, guid: 7ffb16242a456f94fb71ab8b6631f314, type: 3}
+  Radar_Player: {fileID: 9038950993503485522}
 --- !u!1 &6120225722009845632
 GameObject:
   m_ObjectHideFlags: 0

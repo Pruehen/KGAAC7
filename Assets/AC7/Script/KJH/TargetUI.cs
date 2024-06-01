@@ -52,6 +52,8 @@ public class TargetUI : MonoBehaviour
 
     bool isInvisible;
 
+    Radar radar_Player;
+
     public bool IsInvisible
     {
         set { isInvisible = value; }
@@ -75,7 +77,8 @@ public class TargetUI : MonoBehaviour
             nameText.text = targetObject.name;
             nicknameText.text = targetObject.nickname;
             targetText.gameObject.SetActive(targetObject.mainTarget);
-            isTargeted = targetObject.isTargeted;
+
+            isTargeted = targetObject == radar_Player.GetTarget();
             SetTargetted();
         }
     }
@@ -89,6 +92,12 @@ public class TargetUI : MonoBehaviour
     float screenAdjustFactor;
     Camera activeCamera;
     
+    public void InitPlayerRadar(Radar radar)
+    {
+        radar_Player = radar;
+    }
+
+
     // Recursive search
     Canvas GetCanvas(Transform parentTransform)
     {
@@ -130,7 +139,12 @@ public class TargetUI : MonoBehaviour
     }
     void TargetIsInRange()
     {
-        if(targetObject.isRaderLock)
+        if (targetObject != radar_Player.GetTarget())
+        {
+            return;
+        }
+
+        if (radar_Player.IsRadarLock)
         {
             innerLock.color = warningColor;
         }
@@ -139,7 +153,7 @@ public class TargetUI : MonoBehaviour
             innerLock.color = normalColor;
         }
 
-        if (targetObject.isMissileLock)
+        if (radar_Player.IsMissileLock)
         {
             outerLock.color = warningColor;
         }

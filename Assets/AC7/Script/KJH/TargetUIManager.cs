@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetUIManager : SceneSingleton<TargetUIManager>
 {
     [SerializeField] GameObject targetUIPrf;
+    [SerializeField] Radar Radar_Player;
     //[SerializeField] AircraftMaster aircraftMaster;
 
     List<VehicleCombat> targetList;
@@ -47,7 +48,9 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
                 {
                     GameObject item = ObjectPoolManager.Instance.DequeueObject(targetUIPrf);
                     item.transform.SetParent(this.transform);
-                    useTargetUIList.Add(item.GetComponent<TargetUI>());
+                    TargetUI targetUI = item.GetComponent<TargetUI>();
+                    targetUI.InitPlayerRadar(Radar_Player);
+                    useTargetUIList.Add(targetUI);
                 }
 
                 useTargetUIList[i].Target = targetList[i];                

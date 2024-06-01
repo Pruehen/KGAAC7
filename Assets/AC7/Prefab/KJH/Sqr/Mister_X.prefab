@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: wayPointList.Array.data[3].y
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 8496747056499064003, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: _assetId
+      value: 2879912121
+      objectReference: {fileID: 0}
     - target: {fileID: 8819726729571326051, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: controlAircraft
       value: 
