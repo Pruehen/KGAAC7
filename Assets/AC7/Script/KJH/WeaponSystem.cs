@@ -67,7 +67,15 @@ namespace kjh
         public void SetFlareTrigger(bool value)
         {
             flareTrigger = value;
+            RpcSetFlareTrigger(value);
         }
+
+        [ClientRpc]
+        private void RpcSetFlareTrigger(bool value)
+        {
+            flareTrigger = value;
+        }
+
         /// <summary>
         /// 현재 사용중인 무장 인덱스를 교체하는 메서드
         /// </summary>
@@ -210,7 +218,9 @@ namespace kjh
                     {
                         firePoint = fireTrfList[k];
                         fireTrfList[k].gameObject.SetActive(false);
-                        weaponCoolDownList[k] = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
+                        float coolDown = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
+                        weaponCoolDownList[k] = coolDown;
+                        RpcFireCoolDownSet(k, coolDown);
                         canFire = true;
                         break;
                     }
@@ -236,6 +246,11 @@ namespace kjh
             }
         }
 
+        [ClientRpc]
+        private void RpcFireCoolDownSet(int i, float cooldown)
+        {
+            weaponCoolDownList[i] = cooldown;
+        }
 
         [Command]
         private void CommandOnShootMissile(int useWeaponIndex, int firePointIdx, Vector3 initailVelocity, uint radarid)
