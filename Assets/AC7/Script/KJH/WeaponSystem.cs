@@ -79,8 +79,16 @@ namespace kjh
                 useWeaponIndex = 0;
             }
             weaponChange?.Invoke();
+            RpcWeaponChange(useWeaponIndex);
             return useWeaponIndex;
             //Debug.Log(useWeaponIndex);
+        }
+
+        [ClientRpc]
+        private void RpcWeaponChange(int weponIndex)
+        {
+            useWeaponIndex = weponIndex;
+            weaponChange?.Invoke();
         }
 
         // Start is called before the first frame update
