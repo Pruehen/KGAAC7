@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MinimapTargetUi : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class MinimapTargetUi : MonoBehaviour
 
     public void Init(Transform transform, Transform virtualMinimapPlayerAxis 
         , float minx, float maxx, float miny, float maxy
-        , float iconSize, float ratio, Vector3 offset)
+        , float iconSize, float ratio, Vector3 offset, Color color)
     {
         _vehicleCombat = transform.GetComponent<VehicleCombat>();
         _targetTransform = _vehicleCombat?.transform ?? transform;
@@ -47,6 +48,8 @@ public class MinimapTargetUi : MonoBehaviour
         }
         _gap = new Vector3((_maxx - _minx)/2f, (_maxy - _miny)/2f, 0f);
         _offset = offset;
+
+        GetComponent<Graphic>().color = color;
     }
 
     private void Update()

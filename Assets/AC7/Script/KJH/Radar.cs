@@ -23,7 +23,12 @@ public class Radar : NetworkBehaviour
     [ClientRpc]
     private void RpcSetLockonTarget(uint netId)
     {
-        _lockonTarget = NetworkClient.spawned[netId].GetComponent<VehicleCombat>();
+        NetworkIdentity target = NetworkClient.spawned[netId];
+        _lockonTarget = target.GetComponent<VehicleCombat>();
+        if(_lockonTarget == null)
+        {
+            _lockonTarget = target.GetComponentInChildren<VehicleCombat>();
+        }
     }
 
     [SerializeField] float radarMaxAngle;
@@ -186,7 +191,7 @@ public class Radar : NetworkBehaviour
                 {
                     float itemAngle = Vector3.Angle(transform.forward, item.transform.position - this.transform.position);
                     float itemDistance = Vector3.Distance(this.transform.position, item.transform.position);
-                    if (itemAngle < 10 && !inRangeTargetList.Contains(item))
+                    if (itemAngle < 10 && !inRangeTargetList.Contains(item) && item.transform != transform)
                     {
                         inRangeTargetList.Add(item);
                     }
@@ -194,7 +199,7 @@ public class Radar : NetworkBehaviour
                     {
                         inRangeTargetList.Remove(item);
                     }
-                    if (itemDistance < distanceTemp && !item.IsDead())
+                    if (itemDistance < distanceTemp && !item.IsDead() && item.transform != transform)
                     {
                         targetTemp = item;
                         distanceTemp = itemDistance;

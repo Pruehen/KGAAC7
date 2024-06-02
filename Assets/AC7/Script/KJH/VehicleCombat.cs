@@ -15,6 +15,16 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     public bool isRaderLock;
     public bool isMissileLock;
 
+    private void Start()
+    {
+        bsj.GameManager.Instance.AfterAnyPlayerSpawned += OnAnyPlayerSpawn;
+    }
+
+    private void OnAnyPlayerSpawn()
+    {
+        kjh.GameManager.Instance.AddActiveTarget(this);
+    }
+
     void IFightable.DealDamage(IFightable target, float damage)
     {
         throw new System.NotImplementedException();

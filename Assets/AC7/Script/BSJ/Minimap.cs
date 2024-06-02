@@ -40,18 +40,22 @@ public class Minimap : MonoBehaviour
 
     private void InitTargetUi(Transform targetTransform)
     {
-        //실행시 모든 적 아이콘 생성
+        //타겟 아이콘 초기화
         GameObject uiItem = Instantiate(_targetPrefab, transform);
+
+        VehicleCombat combat = targetTransform.GetComponent<VehicleCombat>();
+        Color TargetColor = (combat.isPlayer) ? Color.blue : Color.red;
+
         uiItem.GetComponent<MinimapTargetUi>().Init(targetTransform, _virtualMinmapPlayerAxis,
             _minx, _maxx, _miny, _maxy,
-            _iconSIze, _ratio, _offset);
+            _iconSIze, _ratio, _offset, TargetColor);
     }
     private void InitMissileUi(Transform targetTransform)
     {
-        //실행시 모든 적 아이콘 생성
+        //미사일 아이콘 초기화
         GameObject uiItem = Instantiate(_missilePrefab, transform);
         uiItem.GetComponent<MinimapTargetUi>().Init(targetTransform, _virtualMinmapPlayerAxis,
             _minx, _maxx, _miny, _maxy,
-            _iconSIze, _ratio, _offset);
+            _iconSIze, _ratio, _offset, Color.white);
     }
 }
