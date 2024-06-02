@@ -15,14 +15,35 @@ public class Guided : NetworkBehaviour
         }
         set
         {
-            RpcSetTarget(value);
+            _target = value;
+            if(!isServer)
+            {
+                return;
+            }
+            if (value != null)
+            {
+                RpcSetTarget(value.netId);
+            }
+            else
+            {
+                RpcSetTargetNull();
+            }
         }
     }
 
     [ClientRpc]
-    private void RpcSetTarget(VehicleCombat target)
+    private void RpcSetTarget(uint targetNetId)
     {
-        _target = target;
+        _target = NetworkClient.spawned[targetNetId].GetComponent<VehicleCombat>();
+        if (_target == null)
+        {
+            _target = NetworkClient.spawned[targetNetId].GetComponentInChildren<VehicleCombat>();
+        }
+    }
+    [ClientRpc]
+    private void RpcSetTargetNull()
+    {
+        _target = null;
     }
 
 
@@ -55,7 +76,7 @@ public class Guided : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void RpcAddMissile()
+    protected void RpcAddMissile()
     {
         kjh.GameManager.Instance.AddMissile(transform);
     }
@@ -125,10 +146,7 @@ public class Guided : NetworkBehaviour
             Vector3 toTargetVec = targetVec - this.transform.position;
             if(toTargetVec.magnitude < 3000)
             {
-                if(isServer)
-                {
-                    AddMwr();
-                }
+                AddMwr();
             }
 
             Vector3 toTargetDir = toTargetVec.normalized;//방향 벡터 산출

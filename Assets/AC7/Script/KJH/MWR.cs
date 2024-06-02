@@ -46,7 +46,10 @@ public class MWR : NetworkBehaviour
     /// <param name="missile"></param>
     public void AddMissile(Guided missile)
     {
-        RpcAddMissile(missile.netId);
+        if(isServer)
+        {
+            RpcAddMissile(missile.netId);
+        }
     }
 
     [ClientRpc]
@@ -71,7 +74,10 @@ public class MWR : NetworkBehaviour
     /// <param name="missile"></param>
     public void RemoveMissile(Guided missile)
     {
-        RpcRemoveMissile(missile.netId);
+        if(isServer)
+        {
+            RpcRemoveMissile(missile.netId);
+        }
     }
 
     [ClientRpc]

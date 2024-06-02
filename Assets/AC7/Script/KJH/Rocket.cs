@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocket : MonoBehaviour
+public class Rocket : NetworkBehaviour
 {
     [Header("모터 지속 시간")]
     [SerializeField] float boostStartDelay;//부스트 시작 딜레이 시간
@@ -146,8 +147,17 @@ public class Rocket : MonoBehaviour
 
     void DestroyRocket()
     {
+        if(isServer)
+        {
+            RpcDestroyRocket();
+        }
+    }
+
+    [ClientRpc]
+    private void RpcDestroyRocket()
+    {
         Guided guided;
-        if(TryGetComponent<Guided>(out guided))
+        if (TryGetComponent<Guided>(out guided))
         {
             guided.RemoveTarget();
         }
@@ -163,4 +173,5 @@ public class Rocket : MonoBehaviour
 
         Destroy(this.gameObject);
     }
+
 }

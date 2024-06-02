@@ -1,10 +1,47 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Guided_SARH : Guided
 {
-    Radar radar;
+    [SerializeField] Radar _radar;
+    Radar radar
+    {
+        get
+        {
+            return _radar;
+        }
+        set
+        {
+            _radar = value;
+            if (value == null)
+            {
+                RpcSetRadarNull();
+            }
+            else
+            {
+                RpcSetRadar(value.netId);
+            }
+        }
+    }
+
+    [ClientRpc]
+    private void RpcSetRadar(uint radarNetId)
+    {
+        NetworkIdentity identity = NetworkClient.spawned[radarNetId];
+        _radar = identity.GetComponent<Radar>();
+        if(radar == null)
+        {
+            _radar = identity.GetComponentInChildren<Radar>();
+        }
+    }
+
+    [ClientRpc]
+    private void RpcSetRadarNull()
+    {
+        _radar = null;
+    }
 
     // Start is called before the first frame update
     /*void Start()
@@ -27,7 +64,10 @@ public class Guided_SARH : Guided
             if (target != null)
             {
                 target.onFlare += EIRCM;
-                kjh.GameManager.Instance.AddMissile(transform);
+                if (isServer)
+                {
+                    RpcAddMissile();
+                }
             }
         }
     }

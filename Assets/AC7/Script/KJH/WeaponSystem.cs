@@ -253,7 +253,6 @@ namespace kjh
                 if (item.TryGetComponent(out guided))
                 {
                     guided.SetTarget(radar);
-                    
                 }
             }
         }
@@ -262,21 +261,6 @@ namespace kjh
         private void RpcFireCoolDownSet(int i, float cooldown)
         {
             weaponCoolDownList[i] = cooldown;
-        }
-
-        [Command]
-        private void CommandOnShootMissile(int useWeaponIndex, int firePointIdx, Vector3 initailVelocity, uint radarid)
-        {
-            GameObject useWeaponPrf = weaponPrfList[useWeaponIndex];
-            GameObject item = Instantiate(useWeaponPrf, fireTrfList[firePointIdx].position, fireTrfList[firePointIdx].rotation);
-            NetworkServer.Spawn(item);
-            item.GetComponent<Rigidbody>().velocity = initailVelocity;
-            Guided guided;
-            if (item.TryGetComponent(out guided))
-            {
-                NetworkServer.spawned.TryGetValue(radarid, out NetworkIdentity radarIdentity);
-                guided.SetTarget(radarIdentity.GetComponentInChildren<Radar>());
-            }
         }
     }
 }
