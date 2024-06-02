@@ -67,7 +67,10 @@ namespace kjh
         public void SetFlareTrigger(bool value)
         {
             flareTrigger = value;
-            RpcSetFlareTrigger(value);
+            if (isServer)
+            {
+                RpcSetFlareTrigger(value);
+            }
         }
 
         [ClientRpc]
@@ -86,8 +89,10 @@ namespace kjh
             {
                 useWeaponIndex = 0;
             }
-            weaponChange?.Invoke();
-            RpcWeaponChange(useWeaponIndex);
+            if(isServer)
+            {
+                RpcWeaponChange(useWeaponIndex);
+            }
             return useWeaponIndex;
             //Debug.Log(useWeaponIndex);
         }
@@ -190,6 +195,10 @@ namespace kjh
         /// <param name="target"></param>
         public void Fire(Vector3 initailVelocity, Radar radar)
         {
+            if(!isServer)
+            {
+                return;
+            }
             if (innerFireDelay < 0.1f)
                 return;
 
@@ -220,7 +229,10 @@ namespace kjh
                         fireTrfList[k].gameObject.SetActive(false);
                         float coolDown = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
                         weaponCoolDownList[k] = coolDown;
-                        RpcFireCoolDownSet(k, coolDown);
+                        if(isServer)
+                        {
+                            RpcFireCoolDownSet(k, coolDown);
+                        }
                         canFire = true;
                         break;
                     }

@@ -16,7 +16,10 @@ public class Radar : NetworkBehaviour
         set
         {
             _lockonTarget = value;
-            RpcSetLockonTarget(value.netId);
+            if(isServer)
+            {
+               RpcSetLockonTarget(value.netId);
+            }
         }
     }
 
@@ -49,7 +52,10 @@ public class Radar : NetworkBehaviour
         set
         {
             _isMissileLock = value;
-            RpcSetIsMissileLock(value);
+            if(isServer)
+            {
+                RpcSetIsMissileLock(value);
+            }
         }
     }
 
@@ -64,7 +70,10 @@ public class Radar : NetworkBehaviour
         set
         {
             _isRadarLock = value;
-            RpcSetIsRadarLock(value);
+            if(isServer)
+            {
+                RpcSetIsRadarLock(value);
+            }
         }
     }
 

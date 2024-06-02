@@ -8,7 +8,22 @@ public class MWR : NetworkBehaviour
     //List<Guided> incomeMissileList = new List<Guided>();
     bool isPlayer;
 
-    public int missileCount { get; private set; }
+    private int _missileCount = 0;
+    public int missileCount {
+        get
+        {
+            return _missileCount;
+        }
+        private set
+        {
+            RpcSetMissileCount(value);
+        }
+            }
+
+    private void RpcSetMissileCount(int value)
+    {
+        _missileCount = value;
+    }
 
     [Header ("»ç¿îµå")]
     [SerializeField] AudioSource WarningVoiceSfxPrefap;
@@ -31,13 +46,20 @@ public class MWR : NetworkBehaviour
     /// <param name="missile"></param>
     public void AddMissile(Guided missile)
     {
+        RpcAddMissile(missile.netId);
+    }
+
+    [ClientRpc]
+    private void RpcAddMissile(uint missile)
+    {
+
         //incomeMissileList.Add(missile);
         missileCount++;
         if (isPlayer)
         {
-            if(isLocalPlayer)
+            if (isLocalPlayer)
             {
-                MissileIndicatorController.Instance.AddMissileIndicator(missile);
+                MissileIndicatorController.Instance.AddMissileIndicator(NetworkClient.spawned[missile].GetComponent<Guided>());
             }
             MissileCountAdd();
         }
@@ -49,11 +71,17 @@ public class MWR : NetworkBehaviour
     /// <param name="missile"></param>
     public void RemoveMissile(Guided missile)
     {
+        RpcRemoveMissile(missile.netId);
+    }
+
+    [ClientRpc]
+    private void RpcRemoveMissile(uint missile)
+    {
         //incomeMissileList.Remove(missile);
         missileCount--;
         if (isPlayer)
         {
-            MissileIndicatorController.Instance.RemoveMissileIndicator(missile);
+            MissileIndicatorController.Instance.RemoveMissileIndicator(NetworkClient.spawned[netId].GetComponent<Guided>());
             MissileCountRemove();
         }
     }

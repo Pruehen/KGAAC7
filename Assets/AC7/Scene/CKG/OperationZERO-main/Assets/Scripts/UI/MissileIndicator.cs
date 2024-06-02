@@ -68,7 +68,7 @@ public class MissileIndicator : MonoBehaviour
     {
         if(aircraftTransform == null) return;
 
-        if(!missile.Target() || missileTransform == null)
+        if(!missile.IsTargetExsist() || missileTransform == null)
         {
             ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
             return;

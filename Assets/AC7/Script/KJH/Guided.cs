@@ -1,14 +1,34 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Guided : MonoBehaviour
+public class Guided : NetworkBehaviour
 {
     [SerializeField] protected int EIRCM_Count;
-    [SerializeField] protected VehicleCombat target;
+    [SerializeField] protected VehicleCombat _target;
+    protected VehicleCombat target 
+    {
+        get
+        {
+            return _target;
+        }
+        set
+        {
+            RpcSetTarget(value);
+        }
+    }
+
+    [ClientRpc]
+    private void RpcSetTarget(VehicleCombat target)
+    {
+        _target = target;
+    }
+
+
 
     public System.Action OnRemove;
-    public bool Target()
+    public bool IsTargetExsist()
     {
         return target != null;
     }
@@ -26,9 +46,18 @@ public class Guided : MonoBehaviour
             if (target != null)
             {
                 target.onFlare += EIRCM;
-                kjh.GameManager.Instance.AddMissile(transform);
+                if(isServer)
+                {
+                    RpcAddMissile();
+                }
             }
         }
+    }
+
+    [ClientRpc]
+    private void RpcAddMissile()
+    {
+        kjh.GameManager.Instance.AddMissile(transform);
     }
 
     MWR mwr;
@@ -96,7 +125,10 @@ public class Guided : MonoBehaviour
             Vector3 toTargetVec = targetVec - this.transform.position;
             if(toTargetVec.magnitude < 3000)
             {
-                AddMwr();
+                if(isServer)
+                {
+                    AddMwr();
+                }
             }
 
             Vector3 toTargetDir = toTargetVec.normalized;//방향 벡터 산출
