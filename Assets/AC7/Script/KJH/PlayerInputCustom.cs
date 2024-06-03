@@ -209,6 +209,17 @@ public class PlayerInputCustom : NetworkBehaviour
         rollAxis = roll;
         yawAxis = yaw;
         throttleAxis = throttle;
+
+        RpcSetControlSurface( pitch,  roll,  yaw,  throttle);
+    }
+
+    [ClientRpc]
+    private void RpcSetControlSurface(float pitch, float roll, float yaw, float throttle)
+    {
+        pitchAxis = pitch;
+        rollAxis = roll;
+        yawAxis = yaw;
+        throttleAxis = throttle;
     }
 
     void OnFire(InputValue inputValue)
