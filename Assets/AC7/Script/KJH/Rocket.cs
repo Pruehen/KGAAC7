@@ -117,6 +117,7 @@ public class Rocket : NetworkBehaviour
         rigidbody.AddForce(this.transform.forward * power, ForceMode.Acceleration);
     }
 
+    [ServerCallback]
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Ãæµ¹");
@@ -125,24 +126,41 @@ public class Rocket : NetworkBehaviour
         {
             fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
             Vector3 contact = collision.GetContact(0).point;
-            EffectManager.Instance.EffectGenerate(explosionEffect, contact);
+            RpcPlayExplosion(contact);
             this.DestroyRocket();
             if (fightable.isPlayer)
             {
-                kjh.GameManager.Instance.cameraShake.MissileHitShake();
+                RpcShakeCam();
             }
         }
         else
         {
             Vector3 contact = collision.GetContact(0).point;
-            EffectManager.Instance.EffectGenerate(explosionEffect, contact);
+            RpcPlayExplosion(contact);
+
             if (collision.transform.CompareTag("Water"))
             {
-                EffectManager.Instance.EffectGenerate(_waterHitVfx, contact);
+                RpcPlayWaterHit(contact);
             }
             this.DestroyRocket();
         }
 
+    }
+    [ClientRpc]
+    private void RpcShakeCam()
+    {
+        kjh.GameManager.Instance.cameraShake.MissileHitShake();
+    }
+
+    [ClientRpc]
+    private void RpcPlayWaterHit(Vector3 position)
+    {
+        EffectManager.Instance.EffectGenerate(_waterHitVfx, position);
+    }
+    [ClientRpc]
+    private void RpcPlayExplosion(Vector3 position)
+    {
+        EffectManager.Instance.EffectGenerate(explosionEffect, position);
     }
 
     void DestroyRocket()
