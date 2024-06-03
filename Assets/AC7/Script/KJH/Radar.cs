@@ -18,7 +18,14 @@ public class Radar : NetworkBehaviour
             _lockonTarget = value;
             if(isServer)
             {
-               RpcSetLockonTarget(value.netId);
+                if(value != null)
+                {
+                    RpcSetLockonTarget(value.netId);
+                }
+                else
+                {
+                    RpcSetLockonTarget();
+                }
             }
         }
     }
@@ -28,10 +35,15 @@ public class Radar : NetworkBehaviour
     {
         NetworkIdentity target = NetworkClient.spawned[netId];
         _lockonTarget = target.GetComponent<VehicleCombat>();
-        if(_lockonTarget == null)
+        if (_lockonTarget == null)
         {
             _lockonTarget = target.GetComponentInChildren<VehicleCombat>();
         }
+    }
+    [ClientRpc]
+    private void RpcSetLockonTargetNull()
+    {
+        _lockonTarget = null;
     }
 
     [SerializeField] float radarMaxAngle;
