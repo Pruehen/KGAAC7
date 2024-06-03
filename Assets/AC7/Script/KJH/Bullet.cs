@@ -50,7 +50,7 @@ namespace kjh
             GenerateBullePassSfx bulletPassing;
             if (collision.transform.TryGetComponent<VehicleCombat>(out fightable))
             {
-                fightable.CommandTakeDamage(GetComponent<WeaponData>().Dmg());
+                fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
                 GameObject vsfx = ObjectPoolManager.Instance.DequeueObject(_bulletHitVfx);
 
                 if (fightable.isPlayer && this.isLocalPlayer)

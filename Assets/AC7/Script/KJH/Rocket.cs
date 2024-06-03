@@ -144,7 +144,7 @@ public class Rocket : NetworkBehaviour
     }
     void TargetTakeDamage(VehicleCombat target, WeaponData weaponData)
     {
-        target.CommandTakeDamage(weaponData.Dmg());
+        target.TakeDamage(weaponData.Dmg());
     }
 
     void DestroyRocket()

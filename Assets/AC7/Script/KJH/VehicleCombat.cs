@@ -16,22 +16,33 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         throw new System.NotImplementedException();
     }
 
-    [Command(requiresAuthority = false)]
-    public void CommandTakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
-        combat.TakeDamage(damage);
+        //로컬일 경우 이펙트만 나오고 데미지는 입히지 않음
+        if (this.isServer)
+        {
+            CommandTakeDamage(damage);//서버일 시 커맨드 메서드 실행
+        }
+    }
+    [Command(requiresAuthority = false)]
+    void CommandTakeDamage(float damage)
+    {
+        combat.TakeDamage(damage);//서버에서 데미지 계산
         CustomAI customAI;
-        if(TryGetComponent<CustomAI>(out customAI))
+        if (TryGetComponent<CustomAI>(out customAI))
         {
             customAI.EngageOrder();
         }
+
         RpcTakeDamage(damage);
     }
+
     [ClientRpc]
     void RpcTakeDamage(float dmg)
     {
         if (this.isServer)
             return;
+
         combat.TakeDamage(dmg);
         CustomAI customAI;
         if (TryGetComponent<CustomAI>(out customAI))
@@ -58,7 +69,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
         if(isPlayer)
         {
-            StartCoroutine(Heal());
+            //StartCoroutine(Heal());
         }
     }
     IEnumerator Heal()

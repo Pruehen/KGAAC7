@@ -6,6 +6,7 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
 {
     [SerializeField] GameObject targetUIPrf;
     public Radar Radar_Ref;
+    VehicleCombat VehicleCombat_LocalPlayerVC;
     //[SerializeField] AircraftMaster aircraftMaster;
 
     List<VehicleCombat> targetList;
@@ -19,6 +20,7 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
     void Start()
     {
         targetList = kjh.GameManager.Instance.activeTargetList;
+        VehicleCombat_LocalPlayerVC = Radar_Ref.gameObject.GetComponent<VehicleCombat>();
         StartCoroutine(TargetListUpdate());
     }
     
@@ -51,7 +53,10 @@ public class TargetUIManager : SceneSingleton<TargetUIManager>
                     useTargetUIList.Add(item.GetComponent<TargetUI>());
                 }
 
-                useTargetUIList[i].Target = targetList[i];                
+                if (VehicleCombat_LocalPlayerVC != targetList[i])
+                {
+                    useTargetUIList[i].Target = targetList[i];
+                }
             }
             yield return new WaitForSeconds(0.2f);
         }
