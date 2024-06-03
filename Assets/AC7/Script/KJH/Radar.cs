@@ -6,7 +6,7 @@ using Mirror;
 
 public class Radar : NetworkBehaviour
 {    
-    VehicleCombat lockOnTarget;
+    [SerializeField] VehicleCombat lockOnTarget;
     [SerializeField] float radarMaxAngle;
     public float RadarMaxAngle() { return radarMaxAngle; }
     [SerializeField] bool isEnemy;
@@ -124,13 +124,14 @@ public class Radar : NetworkBehaviour
             float distanceTemp = float.MaxValue;
             VehicleCombat targetTemp = null;
 
-            List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;            
+            List<VehicleCombat> targetList = kjh.GameManager.Instance.activeTargetList;
+            VehicleCombat thisVehicleCombat = this.gameObject.GetComponent<VehicleCombat>();
 
             for (int i = 0; i < targetList.Count; i++)
             {
                 VehicleCombat item = targetList[i];
 
-                if (item != null)
+                if (item != null && thisVehicleCombat != item)
                 {
                     float itemAngle = Vector3.Angle(Camera.main.transform.forward, item.transform.position - this.transform.position);
                     float itemDistance = Vector3.Distance(this.transform.position, item.transform.position);

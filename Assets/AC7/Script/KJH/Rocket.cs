@@ -115,6 +115,7 @@ public class Rocket : NetworkBehaviour
         rigidbody.AddForce(this.transform.forward * power, ForceMode.Acceleration);
     }
 
+    [ServerCallback]
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Ãæµ¹");
@@ -125,7 +126,7 @@ public class Rocket : NetworkBehaviour
             Vector3 contact = collision.GetContact(0).point;
             EffectManager.Instance.EffectGenerate(explosionEffect, contact);
             this.DestroyRocket();
-            if (fightable.isPlayer)
+            if (fightable.isPlayer && fightable.isLocalPlayer)
             {
                 kjh.GameManager.Instance.cameraShake.MissileHitShake();
             }

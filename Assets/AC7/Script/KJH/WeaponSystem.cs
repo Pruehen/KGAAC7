@@ -213,7 +213,7 @@ namespace kjh
 
             if (canFire)
             {
-                GameObject item = Instantiate(useWeaponPrf, firePoint.position, firePoint.rotation);//로컬 미사일 스폰
+                GameObject item = Instantiate(useWeaponPrf, firePoint.position, firePoint.rotation);//로컬 미사일 스폰                
 
                 item.GetComponent<Rigidbody>().velocity = initailVelocity;
 
@@ -226,20 +226,5 @@ namespace kjh
                 //CommandCreateServerMissile(useWeaponPrf, firePoint.position, firePoint.rotation, initailVelocity, radar);
             }
         }
-
-        [Command(requiresAuthority = false)]
-        void CommandCreateServerMissile(GameObject missilePrf, Vector3 pos, Quaternion rot, Vector3 velocity, Radar radar)
-        {
-            Debug.Log("커맨드 메서드 실행 ");
-            GameObject item = Instantiate(missilePrf, pos, rot);//서버 미사일 스폰
-            NetworkServer.Spawn(item);
-            
-            item.GetComponent<Rigidbody>().velocity = velocity;
-            
-            if (item.TryGetComponent(out Guided guided))
-            {
-                guided.SetTarget(radar);
-            }
-        }        
     }
 }

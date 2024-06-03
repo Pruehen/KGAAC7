@@ -31,6 +31,19 @@ namespace kjh
         /// </summary>
         public void Fire()
         {
+            if (this.isLocalPlayer && !this.isServer)
+            {
+                CommandFire();
+            }
+
+            if (weaponSystem == null)
+                weaponSystem = aircraftSelecter.weaponSystem;
+
+            weaponSystem.Fire(rigidbody.velocity, radar);
+        }
+        [Command]
+        void CommandFire()
+        {
             if (weaponSystem == null)
                 weaponSystem = aircraftSelecter.weaponSystem;
 

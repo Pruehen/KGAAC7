@@ -28,8 +28,7 @@ namespace kjh
         public void AddActiveTarget(VehicleCombat vehicleCombat)
         {
             if (vehicleCombat.gameObject.activeInHierarchy 
-                && !activeTargetList.Contains(vehicleCombat) 
-                && player.GetComponent<VehicleCombat>() != vehicleCombat)
+                && !activeTargetList.Contains(vehicleCombat))
             {
                 activeTargetList.Add(vehicleCombat);
                 targetCountChanged?.Invoke(activeTargetList.Count);
@@ -57,7 +56,7 @@ namespace kjh
                 targetTrf = GameObject.Find("Target_Transform").transform;
             }
 
-            VehicleCombat myVehicleCombat = player.GetComponent<VehicleCombat>();
+            //VehicleCombat myVehicleCombat = player.GetComponent<VehicleCombat>();
 
             for (int i = 0; i < targetTrf.childCount; i++)
             {
@@ -65,7 +64,7 @@ namespace kjh
                 {
                     VehicleCombat combat = targetTrf.GetChild(i).GetChild(j).GetComponent<VehicleCombat>();
 
-                    if (combat == null || myVehicleCombat == combat) continue;
+                    if (combat == null) continue;
 
                     AddActiveTarget(combat);
 
