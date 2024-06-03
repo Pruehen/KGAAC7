@@ -1,9 +1,7 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomNetworkManager : Mirror.NetworkManager
+public class CustomNetworkManager : NetworkManager
 {
     [SerializeField] Transform Transform_PlayerSpawnParent;
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
