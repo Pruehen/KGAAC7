@@ -22,6 +22,24 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     private void OnAnyPlayerSpawn()
     {
+        combat.Init(this.transform, startHp);
+        if (isServerOnly)
+        {
+            combat.OnDead += RpcDead;
+            combat.OnDead += Dead;
+        }
+        if (isClient && isServer)
+        {
+            combat.OnDead += RpcDead;
+        }
+        isTargeted = false;
+        isRaderLock = false;
+        isMissileLock = false;
+
+        if (isPlayer)
+        {
+            StartCoroutine(Heal());
+        }
         kjh.GameManager.Instance.AddActiveTarget(this);
     }
 
@@ -60,19 +78,8 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     Combat combat = new Combat();
     public Combat Combat() { return combat; }
-    protected virtual void Awake()
-    {
-        combat.Init(this.transform, startHp);        
-        combat.OnDead += RpcDead;
-        isTargeted = false;
-        isRaderLock = false;
-        isMissileLock = false;
 
-        if(isPlayer)
-        {
-            StartCoroutine(Heal());
-        }
-    }
+
     IEnumerator Heal()
     {
         while(true)
@@ -116,7 +123,11 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         {
             BGM_Player.Instance.Stop();
         }
-        onDead.Invoke();
+
+        if(isServer)
+        {
+            onDead.Invoke();
+        }
         //Debug.Log("Æã");
     }
 
