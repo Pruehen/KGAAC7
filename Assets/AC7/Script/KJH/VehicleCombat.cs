@@ -32,11 +32,24 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     public void TakeDamage(float damage)
     {
-        combat.TakeDamage(damage);
+        if(isServer)
+        {
+            combat.TakeDamage(damage);
+            RpcTakeDamage(damage);
+        }
         CustomAI customAI;
         if(TryGetComponent<CustomAI>(out customAI))
         {
             customAI.EngageOrder();
+        }
+    }
+
+    [ClientRpc]
+    private void RpcTakeDamage(float damage)
+    {
+        if(isClientOnly)
+        {
+            combat.TakeDamage(damage);
         }
     }
 

@@ -126,41 +126,49 @@ public class Rocket : NetworkBehaviour
         {
             fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
             Vector3 contact = collision.GetContact(0).point;
-            RpcPlayExplosion(contact);
-            this.DestroyRocket();
-            if (fightable.isPlayer)
-            {
-                RpcShakeCam();
-            }
+            RpcOnPlayerHit(fightable.netId, contact);
         }
         else
         {
             Vector3 contact = collision.GetContact(0).point;
-            RpcPlayExplosion(contact);
 
             if (collision.transform.CompareTag("Water"))
             {
-                RpcPlayWaterHit(contact);
+                RpcOnWaterHit(contact);
             }
-            this.DestroyRocket();
+            RpcOnHit(contact);
         }
 
     }
     [ClientRpc]
-    private void RpcShakeCam()
+    private void RpcOnPlayerHit(uint targetNetId, Vector3 contact)
     {
-        kjh.GameManager.Instance.cameraShake.MissileHitShake();
+        EffectManager.Instance.EffectGenerate(explosionEffect, contact);
+        if (netId == kjh.GameManager.Instance.player.vehicleCombat.netId)
+        {
+            kjh.GameManager.Instance.cameraShake.MissileHitShake();
+        }
+        Excute_DestroyRocket();
     }
 
     [ClientRpc]
-    private void RpcPlayWaterHit(Vector3 position)
+    private void RpcOnWaterHit(Vector3 position)
+    {
+        OnWaterHit(position);
+    }
+    private void OnWaterHit(Vector3 position)
     {
         EffectManager.Instance.EffectGenerate(_waterHitVfx, position);
     }
     [ClientRpc]
-    private void RpcPlayExplosion(Vector3 position)
+    private void RpcOnHit(Vector3 position)
+    {
+        OnHit(position);
+    }
+    private void OnHit(Vector3 position)
     {
         EffectManager.Instance.EffectGenerate(explosionEffect, position);
+        Excute_DestroyRocket();
     }
 
     void DestroyRocket()
