@@ -88,10 +88,10 @@ public class TargetController : MonoBehaviour
         {
             if(currentTargettedUI != null)
             {
-                currentTargettedUI.SetTargetted(false); // Disable Prev Target
+                //currentTargettedUI.SetTargetted(false); // Disable Prev Target
             }
             currentTargettedUI = targetUI;
-            currentTargettedUI.SetTargetted(true);    // Enable Current Target
+            //currentTargettedUI.SetTargetted(true);    // Enable Current Target
         }
     }
 
@@ -122,7 +122,7 @@ public class TargetController : MonoBehaviour
     {
         if(currentTargettedUI)
         {
-            currentTargettedUI.SetLock(isLocked);
+            //currentTargettedUI.SetLock(isLocked);
         }
     }
 

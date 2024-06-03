@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class WeaponData : MonoBehaviour
+public class WeaponData : NetworkBehaviour
 {
     [SerializeField] float dmg;
     public float Dmg() { return dmg; }

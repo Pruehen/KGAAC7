@@ -28,6 +28,17 @@ public class PlayerInputCustom : NetworkBehaviour
     public UnityEvent onClick_MidMouseUp;
     public UnityEvent onClick_ESC;
 
+    enum InputEnum
+    {
+        LeftMouse_Down,
+        LeftMouse_Up,
+        RighdMouse_Click,
+        X_Click,
+        R_Click,
+        F_Down,
+        F_Up,
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -41,11 +52,11 @@ public class PlayerInputCustom : NetworkBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            NetworkInvoke(onClick_LeftMouseDown);
+            NetworkInvoke(InputEnum.LeftMouse_Down);
         }
         if (Input.GetMouseButtonUp(0))
         {
-            NetworkInvoke(onClick_LeftMouseUp);
+            NetworkInvoke(InputEnum.LeftMouse_Up);
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -53,56 +64,107 @@ public class PlayerInputCustom : NetworkBehaviour
         }
         if (Input.GetMouseButtonDown(2))
         {
-            NetworkInvoke(onClick_MidMouseDown);
+            onClick_MidMouseDown.Invoke();
         }
         if (Input.GetMouseButtonUp(2))
         {
-            NetworkInvoke(onClick_MidMouseUp);
+            onClick_MidMouseUp.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            NetworkInvoke(onClick_X);
+            NetworkInvoke(InputEnum.X_Click);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            NetworkInvoke(onClick_R);
+            NetworkInvoke(InputEnum.R_Click);
         }
         if (Input.GetKeyDown(KeyCode.F))
-        {            
-            NetworkInvoke(onClick_Fdown);
+        {
+            NetworkInvoke(InputEnum.F_Down);
         }
         if (Input.GetKeyUp(KeyCode.F))
-        {            
-            NetworkInvoke(onClick_Fup);
+        {
+            NetworkInvoke(InputEnum.F_Up);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {            
-            NetworkInvoke(onClick_ESC);
+            onClick_ESC.Invoke();
         }
     }
-    void NetworkInvoke(UnityEvent unityEvent)
+    void NetworkInvoke(InputEnum inputEnum)
     {
-        unityEvent.Invoke();
-
-        if(this.isClient)
+        if(!this.isServer)
         {
-            CommandInvoke_ClientOnly(unityEvent);
+            switch (inputEnum)
+            {
+                case InputEnum.LeftMouse_Down:
+                    onClick_LeftMouseDown.Invoke();
+                    break;
+                case InputEnum.LeftMouse_Up:
+                    onClick_LeftMouseUp.Invoke();
+                    break;
+                case InputEnum.RighdMouse_Click:
+                    onClick_RightMouse.Invoke();
+                    break;
+                case InputEnum.X_Click:
+                    onClick_X.Invoke();
+                    break;
+                case InputEnum.R_Click:
+                    onClick_R.Invoke();
+                    break;
+                case InputEnum.F_Down:
+                    onClick_Fdown.Invoke();
+                    break;
+                case InputEnum.F_Up:
+                    onClick_Fup.Invoke();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        CommandNetworkInvoke(inputEnum);
+    }
+
+    [Command(requiresAuthority = false)]
+    void CommandNetworkInvoke(InputEnum inputEnum)
+    {
+        switch (inputEnum)
+        {
+            case InputEnum.LeftMouse_Down:
+                onClick_LeftMouseDown.Invoke();
+                break;
+            case InputEnum.LeftMouse_Up:
+                onClick_LeftMouseUp.Invoke();
+                break;
+            case InputEnum.RighdMouse_Click:
+                onClick_RightMouse.Invoke();
+                break;
+            case InputEnum.X_Click:
+                onClick_X.Invoke();
+                break;
+            case InputEnum.R_Click:
+                onClick_R.Invoke();
+                break;
+            case InputEnum.F_Down:
+                onClick_Fdown.Invoke();
+                break;
+            case InputEnum.F_Up:
+                onClick_Fup.Invoke();
+                break;
+            default:
+                break;
         }
     }
 
-    [Command]
-    void CommandInvoke_ClientOnly(UnityEvent unityEvent)
-    {
-        unityEvent.Invoke();
-    }
 
     bool missileFireTrigger = false;
     private void FixedUpdate()
     {
         if (missileFireTrigger)
         {
-            NetworkInvoke(onClick_RightMouse);
+            NetworkInvoke(InputEnum.RighdMouse_Click);
             missileFireTrigger = false;
         }
     }

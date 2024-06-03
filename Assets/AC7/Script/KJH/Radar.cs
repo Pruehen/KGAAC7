@@ -19,6 +19,9 @@ public class Radar : NetworkBehaviour
     public float toTargetDistance { get; private set; }
     bool onNextLockOn = false;
 
+    public bool isMissileLock { get; private set; }
+    public bool isRadarLock { get; private set; }
+
     /// <summary>
     /// 현재 레이더가 락온중인 트랜스폼을 반환하는 메서드
     /// </summary>
@@ -60,27 +63,27 @@ public class Radar : NetworkBehaviour
 
                 if (toTargetAngle <= weaponData.MaxSeekerAngle() && toTargetDistance <= weaponData.LockOnRange())
                 {
-                    lockOnTarget.isMissileLock = true;
+                    isMissileLock = true;
                 }
                 else
                 {
-                    lockOnTarget.isMissileLock = false;
+                    isMissileLock = false;
                 }
                 if (toTargetAngle <= radarMaxAngle)
                 {
-                    lockOnTarget.isRaderLock = true;
+                    isRadarLock = true;
                 }
                 else
                 {
-                    lockOnTarget.isRaderLock = false;
+                    isRadarLock = false;
                 }
 
-                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockOnTarget.isMissileLock)
+                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && isMissileLock)
                 {
                     _lockOnSfx?.Play();
                     //Debug.Log("소리");
                 }
-                else if (!lockOnTarget.isMissileLock)
+                else if (!isMissileLock)
                 {
                     _lockOnSfx?.Pause();
                 }
@@ -161,9 +164,8 @@ public class Radar : NetworkBehaviour
 
             if (lockOnTarget != null)
             {
-                lockOnTarget.isTargeted = false;
-                lockOnTarget.isMissileLock = false;
-                lockOnTarget.isRaderLock = false;
+                isMissileLock = false;
+                isRadarLock = false;
             }
 
             if (inRangeTargetList.Count == 0)
@@ -183,7 +185,7 @@ public class Radar : NetworkBehaviour
 
             if(lockOnTarget != null)
             {
-                lockOnTarget.isTargeted = true;
+                //lockOnTarget.isTargeted = true;
                 toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
                 toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);               
             }                        
@@ -191,7 +193,7 @@ public class Radar : NetworkBehaviour
         else
         {
             lockOnTarget = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
-            lockOnTarget.isTargeted = true;
+            //lockOnTarget.isTargeted = true;
             toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
             toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);            
         }

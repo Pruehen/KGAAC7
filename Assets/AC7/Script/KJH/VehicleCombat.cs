@@ -1,18 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Mirror;
 
-public class VehicleCombat : MonoBehaviour, IFightable
+public class VehicleCombat : NetworkBehaviour, IFightable
 {
     public float startHp;
     public bool isPlayer;
     public bool mainTarget = false;
     public string name;
     public string nickname;
-    public bool isTargeted;
-    public bool isRaderLock;
-    public bool isMissileLock;
 
     void IFightable.DealDamage(IFightable target, float damage)
     {
@@ -40,9 +37,9 @@ public class VehicleCombat : MonoBehaviour, IFightable
     {
         combat.Init(this.transform, startHp);        
         combat.OnDead += Dead;
-        isTargeted = false;
-        isRaderLock = false;
-        isMissileLock = false;
+        //isTargeted = false;
+        //isRaderLock = false;
+        //isMissileLock = false;
 
         if(isPlayer)
         {

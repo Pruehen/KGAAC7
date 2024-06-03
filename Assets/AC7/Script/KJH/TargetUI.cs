@@ -75,7 +75,7 @@ public class TargetUI : MonoBehaviour
             nameText.text = targetObject.name;
             nicknameText.text = targetObject.nickname;
             targetText.gameObject.SetActive(targetObject.mainTarget);
-            isTargeted = targetObject.isTargeted;
+            isTargeted = (TargetUIManager.Instance.Radar_Ref.GetTarget() == targetObject);
             SetTargetted();
         }
     }
@@ -102,12 +102,12 @@ public class TargetUI : MonoBehaviour
         }
     }
 
-    public void SetTargetted(bool isTargetted)
+    /*public void SetTargetted(bool isTargetted)
     {
         //this.isTargetted = isTargetted;
         SetBlink(isTargetted);
         frameImage.color = GameManager.NormalColor;
-    }
+    }*/
 
     void SetTargetted()
     {
@@ -130,27 +130,31 @@ public class TargetUI : MonoBehaviour
     }
     void TargetIsInRange()
     {
-        if(targetObject.isRaderLock)
+        Radar radar = TargetUIManager.Instance.Radar_Ref;
+        if (targetObject == radar.GetTarget())
         {
-            innerLock.color = warningColor;
-        }
-        else
-        {
-            innerLock.color = normalColor;
-        }
+            if (radar.isRadarLock)
+            {
+                innerLock.color = warningColor;
+            }
+            else
+            {
+                innerLock.color = normalColor;
+            }
 
-        if (targetObject.isMissileLock)
-        {
-            outerLock.color = warningColor;
-        }
-        else
-        {
-            outerLock.color = normalColor;
+            if (radar.isMissileLock)
+            {
+                outerLock.color = warningColor;
+            }
+            else
+            {
+                outerLock.color = normalColor;
+            }
         }
     }
 
 
-    void SetBlink(bool blink)
+    /*void SetBlink(bool blink)
     {
         if(isBlinking == blink) return;
 
@@ -165,14 +169,14 @@ public class TargetUI : MonoBehaviour
             CancelInvoke();
             blinkUIObject.SetActive(true);
         }
-    }
+    }*/
 
-    void Blink()
+    /*void Blink()
     {
         blinkUIObject.SetActive(!blinkUIObject.activeInHierarchy);
-    }
+    }*/
 
-    public void SetLock(bool isLocked)
+    /*public void SetLock(bool isLocked)
     {
         if(isLocked == true)
         { 
@@ -184,7 +188,7 @@ public class TargetUI : MonoBehaviour
             SetTargetted(targetObject != null);
             frameImage.color = GameManager.NormalColor;
         }
-    }
+    }*/
 
     // Call before destroy
     void OnDestroy()

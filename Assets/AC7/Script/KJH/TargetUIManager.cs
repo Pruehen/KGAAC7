@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetUIManager : SceneSingleton<TargetUIManager>
 {
     [SerializeField] GameObject targetUIPrf;
+    public Radar Radar_Ref;
     //[SerializeField] AircraftMaster aircraftMaster;
 
     List<VehicleCombat> targetList;

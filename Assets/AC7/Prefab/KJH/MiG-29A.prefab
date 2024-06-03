@@ -21439,7 +21439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enginePower: 11
-  pitchTorque: 5
+  pitchTorque: 4.5
   rollTorque: 16
   yawTorque: 0.8
   enginePowerCurve:
@@ -21602,7 +21602,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   e: 0.82
-  liftPower: 16
+  liftPower: 18
   dragCoefficient: 0.07
 --- !u!114 &1206920244328171021
 MonoBehaviour:
@@ -21616,6 +21616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea3e4b70ada30a4abd850c3ae45c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   weaponPrfList:
   - {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
   - {fileID: 6445041468265237155, guid: 35e4e8865177bfe4d9da3f8c15aec94e, type: 3}
