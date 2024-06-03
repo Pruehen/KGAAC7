@@ -66,9 +66,9 @@ namespace kjh
         }
         public void SetFlareTrigger(bool value)
         {
-            flareTrigger = value;
             if (isServer)
             {
+                flareTrigger = value;
                 RpcSetFlareTrigger(value);
             }
         }
@@ -91,6 +91,8 @@ namespace kjh
             }
             if(isServer)
             {
+                useWeaponIndex = useWeaponIndex;
+                weaponChange?.Invoke();
                 RpcWeaponChange(useWeaponIndex);
             }
             return useWeaponIndex;
@@ -228,9 +230,9 @@ namespace kjh
                         firePoint = fireTrfList[k];
                         fireTrfList[k].gameObject.SetActive(false);
                         float coolDown = useWeaponPrf.GetComponent<WeaponData>().ReloadTime();
-                        weaponCoolDownList[k] = coolDown;
                         if(isServer)
                         {
+                            weaponCoolDownList[k] = coolDown;
                             RpcFireCoolDownSet(k, coolDown);
                         }
                         canFire = true;

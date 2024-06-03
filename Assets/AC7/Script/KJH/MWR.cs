@@ -16,6 +16,7 @@ public class MWR : NetworkBehaviour
         }
         private set
         {
+            _missileCount = value;
             RpcSetMissileCount(value);
         }
             }
@@ -48,6 +49,7 @@ public class MWR : NetworkBehaviour
     {
         if(isServer)
         {
+            missileCount++;
             RpcAddMissile(missile.netId);
         }
     }
@@ -76,6 +78,7 @@ public class MWR : NetworkBehaviour
     {
         if(isServer)
         {
+            missileCount--;
             RpcRemoveMissile(missile.netId);
         }
     }

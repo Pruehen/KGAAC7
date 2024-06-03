@@ -31,7 +31,6 @@ public class PlayerControllerNetworkCustom : NetworkBehaviour
                 foreach (var item in OnlyForServerComponent)
                 {
                     item.enabled = false;
-                    
                 }
             }
         }

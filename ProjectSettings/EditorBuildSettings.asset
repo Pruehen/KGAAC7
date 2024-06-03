@@ -5,25 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/AC7/Scene/MainScene.unity
     guid: 91a1e1460221f554a8ca1b31357a74e5
-  - enabled: 1
+  - enabled: 0
     path: Assets/AC7/Scene/Loading.unity
     guid: d5015d90b70d64146b8775d1bfacd12a
-  - enabled: 1
+  - enabled: 0
     path: Assets/AC7/Scene/Mission01.unity
     guid: 83aae86faa517074aa8afc671b990e65
-  - enabled: 1
+  - enabled: 0
     path: Assets/AC7/Scene/Mission02.unity
     guid: 7cbf0e1a743d3d04e9f65d1a62f43fc1
-  - enabled: 1
+  - enabled: 0
     path: Assets/AC7/Scene/Mission03.unity
     guid: 33ef9df371cd29849a474418159e829d
-  - enabled: 1
+  - enabled: 0
     path: Assets/AC7/Scene/Mission04.unity
     guid: d52341610e5675344bddd4306fcd3e78
-  - enabled: 1
+  - enabled: 0
     path: Assets/AC7/Scene/Mission05.unity
     guid: cc8f00254d1486f49ac3a83419cfec8d
+  - enabled: 1
+    path: Assets/AC7/Scene/BSJ/Mission01_BSJ_Network.unity
+    guid: 6f8af6dd8d4f27f468e8ae701749e145
   m_configObjects: {}

@@ -308,6 +308,63 @@ MonoBehaviour:
   padding: 2
   width: 150
   height: 25
+--- !u!114 &433839890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473010730410178572, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
+  m_PrefabInstance: {fileID: 2098252296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433839883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &433839893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433839883}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b149f511061407fb54895c057b7736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wrap: {fileID: 433839890}
+  latency: 0
+  jitter: 0.02
+  jitterSpeed: 1
+  unreliableLoss: 2
+  unreliableScramble: 2
+--- !u!114 &433839894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433839883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7da4e566d24ea7b0e12178d934b648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientIntervalReceivedPackets: 0
+  clientIntervalReceivedBytes: 0
+  clientIntervalSentPackets: 0
+  clientIntervalSentBytes: 0
+  clientReceivedPacketsPerSecond: 0
+  clientReceivedBytesPerSecond: 0
+  clientSentPacketsPerSecond: 0
+  clientSentBytesPerSecond: 0
+  serverIntervalReceivedPackets: 0
+  serverIntervalReceivedBytes: 0
+  serverIntervalSentPackets: 0
+  serverIntervalSentBytes: 0
+  serverReceivedPacketsPerSecond: 0
+  serverReceivedBytesPerSecond: 0
+  serverSentPacketsPerSecond: 0
+  serverSentBytesPerSecond: 0
 --- !u!1001 &494568701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -909,6 +966,10 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
+      propertyPath: transport
+      value: 
+      objectReference: {fileID: 433839890}
+    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: onlineScene
       value: Assets/AC7/Scene/BSJ/Mission01_BSJ_Network.unity
       objectReference: {fileID: 0}
@@ -922,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 6120225722798073866, guid: ee9ee0a3520455d4faa9af1d70a133eb, type: 3}
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: spawnPrefabs.Array.data[0]
@@ -951,19 +1012,19 @@ PrefabInstance:
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: spawnPrefabs.Array.data[6]
       value: 
-      objectReference: {fileID: 6120225722798073866, guid: ee9ee0a3520455d4faa9af1d70a133eb, type: 3}
+      objectReference: {fileID: 6445041468265237155, guid: 35e4e8865177bfe4d9da3f8c15aec94e, type: 3}
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: spawnPrefabs.Array.data[7]
       value: 
-      objectReference: {fileID: 6445041468265237155, guid: 35e4e8865177bfe4d9da3f8c15aec94e, type: 3}
+      objectReference: {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: spawnPrefabs.Array.data[8]
       value: 
-      objectReference: {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
+      objectReference: {fileID: 6445041468265237155, guid: 867ea82aded372f41bf6f5da31d78e1e, type: 3}
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: spawnPrefabs.Array.data[9]
       value: 
-      objectReference: {fileID: 6445041468265237155, guid: 867ea82aded372f41bf6f5da31d78e1e, type: 3}
+      objectReference: {fileID: 6445041468265237155, guid: bf158b5fa4d51ec4b99e9d6f04ee3bd4, type: 3}
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: spawnPrefabs.Array.data[10]
       value: 

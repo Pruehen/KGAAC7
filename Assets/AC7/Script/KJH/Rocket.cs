@@ -167,6 +167,7 @@ public class Rocket : NetworkBehaviour
     {
         if(isServer)
         {
+            Excute_DestroyRocket();
             RpcDestroyRocket();
         }
     }
@@ -174,6 +175,12 @@ public class Rocket : NetworkBehaviour
     [ClientRpc]
     private void RpcDestroyRocket()
     {
+        Excute_DestroyRocket();
+    }
+
+    private void Excute_DestroyRocket()
+    {
+
         Guided guided;
         if (TryGetComponent<Guided>(out guided))
         {
