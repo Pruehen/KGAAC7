@@ -16,7 +16,8 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         throw new System.NotImplementedException();
     }
 
-    public void TakeDamage(float damage)
+    [Command(requiresAuthority = false)]
+    public void CommandTakeDamage(float damage)
     {
         combat.TakeDamage(damage);
         CustomAI customAI;
@@ -24,7 +25,21 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         {
             customAI.EngageOrder();
         }
+        RpcTakeDamage(damage);
     }
+    [ClientRpc]
+    void RpcTakeDamage(float dmg)
+    {
+        if (this.isServer)
+            return;
+        combat.TakeDamage(dmg);
+        CustomAI customAI;
+        if (TryGetComponent<CustomAI>(out customAI))
+        {
+            customAI.EngageOrder();
+        }
+    }
+
 
     public void Die()
     {

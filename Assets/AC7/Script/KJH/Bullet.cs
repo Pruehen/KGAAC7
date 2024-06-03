@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 namespace kjh
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : NetworkBehaviour
     {
         SphereCollider sphereCollider;
         Rigidbody rigidbody;
@@ -51,10 +50,10 @@ namespace kjh
             GenerateBullePassSfx bulletPassing;
             if (collision.transform.TryGetComponent<VehicleCombat>(out fightable))
             {
-                fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+                fightable.CommandTakeDamage(GetComponent<WeaponData>().Dmg());
                 GameObject vsfx = ObjectPoolManager.Instance.DequeueObject(_bulletHitVfx);
 
-                if (fightable.isPlayer)
+                if (fightable.isPlayer && this.isLocalPlayer)
                 {
                     kjh.GameManager.Instance.cameraShake.BulletHitShake();
                 }

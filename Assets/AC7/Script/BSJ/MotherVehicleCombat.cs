@@ -23,7 +23,7 @@ public class MotherVehicleCombat : VehicleCombat
     {
         float damage = (startHp * .9f) / _childCombats.Length;
         //모든 파츠가 죽으면 10%의 체력이 남음
-        TakeDamage(damage);
+        CommandTakeDamage(damage);
     }
 
 

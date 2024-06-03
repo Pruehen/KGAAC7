@@ -94,42 +94,46 @@ public class PlayerInputCustom : NetworkBehaviour
     }
     void NetworkInvoke(InputEnum inputEnum)
     {
-        if(!this.isServer)
-        {
-            switch (inputEnum)
-            {
-                case InputEnum.LeftMouse_Down:
-                    onClick_LeftMouseDown.Invoke();
-                    break;
-                case InputEnum.LeftMouse_Up:
-                    onClick_LeftMouseUp.Invoke();
-                    break;
-                case InputEnum.RighdMouse_Click:
-                    onClick_RightMouse.Invoke();
-                    break;
-                case InputEnum.X_Click:
-                    onClick_X.Invoke();
-                    break;
-                case InputEnum.R_Click:
-                    onClick_R.Invoke();
-                    break;
-                case InputEnum.F_Down:
-                    onClick_Fdown.Invoke();
-                    break;
-                case InputEnum.F_Up:
-                    onClick_Fup.Invoke();
-                    break;
-                default:
-                    break;
-            }
-        }
-
         CommandNetworkInvoke(inputEnum);
     }
 
     [Command(requiresAuthority = false)]
     void CommandNetworkInvoke(InputEnum inputEnum)
     {
+        switch (inputEnum)
+        {
+            case InputEnum.LeftMouse_Down:
+                onClick_LeftMouseDown.Invoke();
+                break;
+            case InputEnum.LeftMouse_Up:
+                onClick_LeftMouseUp.Invoke();
+                break;
+            case InputEnum.RighdMouse_Click:
+                onClick_RightMouse.Invoke();
+                break;
+            case InputEnum.X_Click:
+                onClick_X.Invoke();
+                break;
+            case InputEnum.R_Click:
+                onClick_R.Invoke();
+                break;
+            case InputEnum.F_Down:
+                onClick_Fdown.Invoke();
+                break;
+            case InputEnum.F_Up:
+                onClick_Fup.Invoke();
+                break;
+            default:
+                break;
+        }
+        RpcNetworkInvoke(inputEnum);
+    }
+    [ClientRpc]
+    void RpcNetworkInvoke(InputEnum inputEnum)
+    {
+        if (this.isServer)
+            return;
+
         switch (inputEnum)
         {
             case InputEnum.LeftMouse_Down:

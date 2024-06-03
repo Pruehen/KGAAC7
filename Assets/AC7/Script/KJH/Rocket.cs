@@ -115,14 +115,14 @@ public class Rocket : NetworkBehaviour
         rigidbody.AddForce(this.transform.forward * power, ForceMode.Acceleration);
     }
 
-    [ServerCallback]
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Ãæµ¹");
         VehicleCombat fightable;
         if(collision.collider.TryGetComponent<VehicleCombat>(out fightable))
         {
-            fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+            TargetTakeDamage(fightable, GetComponent<WeaponData>());
+            //fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
             Vector3 contact = collision.GetContact(0).point;
             EffectManager.Instance.EffectGenerate(explosionEffect, contact);
             this.DestroyRocket();
@@ -141,7 +141,10 @@ public class Rocket : NetworkBehaviour
             }
             this.DestroyRocket();
         }
-
+    }
+    void TargetTakeDamage(VehicleCombat target, WeaponData weaponData)
+    {
+        target.CommandTakeDamage(weaponData.Dmg());
     }
 
     void DestroyRocket()

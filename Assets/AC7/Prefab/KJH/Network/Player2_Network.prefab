@@ -28163,11 +28163,23 @@ PrefabInstance:
       value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: startHp
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
       propertyPath: isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: nickname
+      value: User
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119542170463338235, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+      propertyPath: mainTarget
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4213332702076886688, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
@@ -28451,7 +28463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7895238726048860971, guid: 52c2b7fd47e7ca7408454e2fe7aa1c30, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7895238726048860971, guid: 52c2b7fd47e7ca7408454e2fe7aa1c30, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28535,7 +28547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2516836384330267107, guid: 38b0aff6d5eeabe4381e6b320a5b08e4, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2516836384330267107, guid: 38b0aff6d5eeabe4381e6b320a5b08e4, type: 3}
       propertyPath: m_LocalPosition.x

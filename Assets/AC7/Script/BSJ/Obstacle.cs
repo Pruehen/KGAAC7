@@ -12,7 +12,7 @@ public class Obstacle : MonoBehaviour
         IFightable target;
         if (collision.transform.TryGetComponent<IFightable>(out target))
         {
-            target.TakeDamage(9999999f);
+            target.CommandTakeDamage(9999999f);
         }
     }
 }
