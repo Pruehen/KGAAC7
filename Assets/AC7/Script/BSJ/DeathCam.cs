@@ -1,10 +1,11 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace bsj
 {
-    public class DeathCam : MonoBehaviour
+    public class DeathCam : NetworkBehaviour
     {
         Transform _playerTrf;
         Camera _cam;
@@ -17,7 +18,10 @@ namespace bsj
         {
             _cam = Camera.main;
             Vector3 offset = Vector3.up * 500f;
-            GetComponent<VehicleCombat>().onDead.AddListener(Play);
+            if(isLocalPlayer)
+            {
+                GetComponent<VehicleCombat>().onDead.AddListener(Play);
+            }
             _playerTrf = kjh.GameManager.Instance.player.transform;
         }
 
