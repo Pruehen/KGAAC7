@@ -18,12 +18,6 @@ public class PlayerInputCustom : NetworkBehaviour
 
     public System.Action OnFireEvent;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public UnityEvent onClick_X;
     public UnityEvent onClick_R;
     public UnityEvent onClick_Fdown;
@@ -74,11 +68,11 @@ public class PlayerInputCustom : NetworkBehaviour
         }
         if (Input.GetMouseButtonDown(2))
         {
-            CommandInvoke(CustmInputTypes.MidMouseDown);
+            onClick_MidMouseDown.Invoke();
         }
         if (Input.GetMouseButtonUp(2))
         {
-            CommandInvoke(CustmInputTypes.MidMouseUp);
+            onClick_MidMouseUp.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
