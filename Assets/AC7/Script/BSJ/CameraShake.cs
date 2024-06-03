@@ -21,7 +21,7 @@ public class CameraShake : MonoBehaviour
     }
     private void OnPlayerSpawn()
     {
-        _player = kjh.GameManager.Instance.player.GetComponent<VehicleCombat>();
+        _player = bsj.GameManager.Instance.player.GetComponent<VehicleCombat>();
         _initialPosition = transform.localPosition;
         //StartCoroutine(DebugShake());
     }

@@ -11,7 +11,7 @@ public class PlayerControllerNetworkCustom : NetworkBehaviour
 
     private void Start()
     {
-        bsj.GameManager.Instance.TriggerNetworkAnyPlayerSpawn(transform);
+        bsj.GameManager.Instance.TriggerNetworkAnyPlayerSpawn(transform.GetChild(0));
         if (!isLocalPlayer)
         {
             foreach (var item in OnlyForLocal)
@@ -21,7 +21,7 @@ public class PlayerControllerNetworkCustom : NetworkBehaviour
         }
         else
         {
-            bsj.GameManager.Instance.TriggerNetworkPlayerSpawn(transform);
+            bsj.GameManager.Instance.TriggerNetworkPlayerSpawn(transform.GetChild(0));
             if(!isServer)
             {
                 foreach (var item in OnlyForServer)

@@ -1,10 +1,11 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //참조용 클래스. 하위 컴포넌트에 접근할 때 사용. 웬만하면 여기서 하위 컴포넌트를 수정하지 말 것
 //전투 기능을 우선 여기에 붙여봤음.
-public class AircraftMaster : MonoBehaviour
+public class AircraftMaster : NetworkBehaviour
 {
     [SerializeField] bool _isPlayer = false;
     public bool IsPlayer() { return _isPlayer; }
@@ -53,11 +54,10 @@ public class AircraftMaster : MonoBehaviour
 
     public void Dead()
     {
-        if (_isPlayer)
+        if (isLocalPlayer)
         {
-            Camera.main.transform.SetParent(null);
             Camera.main.transform.GetComponent<CamRotate>().enabled = false;
-            if (_isPlayer)
+            if (isLocalPlayer)
             {
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -70,7 +70,7 @@ public class AircraftMaster : MonoBehaviour
     IEnumerator DeadEffect()
     {
         yield return new WaitForSeconds(2.5f);
-        if(_isPlayer)
+        if(isLocalPlayer)
         {
             kjh.GameManager.Instance.GameEnd(false, .3f);
         }

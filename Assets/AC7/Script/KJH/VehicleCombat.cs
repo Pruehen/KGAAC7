@@ -104,6 +104,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     [ClientRpc]
     void RpcDead()
     {
+        Die();
         Dead();
     }
 
@@ -123,11 +124,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         {
             BGM_Player.Instance.Stop();
         }
-
-        if(isServer)
-        {
-            onDead.Invoke();
-        }
+        onDead.Invoke();
         //Debug.Log("Æã");
     }
 

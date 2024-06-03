@@ -22,7 +22,7 @@ namespace bsj
             {
                 GetComponent<VehicleCombat>().onDead.AddListener(Play);
             }
-            _playerTrf = kjh.GameManager.Instance.player.transform;
+            _playerTrf = bsj.GameManager.Instance.player;
         }
 
         public void Play()
@@ -39,7 +39,7 @@ namespace bsj
                 yield return null;
 
                 //Camera.main.transform.position.DrawSphere(3f, Color.red);
-                _cam.transform.LookAt(kjh.GameManager.Instance.player.transform.position);
+                _cam.transform.LookAt(_playerTrf.position);
                 if(_playerTrf == null)
                     yield break;
                 float offset = 20 * Time.deltaTime;

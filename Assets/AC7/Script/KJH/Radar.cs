@@ -24,7 +24,7 @@ public class Radar : NetworkBehaviour
                 }
                 else
                 {
-                    RpcSetLockonTarget();
+                    RpcSetLockonTargetNull();
                 }
             }
         }
