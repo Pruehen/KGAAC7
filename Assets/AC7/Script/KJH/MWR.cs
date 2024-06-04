@@ -47,7 +47,7 @@ public class MWR : NetworkBehaviour
     {
         //incomeMissileList.Remove(missile);
         missileCount--;
-        if (isPlayer)
+        if (isPlayer && this.isLocalPlayer)
         {
             MissileIndicatorController.Instance.RemoveMissileIndicator(missile);
             MissileCountRemove();
@@ -65,21 +65,24 @@ public class MWR : NetworkBehaviour
     Coroutine sfxLoop;
     private void CheckAnyTracing()
     {
-        if(missileCount > 0)
+        if (this.isLocalPlayer)
         {
-            if (sfxLoop == null)
+            if (missileCount > 0)
             {
-                sfxLoop = StartCoroutine(AlertSfxLoop(WarningVoiceSfx, _missileWarnigSfxDelay));
-                WarningBeepSfx?.Play();
+                if (sfxLoop == null)
+                {
+                    sfxLoop = StartCoroutine(AlertSfxLoop(WarningVoiceSfx, _missileWarnigSfxDelay));
+                    WarningBeepSfx?.Play();
+                }
             }
-        }
-        else
-        {
-            if(sfxLoop != null)
+            else
             {
-                WarningBeepSfx?.Pause();
-                StopCoroutine(sfxLoop);
-                sfxLoop = null;
+                if (sfxLoop != null)
+                {
+                    WarningBeepSfx?.Pause();
+                    StopCoroutine(sfxLoop);
+                    sfxLoop = null;
+                }
             }
         }
     }

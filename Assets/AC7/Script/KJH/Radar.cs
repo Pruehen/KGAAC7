@@ -78,18 +78,21 @@ public class Radar : NetworkBehaviour
                     isRadarLock = false;
                 }
 
-                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && isMissileLock)
+                if (this.isLocalPlayer)
                 {
-                    _lockOnSfx?.Play();
-                    //Debug.Log("家府");
-                }
-                else if (!isMissileLock)
-                {
-                    _lockOnSfx?.Pause();
-                }
+                    if (_lockOnSfx != null && !_lockOnSfx.isPlaying && isMissileLock)
+                    {
+                        _lockOnSfx?.Play();
+                        //Debug.Log("家府");
+                    }
+                    else if (!isMissileLock)
+                    {
+                        _lockOnSfx?.Pause();
+                    }
+                }            
             }
         }
-        else
+        else if(this.isLocalPlayer)
         {
             _lockOnSfx?.Pause();
         }

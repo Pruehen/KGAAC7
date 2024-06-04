@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //참조용 클래스. 하위 컴포넌트에 접근할 때 사용. 웬만하면 여기서 하위 컴포넌트를 수정하지 말 것
@@ -59,7 +58,7 @@ public class AircraftMaster : MonoBehaviour
             //Camera.main.transform.GetComponent<CamRotate>().enabled = false;
             if (_isPlayer)
             {
-                Cursor.lockState = CursorLockMode.None;
+                //Cursor.lockState = CursorLockMode.None;
             }
 
         }
@@ -72,7 +71,7 @@ public class AircraftMaster : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         if(_isPlayer)
         {
-            kjh.GameManager.Instance.GameEnd(false, 3f);
+            //kjh.GameManager.Instance.GameEnd(false, 3f);
         }
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
         

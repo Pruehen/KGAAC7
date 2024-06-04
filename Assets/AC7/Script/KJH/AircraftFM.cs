@@ -1,6 +1,5 @@
 using UnityEngine;
 using Mirror;
-using Unity.VisualScripting;
 
 //사용중인 항공기의 FM 데이터를 받아서 실제 비행 물리를 적용
 public class AircraftFM : NetworkBehaviour
@@ -90,8 +89,15 @@ public class AircraftFM : NetworkBehaviour
         }
         else
         {
-            rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, _curVelocity, Time.fixedDeltaTime);
-            this.transform.position = Vector3.Lerp(this.transform.position, _curPos, Time.fixedDeltaTime);
+            rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, _curVelocity, Time.fixedDeltaTime);            
+            if(Vector3.Distance(this.transform.position, _curPos) > 1000)
+            {
+                this.transform.position = _curPos;
+            }
+            else
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, _curPos, Time.fixedDeltaTime);
+            }
             this.transform.rotation = _curRot;
         }        
     }
