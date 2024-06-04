@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -72,11 +70,14 @@ public class TargetUI : MonoBehaviour
             targetObject = value;
             //objectInfo = targetObject.Info;
 
-            nameText.text = targetObject.name;
-            nicknameText.text = targetObject.nickname;
-            targetText.gameObject.SetActive(targetObject.mainTarget);
-            isTargeted = (TargetUIManager.Instance.Radar_Ref.GetTarget() == targetObject);
-            SetTargetted();
+            if (targetObject != null)
+            {
+                nameText.text = targetObject.name;
+                nicknameText.text = targetObject.nickname;
+                targetText.gameObject.SetActive(targetObject.mainTarget);
+                isTargeted = (TargetUIManager.Instance.Radar_Ref.GetTarget() == targetObject);
+                SetTargetted();
+            }
         }
     }
 

@@ -301,10 +301,10 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0}
   lowestCloudAltitude:
     m_OverrideState: 1
-    m_Value: 500
+    m_Value: 2000
   cloudThickness:
     m_OverrideState: 1
-    m_Value: 50000
+    m_Value: 7000
   fadeInMode:
     m_OverrideState: 0
     m_Value: 0
