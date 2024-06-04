@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace bsj
@@ -23,8 +22,8 @@ namespace bsj
 
         public void Play()
         {
-            Camera.main.transform.SetParent(null, true);
-            StartCoroutine(MoveCam( 60f));
+            //Camera.main.transform.SetParent(null, true);
+            //StartCoroutine(MoveCam( 60f));
         }
 
         private IEnumerator MoveCam(float rotateSpeed)

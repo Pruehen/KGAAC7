@@ -95,17 +95,16 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     void Dead()
     {
-        if (!isPlayer)
+
+        kjh.GameManager.Instance.RemoveActiveTarget(this);
+        //SubtitleManager.Instance.ShowSubtitle("Kill1");
+
+        if (TryGetComponent<SphereCollider>(out SphereCollider sphereCollider))
         {
-            kjh.GameManager.Instance.RemoveActiveTarget(this);
-            //SubtitleManager.Instance.ShowSubtitle("Kill1");
-            SphereCollider sphereCollider;
-            if (TryGetComponent<SphereCollider>(out sphereCollider))
-            {
-                sphereCollider.enabled = false;
-            }
+            sphereCollider.enabled = false;
         }
-        else
+
+        if (this.isLocalPlayer)
         {
             BGM_Player.Instance.Stop();
         }
