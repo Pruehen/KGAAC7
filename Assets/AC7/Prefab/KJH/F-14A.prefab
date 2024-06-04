@@ -21459,6 +21459,48 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  torqueCurve_ForAoA:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -25
+      value: 0
+      inSlope: 0.1
+      outSlope: 0.1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -15
+      value: 1
+      inSlope: 0.00094525184
+      outSlope: 0.00094525184
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.27769625
+    - serializedVersion: 3
+      time: 20
+      value: 1
+      inSlope: -0.000602356
+      outSlope: -0.000602356
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.24462646
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 35
+      value: 0
+      inSlope: -0.07574174
+      outSlope: -0.07574174
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.23057327
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   clCurve:
     serializedVersion: 2
     m_Curve:

@@ -40,12 +40,18 @@ public class AircraftFM : NetworkBehaviour
 
         Vector3 velocity = rigidbody.velocity;
         float velocitySpeed = velocity.magnitude;
+
+        Vector3 localVelocityDir = this.transform.InverseTransformDirection(rigidbody.velocity).normalized;
+        //정면 받음각
+        float aoa = -Mathf.Asin(localVelocityDir.y) * Mathf.Rad2Deg;
+        //측면 받음각
+        float aoaSide = -Mathf.Asin(localVelocityDir.x) * Mathf.Rad2Deg;
         //Debug.Log(velocity);
 
         _enginePower = aircraftData.EnginePower(velocitySpeed, this.transform.position.y);
-        _pitchTorque = -aircraftData.PitchTorque(velocitySpeed);
-        _rollTorque = -aircraftData.RollTorque(velocitySpeed);
-        _yawTorque = aircraftData.YawTorque(velocitySpeed);
+        _pitchTorque = -aircraftData.PitchTorque(velocitySpeed, aoa);
+        _rollTorque = -aircraftData.RollTorque(velocitySpeed, aoa);
+        _yawTorque = aircraftData.YawTorque(velocitySpeed, aoa);
 
         //엔진 추력 적용
         rigidbody.AddForce(this.transform.forward * _enginePower, ForceMode.Acceleration);
@@ -59,11 +65,7 @@ public class AircraftFM : NetworkBehaviour
         Vector3 stallAxis = Vector3.Cross(this.transform.forward, new Vector3(0, -1, 0));
         rigidbody.AddTorque(stallAxis * aircraftData.StallTorque(velocitySpeed), ForceMode.Acceleration);
 
-        Vector3 localVelocityDir = this.transform.InverseTransformDirection(rigidbody.velocity).normalized;
-        //정면 받음각
-        float aoa = -Mathf.Asin(localVelocityDir.y) * Mathf.Rad2Deg;
-        //측면 받음각
-        float aoaSide = -Mathf.Asin(localVelocityDir.x) * Mathf.Rad2Deg;
+
 
         //속도 벡터의 수직 방향으로 양력 생성
         rigidbody.AddForce(Vector3.Cross(velocity, this.transform.right).normalized * aircraftData.GetLiftPower(aoa, velocitySpeed), ForceMode.Acceleration);

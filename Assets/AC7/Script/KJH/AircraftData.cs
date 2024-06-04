@@ -12,7 +12,8 @@ public class AircraftData : MonoBehaviour
     [SerializeField] float yawTorque;
 
     [SerializeField] AnimationCurve enginePowerCurve; //엔진 추력 커브
-    [SerializeField] AnimationCurve torqueCurve; //토크 커브
+    [SerializeField] AnimationCurve torqueCurve; //토크 커브 - 속도 비례
+    [SerializeField] AnimationCurve torqueCurve_ForAoA; //토크 커브 - 받음각 비례
     [SerializeField] AnimationCurve clCurve;//받음각에 따른 양력 계수 커브
     [SerializeField] AnimationCurve cdCurve;//받음각에 따른 유해항력 계수 커브
     [SerializeField][Range(0, 1)] float e;//스팬효율계수 (0~1까지의 값을 가짐)
@@ -47,7 +48,7 @@ public class AircraftData : MonoBehaviour
     /// </summary>
     /// <param name="speed"></param>
     /// <returns></returns>
-    public float PitchTorque(float speed)
+    public float PitchTorque(float speed, float aoa)
     {
         float pitch;
         if(aircraftControl.pitch > 0)
@@ -58,7 +59,7 @@ public class AircraftData : MonoBehaviour
         {
             pitch = aircraftControl.pitch * 0.5f;
         }
-        return pitchTorque * torqueCurve.Evaluate(speed) * pitch * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
+        return pitchTorque * torqueCurve.Evaluate(speed) * torqueCurve_ForAoA.Evaluate(aoa) * pitch * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
     }
     /// <summary>
     /// 항공기가 저속일 때 스톨 토크를 반환하는 메서드
@@ -85,18 +86,18 @@ public class AircraftData : MonoBehaviour
     /// </summary>
     /// <param name="speed"></param>
     /// <returns></returns>
-    public float RollTorque(float speed)
+    public float RollTorque(float speed, float aoa)
     {
-        return rollTorque * torqueCurve.Evaluate(speed) * aircraftControl.roll * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
+        return rollTorque * torqueCurve.Evaluate(speed) * torqueCurve_ForAoA.Evaluate(aoa) * aircraftControl.roll * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
     }
     /// <summary>
     /// 현재 속도에 따른 요 축 토크를 반환하는 메서드
     /// </summary>
     /// <param name="speed"></param>
     /// <returns></returns>
-    public float YawTorque(float speed)
+    public float YawTorque(float speed, float aoa)
     {
-        return yawTorque * torqueCurve.Evaluate(speed) * aircraftControl.yaw * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
+        return yawTorque * torqueCurve.Evaluate(speed) * torqueCurve_ForAoA.Evaluate(aoa) * aircraftControl.yaw * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
     }
     /// <summary>
     /// 항력 계수를 반환하는 메서드. 에어브레이크 기능 추가됨
