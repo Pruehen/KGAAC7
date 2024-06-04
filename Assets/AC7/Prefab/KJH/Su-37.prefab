@@ -21997,8 +21997,26 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.29737118
     - serializedVersion: 3
-      time: 800
+      time: 330
+      value: 0.7
+      inSlope: -0.002778013
+      outSlope: -0.002778013
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.59563905
+    - serializedVersion: 3
+      time: 400
       value: 0.5
+      inSlope: -0.0022846875
+      outSlope: -0.0022846875
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11877449
+    - serializedVersion: 3
+      time: 800
+      value: 0.2
       inSlope: -0.00003261966
       outSlope: -0.00003261966
       tangentMode: 0
@@ -22107,6 +22125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea3e4b70ada30a4abd850c3ae45c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   weaponPrfList:
   - {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
   - {fileID: 6445041468265237155, guid: 867ea82aded372f41bf6f5da31d78e1e, type: 3}
