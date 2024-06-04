@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 //참조용 클래스. 하위 컴포넌트에 접근할 때 사용. 웬만하면 여기서 하위 컴포넌트를 수정하지 말 것
 //전투 기능을 우선 여기에 붙여봤음.
@@ -50,6 +51,18 @@ public class AircraftMaster : NetworkBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
+    private void Start()
+    {
+        if (this.isLocalPlayer)
+        {
+            SetPositionPlayer();
+            //vehicleCombat.Init();
+        }
+        else
+        {
+            kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
+        }
+    }
 
     public void Dead()
     {
@@ -84,10 +97,13 @@ public class AircraftMaster : NetworkBehaviour
     {
         if (this.isLocalPlayer)
         {
-            SetPositionPlayer();
+            SetPositionPlayer();            
+        }
+        else
+        {
+            kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
         }
 
-        kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
         vehicleCombat.Init();
     }
 

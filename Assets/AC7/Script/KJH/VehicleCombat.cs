@@ -35,15 +35,15 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         CommandTakeDamage(damage);
     }
 
-    [Command(requiresAuthority = false)]
+    [Server]
     void CommandTakeDamage(float damage)
     {
         combat.TakeDamage(damage);//서버에서 데미지 계산
-        CustomAI customAI;
-        if (TryGetComponent<CustomAI>(out customAI))
-        {
-            customAI.EngageOrder();
-        }
+        //CustomAI customAI;
+        //if (TryGetComponent<CustomAI>(out customAI))
+        //{
+        //    customAI.EngageOrder();
+        //}
 
         RpcTakeDamage(damage);
     }
@@ -55,11 +55,11 @@ public class VehicleCombat : NetworkBehaviour, IFightable
             return;
 
         combat.TakeDamage(dmg);
-        CustomAI customAI;
-        if (TryGetComponent<CustomAI>(out customAI))
-        {
-            customAI.EngageOrder();
-        }
+        //CustomAI customAI;
+        //if (TryGetComponent<CustomAI>(out customAI))
+        //{
+        //    customAI.EngageOrder();
+        //}
     }
 
 
@@ -73,20 +73,12 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     protected virtual void Awake()
     {        
         combat.OnDead += Dead;
-        Init();
-        //isTargeted = false;
-        //isRaderLock = false;
-        //isMissileLock = false;
-
-        if (isPlayer)
-        {
-            //StartCoroutine(Heal());
-        }
+        combat.Init(this.transform, startHp);
     }
     public void Init()
     {
         combat.Init(this.transform, startHp);
-        onInit.Invoke();
+        onInit.Invoke();        
     }
 
     IEnumerator Heal()
@@ -112,6 +104,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     void Dead()
     {
+
         kjh.GameManager.Instance.RemoveActiveTarget(this);
 
         //SubtitleManager.Instance.ShowSubtitle("Kill1");

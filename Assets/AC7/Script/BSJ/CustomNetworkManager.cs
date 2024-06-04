@@ -17,9 +17,9 @@ public class CustomNetworkManager : NetworkManager
         // => appending the connectionId is WAY more useful for debugging!
         player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
 
-        VehicleCombat playerVehicleCombat = player.transform.GetChild(0).GetComponent<VehicleCombat>();
-        playerVehicleCombat.SetNames(userName);
-        kjh.GameManager.Instance.AddActiveTarget(playerVehicleCombat);
+        //VehicleCombat playerVehicleCombat = player.transform.GetChild(0).GetComponent<VehicleCombat>();
+        //playerVehicleCombat.SetNames(userName);
+        //kjh.GameManager.Instance.AddActiveTarget(playerVehicleCombat);
 
         NetworkServer.AddPlayerForConnection(conn, player);
     }

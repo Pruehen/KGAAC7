@@ -21,24 +21,6 @@ public class PlayerControllerNetworkCustom : NetworkBehaviour
             }
             return;
         }
-        bsj.GameManager.Instance.TriggerNetworkPlayerSpawn(transform);
+        //bsj.GameManager.Instance.TriggerNetworkPlayerSpawn(transform);
     }
-    private void OnPlayerSpawn()
-    {
-
-    }
-
-    [Command]
-    public void CommandFireWeaponNetwork()
-    {
-
-        RpcFireWeaponNetwork();
-    }
-
-    [ClientRpc]
-    public void RpcFireWeaponNetwork()
-    {
-
-    }
-
 }
