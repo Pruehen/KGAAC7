@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Mirror;
-using Steamworks;
 
 public class PlayerInputCustom : NetworkBehaviour
 {
@@ -78,7 +77,7 @@ public class PlayerInputCustom : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            NetworkInvoke(InputEnum.R_Click);
+            onClick_R.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.F))
         {

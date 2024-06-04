@@ -52,6 +52,10 @@ public class AircraftMaster : MonoBehaviour
 
     public void Dead()
     {
+        vehicleCombat.onDead.Invoke();
+    }
+    public void OnDead()
+    {
         if (_isPlayer)
         {
             //Camera.main.transform.SetParent(null);

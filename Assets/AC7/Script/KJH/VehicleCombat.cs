@@ -24,6 +24,11 @@ public class VehicleCombat : NetworkBehaviour, IFightable
             CommandTakeDamage(damage);//서버일 시 커맨드 메서드 실행
         }
     }
+    public void TakeDamageExecuteCommand(float damage)
+    {
+        CommandTakeDamage(damage);
+    }
+
     [Command(requiresAuthority = false)]
     void CommandTakeDamage(float damage)
     {
@@ -95,7 +100,6 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     void Dead()
     {
-
         kjh.GameManager.Instance.RemoveActiveTarget(this);
         //SubtitleManager.Instance.ShowSubtitle("Kill1");
 

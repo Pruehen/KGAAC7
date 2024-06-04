@@ -21,7 +21,7 @@ public class Guided_SARH : Guided
     {
         WeaponData weaponData = GetComponent<WeaponData>();
         this.radar = radar;
-        if (radar.toTargetAngle <= weaponData.MaxSeekerAngle() + 10 && radar.toTargetDistance <= weaponData.LockOnRange() + 1000)
+        if (radar.toTargetAngle <= weaponData.MaxSeekerAngle() * 1.2f && radar.toTargetDistance <= weaponData.LockOnRange() * 1.2f)
         {
             this.target = radar.GetTarget();
             if (target != null)

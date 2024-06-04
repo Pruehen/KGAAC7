@@ -33,7 +33,7 @@ namespace kjh
         }
 
 
-        public int useWeaponIndex { get; private set; }
+        [SyncVar] int useWeaponIndex;
         public System.Action weaponChange;
 
         [SerializeField] GameObject bulletPrf;
@@ -216,10 +216,13 @@ namespace kjh
                 GameObject item = Instantiate(useWeaponPrf, firePoint.position, firePoint.rotation);//로컬 미사일 스폰                
 
                 item.GetComponent<Rigidbody>().velocity = initailVelocity;
-
-                Guided guided;
-                if (item.TryGetComponent(out guided))
+                
+                if (item.TryGetComponent(out Guided guided))
                 {
+                    if(radar.GetTarget() == null)
+                    {
+                        radar.LockOn();
+                    }
                     guided.SetTarget(radar);
                 }
 
