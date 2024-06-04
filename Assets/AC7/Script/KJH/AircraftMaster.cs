@@ -73,15 +73,12 @@ public class AircraftMaster : MonoBehaviour
     IEnumerator DeadEffect()
     {
         yield return new WaitForSeconds(2.5f);
-        if(_isPlayer)
+        if (_isPlayer)
         {
             //kjh.GameManager.Instance.GameEnd(false, 3f);
         }
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
-        
-        if (!_isPlayer)
-            Destroy(this.gameObject);
-        else
-            gameObject.SetActive(false);
+
+        Destroy(this.gameObject);
     }
 }

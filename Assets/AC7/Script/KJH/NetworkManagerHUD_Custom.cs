@@ -9,14 +9,14 @@ using System.Collections;
 [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-manager-hud")]
 public class NetworkManagerHUD_Custom : MonoBehaviour
 {
-    NetworkManager manager;
+    CustomNetworkManager manager;
 
     public int offsetX;
     public int offsetY;
 
     void Awake()
     {
-        manager = GetComponent<NetworkManager>();        
+        manager = GetComponent<CustomNetworkManager>();        
     }
 
     void OnGUI()
@@ -85,6 +85,14 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
 
             GUILayout.EndHorizontal();
 
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("UserName");
+            manager.userName = GUILayout.TextField(manager.userName);
+            GUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Quit"))
+                Application.Quit();
+
             // Server Only
 #if UNITY_WEBGL
                 // cant be a server in webgl build
@@ -148,8 +156,7 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
             {
                 if (kjh.GameManager.Instance.player.vehicleCombat.IsDead())
                 {
-                    manager.StopClient();
-                    manager.StartClient();
+                    //리스폰 처리
                 }
             }
 #endif
@@ -168,7 +175,6 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
             {
                 if (kjh.GameManager.Instance.player.vehicleCombat.IsDead())
                 {
-                    manager.StopClient();
                     manager.StartClient();
                 }
             }

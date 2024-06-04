@@ -11,6 +11,12 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     public string name;
     public string nickname;
 
+    public void SetNames(string nickName)
+    {
+        name = GetComponent<AircraftSelecter>().aircraftControl.name;
+        this.nickname = nickName;
+    }
+
     void IFightable.DealDamage(IFightable target, float damage)
     {
         throw new System.NotImplementedException();
@@ -100,7 +106,9 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     void Dead()
     {
+
         kjh.GameManager.Instance.RemoveActiveTarget(this);
+
         //SubtitleManager.Instance.ShowSubtitle("Kill1");
 
         if (TryGetComponent<SphereCollider>(out SphereCollider sphereCollider))
@@ -110,7 +118,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
         if (this.isLocalPlayer)
         {
-            BGM_Player.Instance.Stop();
+            //BGM_Player.Instance.Stop();
         }
         onDead.Invoke();
         //Debug.Log("Æã");
