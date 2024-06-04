@@ -69,6 +69,7 @@ public class Combat
         _owner = owner;
         _maxHp = maxHp;
         _hp = _maxHp;
+        _dead = false;
     }
     public float GetHp() { return _hp; }
     public float GetMaxHp()

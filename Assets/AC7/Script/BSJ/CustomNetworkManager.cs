@@ -22,10 +22,5 @@ public class CustomNetworkManager : NetworkManager
         kjh.GameManager.Instance.AddActiveTarget(playerVehicleCombat);
 
         NetworkServer.AddPlayerForConnection(conn, player);
-    }    
-
-    public void RespawnHost()
-    {
-        NetworkServer.SpawnObjects();
     }
 }

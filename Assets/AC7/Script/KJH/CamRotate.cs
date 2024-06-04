@@ -33,6 +33,8 @@ public class CamRotate : MonoBehaviour
     {
         //bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
         OnPlayerSpawn();
+
+        BackUpCam.Instance.SetActiveBackUpCam(false);
     }
     private void OnPlayerSpawn()
     {

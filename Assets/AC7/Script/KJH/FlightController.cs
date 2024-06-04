@@ -35,4 +35,8 @@ public class FlightController : MonoBehaviour
     {
         dead = true;
     }
+    public void Init()
+    {
+        dead = false;
+    }
 }

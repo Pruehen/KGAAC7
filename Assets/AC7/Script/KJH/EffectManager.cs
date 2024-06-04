@@ -41,7 +41,10 @@ public class EffectManager : SceneSingleton<EffectManager>
     IEnumerator OffParticle(GameObject item, float delayTime)
     {        
         yield return new WaitForSeconds(delayTime);
-        item.transform.SetParent(null);
-        StartCoroutine(EffectEnqueue(item, 5));
+        if (item != null)
+        {
+            item.transform.SetParent(null);
+            StartCoroutine(EffectEnqueue(item, 5));
+        }
     }
 }

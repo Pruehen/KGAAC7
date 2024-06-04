@@ -71,18 +71,24 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     Combat combat = new Combat();
     public Combat Combat() { return combat; }
     protected virtual void Awake()
-    {
-        combat.Init(this.transform, startHp);        
+    {        
         combat.OnDead += Dead;
+        Init();
         //isTargeted = false;
         //isRaderLock = false;
         //isMissileLock = false;
 
-        if(isPlayer)
+        if (isPlayer)
         {
             //StartCoroutine(Heal());
         }
     }
+    public void Init()
+    {
+        combat.Init(this.transform, startHp);
+        onInit.Invoke();
+    }
+
     IEnumerator Heal()
     {
         while(true)
@@ -106,7 +112,6 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     void Dead()
     {
-
         kjh.GameManager.Instance.RemoveActiveTarget(this);
 
         //SubtitleManager.Instance.ShowSubtitle("Kill1");
@@ -133,5 +138,6 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     }
 
     public UnityEvent onDead;
+    public UnityEvent onInit;
     public System.Action onFlare;
 }

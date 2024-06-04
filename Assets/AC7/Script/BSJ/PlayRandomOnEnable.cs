@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 문제 이펙트에 자식프리팹으로서 작동하는데 부모가 먼저 삭제될 수 도 있음
