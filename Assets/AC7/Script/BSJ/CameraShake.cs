@@ -67,7 +67,7 @@ public class CameraShake : MonoBehaviour
         }
         else
         {
-                transform.localPosition = _initialPosition;
+            //transform.localPosition = _initialPosition;
         }
     }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Mirror;
+using Steamworks;
 
 public class PlayerInputCustom : NetworkBehaviour
 {
@@ -92,6 +93,19 @@ public class PlayerInputCustom : NetworkBehaviour
             onClick_ESC.Invoke();
         }
     }
+
+    public void SetMouseCursor_OnClickESC()
+    {
+        if(Cursor.lockState == CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     void NetworkInvoke(InputEnum inputEnum)
     {
         CommandNetworkInvoke(inputEnum);

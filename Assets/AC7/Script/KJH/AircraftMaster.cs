@@ -55,8 +55,8 @@ public class AircraftMaster : MonoBehaviour
     {
         if (_isPlayer)
         {
-            Camera.main.transform.SetParent(null);
-            Camera.main.transform.GetComponent<CamRotate>().enabled = false;
+            //Camera.main.transform.SetParent(null);
+            //Camera.main.transform.GetComponent<CamRotate>().enabled = false;
             if (_isPlayer)
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -72,7 +72,7 @@ public class AircraftMaster : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         if(_isPlayer)
         {
-            kjh.GameManager.Instance.GameEnd(false, .3f);
+            kjh.GameManager.Instance.GameEnd(false, 3f);
         }
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
         
