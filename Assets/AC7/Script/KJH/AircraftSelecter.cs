@@ -1,12 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using kjh;
 
-//¾î¶² Ç×°ø±â¸¦ »ç¿ëÇÏ´ÂÁö ¾Ë·ÁÁÖ´Â Å¬·¡½º
+//ì–´ë–¤ í•­ê³µê¸°ë¥¼ ì‚¬ìš©í•˜ëŠ”ì§€ ì•Œë ¤ì£¼ëŠ” í´ë˜ìŠ¤
 public class AircraftSelecter : MonoBehaviour
 {
-    public GameObject controlAircraft;
+    enum AircraftName
+    {
+        F14A,
+        F15C,
+        F16C,
+        MiG29A,
+        SU37
+    }
+
+
+    [SerializeField] AircraftName controlAircraft;
 
     public AircraftData aircraftData { get; private set; }
     public kjh.WeaponSystem weaponSystem { get; private set; }
@@ -19,71 +26,45 @@ public class AircraftSelecter : MonoBehaviour
         SetControlAircraft(controlAircraft);
     }
 
+    void SetControlAircraft(AircraftName aircraftName)
+    {
+        GameObject aircraftInChild;
+
+        switch (aircraftName)
+        {
+            case AircraftName.F14A:
+                aircraftInChild = this.transform.Find("F-14A").gameObject;
+                break;
+            case AircraftName.F15C:
+                aircraftInChild = this.transform.Find("F-15C").gameObject;
+                break;
+            case AircraftName.F16C:
+                aircraftInChild = this.transform.Find("F-16C").gameObject;
+                break;
+            case AircraftName.MiG29A:
+                aircraftInChild = this.transform.Find("MiG-29A").gameObject;
+                break;
+            case AircraftName.SU37:
+                aircraftInChild = this.transform.Find("Su-37").gameObject;
+                break;
+            default:
+                aircraftInChild = this.transform.Find("F-16C").gameObject;
+                break;
+        }
+        SetControlAircraft(aircraftInChild);
+    }
+
     /// <summary>
-    /// aircraft°¡ »ç¿ëÇÒ Ç×°ø±â¸¦ Á¤ÇØÁÖ´Â ¸Ş¼­µå
+    /// aircraftê°€ ì‚¬ìš©í•  í•­ê³µê¸°ë¥¼ ì •í•´ì£¼ëŠ” ë©”ì„œë“œ
     /// </summary>
     /// <param name="controlAircraft"></param>
     public void SetControlAircraft(GameObject controlAircraft)
-    {
-        if (this.aircraftControl != null)
-        {
-            this.controlAircraft.SetActive(false);
-        }
-
-        if(controlAircraft == null)
-        {       
-            if (GameObject.Find("_F-16C") != null)
-            {
-                name = "F-16C";
-                //Destroy(GameObject.Find("_F-16C"));
-            }
-            else if(GameObject.Find("_MiG-29A") != null)
-            {
-                name = "MiG-29A";
-                //Destroy(GameObject.Find("_MiG-29A"));
-            }
-            else if (GameObject.Find("_F-14A") != null)
-            {
-                name = "F-14A";
-                //Destroy(GameObject.Find("_F-14A"));
-            }
-            else if (GameObject.Find("_F-15C") != null)
-            {
-                name = "F-15C";
-                //Destroy(GameObject.Find("_F-15C"));
-            }
-            else if (GameObject.Find("_Su-37") != null)
-            {
-                name = "Su-37";
-                //Destroy(GameObject.Find("_Su-37"));
-            }
-            else
-            {
-                name = "F-16C";
-            }
-            controlAircraft = transform.Find(name).gameObject;
-            if (controlAircraft == null)
-                return;
-        }
-
-        this.controlAircraft = controlAircraft;
-        this.controlAircraft.SetActive(true);
+    {        
+        controlAircraft.SetActive(true);
         aircraftData = controlAircraft.GetComponent<AircraftData>();
-        this.gameObject.GetComponent<AircraftFM>().Init();
+        this.gameObject.GetComponent<AircraftFM>().Init(controlAircraft);
         weaponSystem = controlAircraft.GetComponent<kjh.WeaponSystem>();
         weaponSystem?.Init();
         aircraftControl = controlAircraft.GetComponent<AircraftControl>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -20,10 +20,9 @@ public class AircraftFM : NetworkBehaviour
     [SyncVar] [SerializeField] Vector3 _curPos;
     [SyncVar] [SerializeField] Quaternion _curRot;
 
-    public void Init()
-    {
-        aircraftSelecter = GetComponent<AircraftSelecter>();
-        effect = aircraftSelecter.controlAircraft.GetComponent<VaporEffect>();
+    public void Init(GameObject controlAircraft)
+    {        
+        effect = controlAircraft.GetComponent<VaporEffect>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.velocity = this.transform.forward * 200;
     }
