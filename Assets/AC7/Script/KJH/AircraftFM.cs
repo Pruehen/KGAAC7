@@ -21,7 +21,8 @@ public class AircraftFM : NetworkBehaviour
     [SyncVar] [SerializeField] Quaternion _curRot;
 
     public void Init(GameObject controlAircraft)
-    {        
+    {
+        aircraftData = controlAircraft.GetComponent<AircraftData>();
         effect = controlAircraft.GetComponent<VaporEffect>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.velocity = this.transform.forward * 200;
@@ -35,7 +36,7 @@ public class AircraftFM : NetworkBehaviour
     
     void FlightModelOnFixedUpdate()
     {
-        aircraftData = aircraftSelecter.aircraftData;
+        //aircraftData = aircraftSelecter.aircraftData;
 
         Vector3 velocity = rigidbody.velocity;
         float velocitySpeed = velocity.magnitude;

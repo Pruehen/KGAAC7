@@ -58,7 +58,7 @@ public class AircraftSelecter : MonoBehaviour
     /// aircraft가 사용할 항공기를 정해주는 메서드
     /// </summary>
     /// <param name="controlAircraft"></param>
-    public void SetControlAircraft(GameObject controlAircraft)
+    void SetControlAircraft(GameObject controlAircraft)
     {        
         controlAircraft.SetActive(true);
         aircraftData = controlAircraft.GetComponent<AircraftData>();
