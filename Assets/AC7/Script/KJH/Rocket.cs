@@ -99,7 +99,7 @@ public class Rocket : NetworkBehaviour
             else
             {
                 isCombustion = false;
-                //smoke.Stop();
+                smoke.Stop();
                 motor.Stop();
             }
         }

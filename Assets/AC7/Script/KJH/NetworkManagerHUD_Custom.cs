@@ -147,8 +147,8 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
             if (GUILayout.Button("Disconnect"))
             {
                 kjh.GameManager.Instance.player.vehicleCombat.TakeDamageExecuteCommand(99999);
-                StartCoroutine(StopClientDelay(3));
-                StartCoroutine(StopHostDelay(3));
+                manager.StopClient();
+                manager.StopHost();
             }
 
             // stop client if host mode, leaving server up
@@ -156,7 +156,7 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
             {
                 if (kjh.GameManager.Instance.player.vehicleCombat.IsDead())
                 {
-                    //리스폰 처리
+                    manager.RespawnHost();
                 }
             }
 #endif
@@ -169,12 +169,13 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
             if (GUILayout.Button("Disconnect"))
             {
                 kjh.GameManager.Instance.player.vehicleCombat.TakeDamageExecuteCommand(99999);
-                StartCoroutine(StopClientDelay(3));
+                manager.StopClient();
             }
             if (GUILayout.Button("ReSpawn"))
             {
                 if (kjh.GameManager.Instance.player.vehicleCombat.IsDead())
                 {
+                    manager.StopClient();
                     manager.StartClient();
                 }
             }

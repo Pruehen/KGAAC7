@@ -7,7 +7,7 @@ public class CustomNetworkManager : NetworkManager
     public string userName { get; set; }
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
-        Debug.Log("서버 스폰 완료");
+        //Debug.Log("서버 스폰 완료");
         Transform startPos = GetStartPosition();
         GameObject player = startPos != null
             ? Instantiate(playerPrefab, startPos.position, startPos.rotation, Transform_PlayerSpawnParent)
@@ -23,4 +23,9 @@ public class CustomNetworkManager : NetworkManager
 
         NetworkServer.AddPlayerForConnection(conn, player);
     }    
+
+    public void RespawnHost()
+    {
+        NetworkServer.SpawnObjects();
+    }
 }
