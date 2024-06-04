@@ -15,6 +15,27 @@ public class AircraftMaster : NetworkBehaviour
     public AircraftControl aircraftControl;
     public VehicleCombat vehicleCombat;
 
+    private float _syncedSpeed = 0f;
+    private float SyncedSpeed
+    {
+        get
+        {
+            CommandGetSpeed();
+            return _syncedSpeed;
+        }
+    }
+
+    [Command (requiresAuthority = false)]
+    private void CommandGetSpeed()
+    {
+        RpcSetSpeed(rigidbody.velocity.magnitude * 3.6f);
+    }
+    [ClientRpc]
+    private void RpcSetSpeed(float speed)
+    {
+        _syncedSpeed = speed;
+    }
+
     Rigidbody rigidbody;
 
     /// <summary>
@@ -23,9 +44,16 @@ public class AircraftMaster : NetworkBehaviour
     /// <returns></returns>
     public float GetSpeed()
     {
-        return rigidbody.velocity.magnitude * 3.6f;
+        if(isClientOnly)
+        {
+            return SyncedSpeed;
+        }
+        else
+        {
+            return rigidbody.velocity.magnitude * 3.6f;
+        }
     }
-    
+
     //public AircraftControl aircraftControl;
 
     private void Awake()
