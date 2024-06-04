@@ -11,7 +11,8 @@ public class HpBar : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+        //bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+        OnPlayerSpawn();
     }
     private void OnPlayerSpawn()
     {

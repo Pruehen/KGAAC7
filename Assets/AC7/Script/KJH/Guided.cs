@@ -19,7 +19,7 @@ public class Guided : NetworkBehaviour
     public virtual void SetTarget(Radar radar)
     {
         WeaponData weaponData = GetComponent<WeaponData>();
-        if (radar.toTargetAngle <= weaponData.MaxSeekerAngle() && radar.toTargetDistance <= weaponData.LockOnRange())
+        if ((radar.toTargetAngle <= weaponData.MaxSeekerAngle() + 10 && radar.toTargetDistance <= weaponData.LockOnRange() + 1000))
         {
             this.target = radar.GetTarget();
             if (target != null)
