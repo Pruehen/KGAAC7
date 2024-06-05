@@ -159,7 +159,6 @@ public class PlayerInputCustom : NetworkBehaviour
         float rollAxisTemp = 0;
         float yawAxisTemp = 0;
         float throttleAxisTemp = 0;
-
         if (Input.GetKey(KeyCode.A))//¿ä ÁÂÃø
         {
             yawAxisTemp -= 1;

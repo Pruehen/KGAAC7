@@ -34,4 +34,8 @@ public class FlightController : MonoBehaviour
     {
         dead = true;
     }
+    public void ResetDead()
+    {
+        dead = false;
+    }
 }

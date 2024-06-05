@@ -120,12 +120,22 @@ public class VehicleCombat : NetworkBehaviour, IFightable
                 sphereCollider.enabled = false;
             }
         }
-        else
+        else if(isLocalPlayer)
         {
             BGM_Player.Instance.Stop();
         }
         onDead.Invoke();
         //Debug.Log("Æã");
+    }
+
+    public void ResetDead()
+    {
+        SphereCollider sphereCollider;
+        if (TryGetComponent<SphereCollider>(out sphereCollider))
+        {
+            sphereCollider.enabled = true;
+            combat.Reset();
+        }
     }
 
     /// <summary>

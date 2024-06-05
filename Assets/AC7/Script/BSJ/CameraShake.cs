@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using Mirror;
 
-public class CameraShake : MonoBehaviour
+public class CameraShake : NetworkBehaviour
 {
     // 흔들림의 강도와 지속시간 설정
     [SerializeField] float _shakeDuration = 0.5f;

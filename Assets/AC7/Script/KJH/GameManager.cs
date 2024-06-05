@@ -89,6 +89,16 @@ namespace kjh
             //플레이어 정지
             StartCoroutine(DelayedCall(delay + 1f,  () => player.gameObject.SetActive(false))) ;
         }
+        public void GameReset(float delay = 0f)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+
+            StartCoroutine(DelayedCall(delay, _gameResultUi.FadeOutResultUi));
+            //플레이어 정지
+            player.gameObject.SetActive(true);
+
+            player.transform.position = Vector3.up * 5000f;
+        }
 
         public IEnumerator DelayedCall(float time, System.Action action)
         {

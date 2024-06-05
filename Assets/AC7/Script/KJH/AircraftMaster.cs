@@ -95,6 +95,34 @@ public class AircraftMaster : NetworkBehaviour
         StartCoroutine(DeadEffect());
     }
 
+    [Command]
+    public void CommandResetDead()
+    {
+        if(isServer)
+        {
+            RpcResetDead();
+        }
+    }
+    [ClientRpc]
+    private void RpcResetDead()
+    {
+        ResetDead();
+    }
+    private void ResetDead()
+    {
+        if(isLocalPlayer)
+        {
+            Camera.main.transform.GetComponent <CamRotate>().enabled = true;
+            if (isLocalPlayer)
+            {
+                GetComponent<bsj.DeathCam>().ResetDead();
+                kjh.GameManager.Instance.GameReset(.3f);
+                vehicleCombat.ResetDead();
+                transform.GetComponent<FlightController>().ResetDead();
+            }
+        }
+    }
+
     IEnumerator DeadEffect()
     {
         yield return new WaitForSeconds(2.5f);

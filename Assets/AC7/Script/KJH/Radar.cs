@@ -156,18 +156,18 @@ public class Radar : NetworkBehaviour
                     IsRadarLock = false;
                 }
 
-                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockonTarget.isMissileLock)
+                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && lockonTarget.isMissileLock && isLocalPlayer)
                 {
                     _lockOnSfx?.Play();
                     //Debug.Log("¼Ò¸®");
                 }
-                else if (!lockonTarget.isMissileLock)
+                else if (!lockonTarget.isMissileLock && isLocalPlayer)
                 {
                     _lockOnSfx?.Pause();
                 }
             }
         }
-        else
+        else if(isLocalPlayer)
         {
             _lockOnSfx?.Pause();
         }

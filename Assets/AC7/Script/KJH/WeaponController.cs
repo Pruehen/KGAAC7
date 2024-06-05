@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace kjh
 {
-    public class WeaponController : MonoBehaviour
+    public class WeaponController : NetworkBehaviour
     {
         AircraftSelecter aircraftSelecter;
         kjh.WeaponSystem weaponSystem;
@@ -59,10 +60,31 @@ namespace kjh
         /// <param name="value"></param>
         public void SetGunTrigger(bool value)
         {
+            if(isServerOnly)
+            {
+                ExeSetGunTrigger(value);
+                RpcSetGunTrigger(value);
+            }
+            else if(isServer)
+            {
+                RpcSetGunTrigger(value);
+            }
+        }
+
+        [ClientRpc]
+        private void RpcSetGunTrigger(bool value)
+        {
+            ExeSetGunTrigger(value);
+        }
+
+        private void ExeSetGunTrigger(bool value)
+        {
+
             if (weaponSystem == null)
                 weaponSystem = aircraftSelecter.weaponSystem;
             weaponSystem.SetGunTrigger(value);
         }
+
         public void SetFlareTrigger(bool value)
         {
             if (weaponSystem == null)

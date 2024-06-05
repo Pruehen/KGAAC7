@@ -106,6 +106,10 @@ public class MWR : NetworkBehaviour
     Coroutine sfxLoop;
     private void CheckAnyTracing()
     {
+        if(!isLocalPlayer)
+        {
+            return;
+        }
         if(missileCount > 0)
         {
             if (sfxLoop == null)

@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace kjh
         float lifeTime = 0;
         [SerializeField] GameObject _bulletHitVfx;
         [SerializeField] GameObject _waterHitVfx;
+
 
         public void Init(Vector3 position, Vector3 velocity)
         {
@@ -54,7 +56,7 @@ namespace kjh
                 fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
                 GameObject vsfx = ObjectPoolManager.Instance.DequeueObject(_bulletHitVfx);
 
-                if (fightable.isPlayer)
+                if (fightable.isPlayer && fightable.isLocalPlayer)
                 {
                     kjh.GameManager.Instance.cameraShake.BulletHitShake();
                 }

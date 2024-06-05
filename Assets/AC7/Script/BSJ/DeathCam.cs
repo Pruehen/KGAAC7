@@ -9,6 +9,9 @@ namespace bsj
     {
         Transform _playerTrf;
         Camera _cam;
+        Vector3 _initialOffset;
+        Quaternion _initialLocalRotation;
+        Transform _initCamParent;
 
         private void Start()
         {
@@ -17,8 +20,11 @@ namespace bsj
         private void OnPlayerSpawn()
         {
             _cam = Camera.main;
+            _initCamParent = Camera.main.transform.parent;
+            _initialOffset = _cam.transform.localPosition;
+            _initialLocalRotation = _cam.transform.localRotation;
             Vector3 offset = Vector3.up * 500f;
-            if(isLocalPlayer)
+            if (isLocalPlayer)
             {
                 GetComponent<VehicleCombat>().onDead.AddListener(Play);
             }
@@ -53,6 +59,12 @@ namespace bsj
                 _cam.transform.position += Vector3.up * offset;
 
             }
+        }
+        public void ResetDead()
+        {
+            _cam.transform.SetParent(_initCamParent);
+            _cam.transform.localPosition = _initialOffset;
+            _cam.transform.localRotation = _initialLocalRotation;
         }
     }
 
