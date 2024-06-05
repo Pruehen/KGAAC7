@@ -134,8 +134,8 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         if (TryGetComponent<SphereCollider>(out sphereCollider))
         {
             sphereCollider.enabled = true;
-            combat.Reset();
         }
+        combat.Reset();
     }
 
     /// <summary>
