@@ -27628,6 +27628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerInputManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1684408417319053402, guid: da1e9e173d1f46149893f3ac2a4caec2, type: 3}
+      propertyPath: _assetId
+      value: 1471743612
+      objectReference: {fileID: 0}
     - target: {fileID: 4218927256130131829, guid: da1e9e173d1f46149893f3ac2a4caec2, type: 3}
       propertyPath: onClick_R.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -27916,7 +27920,8 @@ PrefabInstance:
       propertyPath: onClick_LeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1684408417319053402, guid: da1e9e173d1f46149893f3ac2a4caec2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: da1e9e173d1f46149893f3ac2a4caec2, type: 3}
 --- !u!1 &6367586452637543472 stripped
 GameObject:

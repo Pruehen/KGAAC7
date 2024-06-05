@@ -31,19 +31,20 @@ public class CamRotate : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
-        OnPlayerSpawn();
-
-        BackUpCam.Instance.SetActiveBackUpCam(false);
-    }
-    private void OnPlayerSpawn()
-    {
         aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
+        aircraftMaster.OnAircraftMasterInit.AddListener(Init);
+        //bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+        //OnPlayerSpawn();        
+    }
+    private void Init()
+    {        
         GetComponent<AudioListener>().enabled = false;
         StartCoroutine(AudioListenerOn());
         aircraftControl = aircraftMaster.AircraftSelecter().aircraftControl;
         initLocalPos = this.transform.localPosition;
         camAxisTrf = this.transform.parent;
+
+        BackUpCam.Instance.SetActiveBackUpCam(false);
     }
 
     IEnumerator AudioListenerOn()

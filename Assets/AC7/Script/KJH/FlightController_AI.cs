@@ -21,14 +21,21 @@ public class FlightController_AI : MonoBehaviour
         targetSpeed = value;
     }
 
+
+    bool isInit = false;
+    private void Start()
+    {
+        AircraftMaster aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
+        aircraftMaster.OnAircraftMasterInit.AddListener(Init);
+    }
     // Start is called before the first frame update
-    void Start()
+    void Init()
     {
         rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
 
         isDead = false;
-
+        isInit = true;
         //CreateNewWayPoint_Forward();
     }
     /*private void OnDrawGizmos()
@@ -39,7 +46,15 @@ public class FlightController_AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aircraftControl = aircraftSelecter.aircraftControl;
+        if (!isInit)
+            return;
+
+        if (aircraftControl == null)
+        {
+            aircraftControl = aircraftSelecter.aircraftControl;
+            if (aircraftControl == null) return;
+        }
+
         if(isDead)//사망 시 조종 기능을 잠금
         {
             aircraftControl.SetAxisValue(0, 2, 0, 0);

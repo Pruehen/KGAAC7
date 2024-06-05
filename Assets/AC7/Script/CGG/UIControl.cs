@@ -305,8 +305,13 @@ public class UIControl : MonoBehaviour
             maskColorChange.ChangeComponentColor(color);
         }
     }
-
-    void Start()
+    bool isInit = false;
+    private void Start()
+    {
+        aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
+        aircraftMaster.OnAircraftMasterInit.AddListener(Init);
+    }
+    void Init()
     {
         firstViewAdjustAngle = new Vector2(1 / firstViewAdjustAngle.x, 1 / firstViewAdjustAngle.y);
 
@@ -317,11 +322,15 @@ public class UIControl : MonoBehaviour
         SetWarningUIColor(false);
 
         aircraftControl = aircraftMaster.AircraftSelecter().aircraftControl;
+        isInit = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isInit)
+            return;
+
         if (enableCount == true && remainTime > 0 && GameManager.Instance.IsGameOver == false) SetTime();
 
         UpdateUI();

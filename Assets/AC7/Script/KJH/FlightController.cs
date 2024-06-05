@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //현재 조종하는 항공기 조종면에 조종 데이터를 전달하는 클래스
@@ -9,18 +7,36 @@ public class FlightController : MonoBehaviour
     [SerializeField] public AircraftControl aircraftControl;
     [SerializeField] PlayerInputCustom PlayerInputCustom_input;
 
+
+    bool isInit = false;
+    private void Start()
+    {
+        AircraftMaster aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
+        aircraftMaster.OnAircraftMasterInit.AddListener(Init);
+    }
     // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         aircraftSelecter = GetComponent<AircraftSelecter>();
+        dead = false;
+        isInit = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        aircraftControl = aircraftSelecter.aircraftControl;
+        if (!isInit)
+            return;
+
+        if (aircraftControl == null)
+        {
+            aircraftControl = aircraftSelecter.aircraftControl;
+            if (aircraftControl == null) return;
+        }
+
         if (!dead)
-        {            
+        {
+
             aircraftControl.SetAxisValue(PlayerInputCustom_input.pitchAxis, PlayerInputCustom_input.rollAxis,
                 PlayerInputCustom_input.yawAxis, PlayerInputCustom_input.throttleAxis);//테스트 코드
         }
@@ -34,9 +50,5 @@ public class FlightController : MonoBehaviour
     public void Dead()
     {
         dead = true;
-    }
-    public void Init()
-    {
-        dead = false;
     }
 }

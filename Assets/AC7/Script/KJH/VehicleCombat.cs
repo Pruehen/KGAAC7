@@ -105,7 +105,6 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     void Dead()
     {
-
         kjh.GameManager.Instance.RemoveActiveTarget(this);
 
         //SubtitleManager.Instance.ShowSubtitle("Kill1");

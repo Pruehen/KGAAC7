@@ -19,16 +19,21 @@ public class AircraftFM : NetworkBehaviour
     [SyncVar] [SerializeField] Vector3 _curPos;
     [SyncVar] [SerializeField] Quaternion _curRot;
 
+    bool isInit = false;
     public void Init(GameObject controlAircraft)
     {
         aircraftData = controlAircraft.GetComponent<AircraftData>();
         effect = controlAircraft.GetComponent<VaporEffect>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.velocity = this.transform.forward * 200;
+        isInit = true;
     }
 
     void FixedUpdate()
     {
+        if (!isInit)
+            return;
+
         FlightModelOnFixedUpdate();
         FlightDataSyncOnFixedUpdate();        
     }

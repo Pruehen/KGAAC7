@@ -31,9 +31,9 @@ public class Radar : NetworkBehaviour
         return lockOnTarget;
     }
 
-    private void Start()
+    public void Init()
     {
-        weaponSystem = GetComponent<AircraftMaster>()?.AircraftSelecter().weaponSystem;
+        weaponSystem = GetComponent<AircraftMaster>().AircraftSelecter().weaponSystem;
 
         if (_lockOnSfxPrefab != null)
         {

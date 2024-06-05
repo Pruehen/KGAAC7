@@ -11,10 +11,10 @@ public class HpBar : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
-        OnPlayerSpawn();
+        AircraftMaster aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
+        aircraftMaster.OnAircraftMasterInit.AddListener(Init);
     }
-    private void OnPlayerSpawn()
+    private void Init()
     {
         hpBar = GetComponent<Image>();
         playerCombat = kjh.GameManager.Instance.player.vehicleCombat.Combat();

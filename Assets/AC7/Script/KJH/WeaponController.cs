@@ -10,12 +10,20 @@ namespace kjh
         Radar radar;
         Rigidbody rigidbody;
 
-        void Awake()
+        bool isInit = false;
+        private void Start()
+        {
+            AircraftMaster aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
+            aircraftMaster.OnAircraftMasterInit.AddListener(Init);
+        }
+
+        void Init()
         {
             aircraftSelecter = GetComponent<AircraftSelecter>();
             rigidbody = GetComponent<Rigidbody>();
             radar = GetComponent<Radar>();
             weaponSystem = aircraftSelecter.weaponSystem;
+            isInit = true;
         }
 
         public WeaponData GetUseWeaponData()

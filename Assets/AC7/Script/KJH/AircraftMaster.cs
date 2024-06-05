@@ -1,7 +1,7 @@
 using Mirror;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.Events;
 
 //참조용 클래스. 하위 컴포넌트에 접근할 때 사용. 웬만하면 여기서 하위 컴포넌트를 수정하지 말 것
 //전투 기능을 우선 여기에 붙여봤음.
@@ -14,8 +14,11 @@ public class AircraftMaster : NetworkBehaviour
     public AircraftSelecter AircraftSelecter() { return aircraftSelecter; }
     public AircraftControl aircraftControl;
     public VehicleCombat vehicleCombat;
+    Radar radar;
 
     Rigidbody rigidbody;
+
+    public UnityEvent OnAircraftMasterInit;
 
     /// <summary>
     /// 현재 항공기의 속도(km/h)를 반환하는 메서드 
@@ -23,28 +26,35 @@ public class AircraftMaster : NetworkBehaviour
     /// <returns></returns>
     public float GetSpeed()
     {
-        return rigidbody.velocity.magnitude * 3.6f;
+        return (rigidbody != null) ? rigidbody.velocity.magnitude * 3.6f : 0;
     }
     
     //public AircraftControl aircraftControl;
 
-    private void Awake()
-    {        
-        Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+    private void Start()
+    {
+        //Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+        if (this.isLocalPlayer)
+        {
+            //StartCoroutine(CommandInitCoroutine());
+            CommandInit(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+        }
+        else
+        {
+            CommandInitNotLocal();
+        }
     }
 
-    bool isInited = false;
     public void Init(AircraftName aircraftName, string userName)
     {
-        if (isInited) return;
-        isInited = true;
-
         rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
         aircraftSelecter.SetControlAircraft(aircraftName);
         aircraftControl = aircraftSelecter.aircraftControl;
         vehicleCombat = GetComponent<VehicleCombat>();
         vehicleCombat.SetNames(userName);
+        radar = GetComponent<Radar>();
+        radar.Init();
 
         if (aiControl)
         {
@@ -61,9 +71,6 @@ public class AircraftMaster : NetworkBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-    }
-    private void Start()
-    {
         if (this.isLocalPlayer)
         {
             SetPositionPlayer();
@@ -73,7 +80,28 @@ public class AircraftMaster : NetworkBehaviour
         {
             kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
         }
+
+        OnAircraftMasterInit.Invoke();
     }
+    [Command(requiresAuthority = false)]
+    void CommandInit(AircraftName aircraftName, string userName)
+    {
+        Init(aircraftName, userName);
+        RpcInit(aircraftName, userName);
+    }
+    [Command(requiresAuthority = false)]
+    void CommandInitNotLocal()
+    {
+        Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+        RpcInit(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+    }
+
+    [ClientRpc]
+    void RpcInit(AircraftName aircraftName, string userName)
+    {
+        Init(aircraftName, userName);
+    }
+    
 
     public void Dead()
     {
