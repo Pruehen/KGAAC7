@@ -4,7 +4,7 @@ using UnityEngine;
 public class CustomNetworkManager : NetworkManager
 {
     [SerializeField] Transform Transform_PlayerSpawnParent;
-    public string userName { get; set; }
+    //public string userName { get; set; }
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         //Debug.Log("서버 스폰 완료");

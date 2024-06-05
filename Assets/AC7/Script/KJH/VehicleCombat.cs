@@ -8,8 +8,8 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     public float startHp;
     public bool isPlayer;
     public bool mainTarget = false;
-    public string name;
-    public string nickname;
+    [SyncVar] public string name;
+    [SyncVar] public string nickname;
 
     public void SetNames(string nickName)
     {

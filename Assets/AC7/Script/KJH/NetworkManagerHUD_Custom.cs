@@ -87,8 +87,15 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
 
             GUILayout.BeginHorizontal();
             GUILayout.Button("UserName");
-            manager.userName = GUILayout.TextField(manager.userName);
+            PlayerSpawner.Instance.UserNickName = GUILayout.TextField(PlayerSpawner.Instance.UserNickName);
             GUILayout.EndHorizontal();
+
+            GUILayout.Label($"Select : {PlayerSpawner.Instance.SelectAircraftName}");
+            if (GUILayout.Button("F-14A")) PlayerSpawner.Instance.SetAircraft_F14();
+            if (GUILayout.Button("F-15C")) PlayerSpawner.Instance.SetAircraft_F15();
+            if (GUILayout.Button("F-16C")) PlayerSpawner.Instance.SetAircraft_F16();
+            if (GUILayout.Button("MiG-29A")) PlayerSpawner.Instance.SetAircraft_M29();
+            if (GUILayout.Button("Su-37")) PlayerSpawner.Instance.SetAircraft_S37();
 
             if (GUILayout.Button("Quit"))
                 Application.Quit();

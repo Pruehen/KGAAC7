@@ -1,18 +1,16 @@
 using UnityEngine;
 
+public enum AircraftName
+{
+    F14,
+    F15,
+    F16,
+    M29,
+    S37
+}
 //어떤 항공기를 사용하는지 알려주는 클래스
 public class AircraftSelecter : MonoBehaviour
 {
-    enum AircraftName
-    {
-        F14A,
-        F15C,
-        F16C,
-        MiG29A,
-        SU37
-    }
-
-
     [SerializeField] AircraftName controlAircraft;
 
     public AircraftData aircraftData { get; private set; }
@@ -23,28 +21,28 @@ public class AircraftSelecter : MonoBehaviour
 
     private void Awake()
     {
-        SetControlAircraft(controlAircraft);
+        //SetControlAircraft(PlayerSpawner.Instance.UseAircraftNameEnum);
     }
 
-    void SetControlAircraft(AircraftName aircraftName)
+    public void SetControlAircraft(AircraftName aircraftName)
     {
         GameObject aircraftInChild;
 
         switch (aircraftName)
         {
-            case AircraftName.F14A:
+            case AircraftName.F14:
                 aircraftInChild = this.transform.Find("F-14A").gameObject;
                 break;
-            case AircraftName.F15C:
+            case AircraftName.F15:
                 aircraftInChild = this.transform.Find("F-15C").gameObject;
                 break;
-            case AircraftName.F16C:
+            case AircraftName.F16:
                 aircraftInChild = this.transform.Find("F-16C").gameObject;
                 break;
-            case AircraftName.MiG29A:
+            case AircraftName.M29:
                 aircraftInChild = this.transform.Find("MiG-29A").gameObject;
                 break;
-            case AircraftName.SU37:
+            case AircraftName.S37:
                 aircraftInChild = this.transform.Find("Su-37").gameObject;
                 break;
             default:

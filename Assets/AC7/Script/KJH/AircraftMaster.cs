@@ -30,10 +30,14 @@ public class AircraftMaster : NetworkBehaviour
 
     private void Awake()
     {
+        PlayerSpawner playerSpawner = PlayerSpawner.Instance;
+
         rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
+        aircraftSelecter.SetControlAircraft(playerSpawner.UseAircraftNameEnum);
         aircraftControl = aircraftSelecter.aircraftControl;
         vehicleCombat = GetComponent<VehicleCombat>();
+        vehicleCombat.SetNames(playerSpawner.UserNickName);
 
         if (aiControl)
         {
