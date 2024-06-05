@@ -7,7 +7,7 @@ using System.Collections;
 [AddComponentMenu("Network/Network Manager HUD")]
 [RequireComponent(typeof(NetworkManager))]
 [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-manager-hud")]
-public class NetworkManagerHUD_Custom : MonoBehaviour
+public class NetworkManagerHUD_Custom : NetworkBehaviour
 {
     CustomNetworkManager manager;
 

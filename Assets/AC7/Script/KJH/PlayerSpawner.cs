@@ -11,9 +11,9 @@ public class PlayerSpawner : NetworkBehaviour
     }
 
     public List<Transform> Positions_SpawnPositions;
-    public AircraftName UseAircraftNameEnum { get; private set; }
-    public string UserNickName { get; set; }
-    public string SelectAircraftName = "F-16C";
+    [SyncVar] public AircraftName UseAircraftNameEnum;
+    [SyncVar] public string UserNickName;
+    [SyncVar] public string SelectAircraftName = "F-16C";
 
     public void SetAircraft_F14()
     {

@@ -21929,9 +21929,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c48ed4ea846eb48a3b79413e2ecc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enginePower: 20
-  pitchTorque: 5
-  rollTorque: 22
+  enginePower: 10
+  pitchTorque: 4
+  rollTorque: 11
   yawTorque: 1.5
   enginePowerCurve:
     serializedVersion: 2
@@ -22153,8 +22153,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   e: 0.72
-  liftPower: 40
-  dragCoefficient: 0.04
+  liftPower: 30
+  dragCoefficient: 0.05
 --- !u!114 &1206920244328171021
 MonoBehaviour:
   m_ObjectHideFlags: 0

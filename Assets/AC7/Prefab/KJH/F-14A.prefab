@@ -21364,7 +21364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enginePower: 7
   pitchTorque: 4
-  rollTorque: 20
+  rollTorque: 13
   yawTorque: 1.2
   enginePowerCurve:
     serializedVersion: 2

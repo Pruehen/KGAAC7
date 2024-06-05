@@ -11,6 +11,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     [SyncVar] public string name;
     [SyncVar] public string nickname;
 
+    [ClientCallback]
     public void SetNames(string nickName)
     {
         name = GetComponent<AircraftSelecter>().aircraftControl.name;

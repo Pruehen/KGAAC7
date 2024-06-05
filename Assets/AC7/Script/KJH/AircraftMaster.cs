@@ -29,19 +29,26 @@ public class AircraftMaster : NetworkBehaviour
     //public AircraftControl aircraftControl;
 
     private void Awake()
+    {        
+        Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+    }
+
+    bool isInited = false;
+    public void Init(AircraftName aircraftName, string userName)
     {
-        PlayerSpawner playerSpawner = PlayerSpawner.Instance;
+        if (isInited) return;
+        isInited = true;
 
         rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
-        aircraftSelecter.SetControlAircraft(playerSpawner.UseAircraftNameEnum);
+        aircraftSelecter.SetControlAircraft(aircraftName);
         aircraftControl = aircraftSelecter.aircraftControl;
         vehicleCombat = GetComponent<VehicleCombat>();
-        vehicleCombat.SetNames(playerSpawner.UserNickName);
+        vehicleCombat.SetNames(userName);
 
         if (aiControl)
         {
-            GetComponent<FlightController>().enabled = false;            
+            GetComponent<FlightController>().enabled = false;
         }
         else
         {
@@ -50,7 +57,7 @@ public class AircraftMaster : NetworkBehaviour
             GetComponent<CustomAI>().enabled = false;
         }
 
-        if(_isPlayer)
+        if (_isPlayer)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }

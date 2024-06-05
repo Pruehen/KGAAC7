@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c3960032ede8c478644ae92b6640a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   Positions_SpawnPositions:
@@ -318,6 +318,8 @@ MonoBehaviour:
   - {fileID: 1494421569}
   - {fileID: 908961141}
   - {fileID: 381193073}
+  UseAircraftNameEnum: 2
+  UserNickName: Default
   SelectAircraftName: F-16C
 --- !u!4 &122694991
 Transform:
@@ -898,65 +900,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 6120225722798073866, guid: a72914a331d954d4ea201910d2376a36, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6445041468265237155, guid: 279ffe80697f9a542bf33d6513fd0735, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 6445041468265237155, guid: e69b546f724f7eb49aece5d69986b664, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 6445041468265237155, guid: 9d754aee3f02bdf46add875ac6512977, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 6445041468265237155, guid: 31fe54a810240ee4f9539a90517ee34f, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 5651192895815570312, guid: fa48c0dd4ada8ae4b9b18a3ff5a1f8fc, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[6]
-      value: 
-      objectReference: {fileID: 6120225722798073866, guid: fe0b225c54066d34dba8839dfdd80559, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[7]
-      value: 
-      objectReference: {fileID: 6445041468265237155, guid: 35e4e8865177bfe4d9da3f8c15aec94e, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[8]
-      value: 
-      objectReference: {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[9]
-      value: 
-      objectReference: {fileID: 6445041468265237155, guid: 867ea82aded372f41bf6f5da31d78e1e, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: Transform_PlayerSpawnParent
       value: 
       objectReference: {fileID: 1601999417}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[10]
-      value: 
-      objectReference: {fileID: 6445041468265237155, guid: bf158b5fa4d51ec4b99e9d6f04ee3bd4, type: 3}
-    - target: {fileID: 5473010730410178573, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
-      propertyPath: spawnPrefabs.Array.data[11]
-      value: 
-      objectReference: {fileID: 6120225722798073866, guid: fe0b225c54066d34dba8839dfdd80559, type: 3}
     - target: {fileID: 5473010730410178574, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
       propertyPath: m_Name
       value: NetworkManager
@@ -1009,6 +955,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &839820010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5473010730410178574, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
+  m_PrefabInstance: {fileID: 528127110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &839820016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839820010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 664211133
+  _assetId: 1330848321
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
+--- !u!114 &839820017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839820010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b749102a2fcaa4d9e01f33eb88dd6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  offsetX: 0
+  offsetY: 0
 --- !u!4 &908961141 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 908961141, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}

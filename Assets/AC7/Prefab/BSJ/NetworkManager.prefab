@@ -188,7 +188,6 @@ GameObject:
   - component: {fileID: 5473010730410178573}
   - component: {fileID: 5473010730410178572}
   - component: {fileID: 1051659453}
-  - component: {fileID: 8681362199967236952}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -242,7 +241,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 6120225722798073866, guid: fe0b225c54066d34dba8839dfdd80559, type: 3}
+  playerPrefab: {fileID: 6120225722798073866, guid: a72914a331d954d4ea201910d2376a36, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
@@ -251,6 +250,8 @@ MonoBehaviour:
   - {fileID: 6445041468265237155, guid: 9d754aee3f02bdf46add875ac6512977, type: 3}
   - {fileID: 6445041468265237155, guid: 31fe54a810240ee4f9539a90517ee34f, type: 3}
   - {fileID: 900060236050395660, guid: 35164b758d19bed4d925ed529884fd38, type: 3}
+  - {fileID: 5651192895815570312, guid: fa48c0dd4ada8ae4b9b18a3ff5a1f8fc, type: 3}
+  - {fileID: 6120225722798073866, guid: fe0b225c54066d34dba8839dfdd80559, type: 3}
   - {fileID: 6445041468265237155, guid: 35e4e8865177bfe4d9da3f8c15aec94e, type: 3}
   - {fileID: 6445041468265237155, guid: 7d9167bc998efb44a8716b840ff78bb2, type: 3}
   - {fileID: 6445041468265237155, guid: 867ea82aded372f41bf6f5da31d78e1e, type: 3}
@@ -316,17 +317,3 @@ MonoBehaviour:
   padding: 2
   width: 150
   height: 25
---- !u!114 &8681362199967236952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5473010730410178574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b749102a2fcaa4d9e01f33eb88dd6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
