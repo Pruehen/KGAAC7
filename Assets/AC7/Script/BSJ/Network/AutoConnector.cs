@@ -18,7 +18,8 @@ public class AutoConnector : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("MainScene");
+            //Load Multiplay AircraftScene
+            SceneManager.LoadScene(1);
         }
     }
 }

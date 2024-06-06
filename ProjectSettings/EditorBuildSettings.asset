@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/AC7/Scene/Mission05.unity
     guid: cc8f00254d1486f49ac3a83419cfec8d
   - enabled: 1
+    path: Assets/AC7/Scene/BSJ/NetworkMatchMaking/OfflineScene.unity
+    guid: fd34bca3b9ae1614eb70f872f935dfdb
+  - enabled: 1
     path: Assets/AC7/Scene/BSJ/Mission01_BSJ_Network.unity
     guid: 6f8af6dd8d4f27f468e8ae701749e145
   m_configObjects: {}
