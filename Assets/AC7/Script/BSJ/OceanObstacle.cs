@@ -9,8 +9,8 @@ public class OceanObstacle : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        VehicleCombat target;
-        if (collision.transform.TryGetComponent<VehicleCombat>(out target))
+        //VehicleCombat target;
+        if (collision.transform.TryGetComponent(out VehicleCombat target))
         {
             if (target.IsDead() == true)
                 return;

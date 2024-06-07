@@ -14,6 +14,7 @@ public class AircraftData : MonoBehaviour
     [SerializeField] AnimationCurve enginePowerCurve; //엔진 추력 커브
     [SerializeField] AnimationCurve torqueCurve; //토크 커브 - 속도 비례
     [SerializeField] AnimationCurve torqueCurve_ForAoA; //토크 커브 - 받음각 비례
+    [SerializeField] AnimationCurve torqueCurve_ForGforce; //토크 커브 - 중력 가속도 비례
     [SerializeField] AnimationCurve clCurve;//받음각에 따른 양력 계수 커브
     [SerializeField] AnimationCurve cdCurve;//받음각에 따른 유해항력 계수 커브
     [SerializeField][Range(0, 1)] float e;//스팬효율계수 (0~1까지의 값을 가짐)
@@ -48,7 +49,7 @@ public class AircraftData : MonoBehaviour
     /// </summary>
     /// <param name="speed"></param>
     /// <returns></returns>
-    public float PitchTorque(float speed, float aoa)
+    public float PitchTorque(float speed, float aoa, float gForce)
     {
         float pitch;
         if(aircraftControl.pitch > 0)
@@ -59,7 +60,7 @@ public class AircraftData : MonoBehaviour
         {
             pitch = aircraftControl.pitch * 0.5f;
         }
-        return pitchTorque * torqueCurve.Evaluate(speed) * torqueCurve_ForAoA.Evaluate(aoa) * pitch * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
+        return pitchTorque * torqueCurve.Evaluate(speed) * torqueCurve_ForAoA.Evaluate(aoa) * torqueCurve_ForGforce.Evaluate(gForce) * pitch * Atmosphere.AtmosphericPressure(this.transform.position.y * 0.5f);
     }
     /// <summary>
     /// 항공기가 저속일 때 스톨 토크를 반환하는 메서드

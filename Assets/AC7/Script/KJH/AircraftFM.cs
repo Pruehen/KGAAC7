@@ -36,7 +36,7 @@ public class AircraftFM : NetworkBehaviour
 
     public void InitSpeed()
     {
-        rigidbody.velocity = this.transform.forward * 200;
+        rigidbody.velocity = this.transform.forward * 350;
         rigidbody.angularVelocity = Vector3.zero;
     }
 
@@ -66,7 +66,7 @@ public class AircraftFM : NetworkBehaviour
         //Debug.Log(velocity);
 
         _enginePower = aircraftData.EnginePower(velocitySpeed, this.transform.position.y);
-        _pitchTorque = -aircraftData.PitchTorque(velocitySpeed, aoa) * _torqueGain;
+        _pitchTorque = -aircraftData.PitchTorque(velocitySpeed, aoa, G_Force) * _torqueGain;
         _rollTorque = -aircraftData.RollTorque(velocitySpeed, aoa) * _torqueGain;
         _yawTorque = aircraftData.YawTorque(velocitySpeed, aoa) * _torqueGain;
 
