@@ -154,8 +154,7 @@ public class NetworkManagerHUD_Custom : NetworkBehaviour
             if (GUILayout.Button("Disconnect"))
             {
                 kjh.GameManager.Instance.player.vehicleCombat.TakeDamageExecuteCommand(99999);
-                manager.StopClient();
-                manager.StopHost();
+                StartCoroutine(StopHostDelay(2.5f));                
             }
 #endif
             GUILayout.EndHorizontal();
@@ -167,7 +166,7 @@ public class NetworkManagerHUD_Custom : NetworkBehaviour
             if (GUILayout.Button("Disconnect"))
             {
                 kjh.GameManager.Instance.player.vehicleCombat.TakeDamageExecuteCommand(99999);
-                manager.StopClient();
+                StartCoroutine(StopClientDelay(2.5f));
             }
 
             GUILayout.EndHorizontal();
@@ -182,12 +181,15 @@ public class NetworkManagerHUD_Custom : NetworkBehaviour
     
     IEnumerator StopClientDelay(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
+        BackUpCam.Instance.SetActiveBackUpCam(true);
         manager.StopClient();
     }
     IEnumerator StopHostDelay(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
+        BackUpCam.Instance.SetActiveBackUpCam(true);
+        manager.StopClient();
         manager.StopHost();
     }
 }

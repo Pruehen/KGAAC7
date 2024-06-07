@@ -28,7 +28,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         //로컬일 경우 이펙트만 나오고 데미지는 입히지 않음
         if (this.isServer)
         {
-            CommandTakeDamage(damage);//서버일 시 커맨드 메서드 실행
+            ServerOnlyTakeDamage(damage);//서버일 시 커맨드 메서드 실행
         }
     }
     public void TakeDamageExecuteCommand(float damage)
@@ -37,7 +37,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     }
 
     [Server]
-    void CommandTakeDamage(float damage)
+    void ServerOnlyTakeDamage(float damage)
     {
         combat.TakeDamage(damage);//서버에서 데미지 계산
         //CustomAI customAI;
@@ -46,6 +46,12 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         //    customAI.EngageOrder();
         //}
 
+        RpcTakeDamage(damage);
+    }
+    [Command(requiresAuthority = false)]
+    void CommandTakeDamage(float damage)
+    {
+        combat.TakeDamage(damage);
         RpcTakeDamage(damage);
     }
 
