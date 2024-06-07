@@ -1,7 +1,14 @@
 using Mirror;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
+public struct AirInfo
+{
+    public AircraftName AirName;
+    public string UserNickName;
+}
 
 //참조용 클래스. 하위 컴포넌트에 접근할 때 사용. 웬만하면 여기서 하위 컴포넌트를 수정하지 말 것
 //전투 기능을 우선 여기에 붙여봤음.
@@ -20,7 +27,7 @@ public class AircraftMaster : NetworkBehaviour
 
     AircraftName _aircraftName;
     string _userName;
-    bool _isInit = false;
+    bool _isInit = false;    
 
     public UnityEvent OnAircraftMasterInit;
     IEnumerator OnAircraftMasterInitInvoke(float time)
@@ -45,21 +52,23 @@ public class AircraftMaster : NetworkBehaviour
     public float GetAoa()
     {
         return (aircraftFM != null) ? aircraftFM.AoA: 0;
-    }
+    }    
 
-    //public AircraftControl aircraftControl;
+    public override void OnStartLocalPlayer()
+    {
+        CommandInit(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+    }
 
     private void Start()
     {
-        //Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
-        if (this.isLocalPlayer)
+        StartCoroutine(TryCommandSync());
+    }
+    IEnumerator TryCommandSync()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        if (!this.isLocalPlayer)
         {
-            //StartCoroutine(CommandInitCoroutine());
-            CommandInit(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
-        }
-        else if(!this.isLocalPlayer && !this.isServer)
-        {
-            CommandSyncInit();
+            CommandSync();
         }
     }
 
@@ -106,20 +115,24 @@ public class AircraftMaster : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void CommandInit(AircraftName aircraftName, string userName)
     {
-        Init(aircraftName, userName);
+        //Init(aircraftName, userName);
         RpcInit(aircraftName, userName);
     }
     [Command(requiresAuthority = false)]
-    void CommandSyncInit()
+    void CommandSync()
     {
-        //Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
-        RpcInit(_aircraftName, _userName);
+        RpcSync(this._aircraftName, this._userName);
     }
 
     [ClientRpc]
     void RpcInit(AircraftName aircraftName, string userName)
     {
-        if (!this.isServer && !_isInit)
+        Init(aircraftName, userName);
+    }
+    [ClientRpc]
+    void RpcSync(AircraftName aircraftName, string userName)
+    {
+        if(!_isInit)
         {
             Init(aircraftName, userName);
         }

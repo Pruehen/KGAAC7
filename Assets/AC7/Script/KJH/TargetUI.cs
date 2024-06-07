@@ -74,10 +74,16 @@ public class TargetUI : MonoBehaviour
             {
                 nameText.text = targetObject.name;
                 nicknameText.text = targetObject.nickname;
-                targetText.gameObject.SetActive(targetObject.mainTarget);
-                isTargeted = (TargetUIManager.Instance.Radar_Ref.GetTarget() == targetObject);
-                SetTargetted();
+                targetText.gameObject.SetActive(targetObject.mainTarget);                
             }
+            else
+            {
+                nameText.text = string.Empty;
+                nicknameText.text = string.Empty;
+                targetText.gameObject.SetActive(false);
+            }
+            isTargeted = (TargetUIManager.Instance.Radar_Ref.GetTarget() == targetObject);
+            SetTargetted();
         }
     }
 
