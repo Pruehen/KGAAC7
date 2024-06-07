@@ -13,9 +13,10 @@ public class RoomUi : MonoBehaviour
     private void Start()
     {
         _roomId = _roomText.text;
+        _matchManager = FindAnyObjectByType<MatchManager>();
     }
 
-    private void OnButtoneDown()
+    public void OnButtoneDown()
     {
         ConnectToServer();
     }
