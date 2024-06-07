@@ -21930,7 +21930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enginePower: 10
-  pitchTorque: 4
+  pitchTorque: 3
   rollTorque: 11
   yawTorque: 1.5
   enginePowerCurve:
@@ -22153,7 +22153,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   e: 0.72
-  liftPower: 30
+  liftPower: 20
   dragCoefficient: 0.05
 --- !u!114 &1206920244328171021
 MonoBehaviour:

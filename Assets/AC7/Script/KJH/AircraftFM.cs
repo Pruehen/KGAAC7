@@ -4,7 +4,7 @@ using Mirror;
 //사용중인 항공기의 FM 데이터를 받아서 실제 비행 물리를 적용
 public class AircraftFM : NetworkBehaviour
 {
-    AircraftSelecter aircraftSelecter;
+    //AircraftSelecter aircraftSelecter;
     VaporEffect effect;
     [SerializeField] AircraftData aircraftData;
     Rigidbody rigidbody;
@@ -13,11 +13,16 @@ public class AircraftFM : NetworkBehaviour
     [SerializeField] float _pitchTorque;
     [SerializeField] float _rollTorque;
     [SerializeField] float _yawTorque;
+    [SerializeField] float _torqueGain;
 
     [Header("동기 변수")]
     [SyncVar] [SerializeField] Vector3 _curVelocity;
     [SyncVar] [SerializeField] Vector3 _curPos;
     [SyncVar] [SerializeField] Quaternion _curRot;
+
+    public int Velocity { get; private set; }
+    public float G_Force { get; private set; }
+    public int AoA { get; private set; }
 
     bool isInit = false;
     public void Init(GameObject controlAircraft)
@@ -25,8 +30,14 @@ public class AircraftFM : NetworkBehaviour
         aircraftData = controlAircraft.GetComponent<AircraftData>();
         effect = controlAircraft.GetComponent<VaporEffect>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
-        rigidbody.velocity = this.transform.forward * 200;
+        InitSpeed();
         isInit = true;
+    }
+
+    public void InitSpeed()
+    {
+        rigidbody.velocity = this.transform.forward * 200;
+        rigidbody.angularVelocity = Vector3.zero;
     }
 
     void FixedUpdate()
@@ -44,18 +55,20 @@ public class AircraftFM : NetworkBehaviour
 
         Vector3 velocity = rigidbody.velocity;
         float velocitySpeed = velocity.magnitude;
+        Velocity = (int)(velocitySpeed * 3.6f);
 
         Vector3 localVelocityDir = this.transform.InverseTransformDirection(rigidbody.velocity).normalized;
         //정면 받음각
         float aoa = -Mathf.Asin(localVelocityDir.y) * Mathf.Rad2Deg;
+        AoA = (int)aoa;
         //측면 받음각
         float aoaSide = -Mathf.Asin(localVelocityDir.x) * Mathf.Rad2Deg;
         //Debug.Log(velocity);
 
         _enginePower = aircraftData.EnginePower(velocitySpeed, this.transform.position.y);
-        _pitchTorque = -aircraftData.PitchTorque(velocitySpeed, aoa);
-        _rollTorque = -aircraftData.RollTorque(velocitySpeed, aoa);
-        _yawTorque = aircraftData.YawTorque(velocitySpeed, aoa);
+        _pitchTorque = -aircraftData.PitchTorque(velocitySpeed, aoa) * _torqueGain;
+        _rollTorque = -aircraftData.RollTorque(velocitySpeed, aoa) * _torqueGain;
+        _yawTorque = aircraftData.YawTorque(velocitySpeed, aoa) * _torqueGain;
 
         //엔진 추력 적용
         rigidbody.AddForce(this.transform.forward * _enginePower, ForceMode.Acceleration);
@@ -66,13 +79,15 @@ public class AircraftFM : NetworkBehaviour
         //요 토크 적용
         rigidbody.AddTorque(this.transform.up * _yawTorque, ForceMode.Acceleration);
         //스톨 토크 적용
-        Vector3 stallAxis = Vector3.Cross(this.transform.forward, new Vector3(0, -1, 0));
+        Vector3 stallAxis = Vector3.Cross(this.transform.forward, new Vector3(0, -1, 0)) * _torqueGain;
         rigidbody.AddTorque(stallAxis * aircraftData.StallTorque(velocitySpeed), ForceMode.Acceleration);
 
 
-
+        float liftPower = aircraftData.GetLiftPower(aoa, velocitySpeed);
+        G_Force = liftPower * 0.1f;
         //속도 벡터의 수직 방향으로 양력 생성
-        rigidbody.AddForce(Vector3.Cross(velocity, this.transform.right).normalized * aircraftData.GetLiftPower(aoa, velocitySpeed), ForceMode.Acceleration);
+        rigidbody.AddForce(Vector3.Cross(velocity, this.transform.right).normalized * liftPower, ForceMode.Acceleration);
+        //측방향 양력 생성
         rigidbody.AddForce(this.transform.right * velocitySpeed * velocitySpeed * aoaSide * 0.0001f, ForceMode.Acceleration);
         //속도 벡터의 반대 방향으로 유도항력 및 유해항력 생성
         rigidbody.AddForce(-velocity.normalized * (aircraftData.GetInducedDrag(aoa, velocitySpeed) + aircraftData.GetParasiteDrag(aoa, velocitySpeed)), ForceMode.Acceleration);

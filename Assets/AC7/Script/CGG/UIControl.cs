@@ -15,9 +15,13 @@ public class UIControl : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI speedText;
     [SerializeField]
-    TextMeshProUGUI altitudeText;
+    TextMeshProUGUI TMP_OverG;
     [SerializeField]
-    AlertUIController alertUIController;
+    TextMeshProUGUI TMP_AoA;
+    [SerializeField]
+    TextMeshProUGUI altitudeText;
+    //[SerializeField]
+    //AlertUIController alertUIController;
 
     [Header("1st-3rd View Control")]
     [SerializeField]
@@ -145,6 +149,18 @@ public class UIControl : MonoBehaviour
 
         speedUV.SetUV(speed);
     }
+    void SetOverG(float gForce)
+    {
+        string text = string.Format("<mspace=14>{0:F1} g</mspace>", gForce);
+        TMP_OverG.text = text;
+
+        //speedUV.SetUV(speed);
+    }
+    void SetAoa(int aoa)
+    {
+        string text = string.Format("<mspace=14>{0} dg</mspace>", aoa);
+        TMP_AoA.text = text;
+    }
 
     void SetAltitude(int altitude)
     {
@@ -245,7 +261,7 @@ public class UIControl : MonoBehaviour
 
         if (damage > 0)
         {
-            StartCoroutine(alertUIController.ShowDamagedUI());
+            //StartCoroutine(alertUIController.ShowDamagedUI());
         }
     }
 
@@ -339,6 +355,8 @@ public class UIControl : MonoBehaviour
     void UpdateUI()
     {
         SetSpeed((int)aircraftMaster.GetSpeed());
+        SetOverG(aircraftMaster.GetGForce());
+        SetAoa((int)aircraftMaster.GetAoa());
         SetAltitude((int)aircraftMaster.transform.position.y);
         SetThrottle(aircraftControl.throttle);
         SetHeading(aircraftMaster.transform.eulerAngles.y);

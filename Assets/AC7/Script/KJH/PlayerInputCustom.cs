@@ -6,16 +6,15 @@ using Mirror;
 public class PlayerInputCustom : NetworkBehaviour
 {
     public bool isControlable { get; set; } = true;
-    public float pitchAxis {get; private set;}
-    public float rollAxis {get; private set;}
-    public float yawAxis {get; private set;}
-    public float throttleAxis { get; private set; }
+    [SyncVar] public float pitchAxis;
+    [SyncVar] public float rollAxis;
+    [SyncVar] public float yawAxis;
+    [SyncVar] public float throttleAxis;
     public bool isLeftClick {get; private set;}
     Vector2 mouseDeltaPos;
     float mouseControllGain = 0.1f;
 
     public System.Action OnFireEvent;
-
 
     public UnityEvent onClick_X;
     public UnityEvent onClick_R;
@@ -77,7 +76,7 @@ public class PlayerInputCustom : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            onClick_R.Invoke();
+            NetworkInvoke(InputEnum.R_Click);
         }
         if (Input.GetKeyDown(KeyCode.F))
         {

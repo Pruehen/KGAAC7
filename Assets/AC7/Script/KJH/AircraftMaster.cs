@@ -3,8 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-//ÂüÁ¶¿ë Å¬·¡½º. ÇÏÀ§ ÄÄÆ÷³ÍÆ®¿¡ Á¢±ÙÇÒ ¶§ »ç¿ë. À¢¸¸ÇÏ¸é ¿©±â¼­ ÇÏÀ§ ÄÄÆ÷³ÍÆ®¸¦ ¼öÁ¤ÇÏÁö ¸» °Í
-//ÀüÅõ ±â´ÉÀ» ¿ì¼± ¿©±â¿¡ ºÙ¿©ºÃÀ½.
+//ì°¸ì¡°ìš© í´ë˜ìŠ¤. í•˜ìœ„ ì»´í¬ë„ŒíŠ¸ì— ì ‘ê·¼í•  ë•Œ ì‚¬ìš©. ì›¬ë§Œí•˜ë©´ ì—¬ê¸°ì„œ í•˜ìœ„ ì»´í¬ë„ŒíŠ¸ë¥¼ ìˆ˜ì •í•˜ì§€ ë§ ê²ƒ
+//ì „íˆ¬ ê¸°ëŠ¥ì„ ìš°ì„  ì—¬ê¸°ì— ë¶™ì—¬ë´¤ìŒ.
 public class AircraftMaster : NetworkBehaviour
 {
     [SerializeField] bool _isPlayer = false;
@@ -16,7 +16,7 @@ public class AircraftMaster : NetworkBehaviour
     public VehicleCombat vehicleCombat;
     Radar radar;
 
-    Rigidbody rigidbody;
+    AircraftFM aircraftFM;
 
     AircraftName _aircraftName;
     string _userName;
@@ -31,14 +31,22 @@ public class AircraftMaster : NetworkBehaviour
     }
 
     /// <summary>
-    /// ÇöÀç Ç×°ø±âÀÇ ¼Óµµ(km/h)¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼­µå 
+    /// í˜„ì¬ í•­ê³µê¸°ì˜ ì†ë„(km/h)ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ 
     /// </summary>
     /// <returns></returns>
     public float GetSpeed()
     {
-        return (rigidbody != null) ? rigidbody.velocity.magnitude * 3.6f : 0;
+        return (aircraftFM != null) ? aircraftFM.Velocity : 0;
     }
-    
+    public float GetGForce()
+    {
+        return (aircraftFM != null) ? aircraftFM.G_Force : 0;
+    }
+    public float GetAoa()
+    {
+        return (aircraftFM != null) ? aircraftFM.AoA: 0;
+    }
+
     //public AircraftControl aircraftControl;
 
     private void Start()
@@ -60,7 +68,7 @@ public class AircraftMaster : NetworkBehaviour
         _aircraftName = aircraftName;
         _userName = userName;
 
-        rigidbody = GetComponent<Rigidbody>();
+        //rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
         aircraftSelecter.SetControlAircraft(_aircraftName);
         aircraftControl = aircraftSelecter.aircraftControl;
@@ -68,6 +76,7 @@ public class AircraftMaster : NetworkBehaviour
         vehicleCombat.SetNames(_userName);
         radar = GetComponent<Radar>();
         radar.Init();
+        aircraftFM = GetComponent<AircraftFM>();
 
         if (aiControl)
         {
@@ -162,6 +171,7 @@ public class AircraftMaster : NetworkBehaviour
         int randomNum = Random.Range(0, PlayerSpawner.Instance.Positions_SpawnPositions.Count);
         this.transform.position = PlayerSpawner.Instance.Positions_SpawnPositions[randomNum].position;
         this.transform.rotation = PlayerSpawner.Instance.Positions_SpawnPositions[randomNum].rotation;
-        rigidbody.velocity = this.transform.forward * 200;
+        //rigidbody.velocity = this.transform.forward * 200;
+        aircraftFM.InitSpeed();
     }
 }
