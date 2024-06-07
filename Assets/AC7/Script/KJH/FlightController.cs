@@ -1,9 +1,10 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //현재 조종하는 항공기 조종면에 조종 데이터를 전달하는 클래스
-public class FlightController : MonoBehaviour
+public class FlightController : NetworkBehaviour
 {
     AircraftSelecter aircraftSelecter;
     [SerializeField] public AircraftControl aircraftControl;
@@ -18,6 +19,10 @@ public class FlightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(aircraftSelecter.aircraftControl == null)
+        {
+            return;
+        }
         aircraftControl = aircraftSelecter.aircraftControl;
         if (!dead)
         {            
@@ -34,8 +39,25 @@ public class FlightController : MonoBehaviour
     {
         dead = true;
     }
+
+
+    [Command]
+    public void CommandResetDead()
+    {
+        if (isServer)
+        {
+            RpcResetDead();
+        }
+    }
+    [ClientRpc]
+    private void RpcResetDead()
+    {
+        ResetDead();
+    }
+
     public void ResetDead()
     {
         dead = false;
+        transform.position = Vector3.up * 2000f;
     }
 }

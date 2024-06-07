@@ -95,20 +95,7 @@ public class AircraftMaster : NetworkBehaviour
         StartCoroutine(DeadEffect());
     }
 
-    [Command]
-    public void CommandResetDead()
-    {
-        if(isServer)
-        {
-            RpcResetDead();
-        }
-    }
-    [ClientRpc]
-    private void RpcResetDead()
-    {
-        ResetDead();
-    }
-    private void ResetDead()
+    public void ResetDead()
     {
         if(isLocalPlayer)
         {
@@ -117,8 +104,8 @@ public class AircraftMaster : NetworkBehaviour
             {
                 GetComponent<bsj.DeathCam>().ResetDead();
                 kjh.GameManager.Instance.GameReset(.3f);
-                vehicleCombat.ResetDead();
-                transform.GetComponent<FlightController>().ResetDead();
+                vehicleCombat.CommandResetDead();
+                transform.GetComponent<FlightController>().CommandResetDead();
             }
         }
     }

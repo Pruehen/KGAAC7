@@ -329,6 +329,11 @@ public class UIControl : MonoBehaviour
 
     void UpdateUI()
     {
+        if(aircraftControl == null)
+        {
+            aircraftControl = aircraftMaster.AircraftSelecter().aircraftControl;
+            return;
+        }
         SetSpeed((int)aircraftMaster.GetSpeed());
         SetAltitude((int)aircraftMaster.transform.position.y);
         SetThrottle(aircraftControl.throttle);

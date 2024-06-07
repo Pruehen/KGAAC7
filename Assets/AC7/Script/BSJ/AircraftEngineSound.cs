@@ -32,6 +32,14 @@ public class AircraftEngineSound : MonoBehaviour
     /// <param name="power"></param>
     public void SetAfterburnerVolum(float power)
     {
+        if (!_engineSound.isPlaying)
+        {
+            _engineSound.Play();
+        }
+        if (!_afterbunerSound.isPlaying)
+        {
+            _afterbunerSound.Play();
+        }
         _engineSound.pitch = 1 + power;
         _afterbunerSound.volume = power * _volumRatio;
     }

@@ -97,7 +97,6 @@ namespace kjh
             //플레이어 정지
             player.gameObject.SetActive(true);
 
-            player.transform.position = Vector3.up * 5000f;
         }
 
         public IEnumerator DelayedCall(float time, System.Action action)

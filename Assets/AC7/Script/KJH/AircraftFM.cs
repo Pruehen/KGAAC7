@@ -21,7 +21,7 @@ public class AircraftFM : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isServer)
+        if (!isServer || aircraftSelecter == null)
         {
             return;
         }

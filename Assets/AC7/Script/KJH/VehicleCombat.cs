@@ -165,6 +165,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     public void ResetDead()
     {
+        gameObject.SetActive(true);
         SphereCollider sphereCollider;
         if (TryGetComponent<SphereCollider>(out sphereCollider))
         {
@@ -172,6 +173,22 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         }
         combat.Reset();
     }
+
+
+    [Command]
+    public void CommandResetDead()
+    {
+        if (isServer)
+        {
+            RpcResetDead();
+        }
+    }
+    [ClientRpc]
+    private void RpcResetDead()
+    {
+        ResetDead();
+    }
+
 
     /// <summary>
     /// 플레어가 살포되었을 때 실행되는 메서드

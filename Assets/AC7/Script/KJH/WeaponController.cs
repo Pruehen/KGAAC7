@@ -12,7 +12,7 @@ namespace kjh
         Radar radar;
         Rigidbody rigidbody;
 
-        void Awake()
+        void Start()
         {
             aircraftSelecter = GetComponent<AircraftSelecter>();
             rigidbody = GetComponent<Rigidbody>();

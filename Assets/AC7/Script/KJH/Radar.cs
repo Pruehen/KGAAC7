@@ -118,7 +118,12 @@ public class Radar : NetworkBehaviour
 
     private void Update()
     {
-        if (lockonTarget != null)
+        if ( weaponSystem == null)
+        {
+            weaponSystem = GetComponent<AircraftMaster>()?.AircraftSelecter().weaponSystem;
+            return;
+        }
+        if (lockonTarget != null )
         {
             toTargetAngle = Vector3.Angle(this.transform.forward, lockonTarget.transform.position - this.transform.position);
             toTargetDistance = Vector3.Distance(this.transform.position, lockonTarget.transform.position);
