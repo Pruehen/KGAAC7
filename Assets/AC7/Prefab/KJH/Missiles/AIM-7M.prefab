@@ -197,7 +197,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  EIRCM_Count: 40
+  EIRCM_Count: 60
   target: {fileID: 0}
   maxTurnRate: 30
   maxSideForce: 250

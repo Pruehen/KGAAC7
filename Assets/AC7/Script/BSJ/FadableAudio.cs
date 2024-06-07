@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FadableAudio : MonoBehaviour
@@ -30,8 +28,6 @@ public class FadableAudio : MonoBehaviour
 
     public void Play()
     {
-
-
         if (_fadeIn)
         {
             _audioSource.Play();
@@ -46,7 +42,6 @@ public class FadableAudio : MonoBehaviour
     }
     public void Stop()
     {
-
         if (_fadeOut)
         {
             _fadeOuting = true;

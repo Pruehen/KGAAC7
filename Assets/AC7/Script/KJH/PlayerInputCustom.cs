@@ -60,7 +60,7 @@ public class PlayerInputCustom : NetworkBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            missileFireTrigger = true;
+            NetworkInvoke(InputEnum.RighdMouse_Click);
         }
         if (Input.GetMouseButtonDown(2))
         {
@@ -156,7 +156,7 @@ public class PlayerInputCustom : NetworkBehaviour
                 onClick_LeftMouseUp.Invoke();
                 break;
             case InputEnum.RighdMouse_Click:
-                onClick_RightMouse.Invoke();
+                missileFireTrigger = true;
                 break;
             case InputEnum.X_Click:
                 onClick_X.Invoke();
@@ -181,7 +181,7 @@ public class PlayerInputCustom : NetworkBehaviour
     {
         if (missileFireTrigger)
         {
-            NetworkInvoke(InputEnum.RighdMouse_Click);
+            onClick_RightMouse.Invoke();
             missileFireTrigger = false;
         }
     }

@@ -32,7 +32,10 @@ public class PlayerSpawnerHUD : MonoBehaviour
     void StartButtons()
     {
         if (!BackUpCam.Instance.gameObject.activeSelf)
+        {
             BackUpCam.Instance.SetActiveBackUpCam(true);
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         GUILayout.BeginHorizontal();
         GUILayout.Button("UserName");

@@ -90,7 +90,7 @@ MonoBehaviour:
   sustainTime: 0
   boostPower: 158
   sustainPower: 0
-  liftPower: 3
+  liftPower: 5
   maxLiftTime: 60
   safeTime: 2
   explosionEffect: {fileID: 121360, guid: 7e6ae9c85baca254d860fe1519edd734, type: 3}
@@ -114,10 +114,10 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  EIRCM_Count: 80
+  EIRCM_Count: 40
   target: {fileID: 0}
   maxTurnRate: 55
-  maxSideForce: 400
+  maxSideForce: 450
   isTVC: 0
   traceAngleLimit: 120
 --- !u!114 &-6127853085175530374
