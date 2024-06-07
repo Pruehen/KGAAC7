@@ -10,15 +10,15 @@ public class LoginUi : MonoBehaviour
 
     [SerializeField] private GameObject OnLoginNextUi;
     [SerializeField] private GameObject OnFailAnimation;
-    [SerializeField] private PlayerData playerDate;
+    [SerializeField] private PlayerData playerData;
     // =================================================OnButtunClickInvoke
     public void OnLogin()
     {
         if (Login.RequestLogin(InputField_userId.text, InputField_userPassword.text))
         {
             Debug.Log("Success");
-            playerDate = FindAnyObjectByType<PlayerData>();
-            playerDate.Init(InputField_userId.text);
+            playerData = FindAnyObjectByType<PlayerData>();
+            playerData.Init(InputField_userId.text);
             gameObject.SetActive(false);
             OnLoginNextUi.SetActive(true);
         }
@@ -44,7 +44,7 @@ public class LoginUi : MonoBehaviour
     public void OnSetAircraft()
     {
         int selectedIndex = DropDown_AircraftName.value;
-        playerDate.SetPlayerAircraft(DropDown_AircraftName.
+        playerData.SetPlayerAircraft(DropDown_AircraftName.
             options[selectedIndex].text);
     }
 }

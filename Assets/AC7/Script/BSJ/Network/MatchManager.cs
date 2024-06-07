@@ -67,6 +67,14 @@ public class MatchManager : MonoBehaviour
         reqsting = true;
 
     }
+    private void RequestRoomList()
+    {
+        string message = $"LIST";
+        byte[] data = Encoding.ASCII.GetBytes(message);
+        udpClient.Send(data, data.Length, serverEndpoint);
+        reqsting = true;
+
+    }
     private bool reqsting=false;
     private IPEndPoint ipe = null;
     float time = 0f;
@@ -82,10 +90,14 @@ public class MatchManager : MonoBehaviour
                 IPEndPoint remoteEndpoint = null;
                 byte[] receivedBytes = udpClient.Receive(ref remoteEndpoint);
                 string receivedMessage = Encoding.ASCII.GetString(receivedBytes);
-
+                Debug.Log(receivedMessage);
                 ipe = HandleServerMessage(receivedMessage);
-                networkManager.networkAddress = ipe.Address.ToString();
-                networkManager.StartClient();
+                if(ipe != null)
+                {
+                    networkManager.networkAddress = ipe.Address.ToString();
+                    networkManager.StartClient();
+                    reqsting = false;
+                }
             }
         }
         else
@@ -110,7 +122,7 @@ public class MatchManager : MonoBehaviour
         }
         else if(message.StartsWith("LIST"))
         {
-            string[] strings = message.Split(":");
+            string[] strings = message.Split(":")[1].Split(',');
             foreach (string s in strings)
             {
                 if(string.IsNullOrWhiteSpace(s)) continue;
@@ -118,6 +130,17 @@ public class MatchManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public IEnumerator GetRoomList(System.Action<List<string>> callback )
+    {
+        RequestRoomList();
+        while(reqsting == true)
+        {
+            yield return null;
+        }
+        callback?.Invoke( _roomList );
+        yield break;
     }
     //private void OnReceive(System.IAsyncResult result)
     //{
