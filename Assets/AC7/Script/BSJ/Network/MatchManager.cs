@@ -7,7 +7,7 @@ using System.Text;
 using UnityEngine;
 
 
-public class RoomManager : MonoBehaviour
+public class MatchManager : MonoBehaviour
 {
     [SerializeField] private NetworkManager networkManager;
 
@@ -18,7 +18,7 @@ public class RoomManager : MonoBehaviour
 
     void Start()
     {
-        udpClient = new UdpClient();
+        udpClient = new UdpClient(7777);
         serverEndpoint = new IPEndPoint(IPAddress.Parse("13.124.20.46"), 5000); // Matchmaking server IP and port
     }
 
@@ -112,7 +112,7 @@ public class RoomManager : MonoBehaviour
                 int peerPort = int.Parse(peerInfo[2]);
 
                 IPEndPoint peerEndPoint = new IPEndPoint(IPAddress.Parse(peerAddress), peerPort);
-                Debug.Log($"Peer endpoint: {peerEndPoint.Address}:{peerEndPoint.Port}");
+                Debug.Log($"Peer endpoint:{peerEndPoint.Address}:{peerEndPoint.Port}");
                 // Now you can use the peerEndPoint for hole punching
             }
 
