@@ -25,7 +25,7 @@ public class FlightController_AI : MonoBehaviour
     bool isInit = false;
     private void Start()
     {
-        AircraftMaster aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
+        AircraftMaster aircraftMaster = this.GetComponent<AircraftMaster>();
         aircraftMaster.OnAircraftMasterInit.AddListener(Init);
     }
     // Start is called before the first frame update

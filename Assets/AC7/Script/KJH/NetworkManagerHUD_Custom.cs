@@ -7,7 +7,7 @@ using System.Collections;
 [AddComponentMenu("Network/Network Manager HUD")]
 [RequireComponent(typeof(NetworkManager))]
 [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-manager-hud")]
-public class NetworkManagerHUD_Custom : NetworkBehaviour
+public class NetworkManagerHUD_Custom : MonoBehaviour
 {
     CustomNetworkManager manager;
 
@@ -22,9 +22,9 @@ public class NetworkManagerHUD_Custom : NetworkBehaviour
     void OnGUI()
     {
         // If this width is changed, also change offsetX in GUIConsole::OnGUI
-        int width = 300;
+        int width = 400;
 
-        GUILayout.BeginArea(new Rect(10 + offsetX, 20 + offsetY, width, 9999));
+        GUILayout.BeginArea(new Rect(10 + offsetX, 20 + offsetY, width, 180));
 
         if (!NetworkClient.isConnected && !NetworkServer.active)
             StartButtons();
@@ -84,21 +84,6 @@ public class NetworkManagerHUD_Custom : NetworkBehaviour
             }
 
             GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            GUILayout.Button("UserName");
-            PlayerSpawner.Instance.UserNickName = GUILayout.TextField(PlayerSpawner.Instance.UserNickName);
-            GUILayout.EndHorizontal();
-
-            GUILayout.Label($"Select : {PlayerSpawner.Instance.SelectAircraftName}");
-            if (GUILayout.Button("F-14A")) PlayerSpawner.Instance.SetAircraft_F14();
-            if (GUILayout.Button("F-15C")) PlayerSpawner.Instance.SetAircraft_F15();
-            if (GUILayout.Button("F-16C")) PlayerSpawner.Instance.SetAircraft_F16();
-            if (GUILayout.Button("MiG-29A")) PlayerSpawner.Instance.SetAircraft_M29();
-            if (GUILayout.Button("Su-37")) PlayerSpawner.Instance.SetAircraft_S37();
-
-            if (GUILayout.Button("Quit"))
-                Application.Quit();
 
             // Server Only
 #if UNITY_WEBGL

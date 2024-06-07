@@ -18,7 +18,17 @@ public class AircraftMaster : NetworkBehaviour
 
     Rigidbody rigidbody;
 
+    AircraftName _aircraftName;
+    string _userName;
+    bool _isInit = false;
+
     public UnityEvent OnAircraftMasterInit;
+    IEnumerator OnAircraftMasterInitInvoke(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        OnAircraftMasterInit.Invoke();
+        _isInit = true;
+    }
 
     /// <summary>
     /// 현재 항공기의 속도(km/h)를 반환하는 메서드 
@@ -39,20 +49,23 @@ public class AircraftMaster : NetworkBehaviour
             //StartCoroutine(CommandInitCoroutine());
             CommandInit(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
         }
-        else
+        else if(!this.isLocalPlayer && !this.isServer)
         {
-            CommandInitNotLocal();
+            CommandSyncInit();
         }
     }
 
     public void Init(AircraftName aircraftName, string userName)
     {
+        _aircraftName = aircraftName;
+        _userName = userName;
+
         rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
-        aircraftSelecter.SetControlAircraft(aircraftName);
+        aircraftSelecter.SetControlAircraft(_aircraftName);
         aircraftControl = aircraftSelecter.aircraftControl;
         vehicleCombat = GetComponent<VehicleCombat>();
-        vehicleCombat.SetNames(userName);
+        vehicleCombat.SetNames(_userName);
         radar = GetComponent<Radar>();
         radar.Init();
 
@@ -79,9 +92,8 @@ public class AircraftMaster : NetworkBehaviour
         else
         {
             kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
-        }
-
-        OnAircraftMasterInit.Invoke();
+        }        
+        StartCoroutine(OnAircraftMasterInitInvoke(0.2f));
     }
     [Command(requiresAuthority = false)]
     void CommandInit(AircraftName aircraftName, string userName)
@@ -90,18 +102,21 @@ public class AircraftMaster : NetworkBehaviour
         RpcInit(aircraftName, userName);
     }
     [Command(requiresAuthority = false)]
-    void CommandInitNotLocal()
+    void CommandSyncInit()
     {
-        Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
-        RpcInit(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+        //Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
+        RpcInit(_aircraftName, _userName);
     }
 
     [ClientRpc]
     void RpcInit(AircraftName aircraftName, string userName)
     {
-        Init(aircraftName, userName);
+        if (!this.isServer && !_isInit)
+        {
+            Init(aircraftName, userName);
+        }
     }
-    
+
 
     public void Dead()
     {

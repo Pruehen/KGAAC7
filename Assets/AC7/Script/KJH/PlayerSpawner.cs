@@ -1,8 +1,7 @@
-using Mirror;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpawner : NetworkBehaviour
+public class PlayerSpawner : MonoBehaviour
 {            
     public static PlayerSpawner Instance;
     private void Awake()
@@ -11,9 +10,9 @@ public class PlayerSpawner : NetworkBehaviour
     }
 
     public List<Transform> Positions_SpawnPositions;
-    [SyncVar] public AircraftName UseAircraftNameEnum;
-    [SyncVar] public string UserNickName;
-    [SyncVar] public string SelectAircraftName = "F-16C";
+    public AircraftName UseAircraftNameEnum;
+    public string UserNickName;
+    public string SelectAircraftName = "F-16C";
 
     public void SetAircraft_F14()
     {

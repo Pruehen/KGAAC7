@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 122694991}
   - component: {fileID: 122694990}
-  - component: {fileID: 122694989}
+  - component: {fileID: 122694992}
   m_Layer: 0
   m_Name: PlayerSpawner
   m_TagString: Untagged
@@ -281,23 +281,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &122694989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122694988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 1871175245
-  _assetId: 0
-  serverOnly: 0
-  visibility: 0
-  hasSpawned: 0
 --- !u!114 &122694990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +319,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &122694992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122694988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b28219050301845812136b12bcb6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  offsetX: 0
+  offsetY: 70
 --- !u!23 &154408360
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -960,23 +960,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5473010730410178574, guid: c47581f1136052e46bfa1289bb4ad050, type: 3}
   m_PrefabInstance: {fileID: 528127110}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &839820016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839820010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 664211133
-  _assetId: 1330848321
-  serverOnly: 0
-  visibility: 0
-  hasSpawned: 0
 --- !u!114 &839820017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,9 +972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b749102a2fcaa4d9e01f33eb88dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   offsetX: 0
   offsetY: 0
 --- !u!4 &908961141 stripped

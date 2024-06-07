@@ -13,12 +13,12 @@ namespace kjh
         bool isInit = false;
         private void Start()
         {
-            AircraftMaster aircraftMaster = kjh.GameManager.Instance.player.GetComponent<AircraftMaster>();
+            AircraftMaster aircraftMaster = this.GetComponent<AircraftMaster>();
             aircraftMaster.OnAircraftMasterInit.AddListener(Init);
         }
 
         void Init()
-        {
+        {            
             aircraftSelecter = GetComponent<AircraftSelecter>();
             rigidbody = GetComponent<Rigidbody>();
             radar = GetComponent<Radar>();
