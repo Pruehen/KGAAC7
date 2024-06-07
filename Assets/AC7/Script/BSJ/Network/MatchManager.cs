@@ -59,7 +59,7 @@ public class MatchManager : MonoBehaviour
         }
         return roomId;
     }
-    private void RequestMatch(string roomId)
+    public void RequestMatch(string roomId)
     {
         string message = $"MATCH:{roomId}:{roomId}";
         byte[] data = Encoding.ASCII.GetBytes(message);
