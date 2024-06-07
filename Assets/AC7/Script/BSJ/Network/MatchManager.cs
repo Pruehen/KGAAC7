@@ -123,6 +123,7 @@ public class MatchManager : MonoBehaviour
         else if(message.StartsWith("LIST"))
         {
             string[] strings = message.Split(":")[1].Split(',');
+            _roomList.Clear();
             foreach (string s in strings)
             {
                 if(string.IsNullOrWhiteSpace(s)) continue;
