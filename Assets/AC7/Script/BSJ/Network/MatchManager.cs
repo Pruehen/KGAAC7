@@ -11,6 +11,8 @@ public class MatchManager : MonoBehaviour
 {
     [SerializeField] private NetworkManager networkManager;
 
+    private List<string> _roomList = new List<string>();
+
     private UdpClient udpClient;
     private IPEndPoint serverEndpoint;
     private IPEndPoint peerEndpoint;
@@ -18,17 +20,30 @@ public class MatchManager : MonoBehaviour
 
     void Start()
     {
-        udpClient = new UdpClient(7777);
+        udpClient = new UdpClient();
         serverEndpoint = new IPEndPoint(IPAddress.Parse("3.35.235.2"), 5000); // Matchmaking server IP and port
     }
 
     public void Host()
     {
         string roomId = RandomRoomId();
-        string message = $"HOST:{roomId}:{roomId}";
+
+        string message = $"HOST:{roomId}:{GetLocalIp()}";
         byte[] data = Encoding.ASCII.GetBytes(message);
         udpClient.Send(data, data.Length, serverEndpoint);
         networkManager.StartHost();
+    }
+    private string GetLocalIp()
+    {
+        var host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (var ip in host.AddressList)
+        {
+            if (ip.AddressFamily == AddressFamily.InterNetwork)
+            {
+                return ip.ToString();
+            }
+        }
+        return null;
     }
     public void Join(TMPro.TMP_InputField roomId)
     {
@@ -93,35 +108,44 @@ public class MatchManager : MonoBehaviour
             Debug.Log($"Matched with peer at {peerEndpoint}");
             return peerEndpoint;
         }
+        else if(message.StartsWith("LIST"))
+        {
+            string[] strings = message.Split(":");
+            foreach (string s in strings)
+            {
+                if(string.IsNullOrWhiteSpace(s)) continue;
+                _roomList.Add(s);
+            }
+        }
         return null;
     }
-    private void OnReceive(System.IAsyncResult result)
-    {
-        try
-        {
-            UdpClient udpClient = (UdpClient)result.AsyncState;
-            IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
-            byte[] receivedBytes = udpClient.EndReceive(result, ref remoteEndPoint);
-            string receivedMessage = Encoding.ASCII.GetString(receivedBytes);
-            Debug.Log("Received: " + receivedMessage);
+    //private void OnReceive(System.IAsyncResult result)
+    //{
+    //    try
+    //    {
+    //        UdpClient udpClient = (UdpClient)result.AsyncState;
+    //        IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
+    //        byte[] receivedBytes = udpClient.EndReceive(result, ref remoteEndPoint);
+    //        string receivedMessage = Encoding.ASCII.GetString(receivedBytes);
+    //        Debug.Log("Received: " + receivedMessage);
 
-            if (receivedMessage.StartsWith("PEER"))
-            {
-                string[] peerInfo = receivedMessage.Split(':');
-                string peerAddress = peerInfo[1];
-                int peerPort = int.Parse(peerInfo[2]);
+    //        if (receivedMessage.StartsWith("PEER"))
+    //        {
+    //            string[] peerInfo = receivedMessage.Split(':');
+    //            string peerAddress = peerInfo[1];
+    //            int peerPort = int.Parse(peerInfo[2]);
 
-                IPEndPoint peerEndPoint = new IPEndPoint(IPAddress.Parse(peerAddress), peerPort);
-                Debug.Log($"Peer endpoint:{peerEndPoint.Address}:{peerEndPoint.Port}");
-                // Now you can use the peerEndPoint for hole punching
-            }
+    //            IPEndPoint peerEndPoint = new IPEndPoint(IPAddress.Parse(peerAddress), peerPort);
+    //            Debug.Log($"Peer endpoint:{peerEndPoint.Address}:{peerEndPoint.Port}");
+    //            // Now you can use the peerEndPoint for hole punching
+    //        }
 
-            udpClient.BeginReceive(new System.AsyncCallback(OnReceive), udpClient);
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError(e.ToString());
-        }
-    }
+    //        udpClient.BeginReceive(new System.AsyncCallback(OnReceive), udpClient);
+    //    }
+    //    catch (System.Exception e)
+    //    {
+    //        Debug.LogError(e.ToString());
+    //    }
+    //}
 
 }
