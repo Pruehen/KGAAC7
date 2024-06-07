@@ -18,8 +18,27 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     private void Start()
     {
         bsj.GameManager.Instance.AfterAnyPlayerSpawned += OnAnyPlayerSpawn;
+        bsj.GameManager.Instance.AfterPlayerSpawned += OnLocalPlayerSpawn;
+    }
+    
+    private void OnLocalPlayerSpawn()
+    {
+        PlayerData data = FindAnyObjectByType<PlayerData>();
+        if(data != null )
+            CommandSetPlayerInfo(data.PlayerAircraft, data.PlayerId);
     }
 
+    [Command]
+    private void CommandSetPlayerInfo(string aircraftName, string nickname)
+    {
+        RpcSetPlayerInfo(aircraftName, nickname);
+    }
+    [ClientRpc]
+    private void RpcSetPlayerInfo(string aircraftName, string nickname)
+    {
+        name = aircraftName;
+        this.nickname = nickname;
+    }
     private void OnAnyPlayerSpawn()
     {
         combat.Init(this.transform, startHp);
@@ -36,12 +55,28 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         isRaderLock = false;
         isMissileLock = false;
 
+        CommandSyncTargetInfo();
+
         if (isPlayer)
         {
             StartCoroutine(Heal());
         }
         kjh.GameManager.Instance.AddActiveTarget(this);
     }
+
+    [Command]
+    private void CommandSyncTargetInfo()
+    {
+        //서버로 신호 보내고 클라로 싱크 시켜주기
+        RpcSyncTargetInfo(name, nickname);
+    }
+    [ClientRpc]
+    private void RpcSyncTargetInfo(string aircraftName, string nickname)
+    {
+        name = aircraftName;
+        this.nickname = nickname;
+    }
+
 
     void IFightable.DealDamage(IFightable target, float damage)
     {

@@ -74,7 +74,7 @@ public class Guided_SARH : Guided
 
     protected override void Homing()
     {
-        if (target != null)
+        if (target != null && radar != null)
         {
             target = radar.GetTarget();
             if (radar.toTargetAngle > radar.RadarMaxAngle())

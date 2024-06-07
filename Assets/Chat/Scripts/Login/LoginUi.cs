@@ -15,6 +15,9 @@ public class LoginUi : MonoBehaviour
         if (Login.RequestLogin(InputField_userId.text, InputField_userPassword.text))
         {
             Debug.Log("Success");
+            PlayerData playerDate = FindAnyObjectByType<PlayerData>();
+            playerDate.SetPlayerAircraft("F16");
+            playerDate.Init(InputField_userId.text);
             gameObject.SetActive(false);
             OnLoginNextUi.SetActive(true);
         }
