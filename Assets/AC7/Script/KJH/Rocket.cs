@@ -104,7 +104,7 @@ public class Rocket : NetworkBehaviour
             }
         }
 
-        sideForce = (this.transform.forward * velocitySpeed - velocity) * Atmosphere.AtmosphericPressure(this.transform.position.y);
+        sideForce = (this.transform.forward * velocitySpeed - velocity) * liftPower * Atmosphere.AtmosphericPressure(this.transform.position.y);
         rigidbody.AddForce(sideForce, ForceMode.Acceleration);
 
         //Debug.Log(velocitySpeed);

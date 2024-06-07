@@ -89,11 +89,10 @@ public class AircraftMaster : NetworkBehaviour
             SetPositionPlayer();
             //vehicleCombat.Init();
         }
-        else
-        {
-            kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
-        }        
-        StartCoroutine(OnAircraftMasterInitInvoke(0.2f));
+        kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
+        //StartCoroutine(OnAircraftMasterInitInvoke(0.2f));
+        OnAircraftMasterInit.Invoke();
+        _isInit = true;
     }
     [Command(requiresAuthority = false)]
     void CommandInit(AircraftName aircraftName, string userName)
@@ -153,11 +152,8 @@ public class AircraftMaster : NetworkBehaviour
         {
             SetPositionPlayer();            
         }
-        else
-        {
-            kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
-        }
 
+        kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
         vehicleCombat.Init();
     }
 

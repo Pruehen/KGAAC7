@@ -44,10 +44,10 @@ public class PlayerInputCustom : NetworkBehaviour
     {
         if (!this.isLocalPlayer) return;
 
-        if(!isControlable)
-        { return; } 
-        if(kjh.GameManager.Instance.IsPaused)
-        { return; }
+        //if(!isControlable)
+        //{ return; } 
+        //if(kjh.GameManager.Instance.IsPaused)
+        //{ return; }
         ControlSurface();
 
         if (Input.GetMouseButtonDown(0))
@@ -113,39 +113,39 @@ public class PlayerInputCustom : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void CommandNetworkInvoke(InputEnum inputEnum)
     {
-        switch (inputEnum)
-        {
-            case InputEnum.LeftMouse_Down:
-                onClick_LeftMouseDown.Invoke();
-                break;
-            case InputEnum.LeftMouse_Up:
-                onClick_LeftMouseUp.Invoke();
-                break;
-            case InputEnum.RighdMouse_Click:
-                onClick_RightMouse.Invoke();
-                break;
-            case InputEnum.X_Click:
-                onClick_X.Invoke();
-                break;
-            case InputEnum.R_Click:
-                onClick_R.Invoke();
-                break;
-            case InputEnum.F_Down:
-                onClick_Fdown.Invoke();
-                break;
-            case InputEnum.F_Up:
-                onClick_Fup.Invoke();
-                break;
-            default:
-                break;
-        }
+        //switch (inputEnum)
+        //{
+        //    case InputEnum.LeftMouse_Down:
+        //        onClick_LeftMouseDown.Invoke();
+        //        break;
+        //    case InputEnum.LeftMouse_Up:
+        //        onClick_LeftMouseUp.Invoke();
+        //        break;
+        //    case InputEnum.RighdMouse_Click:
+        //        onClick_RightMouse.Invoke();
+        //        break;
+        //    case InputEnum.X_Click:
+        //        onClick_X.Invoke();
+        //        break;
+        //    case InputEnum.R_Click:
+        //        onClick_R.Invoke();
+        //        break;
+        //    case InputEnum.F_Down:
+        //        onClick_Fdown.Invoke();
+        //        break;
+        //    case InputEnum.F_Up:
+        //        onClick_Fup.Invoke();
+        //        break;
+        //    default:
+        //        break;
+        //}
         RpcNetworkInvoke(inputEnum);
     }
     [ClientRpc]
     void RpcNetworkInvoke(InputEnum inputEnum)
     {
-        if (this.isServer)
-            return;
+        //if (this.isServer)
+        //    return;
 
         switch (inputEnum)
         {
@@ -241,7 +241,6 @@ public class PlayerInputCustom : NetworkBehaviour
     }
     void OnFire(InputValue inputValue)
     {
-
         if (!isControlable)
         { return; }
         if (inputValue.isPressed)

@@ -37,7 +37,7 @@ public class Guided_SARH : Guided
         if (target != null)
         {
             target = radar.GetTarget();
-            if (radar.toTargetAngle > radar.RadarMaxAngle())
+            if (radar.toTargetAngle > radar.RadarMaxAngle() || target == null)
                 return;
 
             targetVec = target.transform.position;//Å¸°Ù º¤ÅÍ ÁöÁ¤

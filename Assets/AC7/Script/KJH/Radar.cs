@@ -46,50 +46,27 @@ public class Radar : NetworkBehaviour
     {
         if (lockOnTarget != null)
         {
-            toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-            toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
-
-            if (!isEnemy)
+            if (lockOnTarget.IsDead() && !onNextLockOn)
             {
-                WeaponData weaponData = weaponSystem.UseWeaponData();
+                //lockOnTarget = null;
+                onNextLockOn = true;
+                Debug.Log("적 사망에 따른 락온 발생");
+                StartCoroutine(NextTargetLock());
+            }
 
-                if (lockOnTarget.IsDead() && !onNextLockOn)
-                {
-                    //lockOnTarget = null;
-                    onNextLockOn = true;
-                    Debug.Log("적 사망에 따른 락온 발생");
-                    StartCoroutine(NextTargetLock());
-                }
+            SetTargetData();
 
-                if (toTargetAngle <= weaponData.MaxSeekerAngle() && toTargetDistance <= weaponData.LockOnRange())
+            if (this.isLocalPlayer)
+            {
+                if (_lockOnSfx != null && !_lockOnSfx.isPlaying && isMissileLock)
                 {
-                    isMissileLock = true;
+                    _lockOnSfx?.Play();
+                    //Debug.Log("소리");
                 }
-                else
+                else if (!isMissileLock)
                 {
-                    isMissileLock = false;
+                    _lockOnSfx?.Pause();
                 }
-                if (toTargetAngle <= radarMaxAngle)
-                {
-                    isRadarLock = true;
-                }
-                else
-                {
-                    isRadarLock = false;
-                }
-
-                if (this.isLocalPlayer)
-                {
-                    if (_lockOnSfx != null && !_lockOnSfx.isPlaying && isMissileLock)
-                    {
-                        _lockOnSfx?.Play();
-                        //Debug.Log("소리");
-                    }
-                    else if (!isMissileLock)
-                    {
-                        _lockOnSfx?.Pause();
-                    }
-                }            
             }
         }
         else if(this.isLocalPlayer)
@@ -190,8 +167,7 @@ public class Radar : NetworkBehaviour
             if(lockOnTarget != null)
             {
                 //lockOnTarget.isTargeted = true;
-                toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
-                toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);               
+                SetTargetData();
             }                        
         }
         else
@@ -202,5 +178,33 @@ public class Radar : NetworkBehaviour
             toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);            
         }
         onNextLockOn = false;
+    }
+
+    void SetTargetData()
+    {
+        toTargetAngle = Vector3.Angle(this.transform.forward, lockOnTarget.transform.position - this.transform.position);
+        toTargetDistance = Vector3.Distance(this.transform.position, lockOnTarget.transform.position);
+
+        if (!isEnemy)
+        {
+            WeaponData weaponData = weaponSystem.UseWeaponData();
+
+            if (toTargetAngle <= weaponData.MaxSeekerAngle() && toTargetDistance <= weaponData.LockOnRange())
+            {
+                isMissileLock = true;
+            }
+            else
+            {
+                isMissileLock = false;
+            }
+            if (toTargetAngle <= radarMaxAngle)
+            {
+                isRadarLock = true;
+            }
+            else
+            {
+                isRadarLock = false;
+            }
+        }
     }
 }
