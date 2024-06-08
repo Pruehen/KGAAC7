@@ -11,7 +11,6 @@ public class ChatUi : MonoBehaviour
     [SerializeField] private TMPro.TMP_InputField InputField_chatInput;
     [SerializeField] private Scrollbar Scroll_chatScroll;
     [SerializeField] private TMPro.TMP_Text Text_chatOutput;
-    [SerializeField] private Button Button_sendButton;
 
     private string _playerName;
     private string playerName
@@ -32,7 +31,6 @@ public class ChatUi : MonoBehaviour
 
     private void Start()
     {
-        Button_sendButton.onClick.AddListener(SendCurrentInput);
         InputField_chatInput.onSubmit.AddListener(SendCurrentInput);
         NetworkChat_chat.OnTextChanged += UpdateText;
     }

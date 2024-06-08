@@ -18,7 +18,7 @@ public class NetworkChat : NetworkBehaviour
         {
             if (isServerOnly)
             {
-                return "";
+                return "Server";
             }
             if (string.IsNullOrWhiteSpace(_playerName))
             {
