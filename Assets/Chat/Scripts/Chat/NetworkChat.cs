@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -8,6 +9,18 @@ public class NetworkChat : NetworkBehaviour
 {
     [Header ("SetPlayerColor reference richText")]
     [SerializeField] private string E_playerChatColor = "teal";
+    [SerializeField] private MasterChatManager _masterChatManager;
+
+    public void Start()
+    {
+        base.OnStartLocalPlayer();
+        {
+            if (isServer)
+            {
+                _masterChatManager = FindAnyObjectByType<MasterChatManager>();
+            }
+        }
+    }
 
     public event System.Action<string> OnTextChanged;
     public string _chatContent { get; private set; }
@@ -42,22 +55,27 @@ public class NetworkChat : NetworkBehaviour
         CommandSendMessage(name, message);
     }
 
-    [Command(requiresAuthority = false)]
+    [Command]
     private void CommandSendMessage(string name, string message)
     {
-        RpcSendMessage(name, message);
+        _masterChatManager.RpcSendChatMessage(name, message);
     }
 
     private void AppendMessage(string name, string message)
     {
         _chatContent = $"{_chatContent}{GetChatFormated(name, message)}";
     }
-
-    [ClientRpc]
-    private void RpcSendMessage(string name, string message)
+    private void AppendMessage(string chat)
     {
+        _chatContent = $"{_chatContent}{chat}";
+    }
+
+    public void SetChatMessage(string name, string message)
+    {
+        if (!isLocalPlayer)
+            return;
         string chat;
-        if(playerName == name)
+        if (playerName == name)
         {
             chat = GetChatFormated(name, message, E_playerChatColor);
         }
@@ -65,9 +83,11 @@ public class NetworkChat : NetworkBehaviour
         {
             chat = GetChatFormated(name, message);
         }
-        AppendMessage(name, message);
+        AppendMessage(name, chat);
+        Debug.Log(netId);
         OnTextChanged?.Invoke(_chatContent);
     }
+
 
     private string GetChatFormated(string name, string message)
     {

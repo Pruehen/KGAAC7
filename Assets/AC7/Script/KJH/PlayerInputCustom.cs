@@ -28,6 +28,7 @@ public class PlayerInputCustom : NetworkBehaviour
     public UnityEvent onClick_MidMouseDown;
     public UnityEvent onClick_MidMouseUp;
     public UnityEvent onClick_ESC;
+    public UnityEvent onClick_Enter;
 
     // Update is called once per frame
     private enum CustmInputTypes
@@ -94,8 +95,11 @@ public class PlayerInputCustom : NetworkBehaviour
         {
             CommandInvoke(CustmInputTypes.Click_ESC);
         }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            onClick_Enter.Invoke();
+        }
     }
-
     [Command(requiresAuthority = false)]
     private void CommandInvoke(CustmInputTypes unityEvent)
     {

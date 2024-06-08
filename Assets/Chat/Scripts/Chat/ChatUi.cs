@@ -36,6 +36,7 @@ public class ChatUi : MonoBehaviour
     }
     private void UpdateText(string text)
     {
+        Debug.Log(transform.parent.parent.name);
         Text_chatOutput.text = text;
     }
     private void SendCurrentInput()
@@ -59,6 +60,18 @@ public class ChatUi : MonoBehaviour
         if(!string.IsNullOrWhiteSpace(message))
         {
             NetworkChat_chat.SendUserChat(name, message);
+        }
+    }
+
+    public void OnEnterKeyPresseed()
+    {
+        if(InputField_chatInput.isFocused)
+        {
+            SendCurrentInput();
+        }
+        else
+        {
+            InputField_chatInput.Select();
         }
     }
 }

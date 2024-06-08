@@ -29,7 +29,7 @@ namespace bsj
             SceneManager.sceneLoaded += IsNetworkOnSceneLoad;
             if(!IsNetworkScene)
             {
-                player = GameObject.Find("Aircraft").transform;
+                //player = GameObject.Find("Aircraft").transform;
             }
         }
         private void Start()
@@ -60,7 +60,7 @@ namespace bsj
         private IEnumerator TriggerOnAfterPlayerSpawned()
         {
             yield return null;
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(.1f);
             AfterPlayerSpawned?.Invoke();
         }
 
