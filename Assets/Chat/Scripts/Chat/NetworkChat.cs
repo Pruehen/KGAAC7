@@ -35,7 +35,7 @@ public class NetworkChat : NetworkBehaviour
             }
             if (string.IsNullOrWhiteSpace(_playerName))
             {
-                _playerName = NetworkClient.localPlayer.name;
+                _playerName = FindAnyObjectByType<PlayerData>().PlayerId;
                 Debug.Assert(!string.IsNullOrWhiteSpace(_playerName));
             }
             return _playerName;
@@ -95,7 +95,7 @@ public class NetworkChat : NetworkBehaviour
     }
     private string GetChatFormated(string name, string message, string color)
     {
-        return $"<color={color}>{GetChatFormated(name, message)}</color>\n";
+        return $"<color={color}>{name}</color>: {message}\n";
     }
 
 }

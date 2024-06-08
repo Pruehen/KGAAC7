@@ -28818,6 +28818,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChatManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5012012089186836809, guid: bddbb8cc67181f1458b79aecb8ac64b4, type: 3}
+      propertyPath: E_playerChatColor
+      value: lightblue
+      objectReference: {fileID: 0}
     - target: {fileID: 5012012089186836814, guid: bddbb8cc67181f1458b79aecb8ac64b4, type: 3}
       propertyPath: m_RootOrder
       value: 4
