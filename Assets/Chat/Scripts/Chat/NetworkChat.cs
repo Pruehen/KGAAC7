@@ -83,7 +83,7 @@ public class NetworkChat : NetworkBehaviour
         {
             chat = GetChatFormated(name, message);
         }
-        AppendMessage(name, chat);
+        AppendMessage(chat);
         Debug.Log(netId);
         OnTextChanged?.Invoke(_chatContent);
     }
