@@ -65,6 +65,7 @@ public class ChatUi : MonoBehaviour
         {
             _playerInput.isControlable = false;
             InputField_chatInput.Select();
+            _submitedChat = false;
         }
     }
 }
