@@ -40,8 +40,11 @@ namespace kjh
         /// </summary>
         public void RemoveActiveTarget(VehicleCombat vehicleCombat)
         {
+            Debug.Log(vehicleCombat.gameObject.activeInHierarchy);
+            Debug.Log(activeTargetList.Contains(vehicleCombat));
             if (vehicleCombat.gameObject.activeInHierarchy && activeTargetList.Contains(vehicleCombat))
             {
+                Debug.Log("RemoveActiveTarget");
                 activeTargetList.Remove(vehicleCombat);
                 targetCountChanged?.Invoke(activeTargetList.Count);
             }

@@ -94,7 +94,7 @@ public class AircraftMaster : NetworkBehaviour
         EffectManager.Instance.AircraftFireEffectGenerate(this.transform);
         StartCoroutine(DeadEffect());
     }
-
+    //called on click restart
     public void ResetDead()
     {
         if(isLocalPlayer)

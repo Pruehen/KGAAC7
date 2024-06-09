@@ -145,10 +145,9 @@ public class VehicleCombat : NetworkBehaviour, IFightable
 
     void Dead()
     {
+        Debug.Log("OnVehicleCombat Dead Called");
         if (!isPlayer)
         {
-            kjh.GameManager.Instance.RemoveActiveTarget(this);
-            SubtitleManager.Instance.ShowSubtitle("Kill1");
             SphereCollider sphereCollider;
             if (TryGetComponent<SphereCollider>(out sphereCollider))
             {
@@ -159,6 +158,11 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         {
             BGM_Player.Instance.Stop();
         }
+        else
+        {
+            SubtitleManager.Instance.ShowSubtitle("Kill1");
+        }
+        kjh.GameManager.Instance.RemoveActiveTarget(this);
         onDead.Invoke();
         //Debug.Log("Æã");
     }
@@ -172,6 +176,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
             sphereCollider.enabled = true;
         }
         combat.Reset();
+        kjh.GameManager.Instance.AddActiveTarget(this);
     }
 
 
