@@ -1,9 +1,10 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HpBar : MonoBehaviour
+public class HpBar : NetworkBehaviour
 {
     Image hpBar;
     Combat playerCombat;
@@ -11,7 +12,10 @@ public class HpBar : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+        if(isLocalPlayer)
+        {
+            bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+        }
     }
     private void OnPlayerSpawn()
     {

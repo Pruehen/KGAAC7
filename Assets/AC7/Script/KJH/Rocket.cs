@@ -171,6 +171,7 @@ public class Rocket : NetworkBehaviour
             }
             RpcOnHit(contact);
         }
+        DestroyRocket();
 
     }
     [ClientRpc]
@@ -181,7 +182,6 @@ public class Rocket : NetworkBehaviour
         {
             kjh.GameManager.Instance.cameraShake.MissileHitShake();
         }
-        Excute_DestroyRocket();
     }
 
     [ClientRpc]
@@ -201,15 +201,22 @@ public class Rocket : NetworkBehaviour
     private void OnHit(Vector3 position)
     {
         EffectManager.Instance.EffectGenerate(explosionEffect, position);
-        Excute_DestroyRocket();
     }
 
     void DestroyRocket()
     {
         if(isServer)
         {
-            Excute_DestroyRocket();
+            Guided guided;
+            if (TryGetComponent<Guided>(out guided))
+            {
+                guided.RpcRemoveTarget();
+            }
             RpcDestroyRocket();
+            if(isServerOnly)
+            {
+                Excute_DestroyRocket();
+            }
         }
     }
 
@@ -221,13 +228,6 @@ public class Rocket : NetworkBehaviour
 
     private void Excute_DestroyRocket()
     {
-
-        Guided guided;
-        if (TryGetComponent<Guided>(out guided))
-        {
-            guided.RemoveTarget();
-        }
-
         Destroy(motor.gameObject);
 
         smoke.transform.SetParent(null);

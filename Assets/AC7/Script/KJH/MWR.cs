@@ -49,7 +49,10 @@ public class MWR : NetworkBehaviour
     {
         if(isServer)
         {
-            missileCount++;
+            if(isServerOnly)
+            {
+                missileCount++;
+            }
             RpcAddMissile(missile.netId);
         }
     }

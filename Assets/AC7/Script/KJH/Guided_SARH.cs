@@ -61,22 +61,17 @@ public class Guided_SARH : Guided
         if (radar.toTargetAngle <= weaponData.MaxSeekerAngle() && radar.toTargetDistance <= weaponData.LockOnRange())
         {
             this.target = radar.GetTarget();
-            if (target != null)
-            {
-                target.onFlare += EIRCM;
-                if (isServer)
-                {
-                    RpcAddMissile();
-                }
-            }
         }
     }
 
     protected override void Homing()
     {
+        if(!isServer)
+        {
+            return;
+        }
         if (target != null && radar != null)
         {
-            target = radar.GetTarget();
             if (radar.toTargetAngle > radar.RadarMaxAngle())
                 return;
 
@@ -115,7 +110,7 @@ public class Guided_SARH : Guided
 
             if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
             {
-                RemoveTarget();
+                RpcRemoveTarget();
             }
         }
     }

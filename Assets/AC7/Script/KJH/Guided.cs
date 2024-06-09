@@ -20,7 +20,13 @@ public class Guided : NetworkBehaviour
             {
                 return;
             }
-            if (value != null)
+            if (_target != null)
+            {
+                _target.onFlare += EIRCM;
+                Debug.Log("FlareAdded");
+                RpcAddMissile();
+            }
+            if (_target != null)
             {
                 RpcSetTarget(value.netId);
             }
@@ -64,14 +70,6 @@ public class Guided : NetworkBehaviour
         if (radar.toTargetAngle <= weaponData.MaxSeekerAngle() && radar.toTargetDistance <= weaponData.LockOnRange())
         {
             this.target = radar.GetTarget();
-            if (target != null)
-            {
-                target.onFlare += EIRCM;
-                if(isServer)
-                {
-                    RpcAddMissile();
-                }
-            }
         }
     }
 
@@ -95,7 +93,8 @@ public class Guided : NetworkBehaviour
     /// <summary>
     /// 유도 미사일의 타겟을 해제해주는 메서드 (타겟을 잃었거나, 미사일이 충돌했거나)
     /// </summary>
-    public void RemoveTarget()
+    [ClientRpc]
+    public void RpcRemoveTarget()
     {
         if(target != null)
         {
@@ -139,7 +138,11 @@ public class Guided : NetworkBehaviour
 
     protected virtual void Homing()
     {
-        if(target == null)
+        if(!isServer)
+        {
+            return;
+        }
+        if (target != null)
         {
             return;
         }
@@ -186,9 +189,10 @@ public class Guided : NetworkBehaviour
             //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
         }
 
-        if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
-        {
-            RemoveTarget();
+            if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
+            {
+                RpcRemoveTarget();
+            }
         }
     }
 
@@ -200,11 +204,13 @@ public class Guided : NetworkBehaviour
     public void EIRCM()
     {
         EIRCM_Count--;
+        Debug.Log(EIRCM_Count);
         maneuverability *= 0.97f;
 
         if (EIRCM_Count <= 0) 
         {
-            RemoveTarget();
+            Debug.Log("Dodgeed by Flare");
+            RpcRemoveTarget();
         }
     }
 }
