@@ -61,14 +61,47 @@ public class Rocket : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!isServer)
+        {
+            lifeTime += Time.fixedDeltaTime;
+            if (lifeTime > maxLiftTime)
+            {
+                this.DestroyRocket();
+            }
+            if (lifeTime > boostStartDelay && !isCombustion)
+            {
+                isCombustion = true;
+                //trail.SetActive(true);
+                smoke.gameObject.SetActive(true);
+                motor.gameObject.SetActive(true);
+                smoke.Play();
+                motor.Play();
+            }
+            if (isCombustion)
+            {
+                if (lifeTime < boostTime + boostStartDelay)
+                {
+                }
+                else if (lifeTime < boostTime + sustainTime + boostStartDelay)
+                {
+                }
+                else
+                {
+                    isCombustion = false;
+                    //smoke.Stop();
+                    motor.Stop();
+                }
+            }
+            return;
+        }
         Vector3 velocity = rigidbody.velocity;
         float velocitySpeed = velocity.magnitude;
         speed = velocitySpeed;
         sideForcef = sideForce.magnitude;
 
-        lifeTime += Time.fixedDeltaTime;
         rigidbody.drag = Atmosphere.Drag(this.transform.position.y, cD, velocitySpeed);
 
+        lifeTime += Time.fixedDeltaTime;
         if (lifeTime > maxLiftTime)
         {
             this.DestroyRocket();
