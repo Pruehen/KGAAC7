@@ -15,8 +15,10 @@ public class CustomNetworkManagerHud : NetworkManagerHUD
 
     protected override void OnGUI()
     {
-        base.OnGUI();
-        RoomLable();
+        if(!string.IsNullOrWhiteSpace(playerData.RoomId))
+        {
+            RoomLable();
+        }
     }
 
     private void RoomLable()

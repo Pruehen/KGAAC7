@@ -12,6 +12,11 @@ public class LoginUi : MonoBehaviour
     [SerializeField] private GameObject OnFailAnimation;
     [SerializeField] private PlayerData playerData;
     // =================================================OnButtunClickInvoke
+    private void Start()
+    {
+        InputField_userId.Select();
+    }
+
     public void OnLogin()
     {
         if (Login.RequestLogin(InputField_userId.text, InputField_userPassword.text))
