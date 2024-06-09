@@ -224,7 +224,14 @@ public class TargetUI : MonoBehaviour
         activeCamera = Camera.main;
         if (activeCamera == null)
             return;
-        if(targetObject == null || targetObject.IsDead())
+
+        if (Target == kjh.GameManager.Instance.player.vehicleCombat)
+        {
+            TargetUIManager.Instance.RemoveListUI(this);
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
+            return;
+        }
+        if (targetObject == null || targetObject.IsDead())
         {
             TargetUIManager.Instance.RemoveListUI(this);
             ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
