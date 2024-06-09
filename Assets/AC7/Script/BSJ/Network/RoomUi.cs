@@ -23,6 +23,6 @@ public class RoomUi : MonoBehaviour
 
     private void ConnectToServer()
     {
-        _matchManager.RequestMatch(roomId);
+        _matchManager.RequestMatchAndStarClientOnSucsses(roomId);
     }
 }

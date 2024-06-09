@@ -40,6 +40,7 @@ public class MinimapTargetUi : MonoBehaviour
         if(_vehicleCombat != null)
         {
             _vehicleCombat.onDead.AddListener(RemoveTargetUi);
+            _vehicleCombat.onDestroyed.AddListener(RemoveTargetUi);
         }
         else
         {
@@ -108,6 +109,7 @@ public class MinimapTargetUi : MonoBehaviour
         if (_vehicleCombat != null)
         {
             _vehicleCombat.onDead.RemoveListener(RemoveTargetUi);
+            _vehicleCombat.onDestroyed.RemoveListener(RemoveTargetUi);
         }
         else
         {

@@ -7,9 +7,10 @@ using System.Text;
 using UnityEngine;
 
 
-public class MatchManager : MonoBehaviour
+public class MatchManager : NetworkBehaviour
 {
     [SerializeField] private NetworkManager networkManager;
+    [SerializeField] private PlayerData playerData;
 
     private List<string> _roomList = new List<string>();
 
@@ -27,11 +28,12 @@ public class MatchManager : MonoBehaviour
     public void Host()
     {
         string roomId = RandomRoomId();
-
+        playerData.SetRoomId(roomId);
         string message = $"HOST:{roomId}:{GetLocalIp()}";
         byte[] data = Encoding.ASCII.GetBytes(message);
         udpClient.Send(data, data.Length, serverEndpoint);
         networkManager.StartHost();
+
     }
     private string GetLocalIp()
     {
@@ -47,7 +49,7 @@ public class MatchManager : MonoBehaviour
     }
     public void Join(TMPro.TMP_InputField roomId)
     {
-        RequestMatch(roomId.text);
+        RequestMatchAndStarClientOnSucsses(roomId.text);
     }
 
     private string RandomRoomId()
@@ -59,13 +61,13 @@ public class MatchManager : MonoBehaviour
         }
         return roomId;
     }
-    public void RequestMatch(string roomId)
+    public void RequestMatchAndStarClientOnSucsses(string roomId)
     {
         string message = $"MATCH:{roomId}:{roomId}";
+        playerData.SetRoomId(roomId);
         byte[] data = Encoding.ASCII.GetBytes(message);
         udpClient.Send(data, data.Length, serverEndpoint);
         reqsting = true;
-
     }
     private void RequestRoomList()
     {
@@ -74,6 +76,14 @@ public class MatchManager : MonoBehaviour
         udpClient.Send(data, data.Length, serverEndpoint);
         reqsting = true;
 
+    }
+
+    private void RequestCloseServer()
+    {
+        string message = $"CLOSE:{playerData.RoomId}";
+        byte[] data = Encoding.ASCII.GetBytes(message);
+        udpClient.Send(data, data.Length, serverEndpoint);
+        reqsting = true;
     }
     private bool reqsting=false;
     private IPEndPoint ipe = null;
@@ -172,4 +182,9 @@ public class MatchManager : MonoBehaviour
     //    }
     //}
 
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
+        RequestCloseServer();
+    }
 }

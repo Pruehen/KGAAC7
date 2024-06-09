@@ -14,12 +14,12 @@ namespace Mirror
         public int offsetX;
         public int offsetY;
 
-        void Awake()
+        protected virtual void Awake()
         {
             manager = GetComponent<NetworkManager>();
         }
 
-        void OnGUI()
+        protected virtual void OnGUI()
         {
             // If this width is changed, also change offsetX in GUIConsole::OnGUI
             int width = 300;

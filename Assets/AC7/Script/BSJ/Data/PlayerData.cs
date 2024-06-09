@@ -6,6 +6,7 @@ public class PlayerData : MonoBehaviour
 {
     public string PlayerId {get; private set;}
     public string PlayerAircraft { get; private set; }
+    public string RoomId { get; private set; }
 
     private void Awake()
     {
@@ -20,5 +21,10 @@ public class PlayerData : MonoBehaviour
     public void SetPlayerAircraft(string playerAircraft)
     {
         PlayerAircraft = playerAircraft;
+    }
+
+    public void SetRoomId(string roomId)
+    {
+        RoomId = roomId;
     }
 }

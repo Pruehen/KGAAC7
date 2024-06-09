@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -179,6 +180,15 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         kjh.GameManager.Instance.AddActiveTarget(this);
     }
 
+    private void OnDestroy()
+    {
+        Debug.Log("On VehicleCombat destroy");
+        kjh.GameManager.Instance.RemoveActiveTarget(this);
+        bsj.GameManager.Instance.AfterAnyPlayerSpawned -= OnAnyPlayerSpawn;
+        bsj.GameManager.Instance.AfterPlayerSpawned -= OnLocalPlayerSpawn;
+        onDestroyed?.Invoke();
+    }
+
 
     [Command]
     public void CommandResetDead()
@@ -204,5 +214,6 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     }
 
     public UnityEvent onDead;
+    public UnityEvent onDestroyed;
     public System.Action onFlare;
 }

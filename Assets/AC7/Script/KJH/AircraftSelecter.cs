@@ -120,4 +120,10 @@ public class AircraftSelecter : NetworkBehaviour
     {
         SetControlAircraft(controlAircraft ,aircraftName);
     }
+
+    private void OnDestroy()
+    {
+
+        bsj.GameManager.Instance.AfterAnyPlayerSpawned -= CommandSyncControlAircraft;
+    }
 }
