@@ -7,6 +7,8 @@ public class Guided : NetworkBehaviour
 {
     [SerializeField] protected int EIRCM_Count;
     [SerializeField] protected VehicleCombat _target;
+
+    protected VehicleCombat owner;
     protected VehicleCombat target
     {
         get
@@ -52,8 +54,6 @@ public class Guided : NetworkBehaviour
         _target = null;
     }
 
-
-
     public System.Action OnRemove;
     public bool IsTargetExsist()
     {
@@ -64,9 +64,12 @@ public class Guided : NetworkBehaviour
     /// 유도 미사일의 타겟을 지정해주는 메서드
     /// </summary>
     /// <param name="target"></param>
-    public virtual void SetTarget(Radar radar)
+    public virtual void SetTarget(Radar radar, VehicleCombat owner)
     {
         WeaponData weaponData = GetComponent<WeaponData>();
+        this.owner = owner;
+        rocket = GetComponent<Rocket>();
+        rocket.Init(owner);
         if (radar.toTargetAngle <= weaponData.MaxSeekerAngle() && radar.toTargetDistance <= weaponData.LockOnRange())
         {
             this.target = radar.GetTarget();

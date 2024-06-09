@@ -84,12 +84,19 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         throw new System.NotImplementedException();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, VehicleCombat owner)
     {
         if(isServer)
         {
             combat.TakeDamage(damage);
-            RpcTakeDamage(damage);
+            if (IsDead())
+            {
+                if (owner == kjh.GameManager.Instance.player.vehicleCombat)
+                {
+                    SubtitleManager.Instance.ShowSubtitle("Kill1");
+                }
+            }
+            RpcTakeDamage(damage, owner.netId);
         }
         CustomAI customAI;
         if(TryGetComponent<CustomAI>(out customAI))
@@ -99,11 +106,21 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     }
 
     [ClientRpc]
-    private void RpcTakeDamage(float damage)
+    private void RpcTakeDamage(float damage, uint uid)
     {
         if(isClientOnly)
         {
             combat.TakeDamage(damage);
+
+
+            if (IsDead())
+            {
+                VehicleCombat owner = NetworkClient.spawned[uid].GetComponentInChildren<VehicleCombat>();
+                if (owner == kjh.GameManager.Instance.player.vehicleCombat)
+                {
+                    SubtitleManager.Instance.ShowSubtitle("Kill1");
+                }
+            }
         }
     }
 
@@ -164,7 +181,6 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         }
         else
         {
-            SubtitleManager.Instance.ShowSubtitle("Kill1");
         }
         kjh.GameManager.Instance.RemoveActiveTarget(this);
         onDead.Invoke();

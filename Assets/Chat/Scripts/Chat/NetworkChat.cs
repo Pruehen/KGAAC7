@@ -58,6 +58,11 @@ public class NetworkChat : NetworkBehaviour
     [Command]
     private void CommandSendMessage(string name, string message)
     {
+        if(_masterChatManager == null)
+        {
+            Debug.LogError("masterChatManagerNull");
+            return;
+        }
         _masterChatManager.RpcSendChatMessage(name, message);
     }
 

@@ -2,6 +2,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MasterChatManager : NetworkBehaviour
 {
@@ -10,12 +11,19 @@ public class MasterChatManager : NetworkBehaviour
     {
         bsj.GameManager.Instance.AfterPlayerSpawned += Init;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += PrintDebug;
+    }
+
+    private void PrintDebug(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        Debug.LogError("MasterChatManagerOnLoadScene");
     }
 
     private void Init()
     {
         _playerChat = bsj.GameManager.Instance.player.parent.GetComponentInChildren<NetworkChat>();
     }
+
 
 
     [ClientRpc]

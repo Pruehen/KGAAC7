@@ -14,7 +14,7 @@ public class Vulcan : MonoBehaviour, IAntiAirWeapon
     bool _firing;
     FadableAudio _gunSound;
     [SerializeField] private float _bulletSpread = .5f;
-
+    [SerializeField] VehicleCombat owner;
     private void Start()
     {
         _fireInterval = _bulletProjectile.GetComponent<WeaponData>().ReloadTime();
@@ -35,7 +35,7 @@ public class Vulcan : MonoBehaviour, IAntiAirWeapon
                 float randomYaw = Random.Range(-_bulletSpread / 2f, _bulletSpread/ 2f);
                 Quaternion randomRotation = Quaternion.Euler(randomPitch, randomYaw, 0f);
                 Quaternion targetRotation = _firePos.rotation * randomRotation;
-                item.GetComponent<kjh.Bullet>().Init(_firePos.position, targetRotation * Vector3.forward * bulletSpeed);
+                item.GetComponent<kjh.Bullet>().Init(_firePos.position, targetRotation * Vector3.forward * bulletSpeed, owner);
             }
             else
             {

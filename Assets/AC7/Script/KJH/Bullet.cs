@@ -12,10 +12,11 @@ namespace kjh
         float lifeTime = 0;
         [SerializeField] GameObject _bulletHitVfx;
         [SerializeField] GameObject _waterHitVfx;
+        VehicleCombat owner;
 
-
-        public void Init(Vector3 position, Vector3 velocity)
+        public void Init(Vector3 position, Vector3 velocity, VehicleCombat owner)
         {
+            this.owner = owner;
             if(sphereCollider == null)
             {
                 sphereCollider = GetComponent<SphereCollider>();
@@ -53,7 +54,7 @@ namespace kjh
             GenerateBullePassSfx bulletPassing;
             if (collision.transform.TryGetComponent<VehicleCombat>(out fightable))
             {
-                fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+                fightable.TakeDamage(GetComponent<WeaponData>().Dmg(), owner);
                 GameObject vsfx = ObjectPoolManager.Instance.DequeueObject(_bulletHitVfx);
 
                 if (fightable.isPlayer && fightable.isLocalPlayer)

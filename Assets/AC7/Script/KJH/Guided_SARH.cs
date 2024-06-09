@@ -54,8 +54,11 @@ public class Guided_SARH : Guided
     /// 유도 미사일의 타겟을 지정해주는 메서드
     /// </summary>
     /// <param name="target"></param>
-    public override void SetTarget(Radar radar)
+    public override void SetTarget(Radar radar, VehicleCombat owner)
     {
+        base.owner = owner;
+        rocket = GetComponent<Rocket>();
+        rocket.Init(owner);
         WeaponData weaponData = GetComponent<WeaponData>();
         this.radar = radar;
         if (radar.toTargetAngle <= weaponData.MaxSeekerAngle() && radar.toTargetDistance <= weaponData.LockOnRange())

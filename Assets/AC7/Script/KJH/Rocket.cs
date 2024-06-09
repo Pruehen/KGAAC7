@@ -43,6 +43,7 @@ public class Rocket : NetworkBehaviour
     /// <returns></returns>
     public Vector3 SideForce() { return sideForce; }
 
+    VehicleCombat owner;
     private void Awake()
     {
         sphereCollider = GetComponent<SphereCollider>();
@@ -58,6 +59,10 @@ public class Rocket : NetworkBehaviour
         motor.gameObject.SetActive(false);
     }
 
+    public void Init(VehicleCombat owner)
+    {
+        this.owner = owner;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -157,7 +162,7 @@ public class Rocket : NetworkBehaviour
         VehicleCombat fightable;
         if(collision.collider.TryGetComponent<VehicleCombat>(out fightable))
         {
-            fightable.TakeDamage(GetComponent<WeaponData>().Dmg());
+            fightable.TakeDamage(GetComponent<WeaponData>().Dmg(), owner);
             Vector3 contact = collision.GetContact(0).point;
             RpcOnPlayerHit(fightable.netId, contact);
         }

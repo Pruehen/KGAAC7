@@ -17,6 +17,8 @@ namespace kjh
 
         float innerFireDelay = 0;
 
+        [SerializeField] VehicleCombat owner;
+
         public float MslCoolDownRatio(int index) //0부터 시작해서 참
         {
             float coolTime = weaponPrfList[equipedWeaponIndexList[index]].GetComponent<WeaponData>().ReloadTime();
@@ -170,7 +172,7 @@ namespace kjh
             {
                 gunDelayTime = gunFireDelay;
                 GameObject item = ObjectPoolManager.Instance.DequeueObject(bulletPrf);
-                item.GetComponent<Bullet>().Init(gunFireTrf.position, rigidbody.velocity + gunFireTrf.forward * 1000);
+                item.GetComponent<Bullet>().Init(gunFireTrf.position, rigidbody.velocity + gunFireTrf.forward * 1000, owner);
             }
 
         }
@@ -254,7 +256,7 @@ namespace kjh
                 Guided guided;
                 if (item.TryGetComponent(out guided))
                 {
-                    guided.SetTarget(radar);
+                    guided.SetTarget(radar, owner);
                 }
             }
         }

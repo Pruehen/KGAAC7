@@ -15,7 +15,7 @@ public interface IFightable
     /// 공격자가 없는경우 데미지를 가하는 메서드
     /// </summary>
     /// <param name="damage"></param>
-    void TakeDamage(float damage);
+    void TakeDamage(float damage, VehicleCombat owner);
 }
 
 [System.Serializable]
