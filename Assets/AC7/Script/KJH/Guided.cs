@@ -139,17 +139,26 @@ public class Guided : NetworkBehaviour
 
     protected virtual void Homing()
     {
+        Vector3 toTargetVec = targetVec - this.transform.position;
+        Vector3 toTargetDir = toTargetVec.normalized;//방향 벡터 산출
+        if (!isServer)
+        {
+
+            if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
+            {
+                RemoveTarget();
+            }
+            return;
+        }
         if (target != null)
         {
             targetVec = target.transform.position;//타겟 벡터 지정
 
-            Vector3 toTargetVec = targetVec - this.transform.position;
             if(toTargetVec.magnitude < 3000)
             {
                 AddMwr();
             }
 
-            Vector3 toTargetDir = toTargetVec.normalized;//방향 벡터 산출
 
             Vector3 angleError_diff = toTargetDir - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
             angleError_temp = toTargetDir;
