@@ -7,7 +7,7 @@ public class Guided : NetworkBehaviour
 {
     [SerializeField] protected int EIRCM_Count;
     [SerializeField] protected VehicleCombat _target;
-    protected VehicleCombat target 
+    protected VehicleCombat target
     {
         get
         {
@@ -16,7 +16,7 @@ public class Guided : NetworkBehaviour
         set
         {
             _target = value;
-            if(!isServer)
+            if (!isServer)
             {
                 return;
             }
@@ -96,7 +96,7 @@ public class Guided : NetworkBehaviour
     [ClientRpc]
     public void RpcRemoveTarget()
     {
-        if(target != null)
+        if (target != null)
         {
             target.onFlare -= EIRCM;
             if (mwr != null)
@@ -138,56 +138,46 @@ public class Guided : NetworkBehaviour
 
     protected virtual void Homing()
     {
-        if(!isServer)
+        if (!isServer)
         {
             return;
         }
         if (target != null)
         {
-            return;
-        }
-        targetVec = target.transform.position;//타겟 벡터 지정
-        Vector3 toTargetVec = targetVec - this.transform.position;
-        Vector3 toTargetDir = toTargetVec.normalized;//방향 벡터 산출
-        if (!isServer)
-        {
+            targetVec = target.transform.position;//타겟 벡터 지정
 
-            if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
+            Vector3 toTargetVec = targetVec - this.transform.position;
+            if (toTargetVec.magnitude < 3000)
             {
-                RemoveTarget();
+                AddMwr();
             }
-            return;
-        }
-        if (toTargetVec.magnitude < 3000)
-        {
-            AddMwr();
-        }
 
+            Vector3 toTargetDir = toTargetVec.normalized;//방향 벡터 산출
 
-        Vector3 angleError_diff = toTargetDir - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
-        angleError_temp = toTargetDir;
+            Vector3 angleError_diff = toTargetDir - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
+            angleError_temp = toTargetDir;
 
 
 
-        Vector3 side1 = toTargetDir;
-        Vector3 side2 = toTargetDir + angleError_diff;
-        Vector3 orderAxis = Vector3.Cross(side1, side2);
+            Vector3 side1 = toTargetDir;
+            Vector3 side2 = toTargetDir + angleError_diff;
+            Vector3 orderAxis = Vector3.Cross(side1, side2);
 
-        Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
-        orderAxis_Temp = orderAxis;
+            Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
+            orderAxis_Temp = orderAxis;
 
-        float velocity = rigidbody.velocity.magnitude;
+            float velocity = rigidbody.velocity.magnitude;
 
-        float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(velocity * 0.0015f, 0, 1);
+            float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(velocity * 0.0015f, 0, 1);
 
-        if (rocket.SideForce().magnitude < maxSideForce * maneuverability)
-        {
-            float p = (600) * pGain;
-            float d = (600) * dGain;
+            if (rocket.SideForce().magnitude < maxSideForce * maneuverability)
+            {
+                float p = (600) * pGain;
+                float d = (600) * dGain;
 
-            rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
-            //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
-        }
+                rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
+                //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
+            }
 
             if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
             {
@@ -207,7 +197,7 @@ public class Guided : NetworkBehaviour
         Debug.Log(EIRCM_Count);
         maneuverability *= 0.97f;
 
-        if (EIRCM_Count <= 0) 
+        if (EIRCM_Count <= 0)
         {
             Debug.Log("Dodgeed by Flare");
             RpcRemoveTarget();
