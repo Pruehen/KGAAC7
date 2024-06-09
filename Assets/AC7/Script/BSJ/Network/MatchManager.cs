@@ -7,7 +7,7 @@ using System.Text;
 using UnityEngine;
 
 
-public class MatchManager : NetworkBehaviour
+public class MatchManager : MonoBehaviour
 {
     [SerializeField] private NetworkManager networkManager;
     [SerializeField] private PlayerData playerData;
@@ -78,7 +78,7 @@ public class MatchManager : NetworkBehaviour
 
     }
 
-    private void RequestCloseServer()
+    public void RequestCloseServer()
     {
         string message = $"CLOSE:{playerData.RoomId}";
         byte[] data = Encoding.ASCII.GetBytes(message);
@@ -181,10 +181,4 @@ public class MatchManager : NetworkBehaviour
     //        Debug.LogError(e.ToString());
     //    }
     //}
-
-    public override void OnStopServer()
-    {
-        base.OnStopServer();
-        RequestCloseServer();
-    }
 }

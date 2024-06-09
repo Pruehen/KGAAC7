@@ -89,6 +89,11 @@ public class AircraftMaster : NetworkBehaviour
            SyncedVelocity = rigidbody.velocity;
         }
     }
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
+        FindAnyObjectByType<MatchManager>().RequestCloseServer();
+    }
 
     //OnVehicleDead
     public void Dead()

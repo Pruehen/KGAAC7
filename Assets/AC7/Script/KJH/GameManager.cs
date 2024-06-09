@@ -27,10 +27,6 @@ namespace kjh
         /// </summary>
         public void AddActiveTarget(VehicleCombat vehicleCombat)
         {
-            if(vehicleCombat == player.vehicleCombat)
-            {
-                return;
-            }
             if (!activeTargetList.Contains(vehicleCombat))
             {
                 activeTargetList.Add(vehicleCombat);
@@ -45,10 +41,6 @@ namespace kjh
         /// </summary>
         public void RemoveActiveTarget(VehicleCombat vehicleCombat)
         {
-            if (vehicleCombat == player.vehicleCombat)
-            {
-                return;
-            }
             if (activeTargetList.Contains(vehicleCombat))
             {
                 Debug.Log("RemoveActiveTarget");

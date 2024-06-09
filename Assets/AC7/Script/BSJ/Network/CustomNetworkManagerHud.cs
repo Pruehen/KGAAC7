@@ -6,7 +6,6 @@ using UnityEngine;
 public class CustomNetworkManagerHud : NetworkManagerHUD
 {
     PlayerData playerData;
-
     protected override void Awake()
     {
         base.Awake();

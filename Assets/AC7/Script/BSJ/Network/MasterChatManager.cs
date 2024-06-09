@@ -6,9 +6,10 @@ using UnityEngine;
 public class MasterChatManager : NetworkBehaviour
 {
     [SerializeField] private NetworkChat _playerChat;
-    private void Start()
+    private void Awake()
     {
         bsj.GameManager.Instance.AfterPlayerSpawned += Init;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Init()
