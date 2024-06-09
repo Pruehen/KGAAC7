@@ -24,7 +24,7 @@ public class MissionEleminate : MonoBehaviour
 
     private void MissionSuccese()
     {
-        kjh.GameManager.Instance.GameEnd(true, 2f, 2f);
+        //kjh.GameManager.Instance.GameEnd(true, 2f, 2f);
     }
 
     

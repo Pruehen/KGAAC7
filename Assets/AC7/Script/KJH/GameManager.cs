@@ -94,10 +94,11 @@ namespace kjh
         public void GameReset(float delay = 0f)
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-
+            _playerInputCustom.isControlable = true;
+            IsPaused = false;
             StartCoroutine(DelayedCall(delay, _gameResultUi.FadeOutResultUi));
-            //플레이어 정지
-            player.gameObject.SetActive(true);
+            player.vehicleCombat.CommandDead();
+
 
         }
 

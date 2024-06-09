@@ -93,7 +93,7 @@ public class PlayerInputCustom : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            CommandInvoke(CustmInputTypes.Click_ESC);
+            onClick_ESC.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {

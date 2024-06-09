@@ -17,6 +17,10 @@ public class PlayRandomOnEnable : MonoBehaviour
     private IEnumerator AfterInitPosition()
     {
         yield return null;
+        if(Camera.main == null)
+        {
+            yield break;
+        }
         float distance = (Camera.main.transform.position - transform.position).magnitude;
         StartCoroutine(CheckInListhenRange());
     }

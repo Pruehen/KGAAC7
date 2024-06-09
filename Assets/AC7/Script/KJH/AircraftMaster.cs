@@ -80,21 +80,35 @@ public class AircraftMaster : NetworkBehaviour
         }
     }
 
+    //OnVehicleDead
     public void Dead()
     {
         if (isLocalPlayer)
         {
             Camera.main.transform.GetComponent<CamRotate>().enabled = false;
-            if (isLocalPlayer)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
 
         }
         EffectManager.Instance.AircraftFireEffectGenerate(this.transform);
         StartCoroutine(DeadEffect());
     }
     //called on click restart
+    public void OnRestart()
+    {
+        if(!isLocalPlayer)
+        {
+            return;
+        }
+        if (Camera.main.transform.GetComponent<CamRotate>().enabled == false)
+        {
+            ResetDead();
+        }
+        else
+        {
+            vehicleCombat.CommandDead();
+            ResetDead();
+        }
+    }
+
     public void ResetDead()
     {
         if(isLocalPlayer)
@@ -103,7 +117,6 @@ public class AircraftMaster : NetworkBehaviour
             if (isLocalPlayer)
             {
                 GetComponent<bsj.DeathCam>().ResetDead();
-                kjh.GameManager.Instance.GameReset(.3f);
                 vehicleCombat.CommandResetDead();
                 transform.GetComponent<FlightController>().CommandResetDead();
             }
@@ -113,15 +126,29 @@ public class AircraftMaster : NetworkBehaviour
     IEnumerator DeadEffect()
     {
         yield return new WaitForSeconds(2.5f);
-        if(isLocalPlayer)
-        {
-            kjh.GameManager.Instance.GameEnd(false, .3f);
-        }
         EffectManager.Instance.AircraftExplosionEffectGenerate(this.transform.position);
         
         if (!_isPlayer)
             Destroy(this.gameObject);
         else
+        {
             gameObject.SetActive(false);
+            ResetDead();
+        }
+    }
+
+    private void Respawn()
+    {
+        if(isServer)
+        {
+            StartCoroutine(DelayedRespawn(1.5f));
+        }
+    }
+
+    private IEnumerator DelayedRespawn(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ResetDead();
+
     }
 }

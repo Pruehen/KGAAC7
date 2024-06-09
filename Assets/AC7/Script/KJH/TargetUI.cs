@@ -222,7 +222,8 @@ public class TargetUI : MonoBehaviour
     void LateUpdate()
     {
         activeCamera = Camera.main;
-
+        if (activeCamera == null)
+            return;
         if(targetObject == null || targetObject.IsDead())
         {
             TargetUIManager.Instance.RemoveListUI(this);

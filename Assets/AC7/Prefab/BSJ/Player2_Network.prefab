@@ -3531,7 +3531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTrf: {fileID: 0}
   _gameResultUi: {fileID: 2702632014839910276}
-  _playerInputCustom: {fileID: 0}
+  _playerInputCustom: {fileID: 7954424716043542673}
   activeTargetList: []
   player: {fileID: 4295724883156700073}
   cameraShake: {fileID: 3665608293441277292}
@@ -29716,20 +29716,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6971760445655216476, guid: cabc1fef15f79424e9101fa4ce87aabc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971760445655216476, guid: cabc1fef15f79424e9101fa4ce87aabc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4295724883156700073}
+      objectReference: {fileID: 6120225721616482417}
     - target: {fileID: 6971760445655216476, guid: cabc1fef15f79424e9101fa4ce87aabc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6971760445655216476, guid: cabc1fef15f79424e9101fa4ce87aabc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetDead
+      value: GameReset
       objectReference: {fileID: 0}
     - target: {fileID: 6971760445655216476, guid: cabc1fef15f79424e9101fa4ce87aabc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: AircraftMaster, Assembly-CSharp
+      value: kjh.GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971760445655216476, guid: cabc1fef15f79424e9101fa4ce87aabc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7948729358975812792, guid: cabc1fef15f79424e9101fa4ce87aabc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

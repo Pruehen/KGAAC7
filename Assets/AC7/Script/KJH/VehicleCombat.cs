@@ -136,7 +136,11 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     {
         return combat.IsDead();
     }
-
+    [Command]
+    public void CommandDead()
+    {
+        RpcDead();
+    }
     [ClientRpc]
     void RpcDead()
     {
@@ -157,7 +161,6 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         }
         else if(isLocalPlayer)
         {
-            BGM_Player.Instance.Stop();
         }
         else
         {

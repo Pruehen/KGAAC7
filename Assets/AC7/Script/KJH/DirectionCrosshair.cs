@@ -20,6 +20,10 @@ public class DirectionCrosshair : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 targetPosition = aircraftMaster.transform.position + rigidbody.velocity;
+        if (Camera.main == null)
+        {
+            return;
+        }
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetPosition);
         //float distance = GameManager.Instance.GetDistanceFromPlayer(targetTransform);
 
