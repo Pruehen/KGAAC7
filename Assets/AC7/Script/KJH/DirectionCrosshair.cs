@@ -19,7 +19,7 @@ public class DirectionCrosshair : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 targetPosition = aircraftMaster.transform.position + rigidbody.velocity;
+        Vector3 targetPosition = aircraftMaster.transform.position + kjh.GameManager.Instance.player.SyncedVelocity;
         if (Camera.main == null)
         {
             return;

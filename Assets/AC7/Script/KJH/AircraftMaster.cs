@@ -37,6 +37,9 @@ public class AircraftMaster : NetworkBehaviour
     }
 
     Rigidbody rigidbody;
+    [SyncVar]
+    public Vector3 SyncedVelocity;
+
 
     /// <summary>
     /// 현재 항공기의 속도(km/h)를 반환하는 메서드 
@@ -77,6 +80,13 @@ public class AircraftMaster : NetworkBehaviour
         if(_isPlayer)
         {
             Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+    private void FixedUpdate()
+    {
+        if(isServer)
+        {
+           SyncedVelocity = rigidbody.velocity;
         }
     }
 
