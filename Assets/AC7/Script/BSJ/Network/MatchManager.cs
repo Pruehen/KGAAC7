@@ -21,7 +21,7 @@ public class MatchManager : MonoBehaviour
     void Start()
     {
         udpClient = new UdpClient();
-        serverEndpoint = new IPEndPoint(IPAddress.Parse("3.35.235.2"), 5000); // Matchmaking server IP and port
+        serverEndpoint = new IPEndPoint(IPAddress.Parse("3.38.105.1"), 5000); // Matchmaking server IP and port
     }
 
     public void Host()

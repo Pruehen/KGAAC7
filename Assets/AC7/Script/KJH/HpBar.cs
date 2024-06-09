@@ -16,7 +16,12 @@ public class HpBar : MonoBehaviour
     private void OnPlayerSpawn()
     {
         hpBar = GetComponent<Image>();
-        playerCombat = kjh.GameManager.Instance.player.vehicleCombat.Combat();
+        playerCombat = bsj.GameManager.Instance.player.GetComponent<VehicleCombat>().Combat();
+        StartCoroutine(DelayedGet());
+    }
+    private IEnumerator DelayedGet()
+    {
+        yield return new WaitForSeconds(.3f);
         maxHp = playerCombat.GetMaxHp();
     }
 
