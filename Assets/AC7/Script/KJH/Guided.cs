@@ -139,6 +139,11 @@ public class Guided : NetworkBehaviour
 
     protected virtual void Homing()
     {
+        if(target == null)
+        {
+            return;
+        }
+        targetVec = target.transform.position;//타겟 벡터 지정
         Vector3 toTargetVec = targetVec - this.transform.position;
         Vector3 toTargetDir = toTargetVec.normalized;//방향 벡터 산출
         if (!isServer)
@@ -150,45 +155,40 @@ public class Guided : NetworkBehaviour
             }
             return;
         }
-        if (target != null)
+        if (toTargetVec.magnitude < 3000)
         {
-            targetVec = target.transform.position;//타겟 벡터 지정
-
-            if(toTargetVec.magnitude < 3000)
-            {
-                AddMwr();
-            }
+            AddMwr();
+        }
 
 
-            Vector3 angleError_diff = toTargetDir - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
-            angleError_temp = toTargetDir;
+        Vector3 angleError_diff = toTargetDir - angleError_temp;//방향 벡터의 변화량 (시선각 변화량)
+        angleError_temp = toTargetDir;
 
-            
 
-            Vector3 side1 = toTargetDir;
-            Vector3 side2 = toTargetDir + angleError_diff;
-            Vector3 orderAxis = Vector3.Cross(side1, side2);
 
-            Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
-            orderAxis_Temp = orderAxis;
+        Vector3 side1 = toTargetDir;
+        Vector3 side2 = toTargetDir + angleError_diff;
+        Vector3 orderAxis = Vector3.Cross(side1, side2);
 
-            float velocity = rigidbody.velocity.magnitude;
+        Vector3 orderAxis_Diff = orderAxis - orderAxis_Temp;
+        orderAxis_Temp = orderAxis;
 
-            float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(velocity * 0.0015f, 0, 1);
+        float velocity = rigidbody.velocity.magnitude;
 
-            if (rocket.SideForce().magnitude < maxSideForce * maneuverability)
-            {
-                float p = (600) * pGain;
-                float d = (600) * dGain;
+        float availableTorqueRatio = (isTVC && rocket.isCombustion) ? 1 : Mathf.Clamp(velocity * 0.0015f, 0, 1);
 
-                rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
-                //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
-            }
+        if (rocket.SideForce().magnitude < maxSideForce * maneuverability)
+        {
+            float p = (600) * pGain;
+            float d = (600) * dGain;
 
-            if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
-            {
-                RemoveTarget();
-            }
+            rigidbody.AddTorque(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate), ForceMode.Acceleration);
+            //this.transform.Rotate(Vector3.ClampMagnitude((orderAxis * p + orderAxis_Diff * d) * availableTorqueRatio, maxTurnRate) * Time.fixedDeltaTime);
+        }
+
+        if (Vector3.Angle(this.transform.forward, toTargetDir) > traceAngleLimit)
+        {
+            RemoveTarget();
         }
     }
 
