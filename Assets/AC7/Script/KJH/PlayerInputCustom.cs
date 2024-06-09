@@ -47,10 +47,22 @@ public class PlayerInputCustom : NetworkBehaviour
     {
         if(!isLocalPlayer)
         { return; }
-        if(!isControlable)
-        { return; } 
-        if(kjh.GameManager.Instance.IsPaused)
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            onClick_ESC.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            onClick_Enter.Invoke();
+        }
+
+
+        if (kjh.GameManager.Instance.IsPaused)
         { return; }
+        if (!isControlable)
+        { return; }
+
         ControlSurface();
 
         
@@ -90,14 +102,6 @@ public class PlayerInputCustom : NetworkBehaviour
         if (Input.GetKeyUp(KeyCode.F))
         {
             CommandInvoke(CustmInputTypes.Click_Fup);
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            onClick_ESC.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            onClick_Enter.Invoke();
         }
     }
     [Command(requiresAuthority = false)]

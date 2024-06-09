@@ -24,7 +24,7 @@ public class ChatUi : MonoBehaviour
 
     private void Start()
     {
-        InputField_chatInput.onSubmit.AddListener(SendCurrentInput);
+        InputField_chatInput.onSubmit.AddListener(OnSendCurrentInput);
         NetworkChat_chat.OnTextChanged += UpdateText;
     }
     private void UpdateText(string text)
@@ -38,9 +38,12 @@ public class ChatUi : MonoBehaviour
         InputField_chatInput.text = "";
         StartCoroutine(UpdateScroll());
     }
-    private void SendCurrentInput(string text)
+    bool _submitedChat = false;
+    private void OnSendCurrentInput(string text)
     {
         SendCurrentInput();
+        _playerInput.isControlable = true;
+        _submitedChat = true;
     }
     private IEnumerator UpdateScroll()
     {
@@ -58,14 +61,9 @@ public class ChatUi : MonoBehaviour
 
     public void OnEnterKeyPresseed()
     {
-        if(InputField_chatInput.isFocused)
+        if(!InputField_chatInput.isFocused && !_submitedChat)
         {
             _playerInput.isControlable = false;
-            SendCurrentInput();
-        }
-        else
-        {
-            _playerInput.isControlable = true;
             InputField_chatInput.Select();
         }
     }
