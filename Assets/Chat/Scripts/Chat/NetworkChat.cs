@@ -25,7 +25,7 @@ public class NetworkChat : NetworkBehaviour
     public event System.Action<string> OnTextChanged;
     public string _chatContent { get; private set; }
     private string _playerName;
-    private string playerName
+    public string playerName
     {
         get
         {
@@ -40,7 +40,7 @@ public class NetworkChat : NetworkBehaviour
             }
             return _playerName;
         }
-        set
+        private set
         {
             _playerName = value;
         }

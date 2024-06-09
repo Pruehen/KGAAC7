@@ -11,6 +11,7 @@ namespace kjh
     {        
         [SerializeField] Transform targetTrf;
         [SerializeField] GameResultUi _gameResultUi;
+        [SerializeField] PlayerInputCustom _playerInputCustom;
         public List<VehicleCombat> activeTargetList = new List<VehicleCombat>();
         public AircraftMaster player;
 
@@ -205,18 +206,14 @@ namespace kjh
         private void PauseGame(float fadeInDelay, float pauseGameDelay)
         {
             UnityEngine.Cursor.lockState = CursorLockMode.None;
-
+            _playerInputCustom.isControlable = false;
             StartCoroutine(DelayedCall(fadeInDelay, _gameResultUi.FadeIn));
-            //플레이어 정지
-            StartCoroutine(DelayedCall(fadeInDelay + 1f, () => Time.timeScale = 0f));
         }
         private void ResumeGame(float fadeInDelay, float pauseGameDelay)
         {
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
-
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            _playerInputCustom.isControlable = true;
             StartCoroutine(DelayedCall(fadeInDelay, _gameResultUi.FadeOutResultUi));
-            //플레이어 정지
-            StartCoroutine(DelayedCall(fadeInDelay + 1f, () => Time.timeScale = 1f));
         }
 
 

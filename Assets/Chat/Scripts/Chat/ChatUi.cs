@@ -18,15 +18,7 @@ public class ChatUi : MonoBehaviour
     {
         get
         {
-            if (string.IsNullOrWhiteSpace(_playerName))
-            {
-                _playerName = NetworkClient.localPlayer.name;
-            }
-            return _playerName;
-        }
-        set
-        {
-            _playerName = playerName;
+            return NetworkChat_chat.playerName;
         }
     }
 
