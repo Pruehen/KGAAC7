@@ -10,6 +10,8 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     public bool mainTarget = false;
     [SyncVar] public string name;
     [SyncVar] public string nickname;
+    bool _isInit = false;
+    float lifeTime = 0;
 
     [ClientCallback]
     public void SetNames(string nickName)
@@ -26,7 +28,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     public void TakeDamage(float damage)
     {
         //로컬일 경우 이펙트만 나오고 데미지는 입히지 않음
-        if (this.isServer)
+        if (this.isServer && lifeTime > 2)
         {
             ServerOnlyTakeDamage(damage);//서버일 시 커맨드 메서드 실행
         }
@@ -80,12 +82,17 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     protected virtual void Awake()
     {        
         combat.OnDead += Dead;
-        combat.Init(this.transform, startHp);
+        //combat.Init(this.transform, startHp);
+    }
+    private void Update()
+    {
+        lifeTime += Time.deltaTime;
     }
     public void Init()
-    {
+    {        
         combat.Init(this.transform, startHp);
-        onInit.Invoke();        
+        onInit.Invoke();
+        _isInit = true;
     }
 
     IEnumerator Heal()

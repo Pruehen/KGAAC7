@@ -80,12 +80,17 @@ public class AircraftMaster : NetworkBehaviour
         //rigidbody = GetComponent<Rigidbody>();
         aircraftSelecter = GetComponent<AircraftSelecter>();
         aircraftSelecter.SetControlAircraft(_aircraftName);
+
         aircraftControl = aircraftSelecter.aircraftControl;
         vehicleCombat = GetComponent<VehicleCombat>();
+        vehicleCombat.Init();
         vehicleCombat.SetNames(_userName);
+
         radar = GetComponent<Radar>();
         radar.Init();
+
         aircraftFM = GetComponent<AircraftFM>();
+
 
         if (aiControl)
         {
