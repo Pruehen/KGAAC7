@@ -2,9 +2,8 @@ using kjh;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 
-public class Radar : NetworkBehaviour
+public class Radar : MonoBehaviour
 {    
     [SerializeField] VehicleCombat lockOnTarget;
     [SerializeField] float radarMaxAngle;
@@ -56,7 +55,7 @@ public class Radar : NetworkBehaviour
 
             SetTargetData();
 
-            if (this.isLocalPlayer)
+            if (true)//this.isLocalPlayer)
             {
                 if (_lockOnSfx != null && !_lockOnSfx.isPlaying && isMissileLock)
                 {
@@ -69,7 +68,7 @@ public class Radar : NetworkBehaviour
                 }
             }
         }
-        else if(this.isLocalPlayer)
+        else// if(this.isLocalPlayer)
         {
             _lockOnSfx?.Pause();
         }
