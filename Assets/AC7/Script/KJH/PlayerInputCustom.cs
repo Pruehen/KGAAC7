@@ -1,15 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using Mirror;
 
-public class PlayerInputCustom : NetworkBehaviour
+public class PlayerInputCustom : MonoBehaviour
 {
     public bool isControlable { get; set; } = true;
-    [SyncVar] public float pitchAxis;
-    [SyncVar] public float rollAxis;
-    [SyncVar] public float yawAxis;
-    [SyncVar] public float throttleAxis;
+    public float pitchAxis;
+    public float rollAxis;
+    public float yawAxis;
+    public float throttleAxis;
     public bool isLeftClick {get; private set;}
     Vector2 mouseDeltaPos;
     float mouseControllGain = 0.1f;
@@ -41,7 +40,7 @@ public class PlayerInputCustom : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!this.isLocalPlayer) return;
+        //if (!this.isLocalPlayer) return;
 
         //if(!isControlable)
         //{ return; } 
@@ -51,15 +50,18 @@ public class PlayerInputCustom : NetworkBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            NetworkInvoke(InputEnum.LeftMouse_Down);
+            //NetworkInvoke(InputEnum.LeftMouse_Down);
+            onClick_LeftMouseDown.Invoke();
         }
         if (Input.GetMouseButtonUp(0))
         {
-            NetworkInvoke(InputEnum.LeftMouse_Up);
+            //NetworkInvoke(InputEnum.LeftMouse_Up);
+            onClick_LeftMouseUp.Invoke();
         }
         if (Input.GetMouseButtonDown(1))
         {
-            NetworkInvoke(InputEnum.RighdMouse_Click);
+            //NetworkInvoke(InputEnum.RighdMouse_Click);
+            onClick_RightMouse.Invoke();
         }
         if (Input.GetMouseButtonDown(2))
         {
@@ -72,19 +74,23 @@ public class PlayerInputCustom : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            NetworkInvoke(InputEnum.X_Click);
+            //NetworkInvoke(InputEnum.X_Click);
+            onClick_X.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            NetworkInvoke(InputEnum.R_Click);
+            //NetworkInvoke(InputEnum.R_Click);
+            onClick_R.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            NetworkInvoke(InputEnum.F_Down);
+            //NetworkInvoke(InputEnum.F_Down);
+            onClick_Fdown.Invoke();
         }
         if (Input.GetKeyUp(KeyCode.F))
         {
-            NetworkInvoke(InputEnum.F_Up);
+            //NetworkInvoke(InputEnum.F_Up);
+            onClick_Fup.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {            
@@ -104,75 +110,75 @@ public class PlayerInputCustom : NetworkBehaviour
         }
     }
 
-    void NetworkInvoke(InputEnum inputEnum)
-    {
-        CommandNetworkInvoke(inputEnum);
-    }
+    //void NetworkInvoke(InputEnum inputEnum)
+    //{
+    //    CommandNetworkInvoke(inputEnum);
+    //}
 
-    [Command(requiresAuthority = false)]
-    void CommandNetworkInvoke(InputEnum inputEnum)
-    {
-        //switch (inputEnum)
-        //{
-        //    case InputEnum.LeftMouse_Down:
-        //        onClick_LeftMouseDown.Invoke();
-        //        break;
-        //    case InputEnum.LeftMouse_Up:
-        //        onClick_LeftMouseUp.Invoke();
-        //        break;
-        //    case InputEnum.RighdMouse_Click:
-        //        onClick_RightMouse.Invoke();
-        //        break;
-        //    case InputEnum.X_Click:
-        //        onClick_X.Invoke();
-        //        break;
-        //    case InputEnum.R_Click:
-        //        onClick_R.Invoke();
-        //        break;
-        //    case InputEnum.F_Down:
-        //        onClick_Fdown.Invoke();
-        //        break;
-        //    case InputEnum.F_Up:
-        //        onClick_Fup.Invoke();
-        //        break;
-        //    default:
-        //        break;
-        //}
-        RpcNetworkInvoke(inputEnum);
-    }
-    [ClientRpc]
-    void RpcNetworkInvoke(InputEnum inputEnum)
-    {
-        //if (this.isServer)
-        //    return;
+    //[Command(requiresAuthority = false)]
+    //void CommandNetworkInvoke(InputEnum inputEnum)
+    //{
+    //    //switch (inputEnum)
+    //    //{
+    //    //    case InputEnum.LeftMouse_Down:
+    //    //        onClick_LeftMouseDown.Invoke();
+    //    //        break;
+    //    //    case InputEnum.LeftMouse_Up:
+    //    //        onClick_LeftMouseUp.Invoke();
+    //    //        break;
+    //    //    case InputEnum.RighdMouse_Click:
+    //    //        onClick_RightMouse.Invoke();
+    //    //        break;
+    //    //    case InputEnum.X_Click:
+    //    //        onClick_X.Invoke();
+    //    //        break;
+    //    //    case InputEnum.R_Click:
+    //    //        onClick_R.Invoke();
+    //    //        break;
+    //    //    case InputEnum.F_Down:
+    //    //        onClick_Fdown.Invoke();
+    //    //        break;
+    //    //    case InputEnum.F_Up:
+    //    //        onClick_Fup.Invoke();
+    //    //        break;
+    //    //    default:
+    //    //        break;
+    //    //}
+    //    RpcNetworkInvoke(inputEnum);
+    //}
+    //[ClientRpc]
+    //void RpcNetworkInvoke(InputEnum inputEnum)
+    //{
+    //    //if (this.isServer)
+    //    //    return;
 
-        switch (inputEnum)
-        {
-            case InputEnum.LeftMouse_Down:
-                onClick_LeftMouseDown.Invoke();
-                break;
-            case InputEnum.LeftMouse_Up:
-                onClick_LeftMouseUp.Invoke();
-                break;
-            case InputEnum.RighdMouse_Click:
-                missileFireTrigger = true;
-                break;
-            case InputEnum.X_Click:
-                onClick_X.Invoke();
-                break;
-            case InputEnum.R_Click:
-                onClick_R.Invoke();
-                break;
-            case InputEnum.F_Down:
-                onClick_Fdown.Invoke();
-                break;
-            case InputEnum.F_Up:
-                onClick_Fup.Invoke();
-                break;
-            default:
-                break;
-        }
-    }
+    //    switch (inputEnum)
+    //    {
+    //        case InputEnum.LeftMouse_Down:
+    //            onClick_LeftMouseDown.Invoke();
+    //            break;
+    //        case InputEnum.LeftMouse_Up:
+    //            onClick_LeftMouseUp.Invoke();
+    //            break;
+    //        case InputEnum.RighdMouse_Click:
+    //            missileFireTrigger = true;
+    //            break;
+    //        case InputEnum.X_Click:
+    //            onClick_X.Invoke();
+    //            break;
+    //        case InputEnum.R_Click:
+    //            onClick_R.Invoke();
+    //            break;
+    //        case InputEnum.F_Down:
+    //            onClick_Fdown.Invoke();
+    //            break;
+    //        case InputEnum.F_Up:
+    //            onClick_Fup.Invoke();
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
 
 
     bool missileFireTrigger = false;
