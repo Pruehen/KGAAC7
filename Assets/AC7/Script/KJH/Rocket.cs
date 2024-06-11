@@ -1,7 +1,6 @@
-using Mirror;
 using UnityEngine;
 
-public class Rocket : NetworkBehaviour
+public class Rocket : MonoBehaviour
 {
     [Header("모터 지속 시간")]
     [SerializeField] float boostStartDelay;//부스트 시작 딜레이 시간
@@ -126,7 +125,7 @@ public class Rocket : NetworkBehaviour
             Vector3 contact = collision.GetContact(0).point;
             EffectManager.Instance.EffectGenerate(explosionEffect, contact);
             this.DestroyRocket();
-            if (fightable.isPlayer && fightable.isLocalPlayer)
+            if (fightable.isPlayer)// && fightable.isLocalPlayer)
             {
                 kjh.GameManager.Instance.cameraShake.MissileHitShake();
             }
