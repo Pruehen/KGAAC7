@@ -36,7 +36,6 @@ public class FlightController : MonoBehaviour
 
         if (!dead)
         {
-
             aircraftControl.SetAxisValue(PlayerInputCustom_input.pitchAxis, PlayerInputCustom_input.rollAxis,
                 PlayerInputCustom_input.yawAxis, PlayerInputCustom_input.throttleAxis);//테스트 코드
         }
