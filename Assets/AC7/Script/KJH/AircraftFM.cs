@@ -1,8 +1,7 @@
 using UnityEngine;
-using Mirror;
 
 //사용중인 항공기의 FM 데이터를 받아서 실제 비행 물리를 적용
-public class AircraftFM : NetworkBehaviour
+public class AircraftFM : MonoBehaviour
 {
     //AircraftSelecter aircraftSelecter;
     VaporEffect effect;
@@ -15,10 +14,10 @@ public class AircraftFM : NetworkBehaviour
     [SerializeField] float _yawTorque;
     [SerializeField] float _torqueGain;
 
-    [Header("동기 변수")]
-    [SyncVar] [SerializeField] Vector3 _curVelocity;
-    [SyncVar] [SerializeField] Vector3 _curPos;
-    [SyncVar] [SerializeField] Quaternion _curRot;
+    //[Header("동기 변수")]
+    //[SyncVar] [SerializeField] Vector3 _curVelocity;
+    //[SyncVar] [SerializeField] Vector3 _curPos;
+    //[SyncVar] [SerializeField] Quaternion _curRot;
 
     public int Velocity { get; private set; }
     public float G_Force { get; private set; }
@@ -46,7 +45,7 @@ public class AircraftFM : NetworkBehaviour
             return;
 
         FlightModelOnFixedUpdate();
-        FlightDataSyncOnFixedUpdate();        
+        //FlightDataSyncOnFixedUpdate();        
     }
     
     void FlightModelOnFixedUpdate()
@@ -99,26 +98,26 @@ public class AircraftFM : NetworkBehaviour
         effect?.SetEffect(velocitySpeed, aoa);
     }
 
-    void FlightDataSyncOnFixedUpdate()
-    {
-        if (this.isLocalPlayer)
-        {
-            _curVelocity = rigidbody.velocity;
-            _curPos = this.transform.position;
-            _curRot = this.transform.rotation;
-        }
-        else
-        {
-            rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, _curVelocity, Time.fixedDeltaTime);            
-            if(Vector3.Distance(this.transform.position, _curPos) > 1000)
-            {
-                this.transform.position = _curPos;
-            }
-            else
-            {
-                this.transform.position = Vector3.Lerp(this.transform.position, _curPos, Time.fixedDeltaTime);
-            }
-            this.transform.rotation = _curRot;
-        }        
-    }    
+    //void FlightDataSyncOnFixedUpdate()
+    //{
+    //    if (this.isLocalPlayer)
+    //    {
+    //        _curVelocity = rigidbody.velocity;
+    //        _curPos = this.transform.position;
+    //        _curRot = this.transform.rotation;
+    //    }
+    //    else
+    //    {
+    //        rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, _curVelocity, Time.fixedDeltaTime);            
+    //        if(Vector3.Distance(this.transform.position, _curPos) > 1000)
+    //        {
+    //            this.transform.position = _curPos;
+    //        }
+    //        else
+    //        {
+    //            this.transform.position = Vector3.Lerp(this.transform.position, _curPos, Time.fixedDeltaTime);
+    //        }
+    //        this.transform.rotation = _curRot;
+    //    }        
+    //}    
 }
