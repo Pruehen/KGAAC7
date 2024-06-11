@@ -19,10 +19,13 @@ public class MatchManager : MonoBehaviour
     private IPEndPoint peerEndpoint;
     private bool isMatched = false;
 
+    [SerializeField] string _serverIp;
+    [SerializeField] int _port;
+
     void Start()
     {
         udpClient = new UdpClient();
-        serverEndpoint = new IPEndPoint(IPAddress.Parse("3.38.105.1"), 5000); // Matchmaking server IP and port
+        serverEndpoint = new IPEndPoint(IPAddress.Parse(_serverIp), _port); // Matchmaking server IP and port
     }
 
     public void Host()
