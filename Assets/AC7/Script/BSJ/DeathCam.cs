@@ -12,10 +12,14 @@ namespace bsj
         Vector3 _initialOffset;
         Quaternion _initialLocalRotation;
         Transform _initCamParent;
+        Coroutine _camCoroutine;
 
         private void Start()
         {
-            bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+            if( isLocalPlayer )
+            {
+                bsj.GameManager.Instance.AfterPlayerSpawned += OnPlayerSpawn;
+            }
         }
         private void OnPlayerSpawn()
         {
@@ -26,7 +30,7 @@ namespace bsj
             Vector3 offset = Vector3.up * 500f;
             if (isLocalPlayer)
             {
-                GetComponent<VehicleCombat>().onDead.AddListener(Play);
+                GetComponent<VehicleCombat>().onLocalDead.AddListener(Play);
             }
             _playerTrf = bsj.GameManager.Instance.player;
         }
@@ -34,7 +38,7 @@ namespace bsj
         public void Play()
         {
             Camera.main.transform.SetParent(null, true);
-            StartCoroutine(MoveCam( 60f));
+            _camCoroutine = StartCoroutine(MoveCam( 60f));
         }
 
         private IEnumerator MoveCam(float rotateSpeed)
@@ -65,6 +69,11 @@ namespace bsj
             _cam.transform.SetParent(_initCamParent);
             _cam.transform.localPosition = _initialOffset;
             _cam.transform.localRotation = _initialLocalRotation;
+            if(_camCoroutine != null)
+            {
+                StopCoroutine(_camCoroutine);
+                _camCoroutine = null;
+            }
         }
     }
 

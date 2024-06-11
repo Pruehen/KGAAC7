@@ -71,10 +71,6 @@ namespace bsj
         private void IsNetworkOnSceneLoad(Scene scene, LoadSceneMode mode)
         {
             IsNetworkScene = IsNetworkManagerExist();
-            if (!IsNetworkScene)
-            {
-                AfterPlayerSpawned?.Invoke();
-            }
         }
 
         private bool IsNetworkManagerExist()

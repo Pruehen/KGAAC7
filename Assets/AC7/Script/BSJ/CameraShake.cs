@@ -38,8 +38,9 @@ public class CameraShake : NetworkBehaviour
     }
     public void TriggerShake(float duration, float verticalForce, float horizontalForce)
     {
+        Debug.Log("ShakeCam");
         //현재 실행중이면서 그 크기가 크면 취소
-        if(_shakeMagnitudeV > verticalForce && IsShaking())
+        if (_shakeMagnitudeV > verticalForce && IsShaking())
         {
             return;
         }
