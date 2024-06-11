@@ -1,8 +1,7 @@
-using Mirror;
 using System.Collections;
 using UnityEngine;
 
-public class MWR : NetworkBehaviour
+public class MWR : MonoBehaviour
 {
     //List<Guided> incomeMissileList = new List<Guided>();
     bool isPlayer;
@@ -32,7 +31,7 @@ public class MWR : NetworkBehaviour
     {
         //incomeMissileList.Add(missile);
         missileCount++;
-        if (isPlayer && this.isLocalPlayer)
+        if (isPlayer)// && this.isLocalPlayer)
         {
             MissileIndicatorController.Instance.AddMissileIndicator(missile);
             MissileCountAdd();
@@ -47,7 +46,7 @@ public class MWR : NetworkBehaviour
     {
         //incomeMissileList.Remove(missile);
         missileCount--;
-        if (isPlayer && this.isLocalPlayer)
+        if (isPlayer)// && this.isLocalPlayer)
         {
             MissileIndicatorController.Instance.RemoveMissileIndicator(missile);
             MissileCountRemove();
@@ -65,7 +64,7 @@ public class MWR : NetworkBehaviour
     Coroutine sfxLoop;
     private void CheckAnyTracing()
     {
-        if (this.isLocalPlayer)
+        if (isPlayer)// this.isLocalPlayer)
         {
             if (missileCount > 0)
             {
