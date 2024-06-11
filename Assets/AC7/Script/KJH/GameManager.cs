@@ -97,7 +97,7 @@ namespace kjh
             _playerInputCustom.isControlable = true;
             IsPaused = false;
             StartCoroutine(DelayedCall(delay, _gameResultUi.FadeOutResultUi));
-            player.vehicleCombat.CommandDead();
+            player.vehicleCombat.CommandDie();
 
 
         }

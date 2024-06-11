@@ -20,13 +20,42 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     {
         bsj.GameManager.Instance.AfterAnyPlayerSpawned += OnAnyPlayerSpawn;
         bsj.GameManager.Instance.AfterPlayerSpawned += OnLocalPlayerSpawn;
+
+
+        if (!isLocalPlayer)
+        {
+            combat.Init(this.transform, startHp);
+            isTargeted = false;
+            isRaderLock = false;
+            isMissileLock = false;
+            CommandSyncTargetInfo();
+        }
+        else
+        {
+            PlayerData data = FindAnyObjectByType<PlayerData>();
+            if (data != null)
+                CommandSetPlayerInfo(data.PlayerAircraft, data.PlayerId);
+            combat.Init(this.transform, startHp);
+            isTargeted = false;
+            isRaderLock = false;
+            isMissileLock = false;
+        }
+        if (isServerOnly)
+        {
+            combat.OnDead += RpcDie;
+        }
+        combat.OnDead += OnAnyDead;
+
+
+        if (isPlayer)
+        {
+            StartCoroutine(Heal());
+        }
+        kjh.GameManager.Instance.AddActiveTarget(this);
     }
-    
     private void OnLocalPlayerSpawn()
     {
-        PlayerData data = FindAnyObjectByType<PlayerData>();
-        if(data != null )
-            CommandSetPlayerInfo(data.PlayerAircraft, data.PlayerId);
+
     }
 
     [Command]
@@ -42,27 +71,6 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     }
     private void OnAnyPlayerSpawn()
     {
-        combat.Init(this.transform, startHp);
-        if (isServerOnly)
-        {
-            combat.OnDead += RpcDead;
-            combat.OnDead += Dead;
-        }
-        if (isClient && isServer)
-        {
-            combat.OnDead += RpcDead;
-        }
-        isTargeted = false;
-        isRaderLock = false;
-        isMissileLock = false;
-
-        CommandSyncTargetInfo();
-
-        if (isPlayer)
-        {
-            StartCoroutine(Heal());
-        }
-        kjh.GameManager.Instance.AddActiveTarget(this);
     }
 
     [Command]
@@ -154,18 +162,17 @@ public class VehicleCombat : NetworkBehaviour, IFightable
         return combat.IsDead();
     }
     [Command]
-    public void CommandDead()
+    public void CommandDie()
     {
-        RpcDead();
+        RpcDie();
     }
     [ClientRpc]
-    void RpcDead()
+    void RpcDie()
     {
         Die();
-        Dead();
     }
 
-    void Dead()
+    void OnAnyDead()
     {
         Debug.Log("OnVehicleCombat Dead Called");
         if (!isPlayer)
@@ -176,15 +183,13 @@ public class VehicleCombat : NetworkBehaviour, IFightable
                 sphereCollider.enabled = false;
             }
         }
-        else if(isLocalPlayer)
-        {
-        }
-        else
-        {
-        }
         kjh.GameManager.Instance.RemoveActiveTarget(this);
         onDead.Invoke();
         //Debug.Log("Æã");
+    }
+    void OnLocalDead()
+    {
+        onLocalDead.Invoke();
     }
 
     public void ResetDead()
@@ -233,6 +238,7 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     }
 
     public UnityEvent onDead;
+    public UnityEvent onLocalDead;
     public UnityEvent onDestroyed;
     public System.Action onFlare;
 }
