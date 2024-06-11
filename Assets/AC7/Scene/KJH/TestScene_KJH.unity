@@ -2004,6 +2004,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1601999417}
     m_Modifications:
+    - target: {fileID: 727090601699243071, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8349056
+      objectReference: {fileID: 0}
+    - target: {fileID: 727090601699243071, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 727090601699243071, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8349056
+      objectReference: {fileID: 0}
+    - target: {fileID: 727090601699243071, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_Intensity
+      value: 744.2737
+      objectReference: {fileID: 0}
+    - target: {fileID: 727090601699243071, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_SpotAngle
+      value: 179
+      objectReference: {fileID: 0}
+    - target: {fileID: 727090601699243071, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2774396126908142220, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2014,7 +2038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2774396126908142220, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 500
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2774396126908142220, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2051,6 +2075,54 @@ PrefabInstance:
     - target: {fileID: 2774396126908142221, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
       propertyPath: m_Name
       value: Player_VR
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787360211721078052, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877295076424894100, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877295076424894100, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877295076424894100, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.132
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631584978957727352, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_Intensity
+      value: 4635.6006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631584978957727352, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_InnerSpotPercent
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631584978957727352, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_CustomSpotLightShadowCone
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109022250359776846, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.221
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109022250359776846, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195858585122149739, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195858585122149739, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195858585122149739, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}

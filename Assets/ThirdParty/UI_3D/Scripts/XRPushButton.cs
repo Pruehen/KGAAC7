@@ -181,6 +181,7 @@ namespace UnityEngine.XR.Content.Interaction
                 if (m_HoveringInteractors.Count > 0)
                 {
                     UpdatePress();
+                    Debug.Log("Hover");
                 }
             }
         }
