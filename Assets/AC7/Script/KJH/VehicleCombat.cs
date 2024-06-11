@@ -1,19 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using Mirror;
 
-public class VehicleCombat : NetworkBehaviour, IFightable
+public class VehicleCombat : MonoBehaviour, IFightable
 {
     public float startHp;
     public bool isPlayer;
     public bool mainTarget = false;
-    [SyncVar] public string name;
-    [SyncVar] public string nickname;
+    public string name;
+    public string nickname;
     bool _isInit = false;
     float lifeTime = 0;
 
-    [ClientCallback]
+    //[ClientCallback]
     public void SetNames(string nickName)
     {
         name = GetComponent<AircraftSelecter>().aircraftControl.name;
@@ -28,48 +27,49 @@ public class VehicleCombat : NetworkBehaviour, IFightable
     public void TakeDamage(float damage)
     {
         //로컬일 경우 이펙트만 나오고 데미지는 입히지 않음
-        if (this.isServer && lifeTime > 2)
-        {
-            ServerOnlyTakeDamage(damage);//서버일 시 커맨드 메서드 실행
-        }
-    }
-    public void TakeDamageExecuteCommand(float damage)
-    {
-        CommandTakeDamage(damage);
-    }
-
-    [Server]
-    void ServerOnlyTakeDamage(float damage)
-    {
-        combat.TakeDamage(damage);//서버에서 데미지 계산
-        //CustomAI customAI;
-        //if (TryGetComponent<CustomAI>(out customAI))
+        //if (this.isServer && lifeTime > 2)
         //{
-        //    customAI.EngageOrder();
+        //    ServerOnlyTakeDamage(damage);//서버일 시 커맨드 메서드 실행
         //}
-
-        RpcTakeDamage(damage);
-    }
-    [Command(requiresAuthority = false)]
-    void CommandTakeDamage(float damage)
-    {
         combat.TakeDamage(damage);
-        RpcTakeDamage(damage);
     }
+    //public void TakeDamageExecuteCommand(float damage)
+    //{
+    //    CommandTakeDamage(damage);
+    //}
 
-    [ClientRpc]
-    void RpcTakeDamage(float dmg)
-    {
-        if (this.isServer)
-            return;
+    //[Server]
+    //void ServerOnlyTakeDamage(float damage)
+    //{
+    //    combat.TakeDamage(damage);//서버에서 데미지 계산
+    //    //CustomAI customAI;
+    //    //if (TryGetComponent<CustomAI>(out customAI))
+    //    //{
+    //    //    customAI.EngageOrder();
+    //    //}
 
-        combat.TakeDamage(dmg);
-        //CustomAI customAI;
-        //if (TryGetComponent<CustomAI>(out customAI))
-        //{
-        //    customAI.EngageOrder();
-        //}
-    }
+    //    RpcTakeDamage(damage);
+    //}
+    //[Command(requiresAuthority = false)]
+    //void CommandTakeDamage(float damage)
+    //{
+    //    combat.TakeDamage(damage);
+    //    RpcTakeDamage(damage);
+    //}
+
+    //[ClientRpc]
+    //void RpcTakeDamage(float dmg)
+    //{
+    //    if (this.isServer)
+    //        return;
+
+    //    combat.TakeDamage(dmg);
+    //    //CustomAI customAI;
+    //    //if (TryGetComponent<CustomAI>(out customAI))
+    //    //{
+    //    //    customAI.EngageOrder();
+    //    //}
+    //}
 
 
     public void Die()
@@ -127,10 +127,10 @@ public class VehicleCombat : NetworkBehaviour, IFightable
             sphereCollider.enabled = false;
         }
 
-        if (this.isLocalPlayer)
-        {
-            //BGM_Player.Instance.Stop();
-        }
+        //if (this.isLocalPlayer)
+        //{
+        //    //BGM_Player.Instance.Stop();
+        //}
         onDead.Invoke();
         //Debug.Log("펑");
     }
