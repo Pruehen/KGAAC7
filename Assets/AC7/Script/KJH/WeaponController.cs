@@ -1,9 +1,8 @@
-using Mirror;
 using UnityEngine;
 
 namespace kjh
 {
-    public class WeaponController : NetworkBehaviour
+    public class WeaponController : MonoBehaviour
     {
         AircraftSelecter aircraftSelecter;
         kjh.WeaponSystem weaponSystem;
@@ -39,33 +38,33 @@ namespace kjh
         /// </summary>
         public void Fire()
         {
-            CommandFire();
-
-            //if (weaponSystem == null)
-            //    weaponSystem = aircraftSelecter.weaponSystem;
-
-            //weaponSystem.Fire(rigidbody.velocity, radar);
-        }
-        [Command]
-        void CommandFire()
-        {
-            if (weaponSystem == null)
-                weaponSystem = aircraftSelecter.weaponSystem;
-
-            weaponSystem.Fire(rigidbody.velocity, radar);
-            RpcFire();
-        }
-        [ClientRpc]
-        void RpcFire()
-        {
-            if (this.isServer)
-                return;
+            //CommandFire();
 
             if (weaponSystem == null)
                 weaponSystem = aircraftSelecter.weaponSystem;
 
             weaponSystem.Fire(rigidbody.velocity, radar);
         }
+        //[Command]
+        //void CommandFire()
+        //{
+        //    if (weaponSystem == null)
+        //        weaponSystem = aircraftSelecter.weaponSystem;
+
+        //    weaponSystem.Fire(rigidbody.velocity, radar);
+        //    RpcFire();
+        //}
+        //[ClientRpc]
+        //void RpcFire()
+        //{
+        //    if (this.isServer)
+        //        return;
+
+        //    if (weaponSystem == null)
+        //        weaponSystem = aircraftSelecter.weaponSystem;
+
+        //    weaponSystem.Fire(rigidbody.velocity, radar);
+        //}
 
         /// <summary>
         /// 웨폰 시스템의 무기를 교체하는 메서드
