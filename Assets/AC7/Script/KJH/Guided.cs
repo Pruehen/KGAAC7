@@ -1,7 +1,6 @@
-using Mirror;
 using UnityEngine;
 
-public class Guided : NetworkBehaviour
+public class Guided : MonoBehaviour
 {
     [SerializeField] protected int EIRCM_Count;
     [SerializeField] protected VehicleCombat target;
