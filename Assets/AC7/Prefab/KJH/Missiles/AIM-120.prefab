@@ -166,6 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b979b78147222649b6547203eb5c81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   boostStartDelay: 0.25
   boostTime: 1.7
   sustainTime: 5.3
@@ -192,8 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d941a5b0efacf449a3bf09ef306c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   EIRCM_Count: 80
-  target: {fileID: 0}
+  _target: {fileID: 0}
   maxTurnRate: 45
   maxSideForce: 400
   isTVC: 0
@@ -250,8 +256,8 @@ MonoBehaviour:
   syncPosition: 1
   syncRotation: 1
   syncScale: 0
-  onlySyncOnChange: 1
-  compressRotation: 1
+  onlySyncOnChange: 0
+  compressRotation: 0
   interpolatePosition: 1
   interpolateRotation: 1
   interpolateScale: 1

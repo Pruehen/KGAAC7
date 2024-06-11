@@ -250,6 +250,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b979b78147222649b6547203eb5c81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   boostStartDelay: 0
   boostTime: 5
   sustainTime: 20
@@ -276,12 +279,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd781ae820e086488e9c3ada5e65795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   EIRCM_Count: 60
-  target: {fileID: 0}
+  _target: {fileID: 0}
   maxTurnRate: 40
   maxSideForce: 160
   isTVC: 1
   traceAngleLimit: 45
+  _radar: {fileID: 0}
 --- !u!114 &-4268455925729301788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,8 +341,8 @@ MonoBehaviour:
   syncPosition: 1
   syncRotation: 1
   syncScale: 0
-  onlySyncOnChange: 1
-  compressRotation: 1
+  onlySyncOnChange: 0
+  compressRotation: 0
   interpolatePosition: 1
   interpolateRotation: 1
   interpolateScale: 1
