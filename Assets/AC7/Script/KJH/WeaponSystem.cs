@@ -1,11 +1,9 @@
-using Mirror;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace kjh
 {
-    public class WeaponSystem : NetworkBehaviour
+    public class WeaponSystem : MonoBehaviour
     {
         [SerializeField] List<GameObject> weaponPrfList;        
         List<WeaponData> weaponDataList = new List<WeaponData>();
@@ -33,7 +31,7 @@ namespace kjh
         }
 
 
-        [SyncVar] int useWeaponIndex;
+        int useWeaponIndex;
         public System.Action weaponChange;
 
         [SerializeField] GameObject bulletPrf;
