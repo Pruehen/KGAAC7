@@ -106,35 +106,15 @@ public class AircraftMaster : NetworkBehaviour
         EffectManager.Instance.AircraftFireEffectGenerate(this.transform);
         StartCoroutine(DeadEffect());
     }
-    //called on click restart
-    public void OnRestart()
-    {
-        if(!isLocalPlayer)
-        {
-            return;
-        }
-        if (Camera.main.transform.GetComponent<CamRotate>().enabled == false)
-        {
-            ResetDead();
-        }
-        else
-        {
-            vehicleCombat.CommandDead();
-            ResetDead();
-        }
-    }
 
     public void ResetDead()
     {
         if(isLocalPlayer)
         {
             Camera.main.transform.GetComponent <CamRotate>().enabled = true;
-            if (isLocalPlayer)
-            {
-                GetComponent<bsj.DeathCam>().ResetDead();
-                vehicleCombat.CommandResetDead();
-                transform.GetComponent<FlightController>().CommandResetDead();
-            }
+            GetComponent<bsj.DeathCam>().ResetDead();
+            vehicleCombat.CommandResetDead();
+            transform.GetComponent<FlightController>().CommandResetDead();
         }
     }
 
@@ -147,7 +127,6 @@ public class AircraftMaster : NetworkBehaviour
             Destroy(this.gameObject);
         else
         {
-            gameObject.SetActive(false);
             ResetDead();
         }
     }
