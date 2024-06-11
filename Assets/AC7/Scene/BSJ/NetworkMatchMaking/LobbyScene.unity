@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1280.0654, g: 1489.3242, b: 1916.7148, a: 1}
+  m_IndirectSpecularColor: {r: 1188.0479, g: 1423.1816, b: 1875.0176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2116,7 +2116,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2113724836815459168, guid: a3ad220c84554564185b00766ca207ac, type: 3}
       propertyPath: IN_ip
-      value: 3.38.105.1
+      value: 43.201.1.113
       objectReference: {fileID: 0}
     - target: {fileID: 2113724836815459169, guid: a3ad220c84554564185b00766ca207ac, type: 3}
       propertyPath: m_RootOrder
@@ -2216,6 +2216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkManager: {fileID: 1798521178}
   playerData: {fileID: 462205995}
+  _serverIp: 43.201.1.113
+  _port: 5000
 --- !u!114 &462205993
 MonoBehaviour:
   m_ObjectHideFlags: 0

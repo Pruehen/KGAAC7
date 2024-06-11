@@ -16,8 +16,35 @@ public class AircraftFM : NetworkBehaviour
         aircraftSelecter = GetComponent<AircraftSelecter>();
         effect = aircraftSelecter.controlAircraft.GetComponent<VaporEffect>();
         rigidbody = this.gameObject.GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        if(isLocalPlayer)
+        {
+            CommandStartVelocity();
+        }
+    }
+
+    public void ResetStartVelocity()
+    {
+        if(isLocalPlayer)
+        {
+            CommandStartVelocity();
+        }
+    }
+
+    [Command]
+    private void CommandStartVelocity()
+    {
+        StartVelocity();
+    }
+    private void StartVelocity()
+    {
+        rigidbody = this.gameObject.GetComponent<Rigidbody>();
         rigidbody.velocity = this.transform.forward * 200;
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {

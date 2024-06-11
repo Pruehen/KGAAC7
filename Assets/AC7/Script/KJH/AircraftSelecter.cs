@@ -98,6 +98,7 @@ public class AircraftSelecter : NetworkBehaviour
         if(isServerOnly)
         {
             SetControlAircraft(controlAircraft, aircraftName);
+            RpcSetControlAircraft(controlAircraft, aircraftName);
         }
         else
         {
