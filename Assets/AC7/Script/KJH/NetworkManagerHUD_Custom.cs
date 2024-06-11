@@ -138,7 +138,7 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
             // stop host if host mode
             if (GUILayout.Button("Disconnect"))
             {
-                kjh.GameManager.Instance.player.vehicleCombat.TakeDamageExecuteCommand(99999);
+                //kjh.GameManager.Instance.player.vehicleCombat.TakeDamageExecuteCommand(99999);
                 StartCoroutine(StopHostDelay(2.5f));                
             }
 #endif
@@ -150,7 +150,7 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
             // stop client if client-only
             if (GUILayout.Button("Disconnect"))
             {
-                kjh.GameManager.Instance.player.vehicleCombat.TakeDamageExecuteCommand(99999);
+                //kjh.GameManager.Instance.player.vehicleCombat.TakeDamageExecuteCommand(99999);
                 StartCoroutine(StopClientDelay(2.5f));
             }
 
