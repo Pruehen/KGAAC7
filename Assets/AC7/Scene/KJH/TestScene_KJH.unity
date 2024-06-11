@@ -2212,6 +2212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_VR
       objectReference: {fileID: 0}
+    - target: {fileID: 3025426654485787451, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3040488755246847671, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
       propertyPath: m_IsActive
       value: 1
