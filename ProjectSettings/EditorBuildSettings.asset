@@ -29,4 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AC7/Scene/KJH/TestScene_KJH.unity
     guid: ade62ed959118f6468985d5112f83cfc
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 86353f0dcf6f7c841a589d480a3121e5, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ae3e676b34295e64c9a0e20beb8d601e, type: 2}
