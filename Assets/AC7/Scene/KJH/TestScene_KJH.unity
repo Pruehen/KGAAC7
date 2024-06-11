@@ -298,7 +298,7 @@ MonoBehaviour:
   - {fileID: 1494421569}
   - {fileID: 908961141}
   - {fileID: 381193073}
-  UseAircraftNameEnum: 2
+  UseAircraftNameEnum: 1
   UserNickName: Default
   SelectAircraftName: F-16C
 --- !u!4 &122694991
@@ -2004,6 +2004,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1601999417}
     m_Modifications:
+    - target: {fileID: 1774532939448090365, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774532939448090365, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774532939448090365, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2774396126908142220, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2014,7 +2026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2774396126908142220, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2774396126908142220, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2052,10 +2064,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
-    - target: {fileID: 3594041914447209785, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
-      propertyPath: sceneId
-      value: 4130170481
+    - target: {fileID: 5408678983769753767, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3594041914447209785, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+    - target: {fileID: 5408678983769753767, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.522
+      objectReference: {fileID: 0}
+    - target: {fileID: 8945380574232782463, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce9d77e0c52fdfa4491ea7dd17ecb630, type: 3}
