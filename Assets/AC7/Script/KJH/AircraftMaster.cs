@@ -1,6 +1,4 @@
-using Mirror;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,7 +10,7 @@ public struct AirInfo
 
 //참조용 클래스. 하위 컴포넌트에 접근할 때 사용. 웬만하면 여기서 하위 컴포넌트를 수정하지 말 것
 //전투 기능을 우선 여기에 붙여봤음.
-public class AircraftMaster : NetworkBehaviour
+public class AircraftMaster : MonoBehaviour
 {
     [SerializeField] bool _isPlayer = false;
     public bool IsPlayer() { return _isPlayer; }
@@ -54,23 +52,24 @@ public class AircraftMaster : NetworkBehaviour
         return (aircraftFM != null) ? aircraftFM.AoA: 0;
     }    
 
-    public override void OnStartLocalPlayer()
+    /*public override void OnStartLocalPlayer()
     {
         CommandInit(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
-    }
+    }*/
 
     private void Start()
     {
-        StartCoroutine(TryCommandSync());
+        //StartCoroutine(TryCommandSync());
+        Init(PlayerSpawner.Instance.UseAircraftNameEnum, PlayerSpawner.Instance.UserNickName);
     }
-    IEnumerator TryCommandSync()
-    {
-        yield return new WaitForSecondsRealtime(1);
-        if (!this.isLocalPlayer)
-        {
-            CommandSync();
-        }
-    }
+    //IEnumerator TryCommandSync()
+    //{
+    //    yield return new WaitForSecondsRealtime(1);
+    //    if (!this.isLocalPlayer)
+    //    {
+    //        CommandSync();
+    //    }
+    //}
 
     public void Init(AircraftName aircraftName, string userName)
     {
@@ -107,41 +106,42 @@ public class AircraftMaster : NetworkBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-        if (this.isLocalPlayer)
-        {
-            SetPositionPlayer();
-            //vehicleCombat.Init();
-        }
+        //if (this.isLocalPlayer)
+        //{
+        //    SetPositionPlayer();
+        //    //vehicleCombat.Init();
+        //}
+        SetPositionPlayer();
         kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
         //StartCoroutine(OnAircraftMasterInitInvoke(0.2f));
         OnAircraftMasterInit.Invoke();
         _isInit = true;
     }
-    [Command(requiresAuthority = false)]
-    void CommandInit(AircraftName aircraftName, string userName)
-    {
-        //Init(aircraftName, userName);
-        RpcInit(aircraftName, userName);
-    }
-    [Command(requiresAuthority = false)]
-    void CommandSync()
-    {
-        RpcSync(this._aircraftName, this._userName);
-    }
+    //[Command(requiresAuthority = false)]
+    //void CommandInit(AircraftName aircraftName, string userName)
+    //{
+    //    //Init(aircraftName, userName);
+    //    RpcInit(aircraftName, userName);
+    //}
+    //[Command(requiresAuthority = false)]
+    //void CommandSync()
+    //{
+    //    RpcSync(this._aircraftName, this._userName);
+    //}
 
-    [ClientRpc]
-    void RpcInit(AircraftName aircraftName, string userName)
-    {
-        Init(aircraftName, userName);
-    }
-    [ClientRpc]
-    void RpcSync(AircraftName aircraftName, string userName)
-    {
-        if(!_isInit)
-        {
-            Init(aircraftName, userName);
-        }
-    }
+    //[ClientRpc]
+    //void RpcInit(AircraftName aircraftName, string userName)
+    //{
+    //    Init(aircraftName, userName);
+    //}
+    //[ClientRpc]
+    //void RpcSync(AircraftName aircraftName, string userName)
+    //{
+    //    if(!_isInit)
+    //    {
+    //        Init(aircraftName, userName);
+    //    }
+    //}
 
 
     public void Dead()
@@ -175,11 +175,11 @@ public class AircraftMaster : NetworkBehaviour
 
     public void ReSpawnPlayer()
     {
-        if (this.isLocalPlayer)
-        {
-            SetPositionPlayer();            
-        }
-
+        //if (this.isLocalPlayer)
+        //{
+        //    SetPositionPlayer();            
+        //}
+        SetPositionPlayer();
         kjh.GameManager.Instance.AddActiveTarget(vehicleCombat);
         vehicleCombat.Init();
     }
