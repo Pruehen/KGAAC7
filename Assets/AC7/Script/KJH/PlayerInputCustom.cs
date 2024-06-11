@@ -46,7 +46,7 @@ public class PlayerInputCustom : MonoBehaviour
         //{ return; } 
         //if(kjh.GameManager.Instance.IsPaused)
         //{ return; }
-        ControlSurface();
+        //ControlSurface();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -243,6 +243,21 @@ public class PlayerInputCustom : MonoBehaviour
 
         pitchAxis = Mathf.Clamp(pitchAxis, -1, 1);
         rollAxis = Mathf.Clamp(rollAxis, -1, 1);
+    }
+    public void AxisSet_OnValueChangeX(float value)
+    {
+        rollAxis = value;
+        Debug.Log($"RollAxis = {rollAxis}");
+    }
+    public void AxisSet_OnValueChangeY(float value)
+    {
+        pitchAxis = -value;
+        Debug.Log($"pitchAxis = {pitchAxis}");
+    }
+    public void AxisSet_OnValueChangeT(float value)
+    {
+        throttleAxis = value * 2 - 1;
+        Debug.Log($"throttleAxis = {throttleAxis}");
     }
     void OnFire(InputValue inputValue)
     {

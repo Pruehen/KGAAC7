@@ -146,7 +146,7 @@ public class AircraftMaster : MonoBehaviour
 
     public void Dead()
     {
-        vehicleCombat.onDead.Invoke();
+        //vehicleCombat.onDead.Invoke();
     }
     public void OnDead()
     {
