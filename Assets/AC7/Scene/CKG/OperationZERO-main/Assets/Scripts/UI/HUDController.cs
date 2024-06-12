@@ -24,6 +24,6 @@ public class HUDController : MonoBehaviour
     {
         float convertedRotation = (target.eulerAngles.x > 180) ? (target.eulerAngles.x - 360) : target.eulerAngles.x;
         hudPositionTransform.localPosition = new Vector3(0, (convertedRotation * HUDPositionFactor), 0);
-        hudRotationTransform.rotation = Quaternion.Euler(0, 0, -target.eulerAngles.z);
+        //hudRotationTransform.rotation = Quaternion.Euler(0, 0, -target.eulerAngles.z);
     }
 }

@@ -5,7 +5,7 @@ public class Cockpit : MonoBehaviour
     [SerializeField] Transform Transform_Aircraft;
 
     // Update is called once per frame    
-    void LateUpdate()
+    void Update()
     {
         if (Transform_Aircraft == null)
             return;

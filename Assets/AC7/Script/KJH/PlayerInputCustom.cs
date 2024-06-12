@@ -247,17 +247,17 @@ public class PlayerInputCustom : MonoBehaviour
     public void AxisSet_OnValueChangeX(float value)
     {
         rollAxis = value;
-        Debug.Log($"RollAxis = {rollAxis}");
+        //Debug.Log($"RollAxis = {rollAxis}");
     }
     public void AxisSet_OnValueChangeY(float value)
     {
         pitchAxis = -value;
-        Debug.Log($"pitchAxis = {pitchAxis}");
+        //Debug.Log($"pitchAxis = {pitchAxis}");
     }
     public void AxisSet_OnValueChangeT(float value)
     {
         throttleAxis = value * 2 - 1;
-        Debug.Log($"throttleAxis = {throttleAxis}");
+        //Debug.Log($"throttleAxis = {throttleAxis}");
     }
     void OnFire(InputValue inputValue)
     {
